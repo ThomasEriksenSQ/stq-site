@@ -41,7 +41,7 @@ const Index = () => {
         <div className="pt-2 flex flex-col items-start gap-3">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center transition-colors duration-200"
+            className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-colors duration-200"
             style={{
               background: '#151515',
               color: '#f5f5f5',
@@ -57,6 +57,20 @@ const Index = () => {
             }}
           >
             Dette er STACQ
+            <svg
+              className="transition-transform duration-200 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]"
+              width="13"
+              height="13"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M4.5 11.5L11.5 4.5" />
+              <path d="M5.5 4.5H11.5V10.5" />
+            </svg>
           </button>
           <button
             onClick={() => setIsOverlayOpen(true)}

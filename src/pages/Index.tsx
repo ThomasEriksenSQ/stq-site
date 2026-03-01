@@ -7,7 +7,7 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-background flex flex-col justify-center px-8 md:px-16 lg:px-24">
-      <div className="max-w-[620px] space-y-8">
+      <div className="max-w-[820px] space-y-8">
         <img src={stacqLogo} alt="STACQ" className="h-5" />
         <h1 className="text-[40px] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground md:text-8xl">Embedded konsulenter som former fremtiden
 

@@ -10,7 +10,7 @@ interface OverlayPanelProps {
   onClose: () => void;
 }
 
-const JobOverlay = ({ isOpen, onClose }: {isOpen: boolean;onClose: () => void;}) => {
+const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -27,10 +27,7 @@ const JobOverlay = ({ isOpen, onClose }: {isOpen: boolean;onClose: () => void;})
       <div className="absolute right-0 top-0 h-full w-[92%] md:w-[38%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto animate-slide-in-right flex flex-col shadow-lg">
         <div className="sticky top-0 z-10 px-6 md:px-[96px] py-4 bg-background border-b border-border">
           <div className="max-w-[640px] w-full">
-            <button
-              onClick={onClose}
-              className="flex items-center gap-1.5 text-accent hover:underline text-[13px]">
-
+            <button onClick={onClose} className="flex items-center gap-1.5 text-accent hover:underline text-[13px]">
               <ArrowLeft className="w-4 h-4" />
               Tilbake
             </button>
@@ -39,13 +36,12 @@ const JobOverlay = ({ isOpen, onClose }: {isOpen: boolean;onClose: () => void;})
 
         <div className="p-6 md:p-[96px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
-            <h2 className="text-[34px] font-bold text-foreground leading-[1.15]">
-              Senior Embedded Konsulent
-            </h2>
+            <h2 className="text-[34px] font-bold text-foreground leading-[1.15]">Senior Embedded Konsulent</h2>
 
             <div className="space-y-3 text-foreground text-[16px] leading-[1.7]">
               <p>
-                STACQ er et rendyrket konsulentselskap for embedded-utviklere. Vi jobber kun med embedded og lavnivå – og leverer kode som brukes i virkelige produkter.
+                STACQ er et rendyrket konsulentselskap for embedded-utviklere. Vi jobber kun med embedded og lavnivå –
+                og leverer kode som brukes i virkelige produkter.
               </p>
             </div>
 
@@ -108,8 +104,12 @@ const JobOverlay = ({ isOpen, onClose }: {isOpen: boolean;onClose: () => void;})
                   Send en kort søknad eller ta kontakt for en uformell prat.
                 </p>
                 <div className="mt-4 space-y-1">
-                  <a href="mailto:jr@stacq.no" className="block text-[14px] text-accent hover:underline">jr@stacq.no</a>
-                  <a href="tel:93287267" className="block text-[14px] text-accent hover:underline">93287267</a>
+                  <a href="mailto:jr@stacq.no" className="block text-[14px] text-accent hover:underline">
+                    jr@stacq.no
+                  </a>
+                  <a href="tel:93287267" className="block text-[14px] text-accent hover:underline">
+                    93287267
+                  </a>
                 </div>
               </div>
 
@@ -130,8 +130,8 @@ const JobOverlay = ({ isOpen, onClose }: {isOpen: boolean;onClose: () => void;})
           </div>
         </div>
       </div>
-    </div>);
-
+    </div>
+  );
 };
 
 const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
@@ -160,33 +160,41 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
       <div
         className="absolute inset-0 animate-fade-in"
         style={{ background: "rgba(36,41,47,0.08)" }}
-        onClick={onClose} />
-
+        onClick={onClose}
+      />
 
       <div
         ref={panelRef}
-        className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}>
-
-
+        className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+      >
         <div className="p-6 md:p-[96px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
             <section className="space-y-5">
-              <h1 className="text-[38px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">Konsulentselskapet STACQ</h1>
+              <h1 className="text-[38px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">
+                Konsulentselskapet STACQ
+              </h1>
               <p className="text-[18px] font-semibold text-foreground leading-[1.5]">
-                Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og lavnivåprogrammering.
+                Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og
+                lavnivåprogrammering.
               </p>
               <p className="text-foreground text-[16px] leading-[1.7]">
-                STACQ hjelper med å dekke IT-konsulentbehov og er spesialister innen embedded-systemer og systemutvikling. Vår omfattende erfaring og spisskompetanse gjør oss til en pålitelig partner for spesialkompetanse.
+                STACQ er en teknologipartner med solid faglig tyngde og forståelse for hvordan teknologi skaper verdi
+                over tid. Vi arbeider tett med kundene våre, leverer løsninger av høy kvalitet og bygger langsiktige
+                samarbeid basert på tillit, ansvar og innovasjon.
               </p>
             </section>
 
             {/* Kompetanse */}
             <section className="space-y-4">
-              <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Ekspertise innen embedded- og lavnivåprogrammering</h2>
+              <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">
+                Ekspertise innen embedded- og lavnivåprogrammering
+              </h2>
               <div className="space-y-3 text-foreground text-[16px] leading-[1.7]">
-                <p>Vi er erfarne ingeniører med solid systemforståelse og bakgrunn fra krevende teknologiprosjekter – ansvarsbevisste, samarbeidsorienterte og med sunne holdninger.</p>
-                
+                <p>
+                  Vi er erfarne ingeniører med solid systemforståelse og bakgrunn fra krevende teknologiprosjekter –
+                  ansvarsbevisste, samarbeidsorienterte og med sunne holdninger.
+                </p>
               </div>
               <div className="code-block w-full text-[14px] leading-[1.6]">
                 <div className="mt-0">
@@ -231,16 +239,13 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             <section className="space-y-4">
               <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
               <div className="space-y-1">
-                <button
-                  onClick={() => setIsJobOpen(true)}
-                  className="block text-[14px] text-accent hover:underline">
-
+                <button onClick={() => setIsJobOpen(true)} className="block text-[14px] text-accent hover:underline">
                   Se ledige stillinger →
                 </button>
                 <button
                   onClick={() => setIsHandbookOpen(true)}
-                  className="block text-[14px] text-accent hover:underline">
-
+                  className="block text-[14px] text-accent hover:underline"
+                >
                   STACQ Handbook →
                 </button>
               </div>
@@ -252,26 +257,44 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               <div className="grid grid-cols-2 gap-6">
                 {/* Jon Richard */}
                 <div className="flex items-start gap-3">
-                  <img src={jonRichardImg} alt="Jon Richard Nygaard" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
+                  <img
+                    src={jonRichardImg}
+                    alt="Jon Richard Nygaard"
+                    className="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                  />
                   <div className="space-y-1">
-                    <p className="text-[15px] font-semibold text-foreground">Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span></p>
+                    <p className="text-[15px] font-semibold text-foreground">
+                      Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span>
+                    </p>
                     <a href="tel:93287267" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
                       <Phone className="w-3.5 h-3.5" /> 93 287 267
                     </a>
-                    <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
+                    <a
+                      href="mailto:jr@stacq.no"
+                      className="flex items-center gap-2 text-[14px] text-accent hover:underline"
+                    >
                       <Mail className="w-3.5 h-3.5" /> jr@stacq.no
                     </a>
                   </div>
                 </div>
                 {/* Thomas */}
                 <div className="flex items-start gap-3">
-                  <img src={thomasEriksenImg} alt="Thomas Eriksen" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
+                  <img
+                    src={thomasEriksenImg}
+                    alt="Thomas Eriksen"
+                    className="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                  />
                   <div className="space-y-1">
-                    <p className="text-[15px] font-semibold text-foreground">Thomas Eriksen <span className="font-normal text-muted-foreground">| Partner</span></p>
+                    <p className="text-[15px] font-semibold text-foreground">
+                      Thomas Eriksen <span className="font-normal text-muted-foreground">| Partner</span>
+                    </p>
                     <a href="tel:97500321" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
                       <Phone className="w-3.5 h-3.5" /> 97 500 321
                     </a>
-                    <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
+                    <a
+                      href="mailto:thomas@stacq.no"
+                      className="flex items-center gap-2 text-[14px] text-accent hover:underline"
+                    >
                       <Mail className="w-3.5 h-3.5" /> thomas@stacq.no
                     </a>
                   </div>
@@ -284,8 +307,8 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
       <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} />
       <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
-    </div>);
-
+    </div>
+  );
 };
 
 export default OverlayPanel;

@@ -21,8 +21,8 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
   return (
     <div className="fixed inset-0 z-[60]">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-[90%] md:w-[40%] md:min-w-[380px] bg-background border-l border-border overflow-y-auto animate-slide-in-right flex flex-col shadow-lg">
-        <div className="sticky top-0 z-10 px-10 md:px-20 py-4 bg-background border-b border-border">
+      <div className="absolute right-0 top-0 h-full w-[92%] md:w-[38%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto animate-slide-in-right flex flex-col shadow-lg">
+        <div className="sticky top-0 z-10 px-6 md:px-[88px] py-4 bg-background border-b border-border">
           <button
             onClick={onClose}
             className="flex items-center gap-1.5 text-accent hover:underline text-sm"
@@ -32,7 +32,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
           </button>
         </div>
 
-        <div className="px-10 md:px-20 py-12 space-y-8 max-w-[620px]">
+        <div className="px-6 md:px-[88px] py-12 space-y-8 max-w-[640px]">
           <h2 className="text-[22px] font-semibold text-foreground leading-[1.3]">
             Senior Embedded Developer
           </h2>
@@ -75,7 +75,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
           </div>
         </div>
 
-        <div className="px-10 md:px-20 py-6 border-t border-border mt-auto">
+        <div className="px-6 md:px-[88px] py-6 border-t border-border mt-auto">
           <p className="text-xs text-muted-foreground">
             STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389 MVA
           </p>
@@ -115,16 +115,16 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
       <div
         ref={panelRef}
-        className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${isJobOpen ? "opacity-40" : "opacity-100"}`}
+        className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${isJobOpen ? "opacity-40" : "opacity-100"}`}
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between px-10 md:px-20 py-4 bg-background border-b border-border">
+        <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-[88px] py-4 bg-background border-b border-border">
           <img src={stacqLogo} alt="STACQ" className="h-5" />
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Lukk">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="px-10 md:px-20 py-12 space-y-10 max-w-[620px]">
+        <div className="px-6 md:px-[88px] pt-24 pb-[88px] space-y-10 max-w-[640px]">
           {/* Intro */}
           <section className="space-y-4">
             <h1 className="text-[28px] font-semibold text-foreground leading-[1.3]">STACQ</h1>

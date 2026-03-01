@@ -1,5 +1,6 @@
 import { useState } from "react";
 import OverlayPanel from "@/components/OverlayPanel";
+import stacqLogo from "@/assets/stacq-logo-black.png";
 
 const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -7,7 +8,7 @@ const Index = () => {
   return (
     <div className="relative min-h-screen bg-background flex flex-col justify-center px-8 md:px-16 lg:px-24">
       <div className="max-w-[720px] space-y-6">
-        <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">STACQ</p>
+        <img src={stacqLogo} alt="STACQ" className="h-5" />
         <h1 className="text-[36px] md:text-[40px] font-semibold leading-[1.25] tracking-[-0.01em] text-foreground">
           Embedded utvikling
           <br />

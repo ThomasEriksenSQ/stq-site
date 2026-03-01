@@ -21,7 +21,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
   return (
     <div className="fixed inset-0 z-[60]">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-full max-w-xl bg-background border-l border-border overflow-y-auto animate-slide-in-right">
+      <div className="absolute right-0 top-0 h-full w-full max-w-xl bg-background border-l border-border overflow-y-auto animate-slide-in-right flex flex-col">
         <div className="sticky top-0 z-10 px-8 py-4 bg-background border-b border-border">
           <button
             onClick={onClose}
@@ -74,6 +74,12 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             </div>
           </div>
         </div>
+
+        <div className="px-8 md:px-12 py-6 border-t border-border mt-auto">
+          <p className="text-xs text-muted-foreground">
+            STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389 MVA
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -109,7 +115,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
       <div
         ref={panelRef}
-        className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 ${isJobOpen ? "opacity-40" : "opacity-100"}`}
+        className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col ${isJobOpen ? "opacity-40" : "opacity-100"}`}
       >
         <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-4 bg-background border-b border-border">
           <img src={stacqLogo} alt="STACQ" className="h-5" />
@@ -136,7 +142,6 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <section className="space-y-3">
             <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Kompetanse</h2>
             <div className="code-block max-w-[520px] space-y-3">
-              <div className="text-muted-foreground text-xs mb-4">kompetanse</div>
               <div>
                 <span className="font-semibold">språk: </span>
                 <span>C, C++, Assembly, Python</span>
@@ -159,20 +164,17 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           {/* Jobb hos oss */}
           <section className="space-y-3">
             <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
-            <button
-              onClick={() => setIsJobOpen(true)}
-              className="text-sm text-accent hover:underline"
-            >
-              Se ledige stillinger →
-            </button>
-          </section>
-
-          {/* Håndbok */}
-          <section className="space-y-3">
-            <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Håndbok</h2>
-            <a href="#" className="text-sm text-accent hover:underline">
-              STACQ Handbook →
-            </a>
+            <div className="space-y-1">
+              <button
+                onClick={() => setIsJobOpen(true)}
+                className="block text-sm text-accent hover:underline"
+              >
+                Se ledige stillinger →
+              </button>
+              <a href="#" className="block text-sm text-accent hover:underline">
+                STACQ Handbook →
+              </a>
+            </div>
           </section>
 
           {/* Kontakt */}

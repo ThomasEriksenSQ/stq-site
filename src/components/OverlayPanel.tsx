@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { X, Mail, Phone } from "lucide-react";
+import { X, ArrowLeft, Mail, Phone } from "lucide-react";
 import stacqLogo from "@/assets/stacq-logo-black.png";
 
 interface OverlayPanelProps {
@@ -20,32 +20,35 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
   return (
     <div className="fixed inset-0 z-[60]">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-full max-w-xl bg-white overflow-y-auto animate-slide-in-right">
-        <div className="sticky top-0 z-10 flex items-center justify-between p-8 bg-white/90 backdrop-blur-sm">
-          <span className="font-mono text-xs tracking-widest text-neutral-400 uppercase">Stilling</span>
-          <button onClick={onClose} className="text-neutral-400 hover:text-neutral-800 transition-colors" aria-label="Lukk">
-            <X className="w-5 h-5" />
+      <div className="absolute inset-0" onClick={onClose} />
+      <div className="absolute right-0 top-0 h-full w-full max-w-xl bg-background shadow-[−20px_0_60px_rgba(0,0,0,0.06)] overflow-y-auto animate-slide-in-right">
+        <div className="sticky top-0 z-10 flex items-center gap-3 p-8 bg-background/95 backdrop-blur-sm">
+          <button
+            onClick={onClose}
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Tilbake
           </button>
         </div>
 
-        <div className="px-8 md:px-16 pb-24 space-y-16">
+        <div className="px-8 md:px-12 pb-24 space-y-12">
           <section>
-            <h2 className="font-sans text-2xl font-semibold text-neutral-900 mb-10">
+            <h2 className="font-sans text-xl font-semibold text-foreground mb-10">
               Senior Embedded Developer
             </h2>
 
             <div className="space-y-10">
               <div>
-                <h3 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-4">Teknologi</h3>
-                <p className="font-mono text-sm text-neutral-600">
+                <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-3">Teknologi</span>
+                <div className="code-block">
                   C, C++, Embedded Linux, Yocto, Bare-metal, RTOS, FPGA
-                </p>
+                </div>
               </div>
 
               <div>
-                <h3 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-4">Vi ser etter</h3>
-                <div className="space-y-2 text-neutral-600 text-sm">
+                <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-3">Vi ser etter</span>
+                <div className="space-y-2 text-foreground text-[15px] leading-[1.7]">
                   <p>5+ års erfaring</p>
                   <p>Sterk forståelse for lavnivåprogrammering</p>
                   <p>Hardware-nær utvikling</p>
@@ -55,14 +58,21 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               </div>
 
               <div>
-                <h3 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-4">Vi tilbyr</h3>
-                <div className="space-y-2 text-neutral-600 text-sm">
+                <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-3">Vi tilbyr</span>
+                <div className="space-y-2 text-foreground text-[15px] leading-[1.7]">
                   <p>Konkurransedyktig lønn</p>
                   <p>Sterkt fagmiljø</p>
                   <p>Spennende teknologiprosjekter</p>
                   <p>Kontinuerlig faglig utvikling</p>
                   <p>Fleksibilitet</p>
                 </div>
+              </div>
+
+              <div>
+                <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-3">Håndbok</span>
+                <a href="#" className="text-[15px] text-foreground hover:text-primary transition-colors">
+                  STACQ Handbook →
+                </a>
               </div>
             </div>
           </section>
@@ -94,24 +104,29 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
   return (
     <div className="fixed inset-0 z-50">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fade-in" onClick={onClose} />
+      {/* Subtle dim — NOT full black overlay */}
+      <div
+        className="absolute inset-0 animate-fade-in"
+        style={{ background: "rgba(11,15,20,0.08)" }}
+        onClick={onClose}
+      />
 
       <div
         ref={panelRef}
-        className="absolute right-0 top-0 h-full w-full max-w-2xl bg-white border-l border-neutral-200 overflow-y-auto animate-slide-in-right"
+        className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background shadow-[-20px_0_60px_rgba(0,0,0,0.06)] overflow-y-auto animate-slide-in-right transition-opacity duration-200 ${isJobOpen ? "opacity-40" : "opacity-100"}`}
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between p-8 bg-white/90 backdrop-blur-sm">
-          <img src={stacqLogo} alt="STACQ" className="h-6 w-auto" />
-          <button onClick={onClose} className="text-neutral-400 hover:text-neutral-800 transition-colors" aria-label="Lukk">
+        <div className="sticky top-0 z-10 flex items-center justify-between p-8 bg-background/95 backdrop-blur-sm">
+          <img src={stacqLogo} alt="STACQ" className="h-5 w-auto" />
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Lukk">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="px-8 md:px-16 pb-24 space-y-20">
+        <div className="px-8 md:px-12 pb-24 space-y-16">
           {/* STACQ */}
           <section>
-            <h2 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-6">STACQ</h2>
-            <div className="space-y-4 text-neutral-700 text-sm leading-relaxed max-w-md">
+            <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-4">STACQ</span>
+            <div className="space-y-4 text-foreground text-[15px] leading-[1.7] max-w-[420px]">
               <p>
                 STACQ er et norsk konsulentselskap med spisskompetanse innen embedded-systemer og lavnivåprogrammering.
               </p>
@@ -123,33 +138,33 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
           {/* Kompetanse */}
           <section>
-            <h2 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-8">Kompetanse</h2>
-            <div className="space-y-6">
+            <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-6">Kompetanse</span>
+            <div className="space-y-5">
               <div>
-                <span className="font-mono text-xs text-neutral-400 block mb-1">Språk</span>
-                <p className="font-mono text-sm text-neutral-700">C, C++, Assembly, Python</p>
+                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Språk</span>
+                <div className="code-block">C, C++, Assembly, Python</div>
               </div>
               <div>
-                <span className="font-mono text-xs text-neutral-400 block mb-1">Plattformer</span>
-                <p className="font-mono text-sm text-neutral-700">Embedded Linux, Yocto, Mikrokontrollere</p>
+                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Plattformer</span>
+                <div className="code-block">Embedded Linux, Yocto, Mikrokontrollere</div>
               </div>
               <div>
-                <span className="font-mono text-xs text-neutral-400 block mb-1">Systemnivå</span>
-                <p className="font-mono text-sm text-neutral-700">Bare-metal, RTOS, FPGA</p>
+                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Systemnivå</span>
+                <div className="code-block">Bare-metal, RTOS, FPGA</div>
               </div>
               <div>
-                <span className="font-mono text-xs text-neutral-400 block mb-1">Fagområder</span>
-                <p className="font-mono text-sm text-neutral-700">Systemarkitektur, Sikkerhet, Ytelsesoptimalisering</p>
+                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Fagområder</span>
+                <div className="code-block">Systemarkitektur, Sikkerhet, Ytelsesoptimalisering</div>
               </div>
             </div>
           </section>
 
           {/* Jobb hos oss */}
           <section>
-            <h2 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-6">Jobb hos oss</h2>
+            <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-4">Jobb hos oss</span>
             <button
               onClick={() => setIsJobOpen(true)}
-              className="font-mono text-sm text-neutral-700 hover:text-neutral-900 transition-colors"
+              className="text-[15px] text-foreground hover:text-primary transition-colors"
             >
               Jobb hos oss →
             </button>
@@ -157,23 +172,23 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
           {/* Håndbok */}
           <section>
-            <h2 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-6">Håndbok</h2>
-            <a href="#" className="font-mono text-sm text-neutral-700 hover:text-neutral-900 transition-colors">
+            <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-4">Håndbok</span>
+            <a href="#" className="text-[15px] text-foreground hover:text-primary transition-colors">
               STACQ Handbook →
             </a>
           </section>
 
           {/* Kontakt */}
           <section>
-            <h2 className="font-mono text-xs tracking-widest text-neutral-400 uppercase mb-6">Kontakt</h2>
-            <div className="space-y-2 text-sm text-neutral-700">
+            <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-4">Kontakt</span>
+            <div className="space-y-2 text-[15px] text-foreground">
               <p>Jon Richard Nygaard</p>
-              <a href="tel:93287267" className="flex items-center gap-2 hover:text-neutral-900 transition-colors">
-                <Phone className="w-3.5 h-3.5 text-neutral-400" />
+              <a href="tel:93287267" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Phone className="w-3.5 h-3.5 text-muted-foreground" />
                 93287267
               </a>
-              <a href="mailto:jr@stacq.no" className="flex items-center gap-2 hover:text-neutral-900 transition-colors">
-                <Mail className="w-3.5 h-3.5 text-neutral-400" />
+              <a href="mailto:jr@stacq.no" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Mail className="w-3.5 h-3.5 text-muted-foreground" />
                 jr@stacq.no
               </a>
             </div>

@@ -234,31 +234,13 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             {/* Valg av STACQ */}
             <section className="space-y-4">
               <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Valg av STACQ som partner</h2>
-              <ul className="space-y-2 text-foreground text-[16px] leading-[1.7]">
-                <li className="flex items-start gap-2">
-                  <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Erfaring fra krevende teknologiprosjekter</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Rask integrasjon i eksisterende team</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Eierskap til leveranser</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Tydelig og åpen kommunikasjon</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Fokus på kvalitet og robusthet</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Profesjonelt samarbeid</span>
-                </li>
+              <ul className="space-y-2 text-foreground text-[16px] leading-[1.7] list-disc pl-5">
+                <li>Erfaring fra krevende teknologiprosjekter</li>
+                <li>Rask integrasjon i eksisterende team</li>
+                <li>Eierskap til leveranser</li>
+                <li>Tydelig og åpen kommunikasjon</li>
+                <li>Fokus på kvalitet og robusthet</li>
+                <li>Profesjonelt samarbeid</li>
               </ul>
             </section>
 

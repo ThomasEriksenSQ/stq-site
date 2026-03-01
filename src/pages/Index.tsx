@@ -33,10 +33,12 @@ const Index = () => {
           <span
             key={tag}
             className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-border text-muted-foreground bg-muted/50">
-
               {tag}
             </span>
           )}
+          <span className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-border text-muted-foreground/80 bg-muted/50">
+            + More
+          </span>
         </div>
         <div className="pt-2 flex flex-col items-start gap-3">
           <button

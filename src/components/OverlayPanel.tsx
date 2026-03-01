@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { X, ArrowLeft } from "lucide-react";
+import stacqLogo from "@/assets/stacq-logo-black.png";
 
 interface OverlayPanelProps {
   isOpen: boolean;
@@ -110,7 +111,8 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
         ref={panelRef}
         className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 ${isJobOpen ? "opacity-40" : "opacity-100"}`}
       >
-        <div className="sticky top-0 z-10 flex items-center justify-end px-8 py-4 bg-background border-b border-border">
+        <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-4 bg-background border-b border-border">
+          <img src={stacqLogo} alt="STACQ" className="h-5" />
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Lukk">
             <X className="w-5 h-5" />
           </button>

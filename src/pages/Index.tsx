@@ -28,6 +28,16 @@ const Index = () => {
           We develop firmware and embedded Linux solutions for products with high requirements for stability,
           performance, and control.
         </p>
+        <div className="flex flex-wrap gap-2">
+          {["C/C++", "Rust", "Assembly", "Embedded Linux", "Yocto", "STM32"].map((tag) => (
+            <span
+              key={tag}
+              className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-border text-muted-foreground bg-muted/50"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
         <div className="pt-2">
           <button
             onClick={() => setIsOverlayOpen(true)}

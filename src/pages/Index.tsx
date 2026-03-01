@@ -18,12 +18,13 @@ const Index = () => {
           We develop firmware and embedded Linux solutions for products with high requirements for stability,
           performance, and control.
         </p>
-        <div className="pt-2">
+        <div className="pt-4">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="text-[14px] font-semibold tracking-wide uppercase bg-[hsl(var(--cta))] text-[hsl(var(--cta-foreground))] px-7 py-3 rounded-md hover:brightness-110 transition-all h-[44px]"
+            className="group relative text-[15px] font-medium bg-[hsl(var(--cta))] text-[hsl(var(--cta-foreground))] pl-7 pr-6 py-3 rounded-lg hover:shadow-[0_4px_20px_hsl(var(--cta)/0.35)] transition-all duration-300 ease-out hover:-translate-y-[1px] h-[48px] inline-flex items-center gap-3"
           >
-            Dette er STACQ →
+            Dette er STACQ
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
         </div>
       </div>

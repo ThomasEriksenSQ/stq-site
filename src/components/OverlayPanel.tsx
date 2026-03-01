@@ -121,7 +121,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         </div>
 
         <div className="px-6 md:px-[88px] py-6 border-t border-border mt-auto">
-          <div className="max-w-[640px] mx-auto w-full">
+          <div className="max-w-[640px] w-full">
             <p className="text-[13px] text-muted-foreground">
               STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389 MVA
             </p>
@@ -173,7 +173,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
         </div>
 
         <div className="px-6 md:px-[88px] pt-24 pb-[88px] flex-1">
-          <div className="max-w-[640px] mx-auto w-full space-y-10">
+          <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
             <section className="space-y-4">
               <h1 className="text-[36px] font-bold text-foreground leading-[1.15]">STACQ</h1>

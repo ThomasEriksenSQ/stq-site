@@ -141,22 +141,38 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           {/* Kompetanse */}
           <section className="space-y-3">
             <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Kompetanse</h2>
-            <div className="code-block max-w-[520px] space-y-3">
+            <div className="code-block max-w-[520px] space-y-4 text-[14px] leading-[1.6]">
+              <div>C, C++, Rust, Python, Assembly</div>
               <div>
-                <span className="font-semibold">språk: </span>
-                <span>C, C++, Assembly, Python</span>
+                <div className="font-semibold">Firmware & sanntid</div>
+                <div>Bare-metal og RTOS (FreeRTOS, Zephyr, ThreadX)</div>
+                <div>Bootloader, secure boot og TrustZone</div>
               </div>
               <div>
-                <span className="font-semibold">plattformer: </span>
-                <span>Embedded Linux, Yocto, Mikrokontrollere</span>
+                <div className="font-semibold">Embedded Linux</div>
+                <div>Yocto, board bring-up og kernel-tilpasning</div>
+                <div>Qt / applikasjonslag</div>
+                <div>OTA og systemtjenester</div>
               </div>
               <div>
-                <span className="font-semibold">systemnivå: </span>
-                <span>Bare-metal, RTOS, FPGA</span>
+                <div className="font-semibold">Maskinvare</div>
+                <div>ARM Cortex-M / Cortex-A</div>
+                <div>STM32, NXP i.MX, Nordic nRF, ESP32</div>
+                <div>FPGA / HDL</div>
               </div>
               <div>
-                <span className="font-semibold">fagområder: </span>
-                <span>Systemarkitektur, Sikkerhet, Ytelsesoptimalisering</span>
+                <div className="font-semibold">Kommunikasjon</div>
+                <div>CAN / CANopen</div>
+                <div>Modbus (RTU / TCP)</div>
+                <div>SPI, I2C, UART, RS485</div>
+                <div>TCP/IP, MQTT, BLE, Zigbee, ISO15118</div>
+              </div>
+              <div>
+                <div className="font-semibold">System</div>
+                <div>Sanntidssystemer</div>
+                <div>Sikkerhetskritiske og regulerte systemer (IEC 62304)</div>
+                <div>Sensor- og motorstyring</div>
+                <div>Arkitektur, test og CI/CD for embedded</div>
               </div>
             </div>
           </section>

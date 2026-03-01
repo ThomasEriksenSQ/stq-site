@@ -141,6 +141,10 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           {/* Kompetanse */}
           <section className="space-y-3">
             <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Kompetanse</h2>
+            <div className="space-y-3 text-foreground text-[16px] leading-[1.65]">
+              <p>Erfarne ingeniører med tung systemforståelse og bakgrunn fra krevende teknologimiljøer.</p>
+              <p>Vi utvikler robuste og sikre løsninger med fokus på kvalitet, presisjon og ansvar.</p>
+            </div>
             <div className="code-block max-w-[520px] space-y-4 text-[14px] leading-[1.6]">
               <div>C, C++, Rust, Python, Assembly</div>
               <div>

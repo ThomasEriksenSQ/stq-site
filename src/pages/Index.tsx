@@ -29,7 +29,7 @@ const Index = () => {
           performance, and control.
         </p>
         <div className="flex flex-wrap gap-2">
-          {["C/C++", "Rust", "Assembly", "Embedded Linux", "Yocto", "STM32"].map((tag) => (
+          {["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"].map((tag) => (
             <span
               key={tag}
               className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-border text-muted-foreground bg-muted/50"

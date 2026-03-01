@@ -1,5 +1,6 @@
 import { useState } from "react";
 import stacqLogo from "@/assets/stacq-logo-black.png";
+import heroBg from "@/assets/hero-circuit.png";
 import OverlayPanel from "@/components/OverlayPanel";
 
 const Index = () => {

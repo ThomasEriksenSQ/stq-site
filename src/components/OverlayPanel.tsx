@@ -25,7 +25,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
     <div className="fixed inset-0 z-[60]">
       <div className="absolute inset-0" onClick={onClose} />
       <div className="absolute right-0 top-0 h-full w-[92%] md:w-[38%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto animate-slide-in-right flex flex-col shadow-lg">
-        <div className="sticky top-0 z-10 px-6 md:px-[88px] py-4 bg-background border-b border-border">
+        <div className="sticky top-0 z-10 px-6 md:px-[96px] py-4 bg-background border-b border-border">
           <div className="max-w-[640px] w-full">
             <button
               onClick={onClose}
@@ -37,7 +37,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
           </div>
         </div>
 
-        <div className="px-6 md:px-[88px] pt-20 pb-[88px] flex-1">
+        <div className="p-6 md:p-[96px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
             <h2 className="text-[34px] font-bold text-foreground leading-[1.15]">
               Senior Embedded Konsulent
@@ -122,7 +122,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
           </div>
         </div>
 
-        <div className="px-6 md:px-[88px] py-6 border-t border-border mt-auto">
+        <div className="px-6 md:px-[96px] py-6 border-t border-border mt-auto">
           <div className="max-w-[640px] w-full">
             <p className="text-[13px] text-muted-foreground">
               STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389 MVA
@@ -168,7 +168,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
         className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${(isJobOpen || isHandbookOpen) ? "opacity-40" : "opacity-100"}`}
       >
 
-        <div className="px-6 md:px-[88px] pt-[88px] pb-[88px] flex-1">
+        <div className="p-6 md:p-[96px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
             <section className="space-y-5">

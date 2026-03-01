@@ -181,7 +181,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               <p className="text-[18px] font-semibold text-foreground leading-[1.5]">
                 Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og lavnivåprogrammering.
               </p>
-              <p className="text-muted-foreground text-[16px] leading-[1.7]">
+              <p className="text-foreground text-[16px] leading-[1.7]">
                 STACQ hjelper med å dekke IT-konsulentbehov og er spesialister innen embedded-systemer og systemutvikling. Vår omfattende erfaring og spisskompetanse gjør oss til en pålitelig partner for spesialkompetanse.
               </p>
             </section>

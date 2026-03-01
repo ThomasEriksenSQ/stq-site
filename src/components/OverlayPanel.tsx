@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { X, ArrowLeft, Mail, Phone } from "lucide-react";
+import { X, ArrowLeft } from "lucide-react";
 import stacqLogo from "@/assets/stacq-logo-black.png";
 
 interface OverlayPanelProps {
@@ -183,14 +183,8 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-4">Kontakt</span>
             <div className="space-y-2 text-[15px] text-foreground">
               <p>Jon Richard Nygaard</p>
-              <a href="tel:93287267" className="flex items-center gap-2 hover:text-primary transition-colors">
-                <Phone className="w-3.5 h-3.5 text-muted-foreground" />
-                93287267
-              </a>
-              <a href="mailto:jr@stacq.no" className="flex items-center gap-2 hover:text-primary transition-colors">
-                <Mail className="w-3.5 h-3.5 text-muted-foreground" />
-                jr@stacq.no
-              </a>
+              <a href="tel:93287267" className="block hover:text-primary transition-colors">93287267</a>
+              <a href="mailto:jr@stacq.no" className="block hover:text-primary transition-colors">jr@stacq.no</a>
             </div>
           </section>
         </div>

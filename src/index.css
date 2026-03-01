@@ -65,7 +65,8 @@
 
 @layer components {
   .code-block {
-    @apply font-mono text-[13px] leading-relaxed bg-[hsl(216_20%_97%)] border border-border rounded-xl px-5 py-4 text-foreground;
+    @apply font-mono text-[13px] leading-relaxed border border-border rounded-xl px-5 py-4 text-foreground;
+    background: #F6F8FB;
   }
 
   .code-block .code-key {

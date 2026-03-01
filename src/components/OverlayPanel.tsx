@@ -173,19 +173,17 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           </button>
         </div>
 
-        <div className="px-6 md:px-[88px] pt-24 pb-[88px] flex-1">
+        <div className="px-6 md:px-[88px] pt-32 pb-[88px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
-            <section className="space-y-4">
-              <h1 className="text-[36px] font-bold text-foreground leading-[1.15]">STACQ</h1>
-              <div className="space-y-3 text-muted-foreground text-[18px] leading-[1.7]">
-                <p>
-                  STACQ er et norsk konsulentselskap med spisskompetanse innen embedded-systemer og lavnivåprogrammering.
-                </p>
-                <p>
-                  Vi utvikler programvare tett på hardware for systemer med høye krav til stabilitet, ytelse og kontroll. Våre konsulenter arbeider tett med kundens utviklingsteam og leverer produksjonsklar kode for avanserte teknologiprodukter.
-                </p>
-              </div>
+            <section className="space-y-5">
+              <h1 className="text-[38px] font-bold text-foreground leading-[1.15]">Konsulentselskapet STACQ</h1>
+              <p className="text-[18px] font-semibold text-foreground leading-[1.5]">
+                Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og lavnivåprogrammering.
+              </p>
+              <p className="text-muted-foreground text-[16px] leading-[1.7]">
+                STACQ hjelper med å dekke IT-konsulentbehov og er spesialister innen embedded-systemer og systemutvikling. Vår omfattende erfaring og spisskompetanse gjør oss til en pålitelig partner for spesialkompetanse.
+              </p>
             </section>
 
             {/* Kompetanse */}

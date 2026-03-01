@@ -138,23 +138,38 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
           {/* Kompetanse */}
           <section>
-            <span className="font-mono text-[11px] tracking-[0.12em] text-muted-foreground uppercase block mb-6">Kompetanse</span>
-            <div className="space-y-5">
-              <div>
-                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Språk</span>
-                <div className="code-block">C, C++, Assembly, Python</div>
+            <div
+              className="max-w-[520px] mt-6"
+              style={{
+                background: '#F6F8FB',
+                border: '1px solid #E5E7EB',
+                borderRadius: '10px',
+                padding: '24px',
+                fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+                fontSize: '14px',
+                lineHeight: '1.7',
+              }}
+            >
+              <div style={{ color: '#64748B', marginBottom: '18px' }}>kompetanse</div>
+
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ color: '#0F172A', fontWeight: 600 }}>språk:</div>
+                <div style={{ color: '#334155' }}>C, C++, Assembly, Python</div>
               </div>
-              <div>
-                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Plattformer</span>
-                <div className="code-block">Embedded Linux, Yocto, Mikrokontrollere</div>
+
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ color: '#0F172A', fontWeight: 600 }}>plattformer:</div>
+                <div style={{ color: '#334155' }}>Embedded Linux, Yocto, Mikrokontrollere</div>
               </div>
-              <div>
-                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Systemnivå</span>
-                <div className="code-block">Bare-metal, RTOS, FPGA</div>
+
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ color: '#0F172A', fontWeight: 600 }}>systemnivå:</div>
+                <div style={{ color: '#334155' }}>Bare-metal, RTOS, FPGA</div>
               </div>
+
               <div>
-                <span className="font-mono text-[11px] text-muted-foreground block mb-2">Fagområder</span>
-                <div className="code-block">Systemarkitektur, Sikkerhet, Ytelsesoptimalisering</div>
+                <div style={{ color: '#0F172A', fontWeight: 600 }}>fagområder:</div>
+                <div style={{ color: '#334155' }}>Systemarkitektur, Sikkerhet, Ytelsesoptimalisering</div>
               </div>
             </div>
           </section>

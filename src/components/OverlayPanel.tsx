@@ -192,8 +192,8 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               </h2>
               <div className="space-y-3 text-foreground text-[16px] leading-[1.7]">
                 <p>
-                  Vi er erfarne ingeniører med solid systemforståelse og bakgrunn fra krevende teknologiprosjekter –
-                  ansvarsbevisste, samarbeidsorienterte og med sunne holdninger.
+                  Erfarne ingeniører med solid systemforståelse og bakgrunn fra krevende teknologiprosjekter –
+                  ansvarsbevisste, samarbeidsorienterte og profesjonelle.
                 </p>
               </div>
               <div className="code-block w-full text-[14px] leading-[1.6]">

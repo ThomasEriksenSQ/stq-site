@@ -168,7 +168,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
         className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${(isJobOpen || isHandbookOpen) ? "opacity-40" : "opacity-100"}`}
       >
 
-        <div className="px-6 md:px-[88px] pt-8 pb-[88px] flex-1">
+        <div className="px-6 md:px-[88px] pt-[88px] pb-[88px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
             <section className="space-y-5">

@@ -199,34 +199,27 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               <div className="code-block w-full text-[14px] leading-[1.6]">
                 <div className="mt-0">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Språk</div>
-                  <div>C · C++ · Rust · Python · Assembly</div>
+                  <div>C, C++, Rust, Python, Assembly</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Firmware & sanntid</div>
-                  <div>Bare-metal · RTOS (FreeRTOS, Zephyr, ThreadX)</div>
-                  <div>Bootloader · Secure boot · TrustZone</div>
+                  <div>Bare-metal, RTOS (FreeRTOS, Zephyr, ThreadX), Bootloader, Secure Boot, TrustZone</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Embedded Linux</div>
-                  <div>Yocto · Board bring-up · Kernel</div>
-                  <div>Qt · OTA · Systemtjenester</div>
+                  <div>Yocto, Board bring-up, Kernel-tilpasning, Qt, OTA, Systemtjenester</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Maskinvare</div>
-                  <div>ARM Cortex-M / Cortex-A</div>
-                  <div>STM32 · NXP i.MX · Nordic nRF · ESP32</div>
-                  <div>FPGA / HDL</div>
+                  <div>ARM Cortex-M / Cortex-A, STM32, NXP i.MX, Nordic nRF, ESP32, FPGA / HDL</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Kommunikasjon</div>
-                  <div>CAN · Modbus · SPI · I2C · UART · RS485</div>
-                  <div>TCP/IP · MQTT · BLE · Zigbee · ISO15118</div>
+                  <div>CAN, Modbus, SPI, I2C, UART, RS485, TCP/IP, MQTT, BLE, Zigbee, ISO15118</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">System</div>
-                  <div>Sanntid · Sikkerhetskritiske systemer</div>
-                  <div>Sensor- og motorstyring</div>
-                  <div>Arkitektur · Test · CI/CD</div>
+                  <div>Sanntidssystemer, Sikkerhetskritiske systemer, Sensor- og motorstyring, Arkitektur, Test, CI/CD</div>
                 </div>
               </div>
             </section>

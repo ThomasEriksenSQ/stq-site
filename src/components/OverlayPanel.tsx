@@ -173,7 +173,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           </button>
         </div>
 
-        <div className="px-6 md:px-[88px] pt-32 pb-[88px] flex-1">
+        <div className="px-6 md:px-[88px] pt-44 pb-[88px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
             <section className="space-y-5">

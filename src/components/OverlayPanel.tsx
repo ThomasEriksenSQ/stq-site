@@ -241,27 +241,27 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               <ul className="space-y-2 text-foreground text-[16px] leading-[1.7]">
                 <li className="flex items-start gap-2">
                   <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Dokumentert erfaring fra komplekse og teknisk krevende prosjekter</span>
+                  <span>Erfaring fra krevende teknologiprosjekter</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Rask integrasjon i kundens utviklingsteam</span>
+                  <span>Rask integrasjon i eksisterende team</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Tar eierskap til oppgaver og leveranser</span>
+                  <span>Eierskap til leveranser</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Enkel, tydelig og åpen kommunikasjon</span>
+                  <span>Tydelig og åpen kommunikasjon</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Fokus på kvalitet, robusthet og sikkerhet</span>
+                  <span>Fokus på kvalitet og robusthet</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-muted-foreground mt-[2px]">–</span>
-                  <span>Skaper et godt og profesjonelt samarbeidsmiljø</span>
+                  <span>Profesjonelt samarbeid</span>
                 </li>
               </ul>
             </section>

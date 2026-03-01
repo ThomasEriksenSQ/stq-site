@@ -41,29 +41,22 @@ const Index = () => {
         <div className="pt-2 flex flex-col items-start gap-3">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="group relative text-[15px] font-medium tracking-[0.08em] uppercase px-9 py-3.5 rounded-lg h-[48px] flex items-center gap-3 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98]"
+            className="text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center transition-colors duration-200"
             style={{
-              background: '#1a1d21',
-              color: '#f0f0f0',
-              boxShadow: '0 1px 2px rgba(0,0,0,0.15), 0 0 0 1px rgba(184,148,108,0.08), inset 0 1px 0 rgba(255,255,255,0.03)',
-              border: '1px solid rgba(184,148,108,0.12)',
-              transition: 'all 0.5s cubic-bezier(0.23,1,0.32,1)',
+              background: '#151515',
+              color: '#f5f5f5',
+              border: '1px solid #2a2a2a',
             }}
             onMouseEnter={(e) => {
-              const el = e.currentTarget;
-              el.style.transform = 'translateY(-2px)';
-              el.style.boxShadow = '0 6px 24px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.12), 0 0 0 1px rgba(184,148,108,0.15), inset 0 1px 0 rgba(255,255,255,0.05), 0 0 20px rgba(184,148,108,0.04)';
-              el.style.borderColor = 'rgba(184,148,108,0.2)';
+              e.currentTarget.style.background = '#1f1f1f';
+              e.currentTarget.style.borderColor = '#3a3a3a';
             }}
             onMouseLeave={(e) => {
-              const el = e.currentTarget;
-              el.style.transform = 'translateY(0)';
-              el.style.boxShadow = '0 1px 2px rgba(0,0,0,0.15), 0 0 0 1px rgba(184,148,108,0.08), inset 0 1px 0 rgba(255,255,255,0.03)';
-              el.style.borderColor = 'rgba(184,148,108,0.12)';
+              e.currentTarget.style.background = '#151515';
+              e.currentTarget.style.borderColor = '#2a2a2a';
             }}
           >
-            <span>STACQ</span>
-            <span className="inline-flex transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0.5 opacity-60 group-hover:opacity-90">›</span>
+            Dette er STACQ
           </button>
           <button
             onClick={() => setIsOverlayOpen(true)}

@@ -38,7 +38,10 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
 
           <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
             <p>
-              Denne håndboken er laget for å gi deg en grundig forståelse av de retningslinjene, prosedyrene og standardene som er gjeldende for alle ansatte i selskapet. Vårt overordnede mål er et arbeidsmiljø som er positivt, inkluderende og støttende, hvor hver medarbeider har mulighet til å trives og vokse.
+              Denne håndboken er laget for å gi deg en grundig forståelse av de retningslinjene, prosedyrene og standardene som er gjeldende for alle ansatte i selskapet. Vårt overordnede mål er å et arbeidsmiljø som er positivt, inkluderende og støttende, hvor hver medarbeider har mulighet til å trives og vokse.
+            </p>
+            <p>
+              Innenfor håndbokens sider vil du finne detaljert informasjon om lønn, frynsegoder, pensjons- og forsikringsordninger, ferie og fraværsregler, samt andre nøkkelområder som berører ditt arbeidsforhold.
             </p>
           </div>
 
@@ -47,46 +50,63 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-foreground">Lønn</h3>
               <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
-                <p>
-                  Vi ønsker å tilby våre ansatte en lønn som er både konkurransedyktig og rettferdig, en lønn som speiler deres erfaring, kompetanse og dedikasjon.
-                </p>
-              </div>
-              <div className="code-block space-y-3 text-[14px] leading-[1.6]">
-                <div>
-                  <div className="font-semibold">Provisjonslønn</div>
-                  <div>70% av fakturert beløp (inkl. arbeidsgiveravgift, pensjon og feriepenger)</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Feriepenger</div>
-                  <div>12% av bruttolønn, utbetalt i juni</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Arbeidstid</div>
-                  <div>37,5 timer/uke, fleksibel etter avtale med kunde</div>
-                </div>
+                <p>Vi ønsker å tilby våre ansatte en lønn som er både konkurransedyktig og rettferdig, en lønn som speiler deres erfaring, kompetanse og dedikasjon. Lønn er en faktor for å tiltrekke og beholde talentfulle medarbeidere, samtidig som det bidrar til et positivt og produktivt arbeidsmiljø.</p>
               </div>
             </div>
 
-            {/* Utstyr & utvikling */}
+            {/* Provisjonslønn */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-foreground">Utstyr & utvikling</h3>
-              <div className="code-block space-y-3 text-[14px] leading-[1.6]">
-                <div>
-                  <div className="font-semibold">PC / Mac</div>
-                  <div>Tilpasset dine jobbrelaterte behov og preferanser</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Faglig utvikling</div>
-                  <div>Interne opplæringsprogrammer og workshops</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Lisenser</div>
-                  <div>Nødvendige verktøy + ChatGPT / AI-tjenester dekkes</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Mobil & internett</div>
-                  <div>Inntil 500 kr/mnd. Ny telefon inntil 12 000 kr hvert 2. år</div>
-                </div>
+              <h3 className="text-sm font-semibold text-foreground">Provisjonslønn</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi tilbyr en provisjonsbasert lønn på 70% av fakturert beløp. Dette inkluderer arbeidsgiveravgift, pensjon og dine feriepenger. Din kunnskap og erfaring spiller en direkte rolle i å bestemme din inntekt. Vi ser på dette som en drivkraft for å fremme engasjement og motivasjon, og å oppmuntre til kontinuerlig utvikling blant ansatte.</p>
+              </div>
+            </div>
+
+            {/* Feriepenger */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Feriepenger</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Det settes av feriepenger tilsvarende 12% av din bruttolønn hver måned. Disse blir utbetalt normalt sett i juni påfølgende år hvis ikke annet er avtalt.</p>
+              </div>
+            </div>
+
+            {/* Arbeidstid */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Arbeidstid</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Normal arbeidstid er 37,5 timer i uken. Din arbeidstid kan du selv styre i henhold til kundens forventinger og avtale. Du kan for eksempel starte sent en dag og jobbe det inn på ettermiddagen, eller jobbe helg en dag og ta fri en ukedag. Dette avtales individuelt med kunde.</p>
+              </div>
+            </div>
+
+            {/* PC eller Mac */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">PC eller Mac</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi sikrer at alle ansatte får tilgang til PC og telefon som oppfyller deres spesifikke jobbrelaterte behov og preferanser for å kunne utføre sin jobb på best mulig måte. Vanligvis skaffer oppdragsgiver dette.</p>
+              </div>
+            </div>
+
+            {/* Faglig utvikling */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Faglig utvikling</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi fremmer faglig utvikling og oppmuntrer våre ansatte til å tilegne seg nye ferdigheter. Ta kontakt med ledelsen når du ser behov. I tillegg tilbyr vi interne opplæringsprogrammer og workshops, designet for å styrke ansattes ferdigheter og kunnskap.</p>
+              </div>
+            </div>
+
+            {/* Lisenser */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Lisenser</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi dekker nødvendige lisenser for at du skal kunne utføre dine oppgaver godt. Vi dekker også lisensen av Chat GPT eller tilsvarende tjenester og det oppfordres til bruk av nye AI verktøy.</p>
+              </div>
+            </div>
+
+            {/* Internett og mobil */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Internett og mobil</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi dekker mobil og bredbånd abonnement inntil 500kr hver måned. Ved behov for ny telefon dekkes inntil kr 12.000 inkl. mva. hvert andre år, forutsett at den kjøpes via STACQ. Evt. overskytende trekkes fra lønnsgrunnlaget.</p>
               </div>
             </div>
 
@@ -94,100 +114,205 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-foreground">Våre kjerneverdier</h3>
               <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
-                <p><span className="font-medium">Trygt og inkluderende</span> — Et miljø hvor alle føler seg verdsatt og akseptert. Trivsel, tillit og åpen kommunikasjon.</p>
-                <p><span className="font-medium">Alltid i forkant</span> — Lidenskap for ny teknologi, metodikk og verktøy. Kunnskapsdeling og kontinuerlig forbedring.</p>
-                <p><span className="font-medium">Det lille ekstra</span> — Refleksjon og deling av kunnskap og erfaring som utgjør den store forskjellen.</p>
-                <p><span className="font-medium">God stemning</span> — Sunn kommunikasjon, velvære, støtte, inspirasjon, åpenhet og engasjement.</p>
+                <p>I STACQ er kjerneverdier viktig, de er med på å definere vår identitet og kultur. De veileder våre beslutninger, påvirker interne og eksterne valg og fremmer samhold og engasjement.</p>
+              </div>
+            </div>
+
+            {/* Trygt og inkluderende */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Trygt og inkluderende</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Det å føle seg trygg og inkludert er essensielt for et team, da det skaper et miljø hvor en føler seg verdsatt og akseptert. Dette fremmer trivsel, tillit og åpen kommunikasjon, noe som er nøkkelen til å yte sitt beste og oppnå personlig og felles suksess.</p>
+              </div>
+            </div>
+
+            {/* Alltid i forkant */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Alltid i forkant</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi omfavner forandring som noe fantastisk og det krever at vi alltid må ligge i forkant. Vår lidenskap for ny teknologi, metodikk, verktøy, tilnærminger og arbeidsmåter, sammen med glede av kunnskapsdeling og kontinuerlig forbedring skal være en del av vår hverdag.</p>
+              </div>
+            </div>
+
+            {/* Det lille ekstra */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Det lille ekstra</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Det handler ikke om å komme med den mest geniale løsningen raskest mulig. Behersker du det faglige handler resten om det lille ekstra som kan utgjør en stor forskjell. Refleksjon og deling av denne type kunnskap og erfaring er en del av vårt fokus.</p>
+              </div>
+            </div>
+
+            {/* God stemning */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">God stemning</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>God stemning handler om å skape et fantastisk arbeidsmiljø. Sunn og god kommunikasjon, fokus på velvære, støtte hverandre, inspirere, åpenhet, glede i å dele kunnskap og vise engasjement og kreativitet. Vi mener god stemning er essensielt for vekst, personlig og sammen som en enhet.</p>
               </div>
             </div>
 
             {/* Fravær */}
             <div className="space-y-4">
               <h3 className="text-sm font-semibold text-foreground">Fravær</h3>
-              <div className="code-block space-y-3 text-[14px] leading-[1.6]">
-                <div>
-                  <div className="font-semibold">Ferie</div>
-                  <div>Fri ferietid — lengde og tidspunkt avtales med kunde</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Foreldrepermisjon</div>
-                  <div>Kr 100 000 i gave ved fødselspermisjon + 6G fra NAV</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Sykefravær</div>
-                  <div>Egenmelding inntil 4 ganger/år, 3 dager per gang. Lønn inntil 6G</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Influensavaksine</div>
-                  <div>Gratis årlig influensavaksine for alle ansatte</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Militærtjeneste</div>
-                  <div>Inntil 6G for én uke (37,5 timer)</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Pensjon & forsikring */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-foreground">Pensjon & forsikringer</h3>
               <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
-                <p>Vi legger vekt på å sikre våre ansatte en trygg og robust økonomisk fremtid.</p>
-              </div>
-              <div className="code-block space-y-3 text-[14px] leading-[1.6]">
-                <div>
-                  <div className="font-semibold">Pensjon</div>
-                  <div>6% innskuddspensjon via DNB</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Ansvarsforsikring</div>
-                  <div>Dekker erstatningskrav knyttet til leveranser og oppdrag</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Yrkesskadeforsikring</div>
-                  <div>Utvidet dekning ved skade eller sykdom knyttet til arbeid</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Fritidsulykke</div>
-                  <div>Dekker hendelser utenfor jobb</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Helseforsikring</div>
-                  <div>Raskere tilgang til medisinsk oppfølging og behandling</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Gruppeliv</div>
-                  <div>Økonomisk trygghet for familie og etterlatte</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Uførepensjon</div>
-                  <div>66% av pensjonsgrunnlag mellom 6G og 12G ved uførhet</div>
-                </div>
+                <p>Det vil til tider være nødvendig å ta fri fra arbeidet av ulike årsaker, som sykdom, ferie, eller personlige forhold. For å hjelpe deg med å navigere i disse situasjonene, inneholder vår oversikt detaljert informasjon om de forskjellige typer fravær du kan oppleve, herunder sykefravær, ferieavvikling og ulike permisjonsordninger.</p>
               </div>
             </div>
 
-            {/* Etikk */}
+            {/* Ferietid */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-foreground">Etikk & ansvar</h3>
+              <h3 className="text-sm font-semibold text-foreground">Ferietid</h3>
               <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
-                <p><span className="font-medium">Inkludering og mangfold</span> — Like muligheter til alle jobbsøkere, uavhengig av bakgrunn.</p>
-                <p><span className="font-medium">Miljøpolicy</span> — Dedikert til miljøbeskyttelse og bærekraftighet i alle deler av virksomheten.</p>
-                <p><span className="font-medium">Varsling</span> — Vi oppmuntrer aktivt til rapportering av kritikkverdige forhold.</p>
+                <p>Du står fritt til å ta så mye ferie du ønsker og når du ønsker det. Alt som kreves er at lengde og tidspunkt er avtalt og godkjent av kunden du er i oppdrag hos.</p>
               </div>
             </div>
 
-            {/* Oppsigelse */}
+            {/* Foreldrepermisjon */}
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-foreground">Avslutning</h3>
-              <div className="code-block space-y-3 text-[14px] leading-[1.6]">
-                <div>
-                  <div className="font-semibold">Oppsigelsestid</div>
-                  <div>3 måneder, med mindre annet er avtalt skriftlig</div>
-                </div>
-                <div>
-                  <div className="font-semibold">Sluttattest</div>
-                  <div>Dokumenterer ansettelseslengde og arbeidsoppgaver</div>
-                </div>
+              <h3 className="text-sm font-semibold text-foreground">Foreldrepermisjon</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>STACQ gir deg kr 100.000, - i gave ved inngangen til fødselspermisjonen, i tillegg til 6G som NAV vil dekke i perioden, som sikrer deg en god start og stabil inntekt i perioden. Etter foreldrepermisjonen er det viktig for oss å legge til rette for en smidig overgang tilbake til arbeidslivet. Vi vil jobbe tett sammen med deg for å tilpasse arbeidssituasjonen din, slik at den harmonerer godt med ditt familieliv, og sikrer en balanse som gagner både deg og din familie.</p>
+              </div>
+            </div>
+
+            {/* Sykefravær og egenmelding */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Sykefravær og egenmelding</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi oppfordrer deg til å informere ledelsen umiddelbart dersom du føler deg syk. Du kan benytte egenmelding inntil 4 ganger per kalenderår, med en varighet på inntil 3 dager per.</p>
+                <p>Ved sykefravær utover dette er legeerklæring (sykmelding) nødvendig. Ved egenmelding og sykmeldt fravær utbetales lønn tilsvarende 6G.</p>
+              </div>
+            </div>
+
+            {/* Influensavaksine */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Influensavaksine</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Hos STACQ er helse og velvære viktig. Vi forstår risikoen for influensa som konsulenter og tilbyr derfor gratis årlige influensavaksiner til alle ansatte for å beskytte helsen deres.</p>
+              </div>
+            </div>
+
+            {/* Militærtjeneste */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Militærtjeneste</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Dersom du blir innkalt til obligatorisk militærtjeneste, sørger vi for økonomisk støtte ved å dekke inntil 6G for én uke, tilsvarende 37,5 timer.</p>
+              </div>
+            </div>
+
+            {/* Pensjon og forsikringer */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Pensjon og forsikringer</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>I STACQ legger vi vekt på å sikre våre ansatte en trygg og robust økonomisk fremtid. Vi forstår viktigheten av pensjons- og forsikringsordninger som nøkkelkomponenter for økonomisk stabilitet og sikkerhet. Derfor har vi forpliktet oss til å tilby våre ansatte solide og fordelaktige ordninger på disse områdene.</p>
+              </div>
+            </div>
+
+            {/* Pensjon på 6% */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Pensjon på 6%</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>DNB administrerer pensjonsordningene våre, og vi er forpliktet til å holde deg godt informert om dine pensjonsfordeler og de ulike alternativene du har. Pensjonssatsen er satt til 6 % innskuddspensjon av lønn.</p>
+              </div>
+            </div>
+
+            {/* Ansvarsforsikring */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Ansvarsforsikring</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>En profesjonell arbeidshverdag innebærer at det kan oppstå ansvarssituasjoner. Denne forsikringen bidrar til trygghet rundt utførelsen av arbeid ved at selskapet er dekket ved eventuelle erstatningskrav knyttet til leveranser og oppdrag.</p>
+              </div>
+            </div>
+
+            {/* Yrkesskadeforsikring */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Yrkesskadeforsikring</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Dette gir en svært trygg ramme rundt arbeidshverdagen og dekningen hvis det oppstår skade eller sykdom knyttet til arbeid, med utvidelser utover det grunnleggende. Formålet er at ansatte skal være godt ivaretatt dersom noe uforutsett skjer i jobbsammenheng.</p>
+              </div>
+            </div>
+
+            {/* Fritidsulykke forsikring */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Fritidsulykke forsikring</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Tryggheten stopper ikke når arbeidsdagen er over. Fritidsulykke dekker hendelser som skjer utenfor jobb og gir en ekstra sikkerhet i hverdagen — nettopp fordi de fleste uhell ofte skjer på fritiden.</p>
+              </div>
+            </div>
+
+            {/* Helseforsikring */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Helseforsikring</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Helse-/behandlingsforsikringen er en viktig del av trygghetspakken og den legger til rette for raskere tilgang til medisinsk oppfølging og behandling når det trengs. Dette er en ordning som både støtter den enkelte og bidrar til kortere tid borte fra jobb ved helseutfordringer.</p>
+              </div>
+            </div>
+
+            {/* Gruppeliv forsikring */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Gruppeliv forsikring</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Gruppeliv gir en viktig økonomisk trygghet for familie og etterlatte ved bortfall. Det er en tydelig del av et helhetlig sikkerhetsnett som viser omsorg for ansatte og deres nærmeste.</p>
+              </div>
+            </div>
+
+            {/* Uførepensjon */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Uførepensjon</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Uførepensjon er en sentral del av tryggheten ved alvorlig sykdom eller skade som fører til redusert arbeidsevne. Uførepensjonen gir årlig utbetaling ved uførhet frem til 67 år, og inkluderer blant annet 66 % av pensjonsgrunnlaget mellom 6G og 12G. Dette kommer i tillegg til offentlige ytelser fra NAV. Samlet gir dette en svært solid økonomisk sikkerhet og et ekstra lag av forutsigbarhet i en situasjon hvor det betyr mest. Forsikringer som sikrer deg mot økonomiske bekymringer i tilfelle skade eller sykdom skulle oppstå.</p>
+              </div>
+            </div>
+
+            {/* Etikk og ansvar */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Etikk og ansvar</h3>
+            </div>
+
+            {/* Inkludering og mangfold */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Inkludering og mangfold</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Fremme av mangfold og likestilling i arbeidslivet er en sentral samfunnsoppgave. Vi er engasjert i å berike det norske arbeidslivet med mangfold og arbeider aktivt for å sikre dette gjennom våre rekrutterings- og inkluderingsstrategier. Dette innebærer at vi, i våre ansettelsesprosesser, er dedikert til å tilby like muligheter til alle jobbsøkere, uavhengig av deres kulturelle bakgrunn, funksjonsevne eller seksuell orientering, for å skape et mer inkluderende og mangfoldig arbeidsmiljø.</p>
+              </div>
+            </div>
+
+            {/* Miljøpolicy */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Miljøpolicy</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>STACQ er dedikert til miljøbeskyttelse og til å fremme bærekraftighet i alle deler av vår virksomhet. Vi er bevisste på at våre aktiviteter påvirker miljøet og forplikter oss til å redusere denne påvirkningen ved stadig å forbedre våre miljømessige ytelsesstandarder.</p>
+              </div>
+            </div>
+
+            {/* Kritikkverdige forhold */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Kritikkverdige forhold</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Kritikkverdige forhold strider mot juridiske regler, våre skriftlige etiske retningslinjer, eller allment aksepterte etiske normer i samfunnet. Eksempler på dette kan være situasjoner som truer liv og helse, skader klimaet eller miljøet, involverer korrupsjon eller annen økonomisk kriminalitet, misbruk av myndighet, et uforsvarlig arbeidsmiljø, eller brudd på personopplysningssikkerheten.</p>
+              </div>
+            </div>
+
+            {/* Retningslinjer for rapportering */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Retningslinjer for rapportering</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Vi oppmuntrer aktivt alle våre ansatte til å rapportere slike kritikkverdige forhold. Når vi håndterer varslingssaker, skal konfidensialitet, habilitet og retten til kontradiksjon alltid være ledende prinsipper for å sikre en rettferdig og ansvarlig prosess i vår virksomhet.</p>
+              </div>
+            </div>
+
+            {/* Oppsigelsestid */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Oppsigelsestid</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Din oppsigelsestid er på tre måneder, med mindre en annen avtale er nedfelt skriftlig. Denne perioden er etablert for å gi både deg og oss tilstrekkelig tid til å forberede og tilpasse oss overgangen.</p>
+              </div>
+            </div>
+
+            {/* Sluttattest */}
+            <div className="space-y-4">
+              <h3 className="text-sm font-semibold text-foreground">Sluttattest</h3>
+              <div className="space-y-3 text-foreground text-[15px] leading-[1.65]">
+                <p>Ved avslutning av arbeidsforholdet vil du motta en sluttattest fra oss. Denne attesten vil dokumentere lengden på din ansettelse og detaljert beskrive de arbeidsoppgavene du har utført.</p>
               </div>
             </div>
           </div>

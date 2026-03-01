@@ -21,7 +21,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
   return (
     <div className="fixed inset-0 z-[60]">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-full max-w-xl bg-background shadow-[−20px_0_60px_rgba(0,0,0,0.06)] overflow-y-auto animate-slide-in-right">
+      <div className="absolute right-0 top-0 h-full w-full max-w-xl bg-background border-l border-border shadow-[0_0_40px_rgba(0,0,0,0.08)] overflow-y-auto animate-slide-in-right">
         <div className="sticky top-0 z-10 flex items-center gap-3 p-8 bg-background/95 backdrop-blur-sm">
           <button
             onClick={onClose}
@@ -107,13 +107,13 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
       {/* Subtle dim — NOT full black overlay */}
       <div
         className="absolute inset-0 animate-fade-in"
-        style={{ background: "rgba(11,15,20,0.08)" }}
+        style={{ background: "rgba(36,41,47,0.08)" }}
         onClick={onClose}
       />
 
       <div
         ref={panelRef}
-        className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background shadow-[-20px_0_60px_rgba(0,0,0,0.06)] overflow-y-auto animate-slide-in-right transition-opacity duration-200 ${isJobOpen ? "opacity-40" : "opacity-100"}`}
+        className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background border-l border-border shadow-[0_0_40px_rgba(0,0,0,0.08)] overflow-y-auto animate-slide-in-right transition-opacity duration-200 ${isJobOpen ? "opacity-40" : "opacity-100"}`}
       >
         <div className="sticky top-0 z-10 flex items-center justify-between p-8 bg-background/95 backdrop-blur-sm">
           <img src={stacqLogo} alt="STACQ" className="h-5 w-auto" />
@@ -141,9 +141,9 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             <div
               className="max-w-[520px] mt-6"
               style={{
-                background: '#F6F8FB',
-                border: '1px solid #E5E7EB',
-                borderRadius: '10px',
+                background: '#F6F8FA',
+                border: '1px solid hsl(213, 18%, 83%)',
+                borderRadius: '8px',
                 padding: '24px',
                 fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
                 fontSize: '14px',

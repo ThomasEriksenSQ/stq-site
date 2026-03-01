@@ -7,45 +7,45 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 214 30% 7%;
+    --foreground: 213 14% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 214 30% 7%;
+    --card-foreground: 213 14% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 214 30% 7%;
+    --popover-foreground: 213 14% 16%;
 
-    --primary: 191 100% 43%;
+    --primary: 213 14% 16%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 10% 96%;
-    --secondary-foreground: 214 10% 40%;
+    --secondary: 210 17% 98%;
+    --secondary-foreground: 215 9% 31%;
 
-    --muted: 216 14% 97%;
-    --muted-foreground: 214 10% 40%;
+    --muted: 210 17% 98%;
+    --muted-foreground: 215 9% 31%;
 
-    --accent: 191 100% 43%;
+    --accent: 211 100% 44%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 216 20% 92%;
-    --input: 216 20% 92%;
-    --ring: 191 100% 43%;
+    --border: 213 18% 83%;
+    --input: 213 18% 83%;
+    --ring: 211 100% 44%;
 
-    --radius: 0.625rem;
+    --radius: 0.5rem;
 
-    --overlay-dim: 214 30% 7%;
+    --overlay-dim: 213 14% 16%;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 214 30% 7%;
-    --sidebar-primary: 191 100% 43%;
+    --sidebar-foreground: 213 14% 16%;
+    --sidebar-primary: 211 100% 44%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 10% 96%;
-    --sidebar-accent-foreground: 214 10% 40%;
-    --sidebar-border: 216 20% 92%;
-    --sidebar-ring: 191 100% 43%;
+    --sidebar-accent: 210 17% 98%;
+    --sidebar-accent-foreground: 215 9% 31%;
+    --sidebar-border: 213 18% 83%;
+    --sidebar-ring: 211 100% 44%;
   }
 }
 
@@ -59,14 +59,14 @@
   }
 
   ::selection {
-    background: hsl(191 100% 43% / 0.15);
+    background: hsl(211 100% 44% / 0.15);
   }
 }
 
 @layer components {
   .code-block {
-    @apply font-mono text-[13px] leading-relaxed border border-border rounded-xl px-5 py-4 text-foreground;
-    background: #F6F8FB;
+    @apply font-mono text-[13px] leading-relaxed border border-border rounded-lg px-5 py-4 text-foreground;
+    background: #F6F8FA;
   }
 
   .code-block .code-key {

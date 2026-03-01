@@ -22,7 +22,7 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
       <div className="absolute inset-0" onClick={onClose} />
       <div className="absolute right-0 top-0 h-full w-[92%] md:w-[38%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto animate-slide-in-right flex flex-col shadow-lg">
         <div className="sticky top-0 z-10 px-6 md:px-[88px] py-4 bg-background border-b border-border">
-          <div className="max-w-[640px] mx-auto w-full">
+          <div className="max-w-[640px] w-full">
             <button
               onClick={onClose}
               className="flex items-center gap-1.5 text-accent hover:underline text-[13px]"
@@ -34,7 +34,7 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
         </div>
 
         <div className="px-6 md:px-[88px] pt-20 pb-[88px] flex-1">
-          <div className="max-w-[640px] mx-auto w-full space-y-10">
+          <div className="max-w-[640px] w-full space-y-10">
             <h2 className="text-[34px] font-bold text-foreground leading-[1.15]">
               Håndbok for STACQ
             </h2>
@@ -259,7 +259,7 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
         </div>
 
         <div className="px-6 md:px-[88px] py-6 border-t border-border mt-auto">
-          <div className="max-w-[640px] mx-auto w-full">
+          <div className="max-w-[640px] w-full">
             <p className="text-[13px] text-muted-foreground">
               STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389 MVA
             </p>

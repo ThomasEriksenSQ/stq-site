@@ -1,5 +1,6 @@
 import { useState } from "react";
 import heroBg from "@/assets/hero-bg.png";
+import stacqLogo from "@/assets/stacq-logo-white.png";
 import OverlayPanel from "@/components/OverlayPanel";
 
 const Index = () => {
@@ -20,23 +21,10 @@ const Index = () => {
       {/* Hero Content - left aligned */}
       <div className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 max-w-3xl">
         <div className="space-y-8">
-          <p className="font-mono text-sm tracking-widest text-primary uppercase">
-            STACQ
-          </p>
+          <img src={stacqLogo} alt="STACQ" className="h-8 md:h-10 w-auto" />
           <h1 className="font-sans text-5xl md:text-7xl font-semibold leading-[1.1] text-foreground">
             Embedded konsulenter som former fremtiden
           </h1>
-          <div className="flex flex-col gap-4 pt-4">
-            <a href="#" className="font-sans text-xl md:text-2xl font-medium text-foreground/90 hover:text-foreground flex items-center gap-2 transition-colors w-fit">
-              Hvem vi er <span className="text-primary">❯</span>
-            </a>
-            <a href="#" className="font-sans text-xl md:text-2xl font-medium text-foreground/90 hover:text-foreground flex items-center gap-2 transition-colors w-fit">
-              Hva vi gjør <span className="text-primary">❯</span>
-            </a>
-            <a href="#" className="font-sans text-xl md:text-2xl font-medium text-foreground/90 hover:text-foreground flex items-center gap-2 transition-colors w-fit">
-              Jobb hos oss <span className="text-primary">❯</span>
-            </a>
-          </div>
           <div className="pt-6">
             <button
               onClick={() => setIsOverlayOpen(true)}

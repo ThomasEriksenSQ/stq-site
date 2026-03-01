@@ -7,7 +7,7 @@ const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-neutral-900">
       {/* Background image */}
       <div
         className="absolute inset-0 z-0"
@@ -16,14 +16,16 @@ const Index = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center bottom',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.25,
+          opacity: 0.6,
         }}
       />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 z-[1] bg-black/50" />
       {/* Hero Content - left aligned */}
       <div className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 max-w-5xl">
         <div className="space-y-8">
-          <img src={stacqLogo} alt="STACQ" className="h-8 md:h-10 w-auto" />
-          <h1 className="font-sans text-5xl md:text-7xl font-semibold leading-[1.1] text-neutral-900">
+          <img src={stacqLogo} alt="STACQ" className="h-8 md:h-10 w-auto invert" />
+          <h1 className="font-sans text-5xl md:text-7xl font-semibold leading-[1.1] text-white">
             Embedded konsulenter
             <br />
             som former fremtiden
@@ -31,7 +33,7 @@ const Index = () => {
           <div className="pt-6">
             <button
               onClick={() => setIsOverlayOpen(true)}
-              className="font-sans text-base font-medium bg-[hsl(220,80%,50%)] hover:bg-[hsl(220,80%,45%)] text-white px-8 py-4 rounded-lg transition-all duration-200 shadow-lg shadow-[hsl(220,80%,50%)/0.3]"
+              className="font-sans text-base font-medium bg-[#4caf50] hover:bg-[#43a047] text-white px-8 py-4 rounded-lg transition-all duration-200 shadow-lg shadow-[#4caf50]/30"
             >
               Dette er STACQ
             </button>

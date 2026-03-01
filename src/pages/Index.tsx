@@ -21,7 +21,7 @@ const Index = () => {
         <div className="pt-2">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="text-[15px] font-medium bg-foreground text-background px-6 py-3 rounded-lg hover:opacity-90 transition-opacity h-[46px]"
+            className="text-[14px] font-semibold tracking-wide uppercase bg-[hsl(var(--cta))] text-[hsl(var(--cta-foreground))] px-7 py-3 rounded-md hover:brightness-110 transition-all h-[44px]"
           >
             Dette er STACQ →
           </button>

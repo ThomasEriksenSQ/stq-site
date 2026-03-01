@@ -256,29 +256,29 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             {/* Kontakt */}
             <section className="space-y-6">
               <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Kontakt</h2>
-              <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-6">
                 {/* Jon Richard */}
-                <div className="flex items-start gap-4">
-                  <img src={jonRichardImg} alt="Jon Richard Nygaard" className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+                <div className="flex items-start gap-3">
+                  <img src={jonRichardImg} alt="Jon Richard Nygaard" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
                   <div className="space-y-1">
-                    <p className="text-[16px] font-semibold text-foreground">Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span></p>
-                    <a href="tel:93287267" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                    <p className="text-[15px] font-semibold text-foreground">Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span></p>
+                    <a href="tel:93287267" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
                       <Phone className="w-3.5 h-3.5" /> 93 287 267
                     </a>
-                    <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                    <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
                       <Mail className="w-3.5 h-3.5" /> jr@stacq.no
                     </a>
                   </div>
                 </div>
                 {/* Thomas */}
-                <div className="flex items-start gap-4">
-                  <img src={thomasEriksenImg} alt="Thomas Eriksen" className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+                <div className="flex items-start gap-3">
+                  <img src={thomasEriksenImg} alt="Thomas Eriksen" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
                   <div className="space-y-1">
-                    <p className="text-[16px] font-semibold text-foreground">Thomas Eriksen <span className="font-normal text-muted-foreground">| Partner</span></p>
-                    <a href="tel:97500321" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                    <p className="text-[15px] font-semibold text-foreground">Thomas Eriksen <span className="font-normal text-muted-foreground">| Partner</span></p>
+                    <a href="tel:97500321" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
                       <Phone className="w-3.5 h-3.5" /> 97 500 321
                     </a>
-                    <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                    <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
                       <Mail className="w-3.5 h-3.5" /> thomas@stacq.no
                     </a>
                   </div>

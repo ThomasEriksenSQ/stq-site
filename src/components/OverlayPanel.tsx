@@ -235,6 +235,37 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               </div>
             </section>
 
+            {/* Valg av STACQ */}
+            <section className="space-y-4">
+              <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Valg av STACQ som partner</h2>
+              <ul className="space-y-2 text-foreground text-[16px] leading-[1.7]">
+                <li className="flex items-start gap-2">
+                  <span className="text-muted-foreground mt-[2px]">–</span>
+                  <span>Dokumentert erfaring fra komplekse og teknisk krevende prosjekter</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-muted-foreground mt-[2px]">–</span>
+                  <span>Rask integrasjon i kundens utviklingsteam</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-muted-foreground mt-[2px]">–</span>
+                  <span>Tar eierskap til oppgaver og leveranser</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-muted-foreground mt-[2px]">–</span>
+                  <span>Enkel, tydelig og åpen kommunikasjon</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-muted-foreground mt-[2px]">–</span>
+                  <span>Fokus på kvalitet, robusthet og sikkerhet</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-muted-foreground mt-[2px]">–</span>
+                  <span>Skaper et godt og profesjonelt samarbeidsmiljø</span>
+                </li>
+              </ul>
+            </section>
+
             {/* Jobb hos oss */}
             <section className="space-y-4">
               <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>

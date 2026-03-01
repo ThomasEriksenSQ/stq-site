@@ -128,7 +128,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           {/* Intro */}
           <section className="space-y-4">
             <h1 className="text-[28px] font-semibold text-foreground leading-[1.3]">STACQ</h1>
-            <div className="space-y-3 text-foreground text-[16px] leading-[1.65]">
+            <div className="space-y-3 text-muted-foreground text-[20px] leading-[1.65]">
               <p>
                 STACQ er et norsk konsulentselskap med spisskompetanse innen embedded-systemer og lavnivåprogrammering.
               </p>

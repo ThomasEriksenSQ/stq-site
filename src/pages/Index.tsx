@@ -41,8 +41,9 @@ const Index = () => {
         <div className="pt-2 flex flex-col items-start gap-3">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="text-[15px] font-medium bg-foreground text-background px-6 py-3 rounded-lg hover:opacity-90 transition-opacity h-[46px]">
-            Dette er STACQ →
+            className="group relative text-[15px] font-semibold tracking-wide bg-foreground text-background px-8 py-3.5 rounded-lg hover:rounded-xl transition-all duration-300 h-[48px] flex items-center gap-3 overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.12)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.16)] hover:scale-[1.02] active:scale-[0.98]">
+            <span>STACQ</span>
+            <span className="inline-flex transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
           <button
             onClick={() => setIsOverlayOpen(true)}

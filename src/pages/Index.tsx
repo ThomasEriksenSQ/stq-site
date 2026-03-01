@@ -1,5 +1,5 @@
 import { useState } from "react";
-import heroBg from "@/assets/hero-bg.mp4";
+import heroBg from "@/assets/hero-bg.png";
 import OverlayPanel from "@/components/OverlayPanel";
 
 const Index = () => {
@@ -7,40 +7,42 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-background">
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-20"
-      >
-        <source src={heroBg} type="video/mp4" />
-      </video>
+      {/* Image Background */}
+      <img
+        src={heroBg}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-      {/* Gradient overlay on video */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-transparent" />
 
-      {/* Hero Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
-        <div className="text-center space-y-6">
-          <h1 className="font-mono text-5xl md:text-7xl font-medium tracking-tight text-foreground">
+      {/* Hero Content - left aligned */}
+      <div className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 max-w-3xl">
+        <div className="space-y-8">
+          <p className="font-mono text-sm tracking-widest text-primary uppercase">
             STACQ
+          </p>
+          <h1 className="font-sans text-5xl md:text-7xl font-semibold leading-[1.1] text-foreground">
+            Embedded konsulenter som former fremtiden
           </h1>
-          <div className="space-y-2">
-            <p className="font-mono text-lg md:text-xl text-muted-foreground tracking-wide">
-              Embedded-systemer
-            </p>
-            <p className="text-sm md:text-base text-muted-foreground/70 tracking-widest">
-              fra prototype til produksjon
-            </p>
+          <div className="flex flex-col gap-4 pt-4">
+            <a href="#" className="font-sans text-xl md:text-2xl font-medium text-foreground/90 hover:text-foreground flex items-center gap-2 transition-colors w-fit">
+              Hvem vi er <span className="text-primary">❯</span>
+            </a>
+            <a href="#" className="font-sans text-xl md:text-2xl font-medium text-foreground/90 hover:text-foreground flex items-center gap-2 transition-colors w-fit">
+              Hva vi gjør <span className="text-primary">❯</span>
+            </a>
+            <a href="#" className="font-sans text-xl md:text-2xl font-medium text-foreground/90 hover:text-foreground flex items-center gap-2 transition-colors w-fit">
+              Jobb hos oss <span className="text-primary">❯</span>
+            </a>
           </div>
-          <div className="pt-8">
+          <div className="pt-6">
             <button
               onClick={() => setIsOverlayOpen(true)}
-              className="font-mono text-sm border border-border px-8 py-3 rounded text-foreground/80 hover:border-primary hover:text-primary transition-all duration-300"
+              className="font-sans text-base font-medium bg-[hsl(220,80%,50%)] hover:bg-[hsl(220,80%,45%)] text-foreground px-8 py-4 rounded-lg transition-all duration-200 shadow-lg shadow-[hsl(220,80%,50%)/0.3]"
             >
-              Åpne STACQ →
+              Åpne STACQ
             </button>
           </div>
         </div>

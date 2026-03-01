@@ -177,7 +177,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
             <section className="space-y-5">
-              <h1 className="text-[38px] font-bold text-foreground leading-[1.15]">Konsulentselskapet STACQ</h1>
+              <h1 className="text-[38px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">Konsulentselskapet STACQ</h1>
               <p className="text-[18px] font-semibold text-foreground leading-[1.5]">
                 Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og lavnivåprogrammering.
               </p>

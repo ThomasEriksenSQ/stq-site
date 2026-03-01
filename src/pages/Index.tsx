@@ -17,9 +17,6 @@ const Index = () => {
         <p className="text-[18px] md:text-[20px] leading-[1.55] text-muted-foreground max-w-[560px]">
           We develop firmware and embedded Linux solutions for products with high requirements for stability, performance, and control.
         </p>
-        <p className="text-[16px] md:text-[18px] leading-[1.65] text-muted-foreground max-w-[520px]">
-          Our engineers integrate with your development team and deliver production-ready software.
-        </p>
         <div className="pt-1">
           <button
             onClick={() => setIsOverlayOpen(true)}

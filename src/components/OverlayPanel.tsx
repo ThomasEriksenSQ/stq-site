@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, ArrowLeft } from "lucide-react";
 import stacqLogo from "@/assets/stacq-logo-black.png";
+import HandbookOverlay from "@/components/HandbookOverlay";
 
 interface OverlayPanelProps {
   isOpen: boolean;
@@ -88,10 +89,11 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const [isJobOpen, setIsJobOpen] = useState(false);
+  const [isHandbookOpen, setIsHandbookOpen] = useState(false);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !isJobOpen) onClose();
+      if (e.key === "Escape" && !isJobOpen && !isHandbookOpen) onClose();
     };
     if (isOpen) {
       document.addEventListener("keydown", handleEsc);
@@ -101,7 +103,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
       document.removeEventListener("keydown", handleEsc);
       document.body.style.overflow = "";
     };
-  }, [isOpen, onClose, isJobOpen]);
+  }, [isOpen, onClose, isJobOpen, isHandbookOpen]);
 
   if (!isOpen) return null;
 
@@ -115,7 +117,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
       <div
         ref={panelRef}
-        className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${isJobOpen ? "opacity-40" : "opacity-100"}`}
+        className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 flex flex-col shadow-lg ${(isJobOpen || isHandbookOpen) ? "opacity-40" : "opacity-100"}`}
       >
         <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-[88px] py-4 bg-background border-b border-border">
           <img src={stacqLogo} alt="STACQ" className="h-5" />
@@ -191,9 +193,12 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               >
                 Se ledige stillinger →
               </button>
-              <a href="#" className="block text-sm text-accent hover:underline">
+              <button
+                onClick={() => setIsHandbookOpen(true)}
+                className="block text-sm text-accent hover:underline"
+              >
                 STACQ Handbook →
-              </a>
+              </button>
             </div>
           </section>
 
@@ -210,6 +215,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
       </div>
 
       <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} />
+      <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
     </div>
   );
 };

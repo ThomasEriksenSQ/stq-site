@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { X, ArrowLeft } from "lucide-react";
-import stacqLogo from "@/assets/stacq-logo-black.png";
 
 interface OverlayPanelProps {
   isOpen: boolean;
@@ -22,52 +21,52 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
     <div className="fixed inset-0 z-[60]">
       <div className="absolute inset-0" onClick={onClose} />
       <div className="absolute right-0 top-0 h-full w-full max-w-xl bg-background border-l border-border overflow-y-auto animate-slide-in-right">
-        <div className="sticky top-0 z-10 flex items-center gap-3 px-6 py-4 bg-background border-b border-border">
+        <div className="sticky top-0 z-10 px-8 py-4 bg-background border-b border-border">
           <button
             onClick={onClose}
-            className="flex items-center gap-1.5 text-accent hover:underline transition-colors text-sm"
+            className="flex items-center gap-1.5 text-accent hover:underline text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Tilbake
           </button>
         </div>
 
-        <div className="px-6 md:px-10 py-8 space-y-8">
-          <h2 className="text-xl font-semibold text-foreground leading-[1.25]">
+        <div className="px-8 md:px-12 py-10 space-y-8">
+          <h2 className="text-[22px] font-semibold text-foreground leading-[1.3]">
             Senior Embedded Developer
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-[520px]">
             <div>
-              <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">Teknologi</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Teknologi</h3>
               <div className="code-block">
                 C, C++, Embedded Linux, Yocto, Bare-metal, RTOS, FPGA
               </div>
             </div>
 
             <div>
-              <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">Vi ser etter</h3>
-              <ul className="space-y-1 text-foreground text-[15px] leading-[1.65]">
-                <li>5+ års erfaring</li>
-                <li>Sterk forståelse for lavnivåprogrammering</li>
-                <li>Hardware-nær utvikling</li>
-                <li>Gode samarbeidsevner</li>
-                <li>Norsk eller skandinavisk språk</li>
-              </ul>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Vi ser etter</h3>
+              <div className="space-y-1 text-foreground text-[15px] leading-[1.65]">
+                <p>5+ års erfaring</p>
+                <p>Sterk forståelse for lavnivåprogrammering</p>
+                <p>Hardware-nær utvikling</p>
+                <p>Gode samarbeidsevner</p>
+                <p>Norsk eller skandinavisk språk</p>
+              </div>
             </div>
 
             <div>
-              <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">Vi tilbyr</h3>
-              <ul className="space-y-1 text-foreground text-[15px] leading-[1.65]">
-                <li>Konkurransedyktig lønn</li>
-                <li>Sterkt fagmiljø</li>
-                <li>Spennende teknologiprosjekter</li>
-                <li>Kontinuerlig faglig utvikling</li>
-                <li>Fleksibilitet</li>
-              </ul>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Vi tilbyr</h3>
+              <div className="space-y-1 text-foreground text-[15px] leading-[1.65]">
+                <p>Konkurransedyktig lønn</p>
+                <p>Sterkt fagmiljø</p>
+                <p>Spennende teknologiprosjekter</p>
+                <p>Kontinuerlig faglig utvikling</p>
+                <p>Fleksibilitet</p>
+              </div>
             </div>
 
-            <div className="pt-2 border-t border-border">
+            <div className="pt-4 border-t border-border">
               <a href="#" className="text-sm text-accent hover:underline">
                 STACQ Handbook →
               </a>
@@ -103,7 +102,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
     <div className="fixed inset-0 z-50">
       <div
         className="absolute inset-0 animate-fade-in"
-        style={{ background: "rgba(31,35,40,0.15)" }}
+        style={{ background: "rgba(36,41,47,0.08)" }}
         onClick={onClose}
       />
 
@@ -111,18 +110,17 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
         ref={panelRef}
         className={`absolute right-0 top-0 h-full w-full md:w-[44%] md:min-w-[420px] bg-background border-l border-border overflow-y-auto animate-slide-in-right transition-opacity duration-200 ${isJobOpen ? "opacity-40" : "opacity-100"}`}
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-background border-b border-border">
-          <img src={stacqLogo} alt="STACQ" className="h-5 w-auto" />
+        <div className="sticky top-0 z-10 flex items-center justify-end px-8 py-4 bg-background border-b border-border">
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Lukk">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="px-6 md:px-10 py-8 space-y-10">
-          {/* STACQ */}
-          <section>
-            <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">STACQ</h3>
-            <div className="space-y-3 text-foreground text-[15px] leading-[1.65] max-w-[480px]">
+        <div className="px-8 md:px-12 py-10 space-y-10 max-w-[600px]">
+          {/* Intro */}
+          <section className="space-y-4">
+            <h1 className="text-[28px] font-semibold text-foreground leading-[1.3]">STACQ</h1>
+            <div className="space-y-3 text-foreground text-[16px] leading-[1.65]">
               <p>
                 STACQ er et norsk konsulentselskap med spisskompetanse innen embedded-systemer og lavnivåprogrammering.
               </p>
@@ -133,47 +131,32 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           </section>
 
           {/* Kompetanse */}
-          <section>
-            <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">Kompetanse</h3>
-            <div
-              className="max-w-[520px]"
-              style={{
-                background: '#F6F8FA',
-                border: '1px solid hsl(210, 18%, 84%)',
-                borderRadius: '6px',
-                padding: '16px 20px',
-                fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
-                fontSize: '13px',
-                lineHeight: '1.6',
-              }}
-            >
-              <div style={{ color: '#656D76', marginBottom: '14px', fontSize: '12px' }}>kompetanse</div>
-
-              <div style={{ marginBottom: '10px' }}>
-                <span style={{ color: '#1F2328', fontWeight: 600 }}>språk: </span>
-                <span style={{ color: '#1F2328' }}>C, C++, Assembly, Python</span>
-              </div>
-
-              <div style={{ marginBottom: '10px' }}>
-                <span style={{ color: '#1F2328', fontWeight: 600 }}>plattformer: </span>
-                <span style={{ color: '#1F2328' }}>Embedded Linux, Yocto, Mikrokontrollere</span>
-              </div>
-
-              <div style={{ marginBottom: '10px' }}>
-                <span style={{ color: '#1F2328', fontWeight: 600 }}>systemnivå: </span>
-                <span style={{ color: '#1F2328' }}>Bare-metal, RTOS, FPGA</span>
-              </div>
-
+          <section className="space-y-3">
+            <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Kompetanse</h2>
+            <div className="code-block max-w-[520px] space-y-3">
+              <div className="text-muted-foreground text-xs mb-4">kompetanse</div>
               <div>
-                <span style={{ color: '#1F2328', fontWeight: 600 }}>fagområder: </span>
-                <span style={{ color: '#1F2328' }}>Systemarkitektur, Sikkerhet, Ytelsesoptimalisering</span>
+                <span className="font-semibold">språk: </span>
+                <span>C, C++, Assembly, Python</span>
+              </div>
+              <div>
+                <span className="font-semibold">plattformer: </span>
+                <span>Embedded Linux, Yocto, Mikrokontrollere</span>
+              </div>
+              <div>
+                <span className="font-semibold">systemnivå: </span>
+                <span>Bare-metal, RTOS, FPGA</span>
+              </div>
+              <div>
+                <span className="font-semibold">fagområder: </span>
+                <span>Systemarkitektur, Sikkerhet, Ytelsesoptimalisering</span>
               </div>
             </div>
           </section>
 
           {/* Jobb hos oss */}
-          <section>
-            <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">Jobb hos oss</h3>
+          <section className="space-y-3">
+            <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
             <button
               onClick={() => setIsJobOpen(true)}
               className="text-sm text-accent hover:underline"
@@ -183,16 +166,16 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           </section>
 
           {/* Håndbok */}
-          <section>
-            <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">Håndbok</h3>
+          <section className="space-y-3">
+            <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Håndbok</h2>
             <a href="#" className="text-sm text-accent hover:underline">
               STACQ Handbook →
             </a>
           </section>
 
           {/* Kontakt */}
-          <section>
-            <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">Kontakt</h3>
+          <section className="space-y-3">
+            <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Kontakt</h2>
             <div className="space-y-1 text-[15px] text-foreground">
               <p>Jon Richard Nygaard</p>
               <a href="tel:93287267" className="block text-sm text-accent hover:underline">93287267</a>

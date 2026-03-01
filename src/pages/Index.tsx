@@ -12,24 +12,23 @@ const Index = () => {
         <div className="space-y-8">
           <img src={stacqLogo} alt="STACQ" className="h-8 md:h-10 w-auto" />
           <h1 className="font-sans text-5xl md:text-7xl font-semibold leading-[1.1] text-neutral-900">
-            Embedded konsulenter<br />som former fremtiden
+            Embedded konsulenter
+            <br />
+            som former fremtiden
           </h1>
           <div className="pt-6">
             <button
               onClick={() => setIsOverlayOpen(true)}
               className="font-sans text-base font-medium bg-[hsl(220,80%,50%)] hover:bg-[hsl(220,80%,45%)] text-white px-8 py-4 rounded-lg transition-all duration-200 shadow-lg shadow-[hsl(220,80%,50%)/0.3]"
             >
-              Åpne STACQ
+              Dette er STACQ
             </button>
           </div>
         </div>
       </div>
 
       {/* Overlay Panel */}
-      <OverlayPanel
-        isOpen={isOverlayOpen}
-        onClose={() => setIsOverlayOpen(false)}
-      />
+      <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
     </div>
   );
 };

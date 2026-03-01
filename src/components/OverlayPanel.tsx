@@ -199,38 +199,34 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               <div className="code-block w-full text-[14px] leading-[1.6]">
                 <div className="mt-0">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Språk</div>
-                  <div>C, C++, Rust, Python, Assembly</div>
+                  <div>C · C++ · Rust · Python · Assembly</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Firmware & sanntid</div>
-                  <div>Bare-metal og RTOS (FreeRTOS, Zephyr, ThreadX)</div>
-                  <div>Bootloader, secure boot og TrustZone</div>
+                  <div>Bare-metal · RTOS (FreeRTOS, Zephyr, ThreadX)</div>
+                  <div>Bootloader · Secure boot · TrustZone</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Embedded Linux</div>
-                  <div>Yocto, board bring-up og kernel-tilpasning</div>
-                  <div>Qt / applikasjonslag</div>
-                  <div>OTA og systemtjenester</div>
+                  <div>Yocto · Board bring-up · Kernel</div>
+                  <div>Qt · OTA · Systemtjenester</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Maskinvare</div>
                   <div>ARM Cortex-M / Cortex-A</div>
-                  <div>STM32, NXP i.MX, Nordic nRF, ESP32</div>
+                  <div>STM32 · NXP i.MX · Nordic nRF · ESP32</div>
                   <div>FPGA / HDL</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Kommunikasjon</div>
-                  <div>CAN / CANopen</div>
-                  <div>Modbus (RTU / TCP)</div>
-                  <div>SPI, I2C, UART, RS485</div>
-                  <div>TCP/IP, MQTT, BLE, Zigbee, ISO15118</div>
+                  <div>CAN · Modbus · SPI · I2C · UART · RS485</div>
+                  <div>TCP/IP · MQTT · BLE · Zigbee · ISO15118</div>
                 </div>
                 <div className="mt-3">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">System</div>
-                  <div>Sanntidssystemer</div>
-                  <div>Sikkerhetskritiske og regulerte systemer (IEC 62304)</div>
+                  <div>Sanntid · Sikkerhetskritiske systemer</div>
                   <div>Sensor- og motorstyring</div>
-                  <div>Arkitektur, test og CI/CD for embedded</div>
+                  <div>Arkitektur · Test · CI/CD</div>
                 </div>
               </div>
             </section>

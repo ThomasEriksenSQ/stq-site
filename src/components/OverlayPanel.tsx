@@ -194,34 +194,37 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 <p>Erfarne ingeniører med tung systemforståelse og bakgrunn fra krevende teknologimiljøer.</p>
                 <p>Vi utvikler robuste og sikre løsninger med fokus på kvalitet, presisjon og ansvar.</p>
               </div>
-              <div className="code-block max-w-[520px] space-y-4 text-[14px] leading-[1.6]">
-                <div>C, C++, Rust, Python, Assembly</div>
-                <div>
-                  <div className="font-semibold">Firmware & sanntid</div>
+              <div className="code-block max-w-[520px] text-[14px] leading-[1.6]">
+                <div className="mt-0">
+                  <div className="font-semibold text-[#4caf50] leading-[1.3]">Språk</div>
+                  <div>C, C++, Rust, Python, Assembly</div>
+                </div>
+                <div className="mt-3">
+                  <div className="font-semibold text-[#4caf50] leading-[1.3]">Firmware & sanntid</div>
                   <div>Bare-metal og RTOS (FreeRTOS, Zephyr, ThreadX)</div>
                   <div>Bootloader, secure boot og TrustZone</div>
                 </div>
-                <div>
-                  <div className="font-semibold">Embedded Linux</div>
+                <div className="mt-3">
+                  <div className="font-semibold text-[#4caf50] leading-[1.3]">Embedded Linux</div>
                   <div>Yocto, board bring-up og kernel-tilpasning</div>
                   <div>Qt / applikasjonslag</div>
                   <div>OTA og systemtjenester</div>
                 </div>
-                <div>
-                  <div className="font-semibold">Maskinvare</div>
+                <div className="mt-3">
+                  <div className="font-semibold text-[#4caf50] leading-[1.3]">Maskinvare</div>
                   <div>ARM Cortex-M / Cortex-A</div>
                   <div>STM32, NXP i.MX, Nordic nRF, ESP32</div>
                   <div>FPGA / HDL</div>
                 </div>
-                <div>
-                  <div className="font-semibold">Kommunikasjon</div>
+                <div className="mt-3">
+                  <div className="font-semibold text-[#4caf50] leading-[1.3]">Kommunikasjon</div>
                   <div>CAN / CANopen</div>
                   <div>Modbus (RTU / TCP)</div>
                   <div>SPI, I2C, UART, RS485</div>
                   <div>TCP/IP, MQTT, BLE, Zigbee, ISO15118</div>
                 </div>
-                <div>
-                  <div className="font-semibold">System</div>
+                <div className="mt-3">
+                  <div className="font-semibold text-[#4caf50] leading-[1.3]">System</div>
                   <div>Sanntidssystemer</div>
                   <div>Sikkerhetskritiske og regulerte systemer (IEC 62304)</div>
                   <div>Sensor- og motorstyring</div>

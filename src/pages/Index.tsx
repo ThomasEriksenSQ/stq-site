@@ -38,12 +38,16 @@ const Index = () => {
             </span>
           )}
         </div>
-        <div className="pt-2">
+        <div className="pt-2 flex flex-col items-start gap-3">
           <button
             onClick={() => setIsOverlayOpen(true)}
             className="text-[15px] font-medium bg-foreground text-background px-6 py-3 rounded-lg hover:opacity-90 transition-opacity h-[46px]">
-
             Dette er STACQ →
+          </button>
+          <button
+            onClick={() => setIsOverlayOpen(true)}
+            className="text-[15px] font-semibold text-foreground hover:opacity-70 transition-opacity">
+            Vi er STACQ ›
           </button>
         </div>
       </div>

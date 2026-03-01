@@ -11,8 +11,6 @@ const Index = () => {
         <img src={stacqLogo} alt="STACQ" className="h-7 md:h-8" />
         <h1 className="text-[40px] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground md:text-8xl">
           Embedded konsulenter som former fremtiden
-          <br />
-          close to the hardware.
         </h1>
         <p className="text-[18px] md:text-[20px] leading-[1.55] text-muted-foreground max-w-[560px]">
           We develop firmware and embedded Linux solutions for products with high requirements for stability,

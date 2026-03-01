@@ -193,7 +193,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 <p>Erfarne ingeniører med tung systemforståelse og bakgrunn fra krevende teknologimiljøer.</p>
                 <p>Vi utvikler robuste og sikre løsninger med fokus på kvalitet, presisjon og ansvar.</p>
               </div>
-              <div className="code-block max-w-[520px] text-[14px] leading-[1.6]">
+              <div className="code-block w-full text-[14px] leading-[1.6]">
                 <div className="mt-0">
                   <div className="font-semibold text-[#4caf50] leading-[1.3]">Språk</div>
                   <div>C, C++, Rust, Python, Assembly</div>

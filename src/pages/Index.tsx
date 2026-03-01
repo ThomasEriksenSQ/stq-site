@@ -1,5 +1,6 @@
 import { useState } from "react";
 import stacqLogo from "@/assets/stacq-logo-black.png";
+import heroBg from "@/assets/hero-circuit.png";
 import OverlayPanel from "@/components/OverlayPanel";
 
 const Index = () => {
@@ -7,6 +8,17 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-white">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center bottom',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.25,
+        }}
+      />
       {/* Hero Content - left aligned */}
       <div className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 max-w-5xl">
         <div className="space-y-8">

@@ -39,11 +39,11 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
         <div className="p-6 md:p-[96px] flex-1">
           <div className="max-w-[640px] w-full space-y-10">
-            <h2 className="text-[34px] font-bold text-foreground leading-[1.15]">
+            <h2 className="text-[38px] font-bold text-foreground leading-[1.15]">
               Senior Embedded Konsulent
             </h2>
 
-            <div className="space-y-3 text-foreground text-[16px] leading-[1.7]">
+            <div className="space-y-3 text-foreground text-[18px] leading-[1.7]">
               <p>
                 STACQ er et rendyrket konsulentselskap for embedded-utviklere. Vi jobber kun med embedded og lavnivå – og leverer kode som brukes i virkelige produkter.
               </p>
@@ -51,8 +51,8 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
             <div className="space-y-10">
               <div>
-                <h3 className="text-[18px] font-semibold text-foreground mb-4">Hvorfor STACQ</h3>
-                <ul className="space-y-2 text-foreground text-[16px] leading-[1.7]">
+                <h3 className="text-[22px] font-semibold text-foreground mb-4">Hvorfor STACQ</h3>
+                <ul className="space-y-2 text-foreground text-[18px] leading-[1.7]">
                   <li className="flex items-start gap-2">
                     <span className="text-muted-foreground mt-[2px]">–</span>
                     <span>Rendyrket fokus på embedded og lavnivå</span>
@@ -81,8 +81,8 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               </div>
 
               <div>
-                <h3 className="text-[18px] font-semibold text-foreground mb-4">Vi ser etter</h3>
-                <ul className="space-y-2 text-foreground text-[16px] leading-[1.7]">
+                <h3 className="text-[22px] font-semibold text-foreground mb-4">Vi ser etter</h3>
+                <ul className="space-y-2 text-foreground text-[18px] leading-[1.7]">
                   <li className="flex items-start gap-2">
                     <span className="text-muted-foreground mt-[2px]">–</span>
                     <span>5+ års erfaring</span>
@@ -103,8 +103,8 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               </div>
 
               <div>
-                <h3 className="text-[18px] font-semibold text-foreground mb-4">Ta kontakt</h3>
-                <p className="text-foreground text-[16px] leading-[1.7]">
+                <h3 className="text-[22px] font-semibold text-foreground mb-4">Ta kontakt</h3>
+                <p className="text-foreground text-[18px] leading-[1.7]">
                   Send en kort søknad eller ta kontakt for en uformell prat.
                 </p>
                 <div className="mt-4 space-y-1">
@@ -172,19 +172,19 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <div className="max-w-[640px] w-full space-y-10">
             {/* Intro */}
             <section className="space-y-5">
-              <h1 className="text-[38px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">Konsulentselskapet STACQ</h1>
-              <p className="text-[18px] font-semibold text-foreground leading-[1.5]">
+              <h1 className="text-[44px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">Konsulentselskapet STACQ</h1>
+              <p className="text-[20px] font-semibold text-foreground leading-[1.5]">
                 Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og lavnivåprogrammering.
               </p>
-              <p className="text-foreground text-[16px] leading-[1.7]">
+              <p className="text-foreground text-[18px] leading-[1.7]">
                 STACQ hjelper med å dekke IT-konsulentbehov og er spesialister innen embedded-systemer og systemutvikling. Vår omfattende erfaring og spisskompetanse gjør oss til en pålitelig partner for spesialkompetanse.
               </p>
             </section>
 
             {/* Kompetanse */}
             <section className="space-y-4">
-              <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Kompetanse</h2>
-              <div className="space-y-3 text-foreground text-[16px] leading-[1.7]">
+              <h2 className="text-[24px] font-semibold text-foreground leading-[1.35]">Kompetanse</h2>
+              <div className="space-y-3 text-foreground text-[18px] leading-[1.7]">
                 <p>Erfarne ingeniører med tung systemforståelse og bakgrunn fra krevende teknologimiljøer.</p>
                 <p>Vi utvikler robuste og sikre løsninger med fokus på kvalitet, presisjon og ansvar.</p>
               </div>
@@ -229,7 +229,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
             {/* Jobb hos oss */}
             <section className="space-y-4">
-              <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
+              <h2 className="text-[24px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
               <div className="space-y-1">
                 <button
                   onClick={() => setIsJobOpen(true)}
@@ -248,7 +248,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
             {/* Kontakt */}
             <section className="space-y-6">
-              <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Kontakt</h2>
+              <h2 className="text-[24px] font-semibold text-foreground leading-[1.35]">Kontakt</h2>
               <div className="grid grid-cols-2 gap-6">
                 {/* Jon Richard */}
                 <div className="flex items-start gap-3">

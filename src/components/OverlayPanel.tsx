@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { X, ArrowLeft } from "lucide-react";
+import { X, ArrowLeft, Phone, Mail } from "lucide-react";
 import stacqLogo from "@/assets/stacq-logo-black.png";
+import jonRichardImg from "@/assets/jon-richard-nygaard.avif";
+import thomasEriksenImg from "@/assets/thomas-eriksen.avif";
 import HandbookOverlay from "@/components/HandbookOverlay";
 
 interface OverlayPanelProps {
@@ -252,12 +254,35 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             </section>
 
             {/* Kontakt */}
-            <section className="space-y-4">
+            <section className="space-y-6">
               <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Kontakt</h2>
-              <div className="space-y-1 text-[16px] text-foreground">
-                <p>Jon Richard Nygaard</p>
-                <a href="tel:93287267" className="block text-[14px] text-accent hover:underline">93287267</a>
-                <a href="mailto:jr@stacq.no" className="block text-[14px] text-accent hover:underline">jr@stacq.no</a>
+              <div className="space-y-6">
+                {/* Jon Richard */}
+                <div className="flex items-start gap-4">
+                  <img src={jonRichardImg} alt="Jon Richard Nygaard" className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+                  <div className="space-y-1">
+                    <p className="text-[16px] font-semibold text-foreground">Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span></p>
+                    <a href="tel:93287267" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                      <Phone className="w-3.5 h-3.5" /> 93 287 267
+                    </a>
+                    <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                      <Mail className="w-3.5 h-3.5" /> jr@stacq.no
+                    </a>
+                  </div>
+                </div>
+                {/* Thomas */}
+                <div className="flex items-start gap-4">
+                  <img src={thomasEriksenImg} alt="Thomas Eriksen" className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+                  <div className="space-y-1">
+                    <p className="text-[16px] font-semibold text-foreground">Thomas Eriksen <span className="font-normal text-muted-foreground">| Partner</span></p>
+                    <a href="tel:97500321" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                      <Phone className="w-3.5 h-3.5" /> 97 500 321
+                    </a>
+                    <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[14px] text-foreground hover:text-accent transition-colors">
+                      <Mail className="w-3.5 h-3.5" /> thomas@stacq.no
+                    </a>
+                  </div>
+                </div>
               </div>
             </section>
           </div>

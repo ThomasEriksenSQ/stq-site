@@ -8,7 +8,7 @@ const Index = () => {
   return (
     <div className="relative min-h-screen bg-white">
       {/* Hero Content - left aligned */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 max-w-3xl">
+      <div className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 max-w-5xl">
         <div className="space-y-8">
           <img src={stacqLogo} alt="STACQ" className="h-8 md:h-10 w-auto" />
           <h1 className="font-sans text-5xl md:text-7xl font-semibold leading-[1.1] text-neutral-900">

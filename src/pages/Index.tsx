@@ -14,9 +14,9 @@ const Index = () => {
           backgroundImage: `url(${heroBgChip})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+          backgroundRepeat: 'no-repeat'
+        }} />
+
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative max-w-[820px] space-y-8">
@@ -24,9 +24,9 @@ const Index = () => {
         <h1 className="text-[40px] font-semibold leading-[1.15] tracking-[-0.02em] text-white md:text-7xl">
           Embedded konsulenter som former fremtiden
         </h1>
-        <p className="text-[18px] md:text-[20px] leading-[1.55] text-white/70 max-w-[560px]">
-          We develop firmware and embedded Linux solutions for products with high requirements for stability,
-          performance, and control.
+        <p className="text-[18px] md:text-[20px] leading-[1.55] text-white/70 max-w-[560px]">Spesialister i C, C++, Rust, Embedded, Firmware og Security
+
+
         </p>
         <div className="flex flex-wrap gap-2">
           {["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"].map((tag) =>
@@ -43,8 +43,8 @@ const Index = () => {
         <div className="pt-2 flex flex-col items-start gap-3">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-colors duration-200 bg-white/10 text-white border border-white/20 hover:bg-white/15 hover:border-white/30"
-          >
+            className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-colors duration-200 bg-white/10 text-white border border-white/20 hover:bg-white/15 hover:border-white/30">
+
             Dette er STACQ
             <svg
               className="transition-transform duration-200 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]"
@@ -55,23 +55,23 @@ const Index = () => {
               stroke="currentColor"
               strokeWidth="1.75"
               strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+              strokeLinejoin="round">
+
               <path d="M4.5 11.5L11.5 4.5" />
               <path d="M5.5 4.5H11.5V10.5" />
             </svg>
           </button>
-          <button
-            onClick={() => setIsOverlayOpen(true)}
-            className="text-[15px] font-semibold text-white/90 hover:text-white transition-colors">
-            Vi er STACQ ›
-          </button>
+          
+
+
+
+
         </div>
       </div>
 
       <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;

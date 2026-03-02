@@ -25,7 +25,8 @@ const Index = () => {
           Embedded konsulenter som former fremtiden
         </h1>
         <p className="text-[18px] md:text-[20px] leading-[1.55] text-white/70 max-w-[560px]">
-          Spesialister i C, C++, Rust, Embedded, Firmware og Security
+          We develop firmware and embedded Linux solutions for products with high requirements for stability,
+          performance, and control.
         </p>
         <div className="flex flex-wrap gap-2">
           {["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"].map((tag) =>
@@ -39,12 +40,12 @@ const Index = () => {
             + More
           </span>
         </div>
-        <div className="pt-2 flex items-center gap-3">
+        <div className="pt-2 flex flex-col items-start gap-3">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-all duration-200 bg-[hsl(210,80%,55%)] text-white hover:bg-[hsl(210,80%,60%)] hover:-translate-y-[1px] hover:shadow-[0_4px_16px_hsl(210,80%,55%,0.3)]"
+            className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-colors duration-200 bg-white/10 text-white border border-white/20 hover:bg-white/15 hover:border-white/30"
           >
-            Snakk med oss
+            Dette er STACQ
             <svg
               className="transition-transform duration-200 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]"
               width="13"
@@ -62,9 +63,8 @@ const Index = () => {
           </button>
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-all duration-200 bg-transparent text-white border border-white/25 hover:bg-white/10 hover:border-white/40 hover:-translate-y-[1px]"
-          >
-            Se våre tjenester
+            className="text-[15px] font-semibold text-white/90 hover:text-white transition-colors">
+            Vi er STACQ ›
           </button>
         </div>
       </div>

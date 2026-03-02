@@ -220,23 +220,6 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                   </div>
                 </motion.section>
 
-                {/* Valg av STACQ */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Valg av STACQ som partner</h2>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
-                    Komplekse prosjekter krever mer enn teknisk kompetanse – de krever ansvar, gjennomføring og kontinuerlig faglig utvikling.
-                  </p>
-                  <ul className="space-y-2 text-foreground text-[16px] leading-[1.7] list-disc pl-5">
-                    <li>Erfaring fra krevende teknologiprosjekter</li>
-                    <li>Rask integrasjon i eksisterende team</li>
-                    <li>Eierskap til leveranser</li>
-                    <li>Tydelig og åpen kommunikasjon</li>
-                    <li>Fokus på kvalitet og robusthet</li>
-                    <li>Profesjonelt samarbeid</li>
-                    <li>Oppdatert på ny teknologi og innovasjon</li>
-                  </ul>
-                </motion.section>
-
                 {/* Jobb hos oss */}
                 <motion.section variants={fadeUpItem} className="space-y-4">
                   <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>

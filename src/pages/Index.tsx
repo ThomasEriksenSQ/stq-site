@@ -1,20 +1,30 @@
 import { useState } from "react";
 import OverlayPanel from "@/components/OverlayPanel";
-import stacqLogo from "@/assets/stacq-logo-black.png";
-
+import stacqLogoWhite from "@/assets/stacq-logo-white.png";
+import heroBgChip from "@/assets/hero-bg-chip.png";
 
 const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-background flex flex-col justify-center px-8 md:px-16 lg:px-24 overflow-hidden">
+    <div className="relative min-h-screen flex flex-col justify-center px-8 md:px-16 lg:px-24 overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${heroBgChip})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative max-w-[820px] space-y-8">
-        <img src={stacqLogo} alt="STACQ" className="h-7 md:h-8" />
-        <h1 className="text-[40px] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground md:text-7xl">
+        <img src={stacqLogoWhite} alt="STACQ" className="h-7 md:h-8" />
+        <h1 className="text-[40px] font-semibold leading-[1.15] tracking-[-0.02em] text-white md:text-7xl">
           Embedded konsulenter som former fremtiden
         </h1>
-        <p className="text-[18px] md:text-[20px] leading-[1.55] text-muted-foreground max-w-[560px]">
+        <p className="text-[18px] md:text-[20px] leading-[1.55] text-white/70 max-w-[560px]">
           We develop firmware and embedded Linux solutions for products with high requirements for stability,
           performance, and control.
         </p>
@@ -22,31 +32,18 @@ const Index = () => {
           {["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"].map((tag) =>
           <span
             key={tag}
-            className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-border text-muted-foreground bg-muted/50">
+            className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-white/20 text-white/80 bg-white/5">
               {tag}
             </span>
           )}
-          <span className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-border text-muted-foreground/80 bg-muted/50">
+          <span className="text-[13px] font-medium px-3 py-1.5 rounded-full border border-white/20 text-white/60 bg-white/5">
             + More
           </span>
         </div>
         <div className="pt-2 flex flex-col items-start gap-3">
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-colors duration-200"
-            style={{
-              background: '#151515',
-              color: '#f5f5f5',
-              border: '1px solid #2a2a2a',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#1f1f1f';
-              e.currentTarget.style.borderColor = '#3a3a3a';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#151515';
-              e.currentTarget.style.borderColor = '#2a2a2a';
-            }}
+            className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-colors duration-200 bg-white/10 text-white border border-white/20 hover:bg-white/15 hover:border-white/30"
           >
             Dette er STACQ
             <svg
@@ -66,15 +63,15 @@ const Index = () => {
           </button>
           <button
             onClick={() => setIsOverlayOpen(true)}
-            className="text-[15px] font-semibold text-foreground hover:opacity-70 transition-opacity">
+            className="text-[15px] font-semibold text-white/90 hover:text-white transition-colors">
             Vi er STACQ ›
           </button>
         </div>
       </div>
 
       <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
-    </div>);
-
+    </div>
+  );
 };
 
 export default Index;

@@ -54,7 +54,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
           <motion.div {...fadeBackdrop} className="absolute inset-0" onClick={onClose} />
           <motion.div
             {...slideSecondary}
-            className="absolute right-0 top-0 h-full w-[92%] md:w-[55%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg"
+            className="absolute right-0 top-0 h-full w-[92%] md:w-[45%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg"
           >
             <div className="sticky top-0 z-10 px-6 md:px-[96px] py-4 bg-background border-b border-border">
               <div className="max-w-[640px] w-full">
@@ -166,8 +166,14 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <motion.div
             ref={panelRef}
             {...slidePanel}
-            className={`absolute right-0 top-0 h-full w-full md:w-[42%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+            className={`absolute right-0 top-0 h-full w-full md:w-[55%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
           >
+            <div className="sticky top-0 z-10 px-6 md:px-[96px] py-4 bg-background border-b border-border md:hidden">
+              <button onClick={onClose} className="flex items-center gap-1.5 text-accent hover:underline text-[13px]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Tilbake
+              </button>
+            </div>
             <motion.div className="p-6 md:p-[96px] flex-1" variants={staggerContent} initial="initial" animate="animate">
               <div className="max-w-[640px] w-full space-y-10">
                 {/* Intro */}

@@ -166,113 +166,183 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <motion.div
             ref={panelRef}
             {...slidePanel}
-            className={`absolute right-0 top-0 h-full w-full md:w-[55%] md:min-w-[440px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+            className={`absolute right-0 top-0 h-full w-full md:w-[55%] md:min-w-[440px] border-l overflow-y-auto flex flex-col shadow-lg transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+            style={{ background: "#fafafa", borderTop: "4px solid #2563eb" }}
           >
-            <div className="sticky top-0 z-10 px-6 md:px-[96px] py-4 bg-background border-b border-border md:hidden">
-              <button onClick={onClose} className="flex items-center gap-1.5 text-accent hover:underline text-[13px]">
+            <div className="sticky top-0 z-10 px-[36px] py-4 border-b border-border md:hidden" style={{ background: "#fafafa" }}>
+              <button onClick={onClose} className="flex items-center gap-1.5 text-[#2563eb] hover:underline text-[13px]">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 Tilbake
               </button>
             </div>
-            <motion.div className="p-6 md:p-[96px] flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[640px] w-full space-y-10">
-                {/* Intro */}
-                <motion.section variants={fadeUpItem} className="space-y-5">
-                  <h1 className="text-[38px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">
+
+            <motion.div className="px-[36px] py-[40px] flex-1 flex justify-center" variants={staggerContent} initial="initial" animate="animate">
+              <div className="max-w-[520px] w-full space-y-6">
+
+                {/* Hero */}
+                <motion.section variants={fadeUpItem} className="space-y-4">
+                  <span
+                    className="inline-block text-[11px] font-semibold tracking-wide text-white px-3 py-1"
+                    style={{ background: "#1a1a2e", borderRadius: "6px" }}
+                  >
+                    Norsk konsulentselskap
+                  </span>
+                  <h1 className="text-[28px] font-bold text-foreground leading-[1.2]">
                     Embedded- og lavnivåspesialister
                   </h1>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
+                  <p className="text-[15px] leading-[1.7]" style={{ color: "#4b5563" }}>
                     STACQ er et norsk konsulentselskap innen embedded- og lavnivåprogrammering.
                   </p>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
+                  <p className="text-[15px] leading-[1.7]" style={{ color: "#4b5563" }}>
                     Vi arbeider med utvikling av firmware og systemsoftware i pågående prosjekter for både etablerte selskaper og vekstbedrifter.
                   </p>
                 </motion.section>
 
                 {/* Kjernekompetanse */}
-                <motion.section variants={fadeUpItem} className="space-y-3">
-                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Kjernekompetanse</h2>
-                  <ul className="space-y-1.5 text-foreground text-[16px] leading-[1.7]">
-                    {["C / C++", "RTOS og sanntidssystemer", "Embedded Linux", "Secure Boot / TrustZone", "Yocto og board bring-up"].map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-muted-foreground mt-[2px]">–</span>
-                        <span>{item}</span>
-                      </li>
+                <motion.section
+                  variants={fadeUpItem}
+                  className="p-5"
+                  style={{ background: "#f0f4ff", borderRadius: "12px", borderLeft: "4px solid #2563eb" }}
+                >
+                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em] mb-3" style={{ color: "#2563eb" }}>
+                    Kjernekompetanse
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {["C / C++", "RTOS", "Sanntidssystemer", "Embedded Linux", "Secure Boot", "TrustZone", "Yocto", "Board bring-up"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-block px-3 py-1 text-[12px] font-mono border rounded-full"
+                        style={{ background: "#ffffff", borderColor: "#d1d5db", color: "#1f2937" }}
+                      >
+                        {tag}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </motion.section>
 
                 {/* Bransjeerfaring */}
-                <motion.section variants={fadeUpItem} className="space-y-3">
-                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Bransjeerfaring</h2>
-                  <ul className="space-y-1.5 text-foreground text-[16px] leading-[1.7]">
-                    {["Forsvar", "Helse / medtech", "Industri", "Energi"].map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-muted-foreground mt-[2px]">–</span>
-                        <span>{item}</span>
-                      </li>
+                <motion.section
+                  variants={fadeUpItem}
+                  className="p-5"
+                  style={{ background: "#f0f4ff", borderRadius: "12px", borderLeft: "4px solid #2563eb" }}
+                >
+                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em] mb-3" style={{ color: "#2563eb" }}>
+                    Bransjeerfaring
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {["Forsvar", "Helse / medtech", "Industri", "Energi"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-block px-3 py-1 text-[12px] font-mono border rounded-full"
+                        style={{ background: "#ffffff", borderColor: "#d1d5db", color: "#1f2937" }}
+                      >
+                        {tag}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </motion.section>
 
                 {/* Jobb hos oss */}
-                <motion.section variants={fadeUpItem} className="space-y-3">
-                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
+                <motion.section
+                  variants={fadeUpItem}
+                  className="p-5"
+                  style={{ background: "#f0f4ff", borderRadius: "12px", borderLeft: "4px solid #2563eb" }}
+                >
+                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em] mb-3" style={{ color: "#2563eb" }}>
+                    Jobb hos oss
+                  </h2>
+                  <blockquote
+                    className="text-[15px] italic leading-[1.7] mb-4"
+                    style={{ borderLeft: "3px solid #2563eb", background: "#f3f4f6", padding: "12px 16px", borderRadius: "0 8px 8px 0", color: "#4b5563" }}
+                  >
                     Vi søker flere dyktige og hyggelige kollegaer.
-                  </p>
-                  <div className="space-y-1 pt-1">
-                    <button onClick={() => setIsJobOpen(true)} className="block text-[14px] text-accent hover:underline">
-                      Se ledige stillinger →
+                  </blockquote>
+                  <div className="flex flex-col gap-2">
+                    <button
+                      onClick={() => setIsJobOpen(true)}
+                      className="group inline-flex items-center gap-1.5 text-[14px] font-semibold hover:underline"
+                      style={{ color: "#2563eb" }}
+                    >
+                      Se ledige stillinger
+                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
                     </button>
                     <button
                       onClick={() => setIsHandbookOpen(true)}
-                      className="block text-[14px] text-muted-foreground hover:text-accent hover:underline"
+                      className="group inline-flex items-center gap-1.5 text-[13px] hover:underline"
+                      style={{ color: "#6b7280" }}
                     >
-                      STACQ Handbook →
+                      STACQ Handbook
+                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
                     </button>
                   </div>
                 </motion.section>
 
                 {/* Kontakt */}
-                <motion.section variants={fadeUpItem} className="space-y-6">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Kontakt</h2>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="flex items-start gap-3">
-                      <img src={jonRichardImg} alt="Jon Richard Nygaard" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
-                      <div className="space-y-1">
-                        <p className="text-[15px] font-semibold text-foreground">
-                          Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span>
-                        </p>
-                        <a href="tel:93287267" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
+                <motion.section variants={fadeUpItem} className="space-y-4 pt-2">
+                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em]" style={{ color: "#2563eb" }}>
+                    Ta kontakt
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Jon Richard */}
+                    <div
+                      className="flex items-start gap-3 p-4 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
+                      style={{ border: "1px solid #e2e8f0", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.1)"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.06)"; }}
+                    >
+                      <img
+                        src={jonRichardImg}
+                        alt="Jon Richard Nygaard"
+                        className="w-[52px] h-[52px] rounded-full object-cover flex-shrink-0"
+                        style={{ border: "2px solid #2563eb" }}
+                      />
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2">
+                          <p className="text-[15px] font-semibold text-foreground">Jon Richard Nygaard</p>
+                          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full" style={{ background: "#f3f4f6", color: "#6b7280" }}>Partner</span>
+                        </div>
+                        <a href="tel:93287267" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
                           <Phone className="w-3.5 h-3.5" /> 93 287 267
                         </a>
-                        <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
+                        <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
                           <Mail className="w-3.5 h-3.5" /> jr@stacq.no
                         </a>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <img src={thomasEriksenImg} alt="Thomas Eriksen" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
-                      <div className="space-y-1">
-                        <p className="text-[15px] font-semibold text-foreground">
-                          Thomas Eriksen <span className="font-normal text-muted-foreground">| Partner</span>
-                        </p>
-                        <a href="tel:97500321" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
+                    {/* Thomas */}
+                    <div
+                      className="flex items-start gap-3 p-4 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
+                      style={{ border: "1px solid #e2e8f0", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.1)"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.06)"; }}
+                    >
+                      <img
+                        src={thomasEriksenImg}
+                        alt="Thomas Eriksen"
+                        className="w-[52px] h-[52px] rounded-full object-cover flex-shrink-0"
+                        style={{ border: "2px solid #2563eb" }}
+                      />
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2">
+                          <p className="text-[15px] font-semibold text-foreground">Thomas Eriksen</p>
+                          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full" style={{ background: "#f3f4f6", color: "#6b7280" }}>Partner</span>
+                        </div>
+                        <a href="tel:97500321" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
                           <Phone className="w-3.5 h-3.5" /> 97 500 321
                         </a>
-                        <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
+                        <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
                           <Mail className="w-3.5 h-3.5" /> thomas@stacq.no
                         </a>
                       </div>
                     </div>
                   </div>
                 </motion.section>
+
               </div>
             </motion.div>
 
-            <div className="px-6 md:px-[96px] py-6 border-t border-border mt-auto">
-              <div className="max-w-[640px] w-full">
+            <div className="px-[36px] py-6 border-t border-border mt-auto">
+              <div className="max-w-[520px] w-full mx-auto">
                 <p className="text-[13px] text-muted-foreground">
                   STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
                 </p>

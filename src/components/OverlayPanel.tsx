@@ -197,31 +197,26 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                       ansvarsbevisste, samarbeidsorienterte og profesjonelle.
                     </p>
                   </div>
-                  <div className="code-block w-full text-[14px] leading-[1.6]">
-                    <div className="mt-0">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Språk</div>
-                      <div>C, C++, Rust, Python, Assembly</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Firmware & sanntid</div>
-                      <div>Bare-metal, RTOS (FreeRTOS, Zephyr, ThreadX), Bootloader, Secure Boot, TrustZone</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Embedded Linux</div>
-                      <div>Yocto, Board bring-up, Kernel-tilpasning, Qt, OTA, Systemtjenester</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Maskinvare</div>
-                      <div>ARM Cortex-M / Cortex-A, STM32, NXP i.MX, Nordic nRF, ESP32, FPGA / HDL</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Kommunikasjon</div>
-                      <div>CAN, Modbus, SPI, I2C, UART, RS485, TCP/IP, MQTT, BLE, Zigbee, ISO15118</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">System</div>
-                      <div>Sanntidssystemer, Sikkerhetskritiske systemer, Sensor- og motorstyring, Arkitektur, Test, CI/CD</div>
-                    </div>
+                  <div className="space-y-4">
+                    {[
+                      { label: "Språk", items: ["C", "C++", "Rust", "Python", "Assembly"] },
+                      { label: "Firmware & sanntid", items: ["Bare-metal", "RTOS", "FreeRTOS", "Zephyr", "ThreadX", "Bootloader", "Secure Boot", "TrustZone"] },
+                      { label: "Embedded Linux", items: ["Yocto", "Board bring-up", "Kernel-tilpasning", "Qt", "OTA", "Systemtjenester"] },
+                      { label: "Maskinvare", items: ["ARM Cortex-M", "Cortex-A", "STM32", "NXP i.MX", "Nordic nRF", "ESP32", "FPGA / HDL"] },
+                      { label: "Kommunikasjon", items: ["CAN", "Modbus", "SPI", "I2C", "UART", "RS485", "TCP/IP", "MQTT", "BLE", "Zigbee", "ISO15118"] },
+                      { label: "System", items: ["Sanntidssystemer", "Sikkerhetskritiske systemer", "Sensor- og motorstyring", "Arkitektur", "Test", "CI/CD"] },
+                    ].map((category) => (
+                      <div key={category.label}>
+                        <p className="text-[13px] font-semibold text-muted-foreground mb-2">{category.label}</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {category.items.map((item) => (
+                            <span key={item} className="text-[13px] px-3 py-1 rounded-full border border-border bg-secondary text-foreground">
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </motion.section>
 

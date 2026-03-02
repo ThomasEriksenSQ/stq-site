@@ -19,55 +19,53 @@ const Index = () => {
 
       <div className="absolute inset-0 bg-black/40" />
 
-      
+      <div className="relative max-w-[880px]">
+        <img src={stacqLogoWhite} alt="STACQ" className="h-6 md:h-7 mb-10 md:mb-14" />
 
+        <h1 className="text-[36px] md:text-[64px] lg:text-[72px] font-semibold leading-[1.08] tracking-[-0.03em] text-white">
+          Embedded konsulenter som former fremtiden
+        </h1>
 
+        <p className="mt-5 md:mt-6 text-[17px] md:text-[19px] leading-[1.5] text-white/60 max-w-[540px]">
+          Spesialister i C, C++, Rust, Embedded, Firmware og Security
+        </p>
 
+        <div className="mt-8 md:mt-10 flex flex-wrap gap-2.5">
+          {["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"].map((tag) =>
+          <span
+            key={tag}
+            className="text-[12.5px] font-medium px-3.5 py-1.5 rounded-full border border-white/15 text-white/75 bg-white/[0.04] backdrop-blur-sm">
+              {tag}
+            </span>
+          )}
+          <span className="text-[12.5px] font-medium px-3.5 py-1.5 rounded-full border border-white/10 text-white/45 bg-white/[0.03]">
+            + More
+          </span>
+        </div>
 
+        <div className="mt-10 md:mt-12">
+          <button
+            onClick={() => setIsOverlayOpen(true)}
+            className="group text-[14px] font-medium tracking-[0.03em] px-6 py-2.5 rounded-md h-[42px] flex items-center gap-2.5 transition-all duration-200 bg-white/[0.08] text-white/90 border border-white/[0.12] hover:bg-white/[0.13] hover:border-white/[0.22] hover:text-white">
 
+            Mer om STACQ
+            <svg
+              className="transition-transform duration-200 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]"
+              width="12"
+              height="12"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              <path d="M4.5 11.5L11.5 4.5" />
+              <path d="M5.5 4.5H11.5V10.5" />
+            </svg>
+          </button>
+        </div>
+      </div>
 
       <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
     </div>);

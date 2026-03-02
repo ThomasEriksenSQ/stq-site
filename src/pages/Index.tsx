@@ -27,7 +27,7 @@ const Index = () => {
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative max-w-[880px]">
-        <motion.img {...fadeUp(0)} src={stacqLogoWhite} alt="STACQ" className="h-5 md:h-6 mb-8 md:mb-10" />
+        <motion.img {...fadeUp(0)} src={stacqLogoWhite} alt="STACQ" className="h-6 md:h-8 mb-8 md:mb-10" />
 
         <motion.h1 {...fadeUp(0.15)} className="text-[36px] md:text-[64px] lg:text-[72px] font-semibold leading-[1.08] tracking-[-0.03em] text-white">
           Embedded konsulenter som former fremtiden

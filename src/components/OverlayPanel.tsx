@@ -166,118 +166,125 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <motion.div
             ref={panelRef}
             {...slidePanel}
-            className={`absolute right-0 top-0 h-full w-full md:w-[55%] md:min-w-[440px] overflow-y-auto flex flex-col transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
-            style={{ background: "#fcfcfc" }}
+            className={`absolute right-0 top-0 h-full w-full md:w-[58%] md:min-w-[480px] overflow-y-auto flex flex-col transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+            style={{ background: "#fff" }}
           >
-            {/* Mobile back */}
-            <div className="sticky top-0 z-10 px-8 py-4 md:hidden" style={{ background: "#fcfcfc" }}>
-              <button onClick={onClose} className="text-[13px] hover:underline" style={{ color: "#999" }}>
-                ← Tilbake
+            {/* Mobile close */}
+            <div className="sticky top-0 z-10 px-6 py-4 md:hidden backdrop-blur-xl" style={{ background: "rgba(255,255,255,0.85)" }}>
+              <button onClick={onClose} className="text-[13px] font-medium" style={{ color: "#86868b" }}>
+                ← Lukk
               </button>
             </div>
 
-            <motion.div className="px-8 md:px-16 pt-16 md:pt-20 pb-12 flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[460px]">
+            <motion.div className="px-8 md:px-20 pt-14 md:pt-24 pb-16 flex-1" variants={staggerContent} initial="initial" animate="animate">
+              <div className="max-w-[520px]">
 
-                {/* ── Identity ── */}
+                {/* ── Hero ── */}
                 <motion.section variants={fadeUpItem}>
-                  <p className="text-[13px] font-medium tracking-[0.04em]" style={{ color: "#999" }}>
-                    STACQ
-                  </p>
                   <h1
-                    className="mt-4 font-semibold"
+                    className="font-bold tracking-tight"
                     style={{
-                      fontSize: "clamp(26px, 2.8vw, 34px)",
-                      lineHeight: "1.15",
-                      letterSpacing: "-0.02em",
-                      color: "#1a1a1a",
+                      fontSize: "clamp(36px, 4vw, 48px)",
+                      lineHeight: "1.08",
+                      letterSpacing: "-0.025em",
+                      color: "#1d1d1f",
                     }}
                   >
-                    Embedded- og<br />lavnivåspesialister
+                    Embedded.
+                    <br />
+                    Lavnivå.
+                    <br />
+                    <span style={{ color: "#86868b" }}>Ingenting annet.</span>
                   </h1>
-                  <div className="mt-6 space-y-3">
-                    <p className="text-[15px] leading-[1.7]" style={{ color: "#555" }}>
-                      Vi er et norsk konsulentselskap som arbeider utelukkende med embedded- og lavnivåprogrammering. Firmware, systemsoftware og maskinvarenær kode.
-                    </p>
-                    <p className="text-[15px] leading-[1.7]" style={{ color: "#555" }}>
-                      Kundene våre er etablerte teknologiselskaper og vekstbedrifter som bygger fysiske produkter med høye krav til pålitelighet og ytelse.
-                    </p>
+                </motion.section>
+
+                {/* ── Intro ── */}
+                <motion.section variants={fadeUpItem} className="mt-10 md:mt-14">
+                  <p className="text-[17px] leading-[1.65] font-normal" style={{ color: "#1d1d1f" }}>
+                    STACQ er et norsk konsulentselskap som jobber utelukkende med embedded- og lavnivåprogrammering.
+                  </p>
+                  <p className="mt-4 text-[17px] leading-[1.65]" style={{ color: "#6e6e73" }}>
+                    Vi skriver firmware, systemsoftware og maskinvarenær kode for selskaper som bygger fysiske produkter — fra forsvarssystemer til medisinsk utstyr.
+                  </p>
+                </motion.section>
+
+                {/* ── Stack ── */}
+                <motion.section variants={fadeUpItem} className="mt-16 md:mt-20">
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: "#86868b" }}>
+                    Stack
+                  </p>
+                  <div
+                    className="mt-6 grid grid-cols-2 md:grid-cols-3"
+                    style={{ gap: "1px", background: "#e8e8ed", borderRadius: "12px", overflow: "hidden" }}
+                  >
+                    {["C / C++", "Rust", "RTOS", "Embedded Linux", "Yocto", "TrustZone"].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center justify-center py-4 md:py-5"
+                        style={{ background: "#fff" }}
+                      >
+                        <span
+                          className="text-[14px] font-medium"
+                          style={{ color: "#1d1d1f", fontFamily: "'SF Mono', ui-monospace, SFMono-Regular, 'Cascadia Code', monospace" }}
+                        >
+                          {item}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </motion.section>
 
-                {/* ── Thin rule ── */}
-                <motion.div variants={fadeUpItem} className="my-14 md:my-16" style={{ height: "1px", background: "#e5e5e5" }} />
-
-                {/* ── Competence + Industries ── */}
-                <motion.section variants={fadeUpItem}>
-                  <div className="grid grid-cols-1 md:grid-cols-[1fr_0.7fr]" style={{ columnGap: "56px", rowGap: "36px" }}>
-                    <div>
-                      <p className="text-[12px] font-medium uppercase tracking-[0.1em]" style={{ color: "#aaa" }}>
-                        Fagområder
-                      </p>
-                      <div className="mt-5 space-y-[10px]">
-                        {[
-                          "C / C++",
-                          "RTOS og sanntidssystemer",
-                          "Embedded Linux",
-                          "Secure Boot / TrustZone",
-                          "Yocto og board bring-up",
-                        ].map((item) => (
-                          <p key={item} className="text-[15px]" style={{ color: "#444", lineHeight: "1.6" }}>{item}</p>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-[12px] font-medium uppercase tracking-[0.1em]" style={{ color: "#aaa" }}>
-                        Bransjer
-                      </p>
-                      <div className="mt-5 space-y-[10px]">
-                        {["Forsvar", "Helse / medtech", "Industri", "Energi"].map((item) => (
-                          <p key={item} className="text-[15px]" style={{ color: "#444", lineHeight: "1.6" }}>{item}</p>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.section>
-
-                {/* ── Jobb hos oss ── */}
+                {/* ── Domains ── */}
                 <motion.section variants={fadeUpItem} className="mt-14 md:mt-16">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.1em]" style={{ color: "#aaa" }}>
-                    Jobb hos oss
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: "#86868b" }}>
+                    Domener
                   </p>
-                  <p className="mt-5 text-[15px] leading-[1.7]" style={{ color: "#555" }}>
-                    Vi er et lite selskap med høy faglig standard og lav terskel.
-                    Vi søker kollegaer som liker å jobbe tett på hardware og som setter kvalitet foran kvantitet.
-                  </p>
-                  <div className="mt-5 space-y-2">
-                    <button
-                      onClick={() => setIsJobOpen(true)}
-                      className="group flex items-center gap-1.5 text-[14px] font-medium hover:underline"
-                      style={{ color: "#1a1a1a" }}
-                    >
-                      Se ledige stillinger
-                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                    </button>
-                    <button
-                      onClick={() => setIsHandbookOpen(true)}
-                      className="group flex items-center gap-1.5 text-[14px] hover:underline"
-                      style={{ color: "#aaa" }}
-                    >
-                      STACQ Handbook
-                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-                    </button>
+                  <div className="mt-6 flex flex-wrap items-center" style={{ gap: "8px 20px" }}>
+                    {["Forsvar", "Medtech", "Industri", "Energi"].map((item, i) => (
+                      <span key={item} className="flex items-center gap-5">
+                        <span className="text-[16px]" style={{ color: "#1d1d1f" }}>{item}</span>
+                        {i < 3 && <span className="text-[16px]" style={{ color: "#d2d2d7" }}>·</span>}
+                      </span>
+                    ))}
                   </div>
                 </motion.section>
 
-                {/* ── Thin rule ── */}
-                <motion.div variants={fadeUpItem} className="my-14 md:my-16" style={{ height: "1px", background: "#e5e5e5" }} />
+                {/* ── Careers ── */}
+                <motion.section variants={fadeUpItem} className="mt-16 md:mt-20">
+                  <div className="p-6 md:p-8" style={{ background: "#f5f5f7", borderRadius: "16px" }}>
+                    <p className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: "#86868b" }}>
+                      Vi ansetter
+                    </p>
+                    <p className="mt-4 text-[17px] leading-[1.65]" style={{ color: "#1d1d1f" }}>
+                      Små team, høy standard, lav terskel. Vi ser etter folk som skriver god kode og trives med å jobbe tett på hardware.
+                    </p>
+                    <div className="mt-6 flex flex-col gap-3">
+                      <button
+                        onClick={() => setIsJobOpen(true)}
+                        className="group inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
+                        style={{ color: "#0066cc" }}
+                      >
+                        Se ledige stillinger
+                        <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" style={{ fontSize: "16px" }}>›</span>
+                      </button>
+                      <button
+                        onClick={() => setIsHandbookOpen(true)}
+                        className="group inline-flex items-center gap-2 text-[15px] transition-colors"
+                        style={{ color: "#86868b" }}
+                      >
+                        Les STACQ Handbook
+                        <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" style={{ fontSize: "16px" }}>›</span>
+                      </button>
+                    </div>
+                  </div>
+                </motion.section>
 
-                {/* Kontakt – preserved exactly */}
-                <motion.section variants={fadeUpItem}>
-                  <p className="text-[12px] font-medium uppercase tracking-[0.1em]" style={{ color: "#aaa" }}>
-                    Ta kontakt
+                {/* ── Kontakt – preserved ── */}
+                <motion.section variants={fadeUpItem} className="mt-16 md:mt-20">
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: "#86868b" }}>
+                    Kontakt
                   </p>
-                  <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Jon Richard */}
                     <div
                       className="flex items-start gap-3 p-4 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
@@ -336,13 +343,12 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               </div>
             </motion.div>
 
-            <div className="px-8 md:px-16 py-8 mt-auto">
-              <div className="max-w-[460px]">
-                <div className="pt-6" style={{ borderTop: "1px solid #e5e5e5" }}>
-                  <p className="text-[12px]" style={{ color: "#bbb" }}>
-                    STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
-                  </p>
-                </div>
+            {/* Footer */}
+            <div className="px-8 md:px-20 py-6 mt-auto">
+              <div className="max-w-[520px]">
+                <p className="text-[12px]" style={{ color: "#86868b" }}>
+                  STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
+                </p>
               </div>
             </div>
           </motion.div>

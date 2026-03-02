@@ -182,19 +182,17 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 {/* ── Hero ── */}
                 <motion.section variants={fadeUpItem}>
                   <h1
-                    className="font-bold tracking-tight"
+                    className="font-bold"
                     style={{
-                      fontSize: "clamp(36px, 4vw, 48px)",
-                      lineHeight: "1.08",
-                      letterSpacing: "-0.025em",
+                      fontSize: "clamp(28px, 3.2vw, 40px)",
+                      lineHeight: "1.15",
+                      letterSpacing: "-0.02em",
                       color: "#1d1d1f",
                     }}
                   >
-                    Embedded.
+                    Embedded. Lavnivå.
                     <br />
-                    Lavnivå.
-                    <br />
-                    <span style={{ color: "#86868b" }}>Ingenting annet.</span>
+                    <span style={{ color: "#9ca3af" }}>Rendyrket.</span>
                   </h1>
                 </motion.section>
 

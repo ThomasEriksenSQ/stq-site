@@ -175,25 +175,25 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               </button>
             </div>
             <motion.div className="p-6 md:p-[96px] flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[640px] w-full space-y-10">
+              <div className="max-w-[640px] w-full space-y-8">
                 {/* Intro */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h1 className="text-[32px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">
+                <motion.section variants={fadeUpItem} className="space-y-3">
+                  <h1 className="text-[28px] md:text-[32px] font-bold text-foreground leading-[1.15] pb-4 border-b border-border">
                     Embedded- og lavnivåeksperter
                   </h1>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
+                  <p className="text-foreground text-[15px] leading-[1.65]">
                     Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og lavnivåprogrammering.
                   </p>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
-                    Vi leverer robust firmware og systemsoftware for produkter der sikkerhet, stabilitet og kontroll er kritisk.
+                  <p className="text-foreground text-[15px] leading-[1.65]">
+                    Vi går inn der kompleksiteten er høy: bring-up, RTOS, Linux og sikker firmware.
                   </p>
                 </motion.section>
 
                 {/* Kjerne */}
                 <motion.section variants={fadeUpItem} className="space-y-2">
-                  <h2 className="text-[15px] font-semibold text-muted-foreground tracking-wide">Kjerne</h2>
-                  <ul className="space-y-1 text-foreground text-[15px] leading-[1.7]">
-                    {["C / C++", "RTOS og sanntid", "Embedded Linux", "Sikker firmware (Secure Boot / TrustZone)", "Bring-up / Yocto"].map((item) => (
+                  <h2 className="text-[14px] font-semibold text-muted-foreground uppercase tracking-wider">Kjerne</h2>
+                  <ul className="space-y-0.5 text-foreground text-[15px] leading-[1.65]">
+                    {["C / C++", "RTOS og sanntidssystemer", "Embedded Linux", "Secure Boot / TrustZone", "Yocto og board bring-up"].map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <span className="text-muted-foreground mt-[2px]">–</span>
                         <span>{item}</span>
@@ -202,10 +202,10 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                   </ul>
                 </motion.section>
 
-                {/* Kunde- og bransjekompetanse */}
+                {/* Erfaring */}
                 <motion.section variants={fadeUpItem} className="space-y-2">
-                  <h2 className="text-[15px] font-semibold text-muted-foreground tracking-wide">Kunde- og bransjekompetanse</h2>
-                  <ul className="space-y-1 text-foreground text-[15px] leading-[1.7]">
+                  <h2 className="text-[14px] font-semibold text-muted-foreground uppercase tracking-wider">Erfaring fra krevende miljøer</h2>
+                  <ul className="space-y-0.5 text-foreground text-[15px] leading-[1.65]">
                     {["Forsvar", "Helse / medtech", "Industri", "Energi"].map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <span className="text-muted-foreground mt-[2px]">–</span>
@@ -217,9 +217,9 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
                 {/* Arbeidsform */}
                 <motion.section variants={fadeUpItem} className="space-y-2">
-                  <h2 className="text-[15px] font-semibold text-muted-foreground tracking-wide">Arbeidsform</h2>
-                  <ul className="space-y-1 text-foreground text-[15px] leading-[1.7]">
-                    {["Ansvar for leveranser", "Rask integrasjon i eksisterende team", "Fokus på kvalitet, test og sporbarhet"].map((item) => (
+                  <h2 className="text-[14px] font-semibold text-muted-foreground uppercase tracking-wider">Arbeidsform</h2>
+                  <ul className="space-y-0.5 text-foreground text-[15px] leading-[1.65]">
+                    {["Eier leveranser", "Integreres i eksisterende team", "Produksjonsklar og testbar kode"].map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <span className="text-muted-foreground mt-[2px]">–</span>
                         <span>{item}</span>
@@ -230,8 +230,8 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
                 {/* Jobb hos oss */}
                 <motion.section variants={fadeUpItem} className="space-y-2">
-                  <h2 className="text-[15px] font-semibold text-muted-foreground tracking-wide">Jobb hos oss</h2>
-                  <div className="space-y-1">
+                  <h2 className="text-[14px] font-semibold text-muted-foreground uppercase tracking-wider">Jobb hos oss</h2>
+                  <div className="space-y-0.5">
                     <button onClick={() => setIsJobOpen(true)} className="block text-[14px] text-accent hover:underline">
                       Se ledige stillinger →
                     </button>
@@ -242,9 +242,9 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 </motion.section>
 
                 {/* Kontakt */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h2 className="text-[15px] font-semibold text-muted-foreground tracking-wide">Kontakt</h2>
-                  <div className="space-y-3">
+                <motion.section variants={fadeUpItem} className="space-y-3">
+                  <h2 className="text-[14px] font-semibold text-muted-foreground uppercase tracking-wider">Kontakt</h2>
+                  <div className="space-y-2.5">
                     <div>
                       <p className="text-[15px] font-semibold text-foreground">
                         Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span>

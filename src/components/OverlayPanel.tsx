@@ -166,110 +166,91 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <motion.div
             ref={panelRef}
             {...slidePanel}
-            className={`absolute right-0 top-0 h-full w-full md:w-[55%] md:min-w-[440px] border-l overflow-y-auto flex flex-col shadow-lg transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
-            style={{ background: "#fafafa", borderTop: "4px solid #2563eb" }}
+            className={`absolute right-0 top-0 h-full w-full md:w-[55%] md:min-w-[440px] border-l overflow-y-auto flex flex-col transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+            style={{ background: "#fafafa" }}
           >
             <div className="sticky top-0 z-10 px-[36px] py-4 border-b border-border md:hidden" style={{ background: "#fafafa" }}>
-              <button onClick={onClose} className="flex items-center gap-1.5 text-[#2563eb] hover:underline text-[13px]">
+              <button onClick={onClose} className="flex items-center gap-1.5 hover:underline text-[13px]" style={{ color: "#9ca3af" }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 Tilbake
               </button>
             </div>
 
-            <motion.div className="px-[36px] py-[40px] flex-1 flex justify-center" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[520px] w-full space-y-6">
+            <motion.div className="px-[36px] md:px-[56px] pt-[60px] pb-[40px] flex-1 flex justify-center" variants={staggerContent} initial="initial" animate="animate">
+              <div className="max-w-[480px] w-full">
 
-                {/* Hero */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <span
-                    className="inline-block text-[11px] font-semibold tracking-wide text-white px-3 py-1"
-                    style={{ background: "#1a1a2e", borderRadius: "6px" }}
+                {/* Block 1 – Identity */}
+                <motion.section variants={fadeUpItem}>
+                  <h1
+                    className="font-bold leading-[1.12]"
+                    style={{ fontSize: "clamp(28px, 3vw, 36px)", letterSpacing: "-0.015em", color: "#111111" }}
                   >
-                    Norsk konsulentselskap
-                  </span>
-                  <h1 className="text-[28px] font-bold text-foreground leading-[1.2]">
                     Embedded- og lavnivåspesialister
                   </h1>
-                  <p className="text-[15px] leading-[1.7]" style={{ color: "#4b5563" }}>
+                  <p className="mt-5 text-[15px] leading-[1.75]" style={{ color: "#4b5563" }}>
                     STACQ er et norsk konsulentselskap innen embedded- og lavnivåprogrammering.
                   </p>
-                  <p className="text-[15px] leading-[1.7]" style={{ color: "#4b5563" }}>
-                    Vi arbeider med utvikling av firmware og systemsoftware i pågående prosjekter for både etablerte selskaper og vekstbedrifter.
+                  <p className="mt-3 text-[15px] leading-[1.75]" style={{ color: "#4b5563" }}>
+                    Vi arbeider med utvikling av firmware og systemsoftware for både etablerte selskaper og vekstbedrifter.
                   </p>
                 </motion.section>
 
-                {/* Kjernekompetanse */}
-                <motion.section
-                  variants={fadeUpItem}
-                  className="p-5"
-                  style={{ background: "#f0f4ff", borderRadius: "12px", borderLeft: "4px solid #2563eb" }}
-                >
-                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em] mb-3" style={{ color: "#2563eb" }}>
-                    Kjernekompetanse
-                  </h2>
-                  <div className="flex flex-wrap gap-2">
-                    {["C / C++", "RTOS", "Sanntidssystemer", "Embedded Linux", "Secure Boot", "TrustZone", "Yocto", "Board bring-up"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-block px-3 py-1 text-[12px] font-mono border rounded-full"
-                        style={{ background: "#ffffff", borderColor: "#d1d5db", color: "#1f2937" }}
+                {/* Block 2 – Competence + Industry (two-column) */}
+                <motion.section variants={fadeUpItem} className="mt-[60px]">
+                  <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: "40px", columnGap: "48px" }}>
+                    <div>
+                      <h2
+                        className="uppercase font-semibold"
+                        style={{ fontSize: "12px", letterSpacing: "0.12em", color: "#9ca3af" }}
                       >
-                        {tag}
-                      </span>
-                    ))}
+                        Kjernekompetanse
+                      </h2>
+                      <div className="mt-[18px] flex flex-col" style={{ gap: "12px" }}>
+                        {["C / C++", "RTOS og sanntidssystemer", "Embedded Linux", "Secure Boot / TrustZone", "Yocto og board bring-up"].map((item) => (
+                          <p key={item} className="text-[15px] leading-[1.75]" style={{ color: "#4b5563" }}>{item}</p>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h2
+                        className="uppercase font-semibold"
+                        style={{ fontSize: "12px", letterSpacing: "0.12em", color: "#9ca3af" }}
+                      >
+                        Bransjeerfaring
+                      </h2>
+                      <div className="mt-[18px] flex flex-col" style={{ gap: "12px" }}>
+                        {["Forsvar", "Helse / medtech", "Industri", "Energi"].map((item) => (
+                          <p key={item} className="text-[15px] leading-[1.75]" style={{ color: "#4b5563" }}>{item}</p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </motion.section>
 
-                {/* Bransjeerfaring */}
-                <motion.section
-                  variants={fadeUpItem}
-                  className="p-5"
-                  style={{ background: "#f0f4ff", borderRadius: "12px", borderLeft: "4px solid #2563eb" }}
-                >
-                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em] mb-3" style={{ color: "#2563eb" }}>
-                    Bransjeerfaring
-                  </h2>
-                  <div className="flex flex-wrap gap-2">
-                    {["Forsvar", "Helse / medtech", "Industri", "Energi"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-block px-3 py-1 text-[12px] font-mono border rounded-full"
-                        style={{ background: "#ffffff", borderColor: "#d1d5db", color: "#1f2937" }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.section>
-
-                {/* Jobb hos oss */}
-                <motion.section
-                  variants={fadeUpItem}
-                  className="p-5"
-                  style={{ background: "#f0f4ff", borderRadius: "12px", borderLeft: "4px solid #2563eb" }}
-                >
-                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em] mb-3" style={{ color: "#2563eb" }}>
+                {/* Block 3 – Jobb hos oss */}
+                <motion.section variants={fadeUpItem} className="mt-[72px]">
+                  <h2
+                    className="uppercase font-semibold"
+                    style={{ fontSize: "12px", letterSpacing: "0.12em", color: "#9ca3af" }}
+                  >
                     Jobb hos oss
                   </h2>
-                  <blockquote
-                    className="text-[15px] italic leading-[1.7] mb-4"
-                    style={{ borderLeft: "3px solid #2563eb", background: "#f3f4f6", padding: "12px 16px", borderRadius: "0 8px 8px 0", color: "#4b5563" }}
-                  >
+                  <p className="mt-[18px] text-[15px] leading-[1.75]" style={{ color: "#4b5563" }}>
                     Vi søker flere dyktige og hyggelige kollegaer.
-                  </blockquote>
-                  <div className="flex flex-col gap-2">
+                  </p>
+                  <div className="mt-4 flex flex-col" style={{ gap: "10px" }}>
                     <button
                       onClick={() => setIsJobOpen(true)}
-                      className="group inline-flex items-center gap-1.5 text-[14px] font-semibold hover:underline"
-                      style={{ color: "#2563eb" }}
+                      className="group inline-flex items-center gap-1.5 text-[14px] font-medium hover:underline"
+                      style={{ color: "#111111" }}
                     >
                       Se ledige stillinger
                       <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
                     </button>
                     <button
                       onClick={() => setIsHandbookOpen(true)}
-                      className="group inline-flex items-center gap-1.5 text-[13px] hover:underline"
-                      style={{ color: "#6b7280" }}
+                      className="group inline-flex items-center gap-1.5 text-[14px] hover:underline"
+                      style={{ color: "#9ca3af" }}
                     >
                       STACQ Handbook
                       <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -278,11 +259,14 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 </motion.section>
 
                 {/* Kontakt */}
-                <motion.section variants={fadeUpItem} className="space-y-4 pt-2">
-                  <h2 className="text-[11px] font-bold uppercase tracking-[0.1em]" style={{ color: "#2563eb" }}>
+                <motion.section variants={fadeUpItem} className="mt-[60px]">
+                  <h2
+                    className="uppercase font-semibold"
+                    style={{ fontSize: "12px", letterSpacing: "0.12em", color: "#9ca3af" }}
+                  >
                     Ta kontakt
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="mt-[18px] grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Jon Richard */}
                     <div
                       className="flex items-start gap-3 p-4 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
@@ -341,8 +325,8 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
               </div>
             </motion.div>
 
-            <div className="px-[36px] py-6 border-t border-border mt-auto">
-              <div className="max-w-[520px] w-full mx-auto">
+            <div className="px-[36px] md:px-[56px] py-6 border-t border-border mt-auto">
+              <div className="max-w-[480px] w-full mx-auto">
                 <p className="text-[13px] text-muted-foreground">
                   STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
                 </p>

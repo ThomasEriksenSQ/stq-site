@@ -171,80 +171,61 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             <motion.div className="p-6 md:p-[96px] flex-1" variants={staggerContent} initial="initial" animate="animate">
               <div className="max-w-[640px] w-full space-y-10">
                 {/* Intro */}
-                <motion.section variants={fadeUpItem} className="space-y-5">
-                  <h1 className="text-[38px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">
-                    Konsulentselskapet STACQ
+                <motion.section variants={fadeUpItem} className="space-y-4">
+                  <h1 className="text-[32px] font-bold text-foreground leading-[1.15] pb-4 border-b border-border">
+                    STACQ
                   </h1>
-                  <p className="text-[18px] font-semibold text-foreground leading-[1.5]">
-                    Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og
-                    lavnivåprogrammering.
-                  </p>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
-                    STACQ er en teknologipartner med solid faglig tyngde og forståelse for hvordan teknologi skaper verdi
-                    over tid. Vi arbeider tett med kundene våre, leverer løsninger av høy kvalitet og bygger langsiktige
-                    samarbeid basert på tillit, ansvar og innovasjon.
+                  <p className="text-foreground text-[15px] leading-[1.65]">
+                    Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og lavnivåprogrammering.
                   </p>
                 </motion.section>
 
                 {/* Kompetanse */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">
+                <motion.section variants={fadeUpItem} className="space-y-3">
+                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.3]">
                     Spesialister på embedded- og lavnivåutvikling
                   </h2>
-                  <div className="space-y-3 text-foreground text-[16px] leading-[1.7]">
-                    <p>
-                      Erfarne ingeniører med solid systemforståelse og bakgrunn fra krevende teknologiprosjekter –
-                      ansvarsbevisste, samarbeidsorienterte og profesjonelle.
-                    </p>
-                  </div>
-                  <div className="code-block w-full text-[14px] leading-[1.6]">
-                    <div className="mt-0">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Språk</div>
-                      <div>C, C++, Rust, Python, Assembly</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Firmware & sanntid</div>
-                      <div>Bare-metal, RTOS (FreeRTOS, Zephyr, ThreadX), Bootloader, Secure Boot, TrustZone</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Embedded Linux</div>
-                      <div>Yocto, Board bring-up, Kernel-tilpasning, Qt, OTA, Systemtjenester</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Maskinvare</div>
-                      <div>ARM Cortex-M / Cortex-A, STM32, NXP i.MX, Nordic nRF, ESP32, FPGA / HDL</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Kommunikasjon</div>
-                      <div>CAN, Modbus, SPI, I2C, UART, RS485, TCP/IP, MQTT, BLE, Zigbee, ISO15118</div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="font-semibold text-[#4caf50] leading-[1.3]">System</div>
-                      <div>Sanntidssystemer, Sikkerhetskritiske systemer, Sensor- og motorstyring, Arkitektur, Test, CI/CD</div>
-                    </div>
-                  </div>
+                  <p className="text-muted-foreground text-[14px] leading-[1.6]">
+                    Erfarne ingeniører med solid systemforståelse og bakgrunn fra krevende teknologiprosjekter – ansvarsbevisste, samarbeidsorienterte og profesjonelle.
+                  </p>
                 </motion.section>
 
-                {/* Valg av STACQ */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Valg av STACQ som partner</h2>
-                  <p className="text-foreground text-[16px] leading-[1.7]">
-                    Komplekse prosjekter krever mer enn teknisk kompetanse – de krever ansvar, gjennomføring og kontinuerlig faglig utvikling.
-                  </p>
-                  <ul className="space-y-2 text-foreground text-[16px] leading-[1.7] list-disc pl-5">
-                    <li>Erfaring fra krevende teknologiprosjekter</li>
-                    <li>Rask integrasjon i eksisterende team</li>
-                    <li>Eierskap til leveranser</li>
-                    <li>Tydelig og åpen kommunikasjon</li>
-                    <li>Fokus på kvalitet og robusthet</li>
-                    <li>Profesjonelt samarbeid</li>
-                    <li>Oppdatert på ny teknologi og innovasjon</li>
-                  </ul>
+                {/* Capability overview */}
+                <motion.section variants={fadeUpItem}>
+                  <div className="code-block w-full text-[14px] leading-[1.55]">
+                    <div>
+                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Kjerne</div>
+                      <div className="mt-1 space-y-0.5">
+                        <div>C / C++</div>
+                        <div>RTOS og sanntid</div>
+                        <div>Embedded Linux</div>
+                        <div>Sikker firmware</div>
+                        <div>MCU / SoC-arkitektur</div>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Bransje</div>
+                      <div className="mt-1 space-y-0.5">
+                        <div>Forsvar</div>
+                        <div>Helse</div>
+                        <div>Industri</div>
+                        <div>Energi</div>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <div className="font-semibold text-[#4caf50] leading-[1.3]">Arbeidsform</div>
+                      <div className="mt-1 space-y-0.5">
+                        <div>Ansvar for leveranser</div>
+                        <div>Integreres i eksisterende team</div>
+                        <div>Fokus på robusthet og kvalitet</div>
+                      </div>
+                    </div>
+                  </div>
                 </motion.section>
 
                 {/* Jobb hos oss */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
+                <motion.section variants={fadeUpItem} className="space-y-2">
+                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.3]">Jobb hos oss</h2>
                   <div className="space-y-1">
                     <button onClick={() => setIsJobOpen(true)} className="block text-[14px] text-accent hover:underline">
                       Se ledige stillinger →
@@ -259,35 +240,27 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 </motion.section>
 
                 {/* Kontakt */}
-                <motion.section variants={fadeUpItem} className="space-y-6">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Kontakt</h2>
-                  <div className="grid grid-cols-2 gap-6">
+                <motion.section variants={fadeUpItem} className="space-y-4">
+                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.3]">Kontakt</h2>
+                  <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <img src={jonRichardImg} alt="Jon Richard Nygaard" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
-                      <div className="space-y-1">
-                        <p className="text-[15px] font-semibold text-foreground">
+                      <img src={jonRichardImg} alt="Jon Richard Nygaard" className="w-11 h-11 rounded-full object-cover flex-shrink-0" />
+                      <div className="space-y-0.5">
+                        <p className="text-[14px] font-semibold text-foreground">
                           Jon Richard Nygaard <span className="font-normal text-muted-foreground">| Partner</span>
                         </p>
-                        <a href="tel:93287267" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
-                          <Phone className="w-3.5 h-3.5" /> 93 287 267
-                        </a>
-                        <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
-                          <Mail className="w-3.5 h-3.5" /> jr@stacq.no
-                        </a>
+                        <a href="tel:93287267" className="block text-[13px] text-accent hover:underline">93 287 267</a>
+                        <a href="mailto:jr@stacq.no" className="block text-[13px] text-accent hover:underline">jr@stacq.no</a>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <img src={thomasEriksenImg} alt="Thomas Eriksen" className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
-                      <div className="space-y-1">
-                        <p className="text-[15px] font-semibold text-foreground">
+                      <img src={thomasEriksenImg} alt="Thomas Eriksen" className="w-11 h-11 rounded-full object-cover flex-shrink-0" />
+                      <div className="space-y-0.5">
+                        <p className="text-[14px] font-semibold text-foreground">
                           Thomas Eriksen <span className="font-normal text-muted-foreground">| Partner</span>
                         </p>
-                        <a href="tel:97500321" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
-                          <Phone className="w-3.5 h-3.5" /> 97 500 321
-                        </a>
-                        <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[14px] text-accent hover:underline">
-                          <Mail className="w-3.5 h-3.5" /> thomas@stacq.no
-                        </a>
+                        <a href="tel:97500321" className="block text-[13px] text-accent hover:underline">97 500 321</a>
+                        <a href="mailto:thomas@stacq.no" className="block text-[13px] text-accent hover:underline">thomas@stacq.no</a>
                       </div>
                     </div>
                   </div>

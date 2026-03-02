@@ -20,15 +20,11 @@ const Index = () => {
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative max-w-[880px]">
-        <img src={stacqLogoWhite} alt="STACQ" className="h-6 md:h-7 mb-10 md:mb-14" />
+        <img src={stacqLogoWhite} alt="STACQ" className="h-5 md:h-6 mb-8 md:mb-10" />
 
         <h1 className="text-[36px] md:text-[64px] lg:text-[72px] font-semibold leading-[1.08] tracking-[-0.03em] text-white">
           Embedded konsulenter som former fremtiden
         </h1>
-
-        <p className="mt-5 md:mt-6 text-[17px] md:text-[19px] leading-[1.5] text-white/60 max-w-[540px]">
-          Spesialister i C, C++, Rust, Embedded, Firmware og Security
-        </p>
 
         <div className="mt-8 md:mt-10 flex flex-wrap gap-2.5">
           {["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"].map((tag) =>

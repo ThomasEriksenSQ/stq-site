@@ -179,63 +179,55 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 {/* Intro */}
                 <motion.section variants={fadeUpItem} className="space-y-5">
                   <h1 className="text-[38px] font-bold text-foreground leading-[1.15] pb-5 border-b border-border">
-                    Konsulentselskapet STACQ
+                    Embedded- og lavnivåspesialister
                   </h1>
-                  <p className="text-[18px] font-semibold text-foreground leading-[1.5]">
-                    Velkommen til STACQ. Vi er et norsk konsulentselskap med ekspertise innen embedded- og
-                    lavnivåprogrammering.
+                  <p className="text-foreground text-[16px] leading-[1.7]">
+                    STACQ er et norsk konsulentselskap innen embedded- og lavnivåprogrammering.
                   </p>
                   <p className="text-foreground text-[16px] leading-[1.7]">
-                    STACQ er en teknologipartner med solid faglig tyngde og forståelse for hvordan teknologi skaper verdi
-                    over tid. Vi arbeider tett med kundene våre, leverer løsninger av høy kvalitet og bygger langsiktige
-                    samarbeid basert på tillit, ansvar og innovasjon.
+                    Vi arbeider med utvikling av firmware og systemsoftware i pågående prosjekter for både etablerte selskaper og vekstbedrifter.
                   </p>
                 </motion.section>
 
-                {/* Kompetanse */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">
-                    Spesialister på embedded- og lavnivåutvikling
-                  </h2>
-                  <div className="space-y-3 text-foreground text-[16px] leading-[1.7]">
-                    <p>
-                      Erfarne ingeniører med solid systemforståelse og bakgrunn fra krevende teknologiprosjekter –
-                      ansvarsbevisste, samarbeidsorienterte og profesjonelle.
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    {[
-                      { label: "Språk", items: ["C", "C++", "Rust", "Python", "Assembly"] },
-                      { label: "Firmware & sanntid", items: ["Bare-metal", "RTOS", "FreeRTOS", "Zephyr", "ThreadX", "Bootloader", "Secure Boot", "TrustZone"] },
-                      { label: "Embedded Linux", items: ["Yocto", "Board bring-up", "Kernel-tilpasning", "Qt", "OTA", "Systemtjenester"] },
-                      { label: "Maskinvare", items: ["ARM Cortex-M", "Cortex-A", "STM32", "NXP i.MX", "Nordic nRF", "ESP32", "FPGA / HDL"] },
-                      { label: "Kommunikasjon", items: ["CAN", "Modbus", "SPI", "I2C", "UART", "RS485", "TCP/IP", "MQTT", "BLE", "Zigbee", "ISO15118"] },
-                      { label: "System", items: ["Sanntidssystemer", "Sikkerhetskritiske systemer", "Sensor- og motorstyring", "Arkitektur", "Test", "CI/CD"] },
-                    ].map((category) => (
-                      <div key={category.label}>
-                        <p className="text-[13px] font-semibold text-muted-foreground mb-2">{category.label}</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {category.items.map((item) => (
-                            <span key={item} className="text-[13px] px-3 py-1 rounded-full border border-border bg-secondary text-foreground">
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                {/* Kjernekompetanse */}
+                <motion.section variants={fadeUpItem} className="space-y-3">
+                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Kjernekompetanse</h2>
+                  <ul className="space-y-1.5 text-foreground text-[16px] leading-[1.7]">
+                    {["C / C++", "RTOS og sanntidssystemer", "Embedded Linux", "Secure Boot / TrustZone", "Yocto og board bring-up"].map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="text-muted-foreground mt-[2px]">–</span>
+                        <span>{item}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
+                </motion.section>
+
+                {/* Bransjeerfaring */}
+                <motion.section variants={fadeUpItem} className="space-y-3">
+                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Bransjeerfaring</h2>
+                  <ul className="space-y-1.5 text-foreground text-[16px] leading-[1.7]">
+                    {["Forsvar", "Helse / medtech", "Industri", "Energi"].map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="text-muted-foreground mt-[2px]">–</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </motion.section>
 
                 {/* Jobb hos oss */}
-                <motion.section variants={fadeUpItem} className="space-y-4">
-                  <h2 className="text-[20px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
-                  <div className="space-y-1">
+                <motion.section variants={fadeUpItem} className="space-y-3">
+                  <h2 className="text-[18px] font-semibold text-foreground leading-[1.35]">Jobb hos oss</h2>
+                  <p className="text-foreground text-[16px] leading-[1.7]">
+                    Vi søker flere dyktige og hyggelige kollegaer.
+                  </p>
+                  <div className="space-y-1 pt-1">
                     <button onClick={() => setIsJobOpen(true)} className="block text-[14px] text-accent hover:underline">
                       Se ledige stillinger →
                     </button>
                     <button
                       onClick={() => setIsHandbookOpen(true)}
-                      className="block text-[14px] text-accent hover:underline"
+                      className="block text-[14px] text-muted-foreground hover:text-accent hover:underline"
                     >
                       STACQ Handbook →
                     </button>

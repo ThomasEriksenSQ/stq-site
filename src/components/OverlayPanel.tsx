@@ -276,10 +276,10 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                   <p className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: "#86868b" }}>
                     Kontakt
                   </p>
-                  <div className="mt-6 flex flex-col gap-4 max-w-[340px]">
+                  <div className="mt-6 flex flex-col gap-4">
                     {/* Jon Richard */}
                     <div
-                      className="flex items-start gap-3 p-4 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
+                      className="flex items-center gap-5 p-5 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
                       style={{ border: "1px solid #e2e8f0", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}
                       onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.1)"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.06)"; }}
@@ -287,25 +287,27 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                       <img
                         src={jonRichardImg}
                         alt="Jon Richard Nygaard"
-                        className="w-[52px] h-[52px] rounded-full object-cover flex-shrink-0"
+                        className="w-[56px] h-[56px] rounded-full object-cover flex-shrink-0"
                         style={{ border: "2px solid #2563eb" }}
                       />
-                      <div className="space-y-1.5">
+                      <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <p className="text-[15px] font-semibold text-foreground">Jon Richard Nygaard</p>
                           <span className="text-[10px] font-medium px-2 py-0.5 rounded-full" style={{ background: "#f3f4f6", color: "#6b7280" }}>Partner</span>
                         </div>
-                        <a href="tel:93287267" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
-                          <Phone className="w-3.5 h-3.5" /> 93 287 267
-                        </a>
-                        <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
-                          <Mail className="w-3.5 h-3.5" /> jr@stacq.no
-                        </a>
+                        <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1">
+                          <a href="tel:93287267" className="flex items-center gap-2 text-[13px] transition-colors" style={{ color: "#0066cc" }}>
+                            <Phone className="w-3.5 h-3.5" /> 93 287 267
+                          </a>
+                          <a href="mailto:jr@stacq.no" className="flex items-center gap-2 text-[13px] transition-colors" style={{ color: "#0066cc" }}>
+                            <Mail className="w-3.5 h-3.5" /> jr@stacq.no
+                          </a>
+                        </div>
                       </div>
                     </div>
                     {/* Thomas */}
                     <div
-                      className="flex items-start gap-3 p-4 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
+                      className="flex items-center gap-5 p-5 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"
                       style={{ border: "1px solid #e2e8f0", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}
                       onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.1)"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.06)"; }}
@@ -313,20 +315,22 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                       <img
                         src={thomasEriksenImg}
                         alt="Thomas Eriksen"
-                        className="w-[52px] h-[52px] rounded-full object-cover flex-shrink-0"
+                        className="w-[56px] h-[56px] rounded-full object-cover flex-shrink-0"
                         style={{ border: "2px solid #2563eb" }}
                       />
-                      <div className="space-y-1.5">
+                      <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <p className="text-[15px] font-semibold text-foreground">Thomas Eriksen</p>
                           <span className="text-[10px] font-medium px-2 py-0.5 rounded-full" style={{ background: "#f3f4f6", color: "#6b7280" }}>Partner</span>
                         </div>
-                        <a href="tel:97500321" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
-                          <Phone className="w-3.5 h-3.5" /> 97 500 321
-                        </a>
-                        <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[13px] text-foreground hover:text-[#2563eb] transition-colors">
-                          <Mail className="w-3.5 h-3.5" /> thomas@stacq.no
-                        </a>
+                        <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1">
+                          <a href="tel:97500321" className="flex items-center gap-2 text-[13px] transition-colors" style={{ color: "#0066cc" }}>
+                            <Phone className="w-3.5 h-3.5" /> 97 500 321
+                          </a>
+                          <a href="mailto:thomas@stacq.no" className="flex items-center gap-2 text-[13px] transition-colors" style={{ color: "#0066cc" }}>
+                            <Mail className="w-3.5 h-3.5" /> thomas@stacq.no
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>

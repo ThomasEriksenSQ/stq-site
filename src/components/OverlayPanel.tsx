@@ -284,7 +284,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                   <p className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: "#86868b" }}>
                     Kontakt
                   </p>
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="mt-6 flex flex-col gap-4 max-w-[340px]">
                     {/* Jon Richard */}
                     <div
                       className="flex items-start gap-3 p-4 bg-white rounded-xl transition-all duration-200 hover:-translate-y-0.5"

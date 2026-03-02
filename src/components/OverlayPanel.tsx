@@ -5,6 +5,7 @@ import stacqLogo from "@/assets/stacq-logo-black.png";
 import jonRichardImg from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksenImg from "@/assets/thomas-eriksen.avif";
 import HandbookOverlay from "@/components/HandbookOverlay";
+import teamPhoto from "@/assets/team-photo.png";
 
 interface OverlayPanelProps {
   isOpen: boolean;
@@ -206,30 +207,14 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                   </p>
                 </motion.section>
 
-                {/* ── Stack ── */}
-                <motion.section variants={fadeUpItem} className="mt-16 md:mt-20">
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.06em]" style={{ color: "#86868b" }}>
-                    Stack
-                  </p>
-                  <div
-                    className="mt-6 grid grid-cols-2 md:grid-cols-3"
-                    style={{ gap: "1px", background: "#e8e8ed", borderRadius: "12px", overflow: "hidden" }}
-                  >
-                    {["C / C++", "Rust", "RTOS", "Embedded Linux", "Yocto", "TrustZone"].map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-center justify-center py-4 md:py-5"
-                        style={{ background: "#fff" }}
-                      >
-                        <span
-                          className="text-[14px] font-medium"
-                          style={{ color: "#1d1d1f", fontFamily: "'SF Mono', ui-monospace, SFMono-Regular, 'Cascadia Code', monospace" }}
-                        >
-                          {item}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                {/* ── Team photo ── */}
+                <motion.section variants={fadeUpItem} className="mt-16 md:mt-20 -mx-8 md:-mx-20">
+                  <img
+                    src={teamPhoto}
+                    alt="STACQ-teamet"
+                    className="w-full h-auto object-cover"
+                    style={{ maxHeight: "320px" }}
+                  />
                 </motion.section>
 
                 {/* ── Domains ── */}

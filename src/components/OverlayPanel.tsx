@@ -122,7 +122,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             <div className="px-6 md:px-[96px] py-6 border-t border-border mt-auto">
               <div className="max-w-[640px] w-full">
                 <p className="text-[13px] text-muted-foreground">
-                  STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389 MVA
+                  STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
                 </p>
               </div>
             </div>
@@ -278,6 +278,14 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                 </motion.section>
               </div>
             </motion.div>
+
+            <div className="px-6 md:px-[96px] py-6 border-t border-border mt-auto">
+              <div className="max-w-[640px] w-full">
+                <p className="text-[13px] text-muted-foreground">
+                  STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} />

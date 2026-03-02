@@ -24,7 +24,7 @@ const Index = () => {
         <h1 className="text-[40px] font-semibold leading-[1.15] tracking-[-0.02em] text-white md:text-7xl">
           Embedded konsulenter som former fremtiden
         </h1>
-        <p className="text-[18px] md:text-[20px] leading-[1.55] text-white/70 max-w-[560px]">Spesialister i C, C++, Rust, Embedded, Firmware og Security
+        <p className="text-[18px] md:text-[20px] leading-[1.55] text-white/70">Spesialister i C, C++, Rust, Embedded, Firmware og Security
 
 
         </p>

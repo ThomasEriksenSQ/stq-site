@@ -258,21 +258,13 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                     <p className="mt-4 text-[17px] leading-[1.65]" style={{ color: "#1d1d1f" }}>
                       Små team, høy standard, lav terskel. Vi ser etter folk som skriver god kode og trives med å jobbe tett på hardware.
                     </p>
-                    <div className="mt-6 flex flex-col gap-3">
+                    <div className="mt-6">
                       <button
                         onClick={() => setIsJobOpen(true)}
                         className="group inline-flex items-center gap-2 text-[15px] font-medium transition-colors"
                         style={{ color: "#0066cc" }}
                       >
                         Se ledige stillinger
-                        <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" style={{ fontSize: "16px" }}>›</span>
-                      </button>
-                      <button
-                        onClick={() => setIsHandbookOpen(true)}
-                        className="group inline-flex items-center gap-2 text-[15px] transition-colors"
-                        style={{ color: "#86868b" }}
-                      >
-                        Les STACQ Handbook
                         <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" style={{ fontSize: "16px" }}>›</span>
                       </button>
                     </div>

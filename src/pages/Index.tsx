@@ -45,7 +45,7 @@ const Index = () => {
             onClick={() => setIsOverlayOpen(true)}
             className="group text-[15px] font-medium tracking-[0.04em] px-7 py-3 rounded-lg h-[46px] flex items-center gap-2.5 transition-colors duration-200 bg-white/10 text-white border border-white/20 hover:bg-white/15 hover:border-white/30">
 
-            Dette er STACQ
+            Mer om STACQ
             <svg
               className="transition-transform duration-200 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]"
               width="13"

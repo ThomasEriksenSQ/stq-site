@@ -1,17 +1,68 @@
-import { useState } from "react";
-import { Phone, Mail } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Phone, Mail, ChevronDown } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import stacqLogoBlack from "@/assets/stacq-logo-black.png";
+import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import jonRichardImg from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksenImg from "@/assets/thomas-eriksen.avif";
 
+const HERO_TAGS = ["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"];
+
 const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowHeader(!entry.isIntersecting),
+      { threshold: 0.05 }
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* ═══ HERO ═══ */}
+      <section
+        ref={heroRef}
+        className="relative min-h-[70vh] flex items-center justify-center"
+        style={{ background: "#0d1117" }}
+      >
+        <div className="max-w-[768px] mx-auto px-6 py-20 text-center">
+          <img src={stacqLogoWhite} alt="STACQ" className="h-7 mx-auto mb-10 opacity-90" />
+          <h1 className="text-[36px] md:text-[48px] font-bold leading-[1.15] tracking-tight" style={{ color: "#e6edf3" }}>
+            Embedded konsulenter for lavnivåprogrammering.
+          </h1>
+          <p className="mt-5 text-base md:text-lg leading-relaxed max-w-[580px] mx-auto" style={{ color: "rgba(230,237,243,0.6)" }}>
+            Vi skriver firmware, systemsoftware og maskinvarenær kode for selskaper som bygger fysiske produkter.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            {HERO_TAGS.map((tag) => (
+              <code key={tag} className="code-badge-light">{tag}</code>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <a href="#kontakt" className="hero-cta-primary">Kontakt oss</a>
+            <button onClick={() => setIsOverlayOpen(true)} className="hero-cta-secondary">
+              Mer om STACQ →
+            </button>
+          </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" style={{ color: "rgba(230,237,243,0.3)" }}>
+          <ChevronDown className="w-6 h-6" />
+        </div>
+      </section>
+
       {/* ═══ STICKY HEADER ═══ */}
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur border-b border-border">
+      <header
+        className={`sticky top-0 z-50 bg-background/80 backdrop-blur border-b border-border transition-transform duration-300 ${
+          showHeader ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
         <div className="max-w-[768px] mx-auto px-6 h-14 flex items-center justify-between">
           <img src={stacqLogoBlack} alt="STACQ" className="h-5" />
           <a href="#kontakt" className="text-sm font-medium text-accent hover:underline">
@@ -21,28 +72,6 @@ const Index = () => {
       </header>
 
       <main className="max-w-[768px] mx-auto px-6">
-        {/* ═══ INTRO ═══ */}
-        <section className="py-12 md:py-16 border-b border-border">
-          <h1 className="text-[28px] md:text-[32px] font-bold leading-tight text-foreground">
-            STACQ
-          </h1>
-          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-            Embedded konsulenter for lavnivåprogrammering. Vi skriver firmware, systemsoftware og maskinvarenær kode for selskaper som bygger fysiske produkter.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"].map((tag) => (
-              <code key={tag} className="code-badge">{tag}</code>
-            ))}
-          </div>
-          <div className="mt-6">
-            <button
-              onClick={() => setIsOverlayOpen(true)}
-              className="text-sm font-medium text-accent hover:underline"
-            >
-              Mer om STACQ →
-            </button>
-          </div>
-        </section>
 
         {/* ═══ OM OSS ═══ */}
         <section className="py-10 md:py-14 border-b border-border">

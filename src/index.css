@@ -106,4 +106,32 @@
   .docs-table tr:last-child td {
     @apply border-b-0;
   }
+
+  .code-badge-light {
+    @apply text-[13px] font-mono px-1.5 py-0.5 rounded;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .hero-cta-primary {
+    @apply inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium rounded-md transition-colors;
+    background: hsl(var(--accent));
+    color: #fff;
+  }
+  .hero-cta-primary:hover {
+    background: hsl(212 92% 38%);
+    text-decoration: none;
+  }
+
+  .hero-cta-secondary {
+    @apply inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium rounded-md transition-colors;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .hero-cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+  }
 }

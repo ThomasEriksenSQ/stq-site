@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, MessageSquare, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Send, Bot, MessageSquare, ChevronDown } from "lucide-react";
 import jonRichard from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksen from "@/assets/thomas-eriksen.avif";
 
@@ -73,6 +73,9 @@ const FloatingChat = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const responseIndex = useRef<Record<string, number>>({});
 
+  // Has user sent at least one message (to keep expanded after interaction)
+  const hasInteracted = botMessages.length > 1 || Object.keys(slackMessages).some(k => slackMessages[k].length > 1);
+
   const currentSlackMessages = slackRecipient ? (slackMessages[slackRecipient.name] || []) : [];
   const messages = mode === "bot" ? botMessages : currentSlackMessages;
 
@@ -138,12 +141,11 @@ const FloatingChat = () => {
 
   const handleModeSwitch = (newMode: Mode) => {
     setMode(newMode);
-    if (newMode === "bot") {
-      setSlackRecipient(null);
-    }
-    if (newMode === "slack") {
-      setSlackRecipient(null);
-    }
+    setSlackRecipient(null);
+    if (!isExpanded) setIsExpanded(true);
+  };
+
+  const handleInputFocus = () => {
     if (!isExpanded) setIsExpanded(true);
   };
 
@@ -178,7 +180,7 @@ const FloatingChat = () => {
               }`}
             >
               <Bot className="w-3.5 h-3.5" />
-              STACQ AI-Bot
+              STACQ-Bot
             </button>
             <button
               onClick={() => handleModeSwitch("slack")}
@@ -187,16 +189,83 @@ const FloatingChat = () => {
               }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              Send melding på Slack
+              Chat med oss
             </button>
           </div>
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary transition-colors"
-          >
-            {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
-          </button>
+          {isExpanded && (
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary transition-colors"
+            >
+              <ChevronDown className="w-4 h-4" />
+            </button>
+          )}
         </div>
+
+        {/* Collapsed: show initial bot message + suggestions + input tightly */}
+        {!isExpanded && mode === "bot" && (
+          <div className="px-4 py-3">
+            {/* Welcome message */}
+            <div className="bg-secondary text-foreground px-3.5 py-2.5 rounded-2xl rounded-bl-md text-[14px] leading-relaxed mb-2">
+              {botMessages[0].content}
+            </div>
+            {/* Suggestions */}
+            {botMessages.length === 1 && (
+              <div className="flex flex-wrap gap-2 mb-3">
+                {BOT_SUGGESTIONS.map((s) => (
+                  <button
+                    key={s.label}
+                    onClick={() => {
+                      setIsExpanded(true);
+                      setTimeout(() => handleSend(s.query), 100);
+                    }}
+                    className="px-3 py-1.5 rounded-full border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+            )}
+            {/* Input that expands on focus */}
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onFocus={handleInputFocus}
+                placeholder="Spør eller chat med oss"
+                className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
+              />
+              <button
+                disabled
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 flex-shrink-0"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Collapsed: slack mode - just show input */}
+        {!isExpanded && mode === "slack" && (
+          <div className="px-4 py-3">
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                onFocus={handleInputFocus}
+                placeholder="Spør eller chat med oss"
+                className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                readOnly
+              />
+              <button
+                disabled
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 flex-shrink-0"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Expanded content */}
         <AnimatePresence>
@@ -230,7 +299,6 @@ const FloatingChat = () => {
                 <>
                   {/* Messages */}
                   <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-                    {/* Back button for slack */}
                     {mode === "slack" && slackRecipient && (
                       <button
                         onClick={() => setSlackRecipient(null)}
@@ -275,7 +343,7 @@ const FloatingChat = () => {
                       </div>
                     )}
 
-                    {/* Bot suggestions */}
+                    {/* Bot suggestions (only in expanded when initial) */}
                     {mode === "bot" && botMessages.length === 1 && !isTyping && (
                       <div className="flex flex-wrap gap-2 pt-1">
                         {BOT_SUGGESTIONS.map((s) => (
@@ -300,7 +368,7 @@ const FloatingChat = () => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder={mode === "bot" ? "Spør STACQ AI-Bot..." : `Skriv til ${slackRecipient?.name}...`}
+                        placeholder="Spør eller chat med oss"
                         className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
                         disabled={isTyping}
                       />

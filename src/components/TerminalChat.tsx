@@ -8,8 +8,8 @@ interface Message {
 }
 
 const SUGGESTIONS = [
-  { label: "Kompetanse", query: "kompetanse" },
-  { label: "Ledige stillinger", query: "stilling" },
+  { label: "Kjernekompetanse", query: "kompetanse" },
+  { label: "Stilling ledig", query: "stilling" },
   { label: "Håndbok", query: "håndbok" },
 ];
 

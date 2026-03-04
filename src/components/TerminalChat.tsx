@@ -102,7 +102,7 @@ const TerminalChat = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
+    <div className="flex flex-col h-full bg-card rounded-2xl border border-border shadow-md overflow-hidden">
       {/* Header */}
       <div className="px-5 py-4 border-b border-border">
         <div className="flex items-center gap-2">

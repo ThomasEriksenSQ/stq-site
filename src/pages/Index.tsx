@@ -254,15 +254,26 @@ const Index = () => {
                   transition={{ duration: 0.3 }}
                   className="flex flex-col sm:flex-row items-start gap-6"
                 >
-                  <img
-                    src={CONSULTANTS[activeConsultant].image}
-                    alt={CONSULTANTS[activeConsultant].name}
-                    className="w-28 h-28 rounded-2xl object-cover flex-shrink-0"
-                  />
+                  {CONSULTANTS[activeConsultant].image ? (
+                    <img
+                      src={CONSULTANTS[activeConsultant].image}
+                      alt={CONSULTANTS[activeConsultant].name}
+                      className="w-28 h-28 rounded-2xl object-cover flex-shrink-0"
+                    />
+                  ) : (
+                    <div className="w-28 h-28 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl font-bold text-muted-foreground">
+                        {CONSULTANTS[activeConsultant].name.split(" ").map(n => n[0]).join("")}
+                      </span>
+                    </div>
+                  )}
                   <div>
                     <h3 className="text-[18px] font-semibold text-foreground">
                       {CONSULTANTS[activeConsultant].name}
                     </h3>
+                    <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed max-w-md">
+                      {CONSULTANTS[activeConsultant].description}
+                    </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {CONSULTANTS[activeConsultant].competence.map((c) => (
                         <span

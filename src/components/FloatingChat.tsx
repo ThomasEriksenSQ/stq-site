@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, ChevronUp, ChevronDown, Bot, MessageSquare } from "lucide-react";
+import { Send, Bot, MessageSquare, MessageCircle, X } from "lucide-react";
 import jonRichard from "@/assets/jon-richard-nygaard.avif";
 
 type Mode = "bot" | "human";
@@ -47,7 +47,7 @@ const HUMAN_RESPONSES = [
 ];
 
 const FloatingChat = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<Mode>("bot");
   const [botMessages, setBotMessages] = useState<Message[]>([
     { role: "assistant", content: "Hei! Jeg er STACQs assistent. Spør meg om kompetanse, stillinger, eller håndboken vår." },
@@ -72,6 +72,12 @@ const FloatingChat = () => {
     scrollToBottom();
   }, [botMessages, humanMessages, scrollToBottom]);
 
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      setTimeout(() => inputRef.current?.focus(), 300);
+    }
+  }, [isOpen]);
+
   const handleSend = useCallback(
     (text?: string) => {
       const msg = (text || input).trim();
@@ -80,7 +86,6 @@ const FloatingChat = () => {
       setInput("");
       setMessages((prev) => [...prev, { role: "user", content: msg }]);
       setIsTyping(true);
-      setIsExpanded(true);
 
       if (mode === "bot") {
         const response = getMockBotResponse(msg);
@@ -110,20 +115,36 @@ const FloatingChat = () => {
   };
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50">
-      {/* Expanded chat panel */}
+    <>
+      {/* FAB button */}
       <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 420, opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="bg-card border-t border-border shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.1)] overflow-hidden"
+        {!isOpen && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center"
           >
-            <div className="max-w-2xl mx-auto h-full flex flex-col">
-              {/* Mode tabs */}
-              <div className="flex items-center gap-1 px-4 pt-3 pb-2">
+            <MessageCircle className="w-6 h-6" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Chat panel */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100vh-3rem)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+          >
+            {/* Header with mode tabs */}
+            <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-border">
+              <div className="flex items-center gap-1">
                 <button
                   onClick={() => setMode("bot")}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
@@ -143,94 +164,93 @@ const FloatingChat = () => {
                   Snakk med oss
                 </button>
               </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
 
-              {/* Messages */}
-              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-                {messages.map((msg, i) => (
-                  <div key={`${mode}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                    {msg.role === "assistant" && msg.avatar && (
-                      <img src={msg.avatar} alt={msg.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
+            {/* Messages */}
+            <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+              {messages.map((msg, i) => (
+                <div key={`${mode}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  {msg.role === "assistant" && msg.avatar && (
+                    <img src={msg.avatar} alt={msg.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
+                  )}
+                  <div
+                    className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[14px] leading-relaxed whitespace-pre-line ${
+                      msg.role === "user"
+                        ? "bg-primary text-primary-foreground rounded-br-md"
+                        : "bg-secondary text-foreground rounded-bl-md"
+                    }`}
+                  >
+                    {msg.role === "assistant" && msg.name && (
+                      <span className="block text-[12px] font-semibold text-muted-foreground mb-1">{msg.name}</span>
                     )}
-                    <div
-                      className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[14px] leading-relaxed whitespace-pre-line ${
-                        msg.role === "user"
-                          ? "bg-primary text-primary-foreground rounded-br-md"
-                          : "bg-secondary text-foreground rounded-bl-md"
-                      }`}
+                    {msg.content}
+                  </div>
+                </div>
+              ))}
+
+              {isTyping && (
+                <div className="flex justify-start">
+                  {mode === "human" && (
+                    <img src={jonRichard} alt="Jon Richard" className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
+                  )}
+                  <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 rounded-2xl rounded-bl-md text-[14px]">
+                    <span className="inline-flex gap-1">
+                      <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Bot suggestions */}
+              {mode === "bot" && botMessages.length === 1 && !isTyping && (
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {BOT_SUGGESTIONS.map((s) => (
+                    <button
+                      key={s.label}
+                      onClick={() => handleSend(s.query)}
+                      className="px-3 py-1.5 rounded-full border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors"
                     >
-                      {msg.role === "assistant" && msg.name && (
-                        <span className="block text-[12px] font-semibold text-muted-foreground mb-1">{msg.name}</span>
-                      )}
-                      {msg.content}
-                    </div>
-                  </div>
-                ))}
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
-                {isTyping && (
-                  <div className="flex justify-start">
-                    {mode === "human" && (
-                      <img src={jonRichard} alt="Jon Richard" className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
-                    )}
-                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 rounded-2xl rounded-bl-md text-[14px]">
-                      <span className="inline-flex gap-1">
-                        <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                        <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                        <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Bot suggestions */}
-                {mode === "bot" && botMessages.length === 1 && !isTyping && (
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {BOT_SUGGESTIONS.map((s) => (
-                      <button
-                        key={s.label}
-                        onClick={() => handleSend(s.query)}
-                        className="px-3 py-1.5 rounded-full border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors"
-                      >
-                        {s.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
+            {/* Input */}
+            <div className="border-t border-border px-3 py-3">
+              <div className="flex items-center gap-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder={mode === "bot" ? "Spør STACQ Bot..." : "Skriv en melding til Jon Richard..."}
+                  className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                  disabled={isTyping}
+                />
+                <button
+                  onClick={() => handleSend()}
+                  disabled={!input.trim() || isTyping}
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 hover:opacity-90 transition-opacity flex-shrink-0"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Input bar — always visible */}
-      <div className="bg-card border-t border-border">
-        <div className="max-w-2xl mx-auto flex items-center gap-2 px-4 py-3">
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:bg-secondary transition-colors flex-shrink-0"
-          >
-            {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
-          </button>
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            onFocus={() => setIsExpanded(true)}
-            placeholder={mode === "bot" ? "Spør STACQ Bot..." : "Skriv en melding til Jon Richard..."}
-            className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
-            disabled={isTyping}
-          />
-          <button
-            onClick={() => handleSend()}
-            disabled={!input.trim() || isTyping}
-            className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 hover:opacity-90 transition-opacity flex-shrink-0"
-          >
-            <Send className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

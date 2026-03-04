@@ -233,7 +233,7 @@ const Index = () => {
                     key={c.name}
                     onClick={() => setActiveConsultant(i)}
                     onMouseEnter={() => setActiveConsultant(i)}
-                    className={`text-left px-4 py-3 rounded-lg text-[15px] font-medium transition-all ${
+                    className={`text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal ${
                       activeConsultant === i
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:bg-secondary"

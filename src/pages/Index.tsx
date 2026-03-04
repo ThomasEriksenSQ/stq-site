@@ -139,7 +139,6 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp}>
             <img src={stacqLogo} alt="STACQ" className="h-6 mb-8" />
-          </motion.div>
             <h1
               className="text-foreground font-bold tracking-tight"
               style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}

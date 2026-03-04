@@ -18,14 +18,41 @@ import martinTysseland from "@/assets/martin-tysseland.jpg";
 import mattisAsp from "@/assets/mattis-asp.jpg";
 
 const TECH_TAGS = [
-  { label: "C / C++", icon: Code },
+  { label: "C", icon: Code },
+  { label: "C++", icon: Code },
   { label: "Rust", icon: Terminal },
-  { label: "Firmware", icon: Cpu },
   { label: "Embedded Linux", icon: Layers },
-  { label: "Yocto", icon: Workflow },
+  { label: "Firmware", icon: Cpu },
   { label: "RTOS", icon: Server },
-  { label: "ARM / RISC-V", icon: GitBranch },
+  { label: "Mikrokontrollere", icon: CircuitBoard },
   { label: "Security", icon: Lock },
+];
+
+const COMPETENCE_GROUPS = [
+  {
+    title: "Språk",
+    items: ["C", "C++", "Rust", "Python"],
+  },
+  {
+    title: "Systemer",
+    items: ["Embedded Linux", "Firmware Development", "RTOS", "Bare-metal Systems"],
+  },
+  {
+    title: "Hardware",
+    items: ["Microcontrollers", "ARM Cortex", "Hardware Integration", "Board Bring-up"],
+  },
+  {
+    title: "Software / system",
+    items: ["System Software", "Device Drivers", "Networking Protocols", "Performance Optimization"],
+  },
+  {
+    title: "Tools / plattform",
+    items: ["Yocto", "Build Systems (CMake / Bazel / Make)", "CI/CD"],
+  },
+  {
+    title: "Kvalitet",
+    items: ["Testing & Debugging"],
+  },
 ];
 
 const DOMAINS = [
@@ -193,10 +220,13 @@ const Index = () => {
               className="text-foreground font-bold tracking-tight"
               style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}
             >
-              Embedded- og
+              C, C++ og Rust
               <br />
-              <span className="text-muted-foreground font-normal">lavnivåspesialister.</span>
+              <span className="text-muted-foreground font-normal">konsulenter.</span>
             </h1>
+            <p className="mt-4 text-muted-foreground text-[17px] max-w-xl leading-relaxed">
+              Spesialister på embedded, firmware og hardware-nær utvikling.
+            </p>
           </motion.div>
 
           <motion.div {...fadeUp} className="mt-8 flex flex-wrap gap-2">
@@ -235,15 +265,19 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
-            {TECH_TAGS.map((tag) => (
+          <motion.div {...stagger} className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {COMPETENCE_GROUPS.map((group) => (
               <motion.div
-                key={tag.label}
+                key={group.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="flex items-center gap-3 px-4 py-3.5 rounded-lg border border-border bg-card hover:bg-secondary/50 transition-colors"
+                className="p-5 rounded-xl border border-border bg-card"
               >
-                <tag.icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                <span className="text-[14px] font-medium text-foreground">{tag.label}</span>
+                <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-muted-foreground mb-3">{group.title}</h3>
+                <div className="flex flex-col gap-1.5">
+                  {group.items.map((item) => (
+                    <span key={item} className="text-[14px] text-foreground">{item}</span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </motion.div>

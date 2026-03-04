@@ -220,13 +220,10 @@ const Index = () => {
               className="text-foreground font-bold tracking-tight"
               style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}
             >
-              C, C++ og Rust
+              Spesialister på embedded,
               <br />
-              <span className="text-muted-foreground font-normal">konsulenter.</span>
+              firmware og hardware-nær utvikling.
             </h1>
-            <p className="mt-4 text-muted-foreground text-[17px] max-w-xl leading-relaxed">
-              Spesialister på embedded, firmware og hardware-nær utvikling.
-            </p>
           </motion.div>
 
           <motion.div {...fadeUp} className="mt-8 flex flex-wrap gap-2">

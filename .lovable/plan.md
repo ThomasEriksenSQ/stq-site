@@ -1,81 +1,83 @@
 
 
-## Plan: Retro Terminal-Inspired Full Redesign
+## Plan: Moderne split-hero med AI-chat
 
-Transformere hele nettsiden til en retro CRT-terminal-estetikk, inspirert av det vedlagte bildet av en `man gcc` terminal med grønn fosfor-tekst på mørk bakgrunn, komplett med en CRT-monitor-ramme.
+Helt nytt design. Rent, moderne, sofistikert. Fullbredde hero med to kolonner: venstre = STACQ-info, høyre = interaktiv chat med mock AI.
+
+### Layout
+
+```text
+┌───────────────────────────────────────────────────────────────┐
+│  FULLBREDDE HERO (min-h-screen, hvit/lys bg)                  │
+│                                                               │
+│  ┌─── VENSTRE (45%) ─────────┐  ┌─── HØYRE (55%) ──────────┐ │
+│  │                            │  │                           │ │
+│  │  STACQ (logo, sort)        │  │  ┌─ Chat Panel ────────┐ │ │
+│  │                            │  │  │                      │ │ │
+│  │  Embedded konsulenter      │  │  │  Hei! Jeg er STACQs  │ │ │
+│  │  for lavnivå-              │  │  │  assistent. Spør meg │ │ │
+│  │  programmering.            │  │  │  om kompetanse,      │ │ │
+│  │                            │  │  │  stillinger eller    │ │ │
+│  │  Kort beskrivelse i        │  │  │  håndboken.          │ │ │
+│  │  muted tekst               │  │  │                      │ │ │
+│  │                            │  │  │  [Kompetanse]        │ │ │
+│  │  Forsvar · Medtech ·       │  │  │  [Stillinger]        │ │ │
+│  │  Industri · Energi         │  │  │  [Håndbok]           │ │ │
+│  │                            │  │  │                      │ │ │
+│  │  [Mer om STACQ →]          │  │  │  > bruker-input      │ │ │
+│  │  [Kontakt oss]             │  │  └──────────────────────┘ │ │
+│  │                            │  │                           │ │
+│  └────────────────────────────┘  └───────────────────────────┘ │
+│                                                               │
+│  Footer: STACQ AS · Adresse · Org.nr                          │
+└───────────────────────────────────────────────────────────────┘
+```
+
+Mobil: stables vertikalt (info øverst, chat under, chat får ~60vh).
 
 ### Designretning
 
-- **Farge:** Grønn fosfor-tekst (`#33ff00`) på nesten svart bakgrunn (`#0a0a0a`)
-- **Font:** Monospace overalt — terminalestetikk
-- **CRT-effekter:** Subtil scanline-overlay, svak text-shadow/glow på tekst, avrundet "monitor-ramme" rundt innholdet
-- **Layout:** Alt innhold presentert som om det er i et terminalvindu — man-page-aktig struktur med `NAME`, `SYNOPSIS`, `DESCRIPTION`-seksjoner
-
-### Sidestruktur
-
-```text
-┌─ CRT Monitor Frame (rounded corners, bezel) ─────────┐
-│ ┌─ Terminal Window ─────────────────────────────────┐ │
-│ │  STACQ(1)              STACQ              STACQ(1)│ │
-│ │                                                    │ │
-│ │  NAME                                              │ │
-│ │      stacq - embedded konsulenter for              │ │
-│ │      lavnivåprogrammering                          │ │
-│ │                                                    │ │
-│ │  SYNOPSIS                                          │ │
-│ │      `C/C++` `Rust` `RTOS` `Yocto` `ARM` ...     │ │
-│ │                                                    │ │
-│ │  DESCRIPTION                                       │ │
-│ │      STACQ er et norsk konsulentselskap ...        │ │
-│ │                                                    │ │
-│ │  KOMPETANSE                                        │ │
-│ │      C / C++        Firmware & systemkode          │ │
-│ │      Rust           Sikker lavnivåkode             │ │
-│ │      ...                                           │ │
-│ │                                                    │ │
-│ │  DOMENER                                           │ │
-│ │      Forsvar, Medtech, Industri, Energi            │ │
-│ │                                                    │ │
-│ │  KARRIERE                                          │ │
-│ │      Vi ansetter. Se ledige stillinger.            │ │
-│ │                                                    │ │
-│ │  KONTAKT                                           │ │
-│ │      Jon Richard Nygaard  93 287 267  jr@stacq.no  │ │
-│ │      Thomas Eriksen       97 500 321  thomas@...   │ │
-│ │                                                    │ │
-│ │  [Mer om STACQ]                                    │ │
-│ │                                                    │ │
-│ │ Manual page stacq(1) line 1 (press h for help)     │ │
-│ └────────────────────────────────────────────────────┘ │
-│          ┌──────────────────────┐                      │
-│          │    STACQ monitor     │  <- monitor base     │
-│          └──────────────────────┘                      │
-└────────────────────────────────────────────────────────┘
-```
+- **Farger:** Hvit/off-white bakgrunn, sort tekst, aksent i dempet blå (#0066cc)
+- **Font:** System sans-serif (Inter-aktig via Tailwind default)
+- **Stil:** Apple/Linear-inspirert — masse whitespace, stor typografi, subtile shadows
+- **Chat-panel:** Avrundet kort med subtil border og shadow, lys grå bakgrunn (#f9fafb)
 
 ### Tekniske endringer
 
+**`src/index.css`** — Full rewrite:
+- Fjerne ALL CRT/retro-styling (scanlines, grønn tekst, monitor-ramme)
+- Sette hvit/lys fargepalett som CSS-variabler
+- Rene, moderne utility-klasser
+- Chat-panel-stiler
+
 **`src/pages/Index.tsx`** — Full rewrite:
-- Hele siden i en mørk bakgrunn med en CRT-monitor-ramme (CSS border-radius, bezel-gradient, monitor-stand)
-- Innhold strukturert som en Unix man-page med seksjoner: `NAME`, `SYNOPSIS`, `DESCRIPTION`, `KOMPETANSE`, `DOMENER`, `KARRIERE`, `KONTAKT`
-- All tekst i monospace, grønn (`#33ff00`) på mørk bakgrunn
-- Statuslinje nederst i terminalen (som `man`-sidene har)
-- "Mer om STACQ"-knappen beholdes og åpner eksisterende overlay
-- Kontaktinfo i tabellformat, man-page-stil
+- Fullbredde `min-h-screen`, to-kolonne grid
+- Venstre: STACQ logo (sort), heading, beskrivelse, domener, to CTA-knapper
+- Høyre: `<TerminalChat />` komponent
+- Beholde `OverlayPanel`-integrasjon med "Mer om STACQ"-knapp
 
-**`src/index.css`** — Full rewrite av stiler:
-- CRT scanline-effekt via repeating-linear-gradient overlay
-- Text-shadow glow-effekt på all tekst
-- Monitor-ramme med gradient bezel og stand
-- Fjerne all docs-stil (code-badge, admonition, etc.)
-- Beholde overlay-relaterte stiler
+**`src/components/TerminalChat.tsx`** — Ny fil:
+- Moderne chat-UI i et avrundet kort
+- Ved mount: velkomstmelding + 3 klikkbare hurtigvalg-chips ("Kompetanse", "Ledige stillinger", "Håndbok")
+- Input-felt nederst med send-knapp
+- Mock keyword-matching:
+  - "kompetanse" / "teknologi" → Kompetansetabell fra COMPETENCIES
+  - "stilling" / "jobb" / "karriere" → Stillingsbeskrivelse
+  - "lønn" / "provisjon" → 70% provisjonsmodell fra håndboken
+  - "forsikring" / "pensjon" → Forsikrings/pensjonsinfo
+  - "ferie" / "permisjon" → Ferieinfo
+  - "kontakt" → Kontaktinfo
+  - Default → Foreslår topics
+- Typewriter-effekt på AI-svar (karakter for karakter)
+- Chat-historikk med scroll-to-bottom
 
-**Overlay beholdes** — `OverlayPanel.tsx` forblir uendret (moderne stil i kontrast til retro-hovedsiden)
+### Filer som endres
 
-### Nøkkelelementer
+| Fil | Endring |
+|-----|---------|
+| `src/index.css` | Full rewrite — moderne, lys, ren |
+| `src/pages/Index.tsx` | Full rewrite — split-hero layout |
+| `src/components/TerminalChat.tsx` | **Ny** — chat-komponent med mock AI |
 
-- CRT glow: `text-shadow: 0 0 5px rgba(51,255,0,0.6)`
-- Scanlines: `background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)`
-- Monitor bezel: rounded dark gray gradient border med en "stand" under
-- Blinkende cursor-effekt på statuslinjen
+Overlay-komponentene (`OverlayPanel.tsx`, `HandbookOverlay.tsx`) forblir uendret.
 

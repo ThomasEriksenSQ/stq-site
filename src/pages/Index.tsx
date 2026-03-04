@@ -239,15 +239,6 @@ const Index = () => {
             ))}
           </motion.div>
 
-          <motion.div {...fadeUp} className="mt-10">
-            <button
-              onClick={() => setIsOverlayOpen(true)}
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-[15px] font-medium hover:opacity-90 transition-opacity"
-            >
-              Mer om STACQ
-              <span className="text-[16px]">→</span>
-            </button>
-          </motion.div>
         </div>
       </section>
 

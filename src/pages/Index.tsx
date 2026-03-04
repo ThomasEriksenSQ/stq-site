@@ -4,7 +4,7 @@ import OverlayPanel from "@/components/OverlayPanel";
 import TerminalChat from "@/components/TerminalChat";
 import stacqLogo from "@/assets/stacq-logo-black.png";
 
-const DOMAINS = ["Forsvar", "Medtech", "Industri", "Energi"];
+const TECH_TAGS = ["C / C++", "Rust", "Firmware", "Embedded Linux", "Yocto", "RTOS", "ARM", "Security"];
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -38,27 +38,23 @@ const Index = () => {
               className="text-foreground font-bold leading-[1.1] tracking-tight"
               style={{ fontSize: "clamp(32px, 3.5vw, 48px)" }}
             >
-              Embedded konsulenter
+              Embedded- og
               <br />
-              <span className="text-muted-foreground font-normal">for lavnivåprogrammering.</span>
+              <span className="text-muted-foreground font-normal">lavnivåspesialister.</span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="mt-6 text-muted-foreground text-[17px] leading-relaxed">
-              Vi skriver firmware, systemsoftware og maskinvarenær kode for selskaper som bygger fysiske produkter.
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center gap-2">
-              {DOMAINS.map((d, i) => (
-                <span key={d} className="flex items-center gap-2">
-                  <span className="text-foreground text-[15px] font-medium">{d}</span>
-                  {i < DOMAINS.length - 1 && (
-                    <span className="text-border text-[15px]">·</span>
-                  )}
+            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-2">
+              {TECH_TAGS.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors"
+                >
+                  {tag}
                 </span>
               ))}
             </motion.div>
 
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-3">
+            <motion.div variants={fadeUp} className="mt-10">
               <button
                 onClick={() => setIsOverlayOpen(true)}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-[15px] font-medium hover:opacity-90 transition-opacity"
@@ -66,33 +62,16 @@ const Index = () => {
                 Mer om STACQ
                 <span className="text-[16px]">→</span>
               </button>
-              <a
-                href="#kontakt"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsOverlayOpen(true);
-                }}
-                className="inline-flex items-center gap-2 border border-border text-foreground px-6 py-2.5 rounded-lg text-[15px] font-medium hover:bg-secondary transition-colors no-underline"
-              >
-                Kontakt oss
-              </a>
             </motion.div>
           </div>
         </motion.div>
 
         {/* Right — Chat */}
-        <div className="flex items-center justify-center px-4 md:px-8 lg:px-12 py-8 md:py-12 bg-secondary">
+        <div className="flex items-center justify-center px-4 md:px-8 lg:px-12 py-8 md:py-12">
           <div className="w-full max-w-[560px] h-[600px] md:h-[680px]">
             <TerminalChat />
           </div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="px-8 md:px-16 py-6 border-t border-border">
-        <p className="text-[13px] text-muted-foreground">
-          STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
-        </p>
       </div>
 
       <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />

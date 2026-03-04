@@ -180,7 +180,7 @@ const FloatingChat = () => {
               }`}
             >
               <Bot className="w-3.5 h-3.5" />
-              STACQ-Bot
+              STACQ-AI
             </button>
             <button
               onClick={() => handleModeSwitch("slack")}
@@ -189,7 +189,7 @@ const FloatingChat = () => {
               }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              Chat med oss
+              Chat direkte med oss
             </button>
           </div>
           {isExpanded && (

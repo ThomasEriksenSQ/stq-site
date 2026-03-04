@@ -233,7 +233,7 @@ const Index = () => {
                 key={tag.label}
                 className="inline-flex items-center gap-1.5 px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors"
               >
-                {tag.icon && <tag.icon className="w-3.5 h-3.5" />}
+                
                 {tag.label}
               </span>
             ))}

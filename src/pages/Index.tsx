@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin } from "lucide-react";
+import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
@@ -168,6 +168,20 @@ const Index = () => {
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [activeConsultant, setActiveConsultant] = useState(0);
 
+  const scrollListRef = useRef<HTMLDivElement>(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+
+  useEffect(() => {
+    const el = scrollListRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 10;
+      setShowScrollHint(!atBottom);
+    };
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* ── Hero ── */}
@@ -250,22 +264,40 @@ const Index = () => {
 
           <motion.div {...fadeUp} className="mt-12">
             <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-12">
-              {/* Left — name list */}
-              <div className="flex flex-row md:flex-col gap-1.5 md:max-h-[400px] md:overflow-y-auto overflow-x-auto">
-                {CONSULTANTS.map((c, i) => (
-                  <button
-                    key={c.name}
-                    onClick={() => setActiveConsultant(i)}
-                    onMouseEnter={() => setActiveConsultant(i)}
-                    className={`text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal ${
-                      activeConsultant === i
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-secondary"
-                    }`}
-                  >
-                    {c.name}
-                  </button>
-                ))}
+              {/* Left — name list with scroll indicator */}
+              <div className="relative">
+                <div
+                  ref={scrollListRef}
+                  className="flex flex-row md:flex-col gap-1.5 md:max-h-[420px] md:overflow-y-auto overflow-x-auto scrollbar-thin"
+                >
+                  {CONSULTANTS.map((c, i) => (
+                    <button
+                      key={c.name}
+                      onClick={() => setActiveConsultant(i)}
+                      onMouseEnter={() => setActiveConsultant(i)}
+                      className={`text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal ${
+                        activeConsultant === i
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:bg-secondary"
+                      }`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+                {/* Scroll hint */}
+                {showScrollHint && (
+                  <div className="hidden md:flex absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent items-end justify-center pb-1 pointer-events-none">
+                    <motion.div
+                      animate={{ y: [0, 4, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                      className="flex items-center gap-1 text-[11px] text-muted-foreground"
+                    >
+                      <ChevronDown className="w-3.5 h-3.5" />
+                      <span>Scroll for flere</span>
+                    </motion.div>
+                  </div>
+                )}
               </div>
 
               {/* Right — profile */}
@@ -282,31 +314,63 @@ const Index = () => {
                     <img
                       src={CONSULTANTS[activeConsultant].image}
                       alt={CONSULTANTS[activeConsultant].name}
-                      className="w-28 h-28 rounded-2xl object-cover flex-shrink-0"
+                      className="w-36 h-36 rounded-2xl object-cover flex-shrink-0"
                     />
                   ) : (
-                    <div className="w-28 h-28 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl font-bold text-muted-foreground">
+                    <div className="w-36 h-36 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
+                      <span className="text-3xl font-bold text-muted-foreground">
                         {CONSULTANTS[activeConsultant].name.split(" ").map(n => n[0]).join("")}
                       </span>
                     </div>
                   )}
-                  <div>
-                    <h3 className="text-[18px] font-semibold text-foreground">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-[20px] font-semibold text-foreground">
                       {CONSULTANTS[activeConsultant].name}
                     </h3>
-                    <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed max-w-md">
+                    <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed max-w-lg">
                       {CONSULTANTS[activeConsultant].description}
                     </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {CONSULTANTS[activeConsultant].competence.map((c) => (
-                        <span
-                          key={c}
-                          className="px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
-                        >
-                          {c}
-                        </span>
-                      ))}
+
+                    {/* Meta info */}
+                    <div className="mt-3 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        {CONSULTANTS[activeConsultant].experience}+ års erfaring
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5" />
+                        {CONSULTANTS[activeConsultant].location}
+                      </span>
+                    </div>
+
+                    {/* Competence tags */}
+                    <div className="mt-4">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground/60 mb-1.5">Kompetanse</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {CONSULTANTS[activeConsultant].competence.map((c) => (
+                          <span
+                            key={c}
+                            className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Industry tags */}
+                    <div className="mt-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground/60 mb-1.5">Bransjeerfaring</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {CONSULTANTS[activeConsultant].industries.map((ind) => (
+                          <span
+                            key={ind}
+                            className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground"
+                          >
+                            {ind}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -370,7 +434,7 @@ const Index = () => {
 
       {/* ── Footer ── */}
       <footer className="bg-foreground text-background py-16 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-4 brightness-0 invert" />
@@ -386,9 +450,10 @@ const Index = () => {
               <li><button onClick={() => setIsOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Om STACQ</button></li>
               <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Karriere</button></li>
             </ul>
+            <p className="mt-4 text-[12px] text-background/40">STACQ AS · Org.nr: 932 575 442 MVA</p>
           </div>
 
-          {/* Kontakt */}
+          {/* Kontakt oss */}
           <div>
             <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kontakt oss</h4>
             <ul className="space-y-3 text-[14px] text-background/70">
@@ -400,21 +465,14 @@ const Index = () => {
                 <span className="block font-medium text-background/90">Thomas Eriksen</span>
                 <span>975 00 321</span> · <a href="mailto:thomas@stacq.no" className="hover:text-background transition-colors no-underline">thomas@stacq.no</a>
               </li>
-              <li className="pt-2 text-[13px] text-background/50">
-                Øvre Slottsgate 27, 0157 Oslo
-              </li>
             </ul>
           </div>
-        </div>
 
-        {/* Bottom bar */}
-        <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-background/40">
-            © {new Date().getFullYear()} STACQ AS · Org.nr: 932 575 442 MVA
-          </p>
-          <a href="https://linkedin.com/company/stacq" target="_blank" rel="noopener noreferrer" className="text-background/40 hover:text-background transition-colors no-underline">
-            <Linkedin className="w-4 h-4" />
-          </a>
+          {/* Besøk oss */}
+          <div>
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Besøk oss</h4>
+            <p className="text-[14px] text-background/70">Øvre Slottsgate 27, 0157 Oslo</p>
+          </div>
         </div>
       </footer>
 

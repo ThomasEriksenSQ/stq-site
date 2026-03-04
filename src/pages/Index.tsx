@@ -222,7 +222,7 @@ const Index = () => {
             >
               Konsulenter i embedded,
               <br />
-              firmware og hardware-nær utvikling.
+              firmware og hardware-nær utvikling
             </h1>
           </motion.div>
 

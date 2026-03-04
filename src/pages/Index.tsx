@@ -19,13 +19,14 @@ import mattisAsp from "@/assets/mattis-asp.jpg";
 
 const TECH_TAGS = [
   { label: "C", icon: Code },
-  { label: "C++", icon: Code },
+  { label: "C+", icon: Code },
   { label: "Rust", icon: Terminal },
   { label: "Embedded Linux", icon: Layers },
   { label: "Firmware", icon: Cpu },
   { label: "RTOS", icon: Server },
   { label: "Mikrokontrollere", icon: CircuitBoard },
   { label: "Security", icon: Lock },
+  { label: "+mer", icon: null },
 ];
 
 const COMPETENCE_GROUPS = [
@@ -220,9 +221,9 @@ const Index = () => {
               className="text-foreground font-bold tracking-tight"
               style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}
             >
-              Konsulenter i embedded,
+              Embedded, firmware
               <br />
-              firmware og hardware-nær utvikling
+              og C/C++/Rust konsulenter
             </h1>
           </motion.div>
 
@@ -232,7 +233,7 @@ const Index = () => {
                 key={tag.label}
                 className="inline-flex items-center gap-1.5 px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors"
               >
-                <tag.icon className="w-3.5 h-3.5" />
+                {tag.icon && <tag.icon className="w-3.5 h-3.5" />}
                 {tag.label}
               </span>
             ))}

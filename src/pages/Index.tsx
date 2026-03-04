@@ -227,7 +227,7 @@ const Index = () => {
           <motion.div {...fadeUp} className="mt-12">
             <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-12">
               {/* Left — name list */}
-              <div className="flex flex-row md:flex-col gap-2">
+              <div className="flex flex-row md:flex-col gap-1.5 md:max-h-[400px] md:overflow-y-auto overflow-x-auto">
                 {CONSULTANTS.map((c, i) => (
                   <button
                     key={c.name}

@@ -202,31 +202,9 @@ const FloatingChat = () => {
           )}
         </div>
 
-        {/* Collapsed: show initial bot message + suggestions + input tightly */}
-        {!isExpanded && mode === "bot" && (
+        {/* Collapsed: just show input */}
+        {!isExpanded && (
           <div className="px-4 py-3">
-            {/* Welcome message */}
-            <div className="bg-secondary text-foreground px-3.5 py-2.5 rounded-2xl rounded-bl-md text-[14px] leading-relaxed mb-2">
-              {botMessages[0].content}
-            </div>
-            {/* Suggestions */}
-            {botMessages.length === 1 && (
-              <div className="flex flex-wrap gap-2 mb-3">
-                {BOT_SUGGESTIONS.map((s) => (
-                  <button
-                    key={s.label}
-                    onClick={() => {
-                      setIsExpanded(true);
-                      setTimeout(() => handleSend(s.query), 100);
-                    }}
-                    className="px-3 py-1.5 rounded-full border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors"
-                  >
-                    {s.label}
-                  </button>
-                ))}
-              </div>
-            )}
-            {/* Input that expands on focus */}
             <div className="flex items-center gap-2">
               <input
                 type="text"
@@ -235,27 +213,6 @@ const FloatingChat = () => {
                 onFocus={handleInputFocus}
                 placeholder="Spør eller chat med oss"
                 className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
-              />
-              <button
-                disabled
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 flex-shrink-0"
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Collapsed: slack mode - just show input */}
-        {!isExpanded && mode === "slack" && (
-          <div className="px-4 py-3">
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                onFocus={handleInputFocus}
-                placeholder="Spør eller chat med oss"
-                className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
-                readOnly
               />
               <button
                 disabled

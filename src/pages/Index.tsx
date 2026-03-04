@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin } from "lucide-react";
+import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
@@ -44,72 +44,108 @@ const CONSULTANTS = [
     name: "Kacper Wysocki",
     image: kacperWysocki,
     competence: ["Embedded Linux", "RTOS", "Security", "Firmware", "CI/CD", "Board Bring-up"],
+    industries: ["IoT", "Kamera", "Sikkerhet"],
+    experience: 15,
+    location: "Oslo",
     description: "Senior embedded-profil med tung erfaring fra komplekse produkter (kamera/IoT) og sikkerhet. Sterk på arkitektur, ytelse, release/infrastruktur og teamledelse.",
   },
   {
     name: "Lars Rudolfsen",
     image: larsRudolfsen,
     competence: ["Autonomi", "Regulering", "STM32", "FreeRTOS", "CANopen", "Embedded Linux"],
+    industries: ["Robotikk", "Autonomi", "Industri"],
+    experience: 8,
+    location: "Oslo",
     description: "Kybernetikk/robotikk-ingeniør med erfaring fra sanntidsstyring og integrasjon i komplekse systemer. Spiss på regulering, sensorer og robust embedded kommunikasjon.",
   },
   {
     name: "Ida Abrahamsson",
     image: idaAbrahamsson,
     competence: ["Embedded", "FreeRTOS", "CANopen", "IoT", "AWS", "C/C++"],
+    industries: ["IoT", "Automasjon", "Robotikk"],
+    experience: 10,
+    location: "Oslo",
     description: "Senior embedded- og kontrollsystemingeniør med bred erfaring fra IoT, automasjon og robotikk. Leverer prototyper og produksjonsklare løsninger med struktur og driv.",
   },
   {
     name: "Trine Ø. Olsen",
     image: trineOlsen,
     competence: ["Defence", "C2", "RTOS", "Sensor Fusion", "Networking", "Robust Systems"],
+    industries: ["Forsvar", "Sikkerhet", "Taktiske systemer"],
+    experience: 10,
+    location: "Østlandet",
     description: "Embedded-ingeniør med erfaring fra forsvar og sikkerhetskritiske systemer (C2, sensorer, taktiske nett). Sterk på robusthet, integrasjon og systemer som må fungere i krevende miljø.",
   },
   {
     name: "Tom Erik Lundesgaard",
     image: tomErikLundesgaard,
     competence: ["Embedded", "Bare-metal", "Zigbee", "Test/Debug", "Electronics", "Subsea"],
+    industries: ["Forsvar", "MedTech", "Subsea"],
+    experience: 20,
+    location: "Oslo",
     description: "Senior embedded-ingeniør med lang fartstid fra forsvar, medtech og subsea. Praktisk sterk på feilsøking, RF/kommunikasjon og samspillet SW–HW.",
   },
   {
     name: "Karl Eirik Bang Fossberg",
     image: karlEirikFossberg,
     competence: ["Robotics", "RTOS", "Embedded Linux", "Qt", "IoT", "CI/CD"],
+    industries: ["Robotikk", "Industri", "IoT"],
+    experience: 12,
+    location: "Oslo",
     description: "Senior embedded med dokumentert leveranse i robotsystemer og industrielle løsninger. Kombinerer arkitektur, motor/sensor-integrasjon og DevOps for raske og stabile leveranser.",
   },
   {
     name: "Rikke Solbjørg",
     image: rikkeSolbjorg,
     competence: ["MedTech", "Yocto", "Embedded Linux", "Verification", "CI/CD", "TDD"],
+    industries: ["MedTech", "Regulert utvikling"],
+    experience: 10,
+    location: "Oslo",
     description: "Senior embedded-profil med erfaring fra regulert medisinsk utvikling og høy kvalitet. Sterk på Yocto, testdrevet utvikling, automasjon og risikoreduserende engineering.",
   },
   {
     name: "Anders Larsen",
     image: null,
     competence: ["C++", "Qt", "Embedded Linux", "Leadership", "Graphics", "Developer Tooling"],
+    industries: ["Plattform", "Grafikk/3D", "Produktutvikling"],
+    experience: 15,
+    location: "Oslo",
     description: "Senior C++/Qt med ledelseserfaring og produktutvikling i skalerbare team. Solid på plattform, verktøy og robuste applikasjoner – også grafikk/3D ved behov.",
   },
   {
     name: "Trond Hübertz Emaus",
     image: null,
     competence: ["Rust", "C++", "Architecture", "Embedded", "CMake/Conan", "System Design"],
+    industries: ["Embedded", "Plattform", "Systemarkitektur"],
+    experience: 12,
+    location: "Oslo",
     description: "Arkitektursterk systemutvikler som bygger fundament og mønstre som øker teamhastighet. Bred bakgrunn fra embedded og plattformnære systemer.",
   },
   {
     name: "Christian Steffen Poljac",
     image: christianPoljac,
     competence: ["Security", "TrustZone", "RTOS", "Firmware", "Zephyr", "ISO15118"],
+    industries: ["EV/Charging", "Halvleder", "Sikkerhet"],
+    experience: 10,
+    location: "Oslo",
     description: "Senior embedded med tydelig sikkerhetsprofil (TrustZone, fuzzing, hardening) og erfaring fra EV/charging og SoC. Leverer robust, testbar firmware med høy kvalitet.",
   },
   {
     name: "Martin Tysseland",
     image: martinTysseland,
     competence: ["Embedded Linux", "Yocto", "C++", "CI/CD", "Docker", "Systems"],
+    industries: ["Produktutvikling", "DevOps", "Embedded"],
+    experience: 8,
+    location: "Oslo",
     description: "Embedded Linux/Yocto-utvikler med erfaring fra produktutvikling og drift/byggkjeder. God på helhet fra device-image til applikasjon og automasjon.",
   },
   {
     name: "Mattis Asp",
     image: mattisAsp,
     competence: ["Embedded", "Systems", "C/C++", "Architecture", "Integration"],
+    industries: ["Embedded", "Systemintegrasjon"],
+    experience: 10,
+    location: "Oslo",
     description: "Erfaren systemutvikler med bred embedded-kompetanse og evne til å levere robuste løsninger.",
   },
 ];
@@ -131,6 +167,20 @@ const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [activeConsultant, setActiveConsultant] = useState(0);
+
+  const scrollListRef = useRef<HTMLDivElement>(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+
+  useEffect(() => {
+    const el = scrollListRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 10;
+      setShowScrollHint(!atBottom);
+    };
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -214,22 +264,40 @@ const Index = () => {
 
           <motion.div {...fadeUp} className="mt-12">
             <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-12">
-              {/* Left — name list */}
-              <div className="flex flex-row md:flex-col gap-1.5 md:max-h-[400px] md:overflow-y-auto overflow-x-auto">
-                {CONSULTANTS.map((c, i) => (
-                  <button
-                    key={c.name}
-                    onClick={() => setActiveConsultant(i)}
-                    onMouseEnter={() => setActiveConsultant(i)}
-                    className={`text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal ${
-                      activeConsultant === i
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-secondary"
-                    }`}
-                  >
-                    {c.name}
-                  </button>
-                ))}
+              {/* Left — name list with scroll indicator */}
+              <div className="relative">
+                <div
+                  ref={scrollListRef}
+                  className="flex flex-row md:flex-col gap-1.5 md:max-h-[420px] md:overflow-y-auto overflow-x-auto scrollbar-thin"
+                >
+                  {CONSULTANTS.map((c, i) => (
+                    <button
+                      key={c.name}
+                      onClick={() => setActiveConsultant(i)}
+                      onMouseEnter={() => setActiveConsultant(i)}
+                      className={`text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal ${
+                        activeConsultant === i
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:bg-secondary"
+                      }`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+                {/* Scroll hint */}
+                {showScrollHint && (
+                  <div className="hidden md:flex absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent items-end justify-center pb-1 pointer-events-none">
+                    <motion.div
+                      animate={{ y: [0, 4, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                      className="flex items-center gap-1 text-[11px] text-muted-foreground"
+                    >
+                      <ChevronDown className="w-3.5 h-3.5" />
+                      <span>Scroll for flere</span>
+                    </motion.div>
+                  </div>
+                )}
               </div>
 
               {/* Right — profile */}
@@ -246,31 +314,63 @@ const Index = () => {
                     <img
                       src={CONSULTANTS[activeConsultant].image}
                       alt={CONSULTANTS[activeConsultant].name}
-                      className="w-28 h-28 rounded-2xl object-cover flex-shrink-0"
+                      className="w-36 h-36 rounded-2xl object-cover flex-shrink-0"
                     />
                   ) : (
-                    <div className="w-28 h-28 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl font-bold text-muted-foreground">
+                    <div className="w-36 h-36 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
+                      <span className="text-3xl font-bold text-muted-foreground">
                         {CONSULTANTS[activeConsultant].name.split(" ").map(n => n[0]).join("")}
                       </span>
                     </div>
                   )}
-                  <div>
-                    <h3 className="text-[18px] font-semibold text-foreground">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-[20px] font-semibold text-foreground">
                       {CONSULTANTS[activeConsultant].name}
                     </h3>
-                    <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed max-w-md">
+                    <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed max-w-lg">
                       {CONSULTANTS[activeConsultant].description}
                     </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {CONSULTANTS[activeConsultant].competence.map((c) => (
-                        <span
-                          key={c}
-                          className="px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
-                        >
-                          {c}
-                        </span>
-                      ))}
+
+                    {/* Meta info */}
+                    <div className="mt-3 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        {CONSULTANTS[activeConsultant].experience}+ års erfaring
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5" />
+                        {CONSULTANTS[activeConsultant].location}
+                      </span>
+                    </div>
+
+                    {/* Competence tags */}
+                    <div className="mt-4">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground/60 mb-1.5">Kompetanse</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {CONSULTANTS[activeConsultant].competence.map((c) => (
+                          <span
+                            key={c}
+                            className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Industry tags */}
+                    <div className="mt-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground/60 mb-1.5">Bransjeerfaring</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {CONSULTANTS[activeConsultant].industries.map((ind) => (
+                          <span
+                            key={ind}
+                            className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground"
+                          >
+                            {ind}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -334,7 +434,7 @@ const Index = () => {
 
       {/* ── Footer ── */}
       <footer className="bg-foreground text-background py-16 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-4 brightness-0 invert" />
@@ -350,9 +450,10 @@ const Index = () => {
               <li><button onClick={() => setIsOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Om STACQ</button></li>
               <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Karriere</button></li>
             </ul>
+            <p className="mt-4 text-[12px] text-background/40">STACQ AS · Org.nr: 932 575 442 MVA</p>
           </div>
 
-          {/* Kontakt */}
+          {/* Kontakt oss */}
           <div>
             <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kontakt oss</h4>
             <ul className="space-y-3 text-[14px] text-background/70">
@@ -364,21 +465,14 @@ const Index = () => {
                 <span className="block font-medium text-background/90">Thomas Eriksen</span>
                 <span>975 00 321</span> · <a href="mailto:thomas@stacq.no" className="hover:text-background transition-colors no-underline">thomas@stacq.no</a>
               </li>
-              <li className="pt-2 text-[13px] text-background/50">
-                Øvre Slottsgate 27, 0157 Oslo
-              </li>
             </ul>
           </div>
-        </div>
 
-        {/* Bottom bar */}
-        <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-background/40">
-            © {new Date().getFullYear()} STACQ AS · Org.nr: 932 575 442 MVA
-          </p>
-          <a href="https://linkedin.com/company/stacq" target="_blank" rel="noopener noreferrer" className="text-background/40 hover:text-background transition-colors no-underline">
-            <Linkedin className="w-4 h-4" />
-          </a>
+          {/* Besøk oss */}
+          <div>
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Besøk oss</h4>
+            <p className="text-[14px] text-background/70">Øvre Slottsgate 27, 0157 Oslo</p>
+          </div>
         </div>
       </footer>
 

@@ -134,23 +134,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ── Navbar ── */}
-      <nav className="fixed top-0 inset-x-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
-          <img src={stacqLogo} alt="STACQ" className="h-5" />
-          <button
-            onClick={() => setIsOverlayOpen(true)}
-            className="text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Om STACQ
-          </button>
-        </div>
-      </nav>
-
       {/* ── Hero ── */}
-      <section className="pt-32 pb-20 md:pt-44 md:pb-28 px-6 md:px-12">
+      <section className="pt-20 pb-20 md:pt-32 md:pb-28 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp}>
+            <img src={stacqLogo} alt="STACQ" className="h-6 mb-8" />
+          </motion.div>
             <h1
               className="text-foreground font-bold tracking-tight"
               style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}
@@ -331,19 +320,13 @@ const Index = () => {
             <p className="mt-4 text-muted-foreground text-[16px] max-w-lg mx-auto leading-relaxed">
               Vi ser etter erfarne utviklere med lidenskap for embedded-systemer. Bli en del av Norges mest spesialiserte fagmiljø.
             </p>
-            <div className="mt-8 flex items-center justify-center gap-4">
+            <div className="mt-8">
               <button
                 onClick={() => setIsJobOverlayOpen(true)}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-[15px] font-medium hover:opacity-90 transition-opacity"
               >
                 Søk nå
                 <span className="text-[16px]">→</span>
-              </button>
-              <button
-                onClick={() => setIsOverlayOpen(true)}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-[15px] font-medium border border-border text-foreground hover:bg-secondary transition-colors"
-              >
-                Mer om STACQ
               </button>
             </div>
           </motion.div>
@@ -352,9 +335,9 @@ const Index = () => {
 
       {/* ── Footer ── */}
       <footer className="bg-foreground text-background py-16 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           {/* Logo + tagline */}
-          <div className="md:col-span-1">
+          <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-4 brightness-0 invert" />
             <p className="text-[13px] text-background/60 leading-relaxed">
               Norges ledende konsulentselskap innen embedded-systemer og lavnivå-programmering.
@@ -370,23 +353,21 @@ const Index = () => {
             </ul>
           </div>
 
-          {/* Kompetanse */}
-          <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kompetanse</h4>
-            <ul className="space-y-2.5">
-              {["Embedded Linux", "Firmware", "RTOS", "Yocto", "Security"].map((t) => (
-                <li key={t} className="text-[14px] text-background/70">{t}</li>
-              ))}
-            </ul>
-          </div>
-
           {/* Kontakt */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kontakt</h4>
-            <ul className="space-y-2.5 text-[14px] text-background/70">
-              <li>Øvre Slottsgate 27</li>
-              <li>0157 Oslo</li>
-              <li className="pt-1"><a href="mailto:post@stacq.no" className="hover:text-background transition-colors no-underline">post@stacq.no</a></li>
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kontakt oss</h4>
+            <ul className="space-y-3 text-[14px] text-background/70">
+              <li>
+                <span className="block font-medium text-background/90">Jon Richard Nygaard</span>
+                <a href="mailto:jr@stacq.no" className="hover:text-background transition-colors no-underline">jr@stacq.no</a>
+              </li>
+              <li>
+                <span className="block font-medium text-background/90">Thomas Eriksen</span>
+                <span>975 00 321</span> · <a href="mailto:thomas@stacq.no" className="hover:text-background transition-colors no-underline">thomas@stacq.no</a>
+              </li>
+              <li className="pt-2 text-[13px] text-background/50">
+                Øvre Slottsgate 27, 0157 Oslo
+              </li>
             </ul>
           </div>
         </div>
@@ -394,7 +375,7 @@ const Index = () => {
         {/* Bottom bar */}
         <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-[12px] text-background/40">
-            © {new Date().getFullYear()} STACQ AS · Org.nr. 931 871 389
+            © {new Date().getFullYear()} STACQ AS · Org.nr: 932 575 442 MVA
           </p>
           <a href="https://linkedin.com/company/stacq" target="_blank" rel="noopener noreferrer" className="text-background/40 hover:text-background transition-colors no-underline">
             <Linkedin className="w-4 h-4" />

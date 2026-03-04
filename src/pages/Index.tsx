@@ -6,8 +6,16 @@ import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
 import stacqLogo from "@/assets/stacq-logo-black.png";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
-import jonRichard from "@/assets/jon-richard-nygaard.avif";
-import thomasEriksen from "@/assets/thomas-eriksen.avif";
+import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
+import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";
+import idaAbrahamsson from "@/assets/ida-abrahamsson.jpg";
+import trineOlsen from "@/assets/trine-olsen.jpg";
+import tomErikLundesgaard from "@/assets/tom-erik-lundesgaard.jpg";
+import karlEirikFossberg from "@/assets/karl-eirik-fossberg.jpg";
+import rikkeSolbjorg from "@/assets/rikke-solbjorg.jpg";
+import christianPoljac from "@/assets/christian-poljac.jpg";
+import martinTysseland from "@/assets/martin-tysseland.jpg";
+import mattisAsp from "@/assets/mattis-asp.jpg";
 
 const TECH_TAGS = [
   { label: "C / C++", icon: Code },
@@ -33,14 +41,76 @@ const DOMAINS = [
 
 const CONSULTANTS = [
   {
-    name: "Jon Richard Nygaard",
-    image: jonRichard,
-    competence: ["Embedded Linux", "Yocto", "C/C++", "BSP", "Device Drivers"],
+    name: "Kacper Wysocki",
+    image: kacperWysocki,
+    competence: ["Embedded Linux", "RTOS", "Security", "Firmware", "CI/CD", "Board Bring-up"],
+    description: "Senior embedded-profil med tung erfaring fra komplekse produkter (kamera/IoT) og sikkerhet. Sterk på arkitektur, ytelse, release/infrastruktur og teamledelse.",
   },
   {
-    name: "Thomas Eriksen",
-    image: thomasEriksen,
-    competence: ["Firmware", "RTOS", "ARM", "Zephyr", "Secure Boot"],
+    name: "Lars Rudolfsen",
+    image: larsRudolfsen,
+    competence: ["Autonomi", "Regulering", "STM32", "FreeRTOS", "CANopen", "Embedded Linux"],
+    description: "Kybernetikk/robotikk-ingeniør med erfaring fra sanntidsstyring og integrasjon i komplekse systemer. Spiss på regulering, sensorer og robust embedded kommunikasjon.",
+  },
+  {
+    name: "Ida Abrahamsson",
+    image: idaAbrahamsson,
+    competence: ["Embedded", "FreeRTOS", "CANopen", "IoT", "AWS", "C/C++"],
+    description: "Senior embedded- og kontrollsystemingeniør med bred erfaring fra IoT, automasjon og robotikk. Leverer prototyper og produksjonsklare løsninger med struktur og driv.",
+  },
+  {
+    name: "Trine Ø. Olsen",
+    image: trineOlsen,
+    competence: ["Defence", "C2", "RTOS", "Sensor Fusion", "Networking", "Robust Systems"],
+    description: "Embedded-ingeniør med erfaring fra forsvar og sikkerhetskritiske systemer (C2, sensorer, taktiske nett). Sterk på robusthet, integrasjon og systemer som må fungere i krevende miljø.",
+  },
+  {
+    name: "Tom Erik Lundesgaard",
+    image: tomErikLundesgaard,
+    competence: ["Embedded", "Bare-metal", "Zigbee", "Test/Debug", "Electronics", "Subsea"],
+    description: "Senior embedded-ingeniør med lang fartstid fra forsvar, medtech og subsea. Praktisk sterk på feilsøking, RF/kommunikasjon og samspillet SW–HW.",
+  },
+  {
+    name: "Karl Eirik Bang Fossberg",
+    image: karlEirikFossberg,
+    competence: ["Robotics", "RTOS", "Embedded Linux", "Qt", "IoT", "CI/CD"],
+    description: "Senior embedded med dokumentert leveranse i robotsystemer og industrielle løsninger. Kombinerer arkitektur, motor/sensor-integrasjon og DevOps for raske og stabile leveranser.",
+  },
+  {
+    name: "Rikke Solbjørg",
+    image: rikkeSolbjorg,
+    competence: ["MedTech", "Yocto", "Embedded Linux", "Verification", "CI/CD", "TDD"],
+    description: "Senior embedded-profil med erfaring fra regulert medisinsk utvikling og høy kvalitet. Sterk på Yocto, testdrevet utvikling, automasjon og risikoreduserende engineering.",
+  },
+  {
+    name: "Anders Larsen",
+    image: null,
+    competence: ["C++", "Qt", "Embedded Linux", "Leadership", "Graphics", "Developer Tooling"],
+    description: "Senior C++/Qt med ledelseserfaring og produktutvikling i skalerbare team. Solid på plattform, verktøy og robuste applikasjoner – også grafikk/3D ved behov.",
+  },
+  {
+    name: "Trond Hübertz Emaus",
+    image: null,
+    competence: ["Rust", "C++", "Architecture", "Embedded", "CMake/Conan", "System Design"],
+    description: "Arkitektursterk systemutvikler som bygger fundament og mønstre som øker teamhastighet. Bred bakgrunn fra embedded og plattformnære systemer.",
+  },
+  {
+    name: "Christian Steffen Poljac",
+    image: christianPoljac,
+    competence: ["Security", "TrustZone", "RTOS", "Firmware", "Zephyr", "ISO15118"],
+    description: "Senior embedded med tydelig sikkerhetsprofil (TrustZone, fuzzing, hardening) og erfaring fra EV/charging og SoC. Leverer robust, testbar firmware med høy kvalitet.",
+  },
+  {
+    name: "Martin Tysseland",
+    image: martinTysseland,
+    competence: ["Embedded Linux", "Yocto", "C++", "CI/CD", "Docker", "Systems"],
+    description: "Embedded Linux/Yocto-utvikler med erfaring fra produktutvikling og drift/byggkjeder. God på helhet fra device-image til applikasjon og automasjon.",
+  },
+  {
+    name: "Mattis Asp",
+    image: mattisAsp,
+    competence: ["Embedded", "Systems", "C/C++", "Architecture", "Integration"],
+    description: "Erfaren systemutvikler med bred embedded-kompetanse og evne til å levere robuste løsninger.",
   },
 ];
 

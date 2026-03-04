@@ -211,7 +211,7 @@ const FloatingChat = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onFocus={handleInputFocus}
-                placeholder="Spør eller chat med oss"
+                placeholder="Spør vår AI eller chat direkte med oss"
                 className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
               />
               <button
@@ -325,7 +325,7 @@ const FloatingChat = () => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder="Spør eller chat med oss"
+                        placeholder="Spør vår AI eller chat direkte med oss"
                         className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
                         disabled={isTyping}
                       />

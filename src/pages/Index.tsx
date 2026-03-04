@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
+import JobApplyOverlay from "@/components/JobApplyOverlay";
 import stacqLogo from "@/assets/stacq-logo-black.png";
+import stacqLogoWhite from "@/assets/stacq-logo-white.png";
+import jonRichard from "@/assets/jon-richard-nygaard.avif";
+import thomasEriksen from "@/assets/thomas-eriksen.avif";
 
 const TECH_TAGS = [
   { label: "C / C++", icon: Code },
@@ -17,10 +21,27 @@ const TECH_TAGS = [
 ];
 
 const DOMAINS = [
-  { title: "Forsvar", desc: "Kritiske systemer med strenge krav til robusthet og sikkerhet.", icon: Shield },
-  { title: "Medtech", desc: "Medisinsk-teknisk utstyr der pålitelighet redder liv.", icon: Heart },
-  { title: "Industri", desc: "Automasjon, IoT og sanntidsstyring for moderne produksjon.", icon: Factory },
-  { title: "Energi", desc: "Smart infrastruktur og styringssystemer for fremtidens energi.", icon: Zap },
+  { title: "Medisinsk teknologi", desc: "Pålitelig programvare for medisinsk utstyr der kvalitet redder liv.", icon: Heart },
+  { title: "Halvleder og chip-utvikling", desc: "Drivere, firmware og verktøykjeder for neste generasjons brikker.", icon: CircuitBoard },
+  { title: "Energi og elektrisk mobilitet", desc: "Styringssystemer for fornybar energi, lading og elektriske kjøretøy.", icon: Zap },
+  { title: "Forbrukerelektronikk", desc: "Embedded-løsninger for produkter som når millioner av brukere.", icon: Smartphone },
+  { title: "Forsvar og sikkerhetskritiske systemer", desc: "Robuste systemer som møter de strengeste kravene til sikkerhet.", icon: Shield },
+  { title: "Industriell automasjon", desc: "Sanntidsstyring og automasjon for moderne produksjonslinjer.", icon: Factory },
+  { title: "Telekom og kommunikasjon", desc: "Lavnivå-programvare for nettverksinfrastruktur og kommunikasjonsprotokoller.", icon: Radio },
+  { title: "IoT og smarte enheter", desc: "Tilkoblede enheter med fokus på strømeffektivitet og pålitelighet.", icon: Wifi },
+];
+
+const CONSULTANTS = [
+  {
+    name: "Jon Richard Nygaard",
+    image: jonRichard,
+    competence: ["Embedded Linux", "Yocto", "C/C++", "BSP", "Device Drivers"],
+  },
+  {
+    name: "Thomas Eriksen",
+    image: thomasEriksen,
+    competence: ["Firmware", "RTOS", "ARM", "Zephyr", "Secure Boot"],
+  },
 ];
 
 const fadeUp = {
@@ -38,6 +59,8 @@ const stagger = {
 
 const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
+  const [activeConsultant, setActiveConsultant] = useState(0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -119,6 +142,75 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ── Konsulenter ── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
+        <div className="max-w-6xl mx-auto">
+          <motion.div {...fadeUp}>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Våre konsulenter</p>
+            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.15 }}>
+              Ekspertene bak
+              <br />
+              <span className="text-muted-foreground font-normal">løsningene.</span>
+            </h2>
+          </motion.div>
+
+          <motion.div {...fadeUp} className="mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-8 md:gap-12">
+              {/* Left — name list */}
+              <div className="flex flex-row md:flex-col gap-2">
+                {CONSULTANTS.map((c, i) => (
+                  <button
+                    key={c.name}
+                    onClick={() => setActiveConsultant(i)}
+                    onMouseEnter={() => setActiveConsultant(i)}
+                    className={`text-left px-4 py-3 rounded-lg text-[15px] font-medium transition-all ${
+                      activeConsultant === i
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    {c.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Right — profile */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeConsultant}
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col sm:flex-row items-start gap-6"
+                >
+                  <img
+                    src={CONSULTANTS[activeConsultant].image}
+                    alt={CONSULTANTS[activeConsultant].name}
+                    className="w-28 h-28 rounded-2xl object-cover flex-shrink-0"
+                  />
+                  <div>
+                    <h3 className="text-[18px] font-semibold text-foreground">
+                      {CONSULTANTS[activeConsultant].name}
+                    </h3>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {CONSULTANTS[activeConsultant].competence.map((c) => (
+                        <span
+                          key={c}
+                          className="px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
+                        >
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Bransjer ── */}
       <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
         <div className="max-w-6xl mx-auto">
@@ -131,41 +223,46 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <motion.div {...stagger} className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {DOMAINS.map((d) => (
               <motion.div
                 key={d.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="p-6 rounded-xl border border-border bg-card hover:bg-secondary/30 transition-colors"
+                className="p-5 rounded-xl border border-border bg-card hover:bg-secondary/30 transition-colors"
               >
-                <d.icon className="w-5 h-5 text-primary mb-4" />
-                <h3 className="text-[16px] font-semibold text-foreground">{d.title}</h3>
-                <p className="mt-2 text-[14px] text-muted-foreground leading-relaxed">{d.desc}</p>
+                <d.icon className="w-5 h-5 text-primary mb-3" />
+                <h3 className="text-[15px] font-semibold text-foreground">{d.title}</h3>
+                <p className="mt-1.5 text-[13px] text-muted-foreground leading-relaxed">{d.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* ── Stilling ledig ── */}
       <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div {...fadeUp}>
-            <h2 className="text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.15 }}>
-              Klar for å bygge noe
-              <br />
-              som betyr noe?
+            <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Vi ansetter</p>
+            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.15 }}>
+              Senior Embedded Konsulent
             </h2>
-            <p className="mt-4 text-muted-foreground text-[16px] max-w-md mx-auto leading-relaxed">
-              Vi er alltid på utkikk etter dyktige embedded-utviklere som vil jobbe med prosjekter som gjør en forskjell.
+            <p className="mt-4 text-muted-foreground text-[16px] max-w-lg mx-auto leading-relaxed">
+              Vi ser etter erfarne utviklere med lidenskap for embedded-systemer. Bli en del av Norges mest spesialiserte fagmiljø.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex items-center justify-center gap-4">
               <button
-                onClick={() => setIsOverlayOpen(true)}
+                onClick={() => setIsJobOverlayOpen(true)}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-[15px] font-medium hover:opacity-90 transition-opacity"
               >
-                Mer om STACQ
+                Søk nå
                 <span className="text-[16px]">→</span>
+              </button>
+              <button
+                onClick={() => setIsOverlayOpen(true)}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-[15px] font-medium border border-border text-foreground hover:bg-secondary transition-colors"
+              >
+                Mer om STACQ
               </button>
             </div>
           </motion.div>
@@ -173,17 +270,60 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="py-8 px-6 md:px-12 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <img src={stacqLogo} alt="STACQ" className="h-4 opacity-40" />
-          <p className="text-[12px] text-muted-foreground">
-            STACQ AS · Øvre Slottsgate 27, 0157 Oslo · Org.nr. 931 871 389
+      <footer className="bg-foreground text-background py-16 px-6 md:px-12">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+          {/* Logo + tagline */}
+          <div className="md:col-span-1">
+            <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-4 brightness-0 invert" />
+            <p className="text-[13px] text-background/60 leading-relaxed">
+              Norges ledende konsulentselskap innen embedded-systemer og lavnivå-programmering.
+            </p>
+          </div>
+
+          {/* Selskap */}
+          <div>
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Selskap</h4>
+            <ul className="space-y-2.5">
+              <li><button onClick={() => setIsOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Om STACQ</button></li>
+              <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Karriere</button></li>
+            </ul>
+          </div>
+
+          {/* Kompetanse */}
+          <div>
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kompetanse</h4>
+            <ul className="space-y-2.5">
+              {["Embedded Linux", "Firmware", "RTOS", "Yocto", "Security"].map((t) => (
+                <li key={t} className="text-[14px] text-background/70">{t}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Kontakt */}
+          <div>
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kontakt</h4>
+            <ul className="space-y-2.5 text-[14px] text-background/70">
+              <li>Øvre Slottsgate 27</li>
+              <li>0157 Oslo</li>
+              <li className="pt-1"><a href="mailto:post@stacq.no" className="hover:text-background transition-colors no-underline">post@stacq.no</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-[12px] text-background/40">
+            © {new Date().getFullYear()} STACQ AS · Org.nr. 931 871 389
           </p>
+          <a href="https://linkedin.com/company/stacq" target="_blank" rel="noopener noreferrer" className="text-background/40 hover:text-background transition-colors no-underline">
+            <Linkedin className="w-4 h-4" />
+          </a>
         </div>
       </footer>
 
       {/* Overlays & Chat */}
       <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
+      <JobApplyOverlay isOpen={isJobOverlayOpen} onClose={() => setIsJobOverlayOpen(false)} />
       <FloatingChat />
     </div>
   );

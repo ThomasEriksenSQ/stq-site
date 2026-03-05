@@ -93,12 +93,16 @@ const FloatingChat = () => {
 
   const handleOpen = () => {
     setIsOpen(true);
-    setIsExpanded(true);
+    setIsExpanded(false);
   };
 
   const handleClose = () => {
     setIsOpen(false);
     setIsExpanded(false);
+  };
+
+  const handleExpand = () => {
+    setIsExpanded(true);
   };
 
   const handleSend = useCallback(

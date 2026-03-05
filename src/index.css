@@ -34,6 +34,11 @@
 
     --radius: 0.75rem;
 
+    /* Section surface tokens */
+    --surface-warm: 220 20% 98%;
+    --surface-cool: 213 25% 97%;
+    --surface-elevated: 0 0% 100%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 9%;
     --sidebar-primary: 213 94% 40%;

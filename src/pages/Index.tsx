@@ -306,124 +306,128 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <motion.div {...fadeUp} className="mt-14 md:mt-20">
-            <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-0 md:gap-10">
-              {/* Left — name list with scroll indicator */}
-              <div className="relative">
-                <div
-                  ref={scrollListRef}
-                  className="flex flex-row md:flex-col gap-0.5 md:overflow-y-auto overflow-x-auto rounded-xl bg-[hsl(var(--secondary))] p-2"
-                  style={{ maxHeight: `${profileHeight}px` }}
+          {/* Consultant card grid */}
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+            {CONSULTANTS.map((c, i) => (
+              <motion.div
+                key={c.name}
+                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
+              >
+                <button
+                  onClick={() => setExpandedConsultant(expandedConsultant === i ? null : i)}
+                  className={`w-full text-left group rounded-2xl border transition-all duration-300 overflow-hidden ${
+                    expandedConsultant === i
+                      ? "bg-background border-border shadow-lg ring-2 ring-primary/10"
+                      : "bg-background/80 border-border/60 hover:border-border hover:shadow-md"
+                  }`}
                 >
-                  {CONSULTANTS.map((c, i) => (
-                    <button
-                      key={c.name}
-                      onClick={() => setActiveConsultant(i)}
-                      onMouseEnter={() => setActiveConsultant(i)}
-                      className={`text-left px-3.5 py-2.5 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal border ${
-                        activeConsultant === i
-                          ? "bg-background text-foreground border-border shadow-sm"
-                          : "text-muted-foreground hover:text-foreground hover:bg-background/60 border-transparent"
-                      }`}
-                    >
-                      {c.name}
-                    </button>
-                  ))}
-                </div>
-                {/* Scroll hint */}
-                {showScrollHint && (
-                  <div className="hidden md:flex absolute -bottom-px left-0 right-0 pointer-events-none flex-col items-center">
-                    <div className="w-full h-16 bg-gradient-to-t from-[hsl(var(--secondary))] via-[hsl(var(--secondary)/0.8)] to-transparent rounded-b-xl" />
-                    <motion.div
-                      animate={{ y: [0, 3, 0] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                      className="flex items-center gap-1.5 -mt-8 px-3 py-1 rounded-full bg-background border border-border shadow-sm text-[11px] font-medium text-muted-foreground"
-                    >
-                      <ChevronDown className="w-3 h-3" />
-                      Scroll for flere
-                    </motion.div>
-                  </div>
-                )}
-              </div>
-
-              {/* Right — profile */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  ref={profileRef}
-                  key={activeConsultant}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -12 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex flex-col sm:flex-row items-start gap-6"
-                >
-                  {CONSULTANTS[activeConsultant].image ? (
-                    <img
-                      src={CONSULTANTS[activeConsultant].image}
-                      alt={CONSULTANTS[activeConsultant].name}
-                      className="w-36 h-36 rounded-2xl object-cover flex-shrink-0"
-                    />
+                  {c.image ? (
+                    <div className="aspect-[4/5] overflow-hidden">
+                      <img
+                        src={c.image}
+                        alt={c.name}
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                      />
+                    </div>
                   ) : (
-                    <div className="w-36 h-36 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
-                      <span className="text-3xl font-bold text-muted-foreground">
-                        {CONSULTANTS[activeConsultant].name.split(" ").map(n => n[0]).join("")}
+                    <div className="aspect-[4/5] bg-secondary flex items-center justify-center">
+                      <span className="text-4xl font-bold text-muted-foreground/30">
+                        {c.name.split(" ").map(n => n[0]).join("")}
                       </span>
                     </div>
                   )}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-[20px] font-semibold text-foreground">
-                      {CONSULTANTS[activeConsultant].name}
-                    </h3>
-                    <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed max-w-lg">
-                      {CONSULTANTS[activeConsultant].description}
-                    </p>
-
-                    {/* Meta info */}
-                    <div className="mt-3 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        {CONSULTANTS[activeConsultant].experience}+ års erfaring
+                  <div className="p-3.5 md:p-4">
+                    <h3 className="text-[14px] md:text-[15px] font-semibold text-foreground leading-tight">{c.name}</h3>
+                    <div className="mt-1.5 flex items-center gap-2.5 text-[11px] md:text-[12px] text-muted-foreground">
+                      <span className="inline-flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {c.experience}+ år
                       </span>
-                      <span className="inline-flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5" />
-                        {CONSULTANTS[activeConsultant].location}
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="w-3 h-3" />
+                        {c.location}
                       </span>
                     </div>
+                    <div className="mt-2.5 flex flex-wrap gap-1">
+                      {c.competence.slice(0, 3).map((comp) => (
+                        <span key={comp} className="px-2 py-0.5 text-[10px] md:text-[11px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground">
+                          {comp}
+                        </span>
+                      ))}
+                      {c.competence.length > 3 && (
+                        <span className="px-2 py-0.5 text-[10px] md:text-[11px] font-medium rounded-full text-muted-foreground/50">
+                          +{c.competence.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              </motion.div>
+            ))}
+          </motion.div>
 
-                    {/* Competence tags */}
-                    <div className="mt-4">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground/60 mb-1.5">Kompetanse</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {CONSULTANTS[activeConsultant].competence.map((c) => (
-                          <span
-                            key={c}
-                            className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
-                          >
-                            {c}
-                          </span>
-                        ))}
+          {/* Expanded detail panel */}
+          <AnimatePresence>
+            {expandedConsultant !== null && (
+              <motion.div
+                key={expandedConsultant}
+                initial={{ opacity: 0, y: -8, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ opacity: 0, y: -8, height: 0 }}
+                transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                className="mt-8 overflow-hidden"
+              >
+                <div className="bg-background rounded-2xl border border-border shadow-lg p-6 md:p-10">
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+                    {CONSULTANTS[expandedConsultant].image ? (
+                      <img
+                        src={CONSULTANTS[expandedConsultant].image}
+                        alt={CONSULTANTS[expandedConsultant].name}
+                        className="w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-28 h-28 md:w-36 md:h-36 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
+                        <span className="text-3xl font-bold text-muted-foreground/30">
+                          {CONSULTANTS[expandedConsultant].name.split(" ").map(n => n[0]).join("")}
+                        </span>
                       </div>
-                    </div>
-
-                    {/* Industry tags */}
-                    <div className="mt-3">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-muted-foreground/60 mb-1.5">Bransjeerfaring</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {CONSULTANTS[activeConsultant].industries.map((ind) => (
-                          <span
-                            key={ind}
-                            className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground"
-                          >
-                            {ind}
-                          </span>
-                        ))}
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between">
+                        <h3 className="text-[22px] md:text-[26px] font-semibold text-foreground tracking-tight">
+                          {CONSULTANTS[expandedConsultant].name}
+                        </h3>
+                        <button onClick={() => setExpandedConsultant(null)} className="text-muted-foreground hover:text-foreground transition-colors p-1 text-lg">✕</button>
+                      </div>
+                      <p className="mt-3 text-[15px] text-muted-foreground leading-relaxed max-w-xl">
+                        {CONSULTANTS[expandedConsultant].description}
+                      </p>
+                      <div className="mt-4 flex flex-wrap items-center gap-5 text-[14px] text-muted-foreground">
+                        <span className="inline-flex items-center gap-1.5"><Clock className="w-4 h-4" />{CONSULTANTS[expandedConsultant].experience}+ års erfaring</span>
+                        <span className="inline-flex items-center gap-1.5"><MapPin className="w-4 h-4" />{CONSULTANTS[expandedConsultant].location}</span>
+                      </div>
+                      <div className="mt-5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-2">Kompetanse</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {CONSULTANTS[expandedConsultant].competence.map((comp) => (
+                            <span key={comp} className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground">{comp}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mt-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-2">Bransjeerfaring</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {CONSULTANTS[expandedConsultant].industries.map((ind) => (
+                            <span key={ind} className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground">{ind}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 

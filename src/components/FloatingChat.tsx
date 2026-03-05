@@ -149,14 +149,35 @@ const FloatingChat = () => {
       setInput("");
 
       if (mode === "bot") {
-        setBotMessages((prev) => [...prev, { role: "user", content: msg }]);
+        const userMsg = { role: "user" as const, content: msg };
+        setBotMessages((prev) => [...prev, userMsg]);
         setIsTyping(true);
-        const response = getMockBotResponse(msg);
-        const delay = Math.min(400 + response.length * 2, 1200);
-        setTimeout(() => {
-          setBotMessages((prev) => [...prev, { role: "assistant", content: response }]);
-          setIsTyping(false);
-        }, delay);
+
+        const allMessages = [...botMessages, userMsg].map((m) => ({
+          role: m.role,
+          content: m.content,
+        }));
+
+        let assistantSoFar = "";
+        streamChat({
+          messages: allMessages,
+          onDelta: (chunk) => {
+            assistantSoFar += chunk;
+            setBotMessages((prev) => {
+              const last = prev[prev.length - 1];
+              if (last?.role === "assistant" && prev.length > botMessages.length + 1) {
+                return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
+              }
+              return [...prev, { role: "assistant" as const, content: assistantSoFar }];
+            });
+            setIsTyping(false);
+          },
+          onDone: () => setIsTyping(false),
+          onError: (errMsg) => {
+            setIsTyping(false);
+            toast.error(errMsg);
+          },
+        });
       } else if (slackRecipient) {
         const name = slackRecipient.name;
         const image = slackRecipient.image;

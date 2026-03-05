@@ -36,20 +36,14 @@ const COMPETENCE_GROUPS = [
   {
     title: "Embedded systemer",
     icon: Cpu,
-    description: "Utvikling av komplette embedded systemer – fra firmware til integrerte software-plattformer.",
-    tags: ["Firmware", "Hardware-integrasjon", "Sensorsystemer", "Systemarkitektur"],
+    description: "Utvikling av komplette embedded systemer – fra firmware på mikrokontrollere til Linux-baserte produkter.",
+    tags: ["Firmware", "Embedded Linux", "Yocto / Buildroot", "Linux-kjerne og drivere"],
   },
   {
     title: "Sanntidssystemer",
     icon: Zap,
     description: "Systemer der stabilitet, timing og determinisme er kritisk.",
     tags: ["RTOS (FreeRTOS, Zephyr, ThreadX)", "Multitråding", "Interrupt-styrte systemer", "Ytelsesoptimalisering"],
-  },
-  {
-    title: "Embedded Linux",
-    icon: Layers,
-    description: "Linux-baserte systemer for avanserte embedded produkter.",
-    tags: ["Embedded Linux", "Yocto / Buildroot", "Linux-kjerne", "Enhetsdrivere"],
   },
   {
     title: "Hardware-nær utvikling",

@@ -62,7 +62,27 @@ async function streamChat({
   onDone();
 }
 
-const SLACK_RESPONSES: Record<string, string[]> = {
+type Mode = "bot" | "slack";
+type SlackRecipient = { name: string; image: string; email: string } | null;
+
+interface Message {
+  role: "assistant" | "user";
+  content: string;
+  avatar?: string;
+  name?: string;
+}
+
+const SLACK_CONTACTS = [
+  { name: "Thomas Eriksen", image: thomasEriksen, email: "Partner" },
+  { name: "Jon Richard Nygaard", image: jonRichard, email: "Partner" },
+];
+
+const BOT_SUGGESTIONS = [
+  { label: "Kjernekompetanse", query: "Hva er STACQs kjernekompetanse?" },
+  { label: "Stilling ledig", query: "Har dere ledige stillinger?" },
+  { label: "Håndbok", query: "Fortell meg om håndboken deres" },
+];
+
   "Thomas Eriksen": [
     "Hei! Takk for meldingen. Jeg tar en titt og vender tilbake snart 👋",
     "God melding! La meg sjekke litt og komme tilbake til deg.",

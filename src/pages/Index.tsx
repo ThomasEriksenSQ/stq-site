@@ -286,28 +286,31 @@ const Index = () => {
       </section>
 
       {/* ── Kompetanse ── */}
-      <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp}>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Kompetanse</p>
-            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.15 }}>
+      <section className="py-24 md:py-36 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+          <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Kompetanse</p>
+            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
               Hele embedded-stacken.
               <br />
               <span className="text-muted-foreground font-normal">Fra hardware til sky.</span>
             </h2>
+            <p className="mt-4 text-muted-foreground text-[16px] leading-relaxed">
+              Vi dekker alle lag i embedded-utvikling — fra mikrokontrollere og drivere til systemprogramvare og DevOps.
+            </p>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {COMPETENCE_GROUPS.map((group) => (
               <motion.div
                 key={group.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="p-5 rounded-xl border border-border bg-card"
+                className="p-6 rounded-2xl border border-border bg-card hover:shadow-md hover:border-border/80 transition-all duration-300"
               >
-                <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-muted-foreground mb-3">{group.title}</h3>
-                <div className="flex flex-col gap-1.5">
+                <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-primary mb-4">{group.title}</h3>
+                <div className="flex flex-col gap-2">
                   {group.items.map((item) => (
-                    <span key={item} className="text-[14px] text-foreground">{item}</span>
+                    <span key={item} className="text-[15px] text-foreground">{item}</span>
                   ))}
                 </div>
               </motion.div>
@@ -317,18 +320,21 @@ const Index = () => {
       </section>
 
       {/* ── Konsulenter ── */}
-      <section id="consultants" className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp}>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Våre konsulenter</p>
-            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.15 }}>
+      <section id="consultants" className="py-24 md:py-36 px-6 md:px-12 bg-secondary/30">
+        <div className="max-w-5xl mx-auto">
+          <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Våre konsulenter</p>
+            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
               Ekspertene bak
               <br />
               <span className="text-muted-foreground font-normal">løsningene.</span>
             </h2>
+            <p className="mt-4 text-muted-foreground text-[16px] leading-relaxed">
+              12 spesialiserte konsulenter med dyp erfaring fra kritiske embedded-prosjekter.
+            </p>
           </motion.div>
 
-          <motion.div {...fadeUp} className="mt-12">
+          <motion.div {...fadeUp} className="mt-14 md:mt-20">
             <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-0 md:gap-10">
               {/* Left — name list with scroll indicator */}
               <div className="relative">
@@ -450,27 +456,32 @@ const Index = () => {
       </section>
 
       {/* ── Bransjer ── */}
-      <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp}>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Bransjer</p>
-            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.15 }}>
+      <section className="py-24 md:py-36 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+          <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Bransjer</p>
+            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
               Der koden møter
               <br />
               <span className="text-muted-foreground font-normal">den virkelige verden.</span>
             </h2>
+            <p className="mt-4 text-muted-foreground text-[16px] leading-relaxed">
+              Vi leverer løsninger til bransjer der kvalitet, sikkerhet og pålitelighet er avgjørende.
+            </p>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {DOMAINS.map((d) => (
               <motion.div
                 key={d.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="p-5 rounded-xl border border-border bg-card hover:bg-secondary/30 transition-colors"
+                className="group p-6 rounded-2xl border border-border bg-card hover:shadow-md hover:border-border/80 transition-all duration-300"
               >
-                <d.icon className="w-5 h-5 text-primary mb-3" />
+                <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center mb-4 group-hover:bg-primary/12 transition-colors">
+                  <d.icon className="w-5 h-5 text-primary" />
+                </div>
                 <h3 className="text-[15px] font-semibold text-foreground">{d.title}</h3>
-                <p className="mt-1.5 text-[13px] text-muted-foreground leading-relaxed">{d.desc}</p>
+                <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed">{d.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -478,20 +489,20 @@ const Index = () => {
       </section>
 
       {/* ── Stilling ledig ── */}
-      <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-24 md:py-36 px-6 md:px-12 bg-foreground text-background">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.div {...fadeUp}>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Vi ansetter</p>
-            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1.15 }}>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-background/50">Vi ansetter</p>
+            <h2 className="mt-4 font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
               Senior Embedded Konsulent
             </h2>
-            <p className="mt-4 text-muted-foreground text-[16px] max-w-lg mx-auto leading-relaxed">
+            <p className="mt-5 text-background/70 text-[17px] max-w-lg mx-auto leading-relaxed">
               Vi ser etter erfarne utviklere med lidenskap for embedded-systemer. Bli en del av Norges mest spesialiserte fagmiljø.
             </p>
-            <div className="mt-8">
+            <div className="mt-10">
               <button
                 onClick={() => setIsJobOverlayOpen(true)}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-[15px] font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2.5 bg-background text-foreground px-8 py-3.5 rounded-full text-[15px] font-semibold hover:opacity-90 transition-opacity"
               >
                 Søk nå
                 <span className="text-[16px]">→</span>
@@ -502,36 +513,36 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="bg-foreground text-background py-16 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+      <footer className="bg-foreground text-background py-20 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Logo + tagline */}
           <div>
-            <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-4 brightness-0 invert" />
-            <p className="text-[13px] text-background/60 leading-relaxed">
+            <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-5 brightness-0 invert" />
+            <p className="text-[14px] text-background/50 leading-relaxed">
               Norges ledende konsulentselskap innen embedded-systemer og lavnivå-programmering.
             </p>
           </div>
 
           {/* Selskap */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Selskap</h4>
-            <ul className="space-y-2.5">
-              <li><button onClick={() => setIsOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Om STACQ</button></li>
-              <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[14px] text-background/70 hover:text-background transition-colors">Karriere</button></li>
+            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Selskap</h4>
+            <ul className="space-y-3">
+              <li><button onClick={() => setIsOverlayOpen(true)} className="text-[14px] text-background/65 hover:text-background transition-colors">Om STACQ</button></li>
+              <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[14px] text-background/65 hover:text-background transition-colors">Karriere</button></li>
             </ul>
-            <p className="mt-4 text-[12px] text-background/40">STACQ AS · Org.nr: 932 575 442 MVA</p>
+            <p className="mt-5 text-[12px] text-background/30">STACQ AS · Org.nr: 932 575 442 MVA</p>
           </div>
 
           {/* Kontakt oss */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Kontakt oss</h4>
-            <ul className="space-y-3 text-[14px] text-background/70">
+            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Kontakt oss</h4>
+            <ul className="space-y-4 text-[14px] text-background/65">
               <li>
-                <span className="block font-medium text-background/90">Jon Richard Nygaard</span>
+                <span className="block font-medium text-background/85">Jon Richard Nygaard</span>
                 <a href="mailto:jr@stacq.no" className="hover:text-background transition-colors no-underline">jr@stacq.no</a>
               </li>
               <li>
-                <span className="block font-medium text-background/90">Thomas Eriksen</span>
+                <span className="block font-medium text-background/85">Thomas Eriksen</span>
                 <span>975 00 321</span> · <a href="mailto:thomas@stacq.no" className="hover:text-background transition-colors no-underline">thomas@stacq.no</a>
               </li>
             </ul>
@@ -539,8 +550,8 @@ const Index = () => {
 
           {/* Besøk oss */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-[0.08em] text-background/40 mb-4">Besøk oss</h4>
-            <p className="text-[14px] text-background/70">Øvre Slottsgate 27, 0157 Oslo</p>
+            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Besøk oss</h4>
+            <p className="text-[14px] text-background/65">Øvre Slottsgate 27, 0157 Oslo</p>
           </div>
         </div>
       </footer>

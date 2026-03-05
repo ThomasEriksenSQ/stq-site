@@ -60,7 +60,7 @@ const SLACK_RESPONSES: Record<string, string[]> = {
 };
 
 const FloatingChat = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState<Mode>("bot");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);

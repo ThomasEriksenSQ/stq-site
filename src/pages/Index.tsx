@@ -210,6 +210,10 @@ const stagger = {
 };
 
 const Index = () => {
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
+  const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
+
   // Image map for local fallback (until images are in Storage)
   const localImageMap: Record<string, string> = {
     "Kacper Wysocki": kacperWysocki,

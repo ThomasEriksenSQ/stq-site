@@ -229,7 +229,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="relative pt-20 pb-20 md:pt-32 md:pb-28 px-6 md:px-12">
+      <section className="relative min-h-screen flex items-center px-6 md:px-12">
         <PcbPattern />
         <div className="max-w-6xl mx-auto">
           <div>

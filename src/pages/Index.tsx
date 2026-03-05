@@ -309,7 +309,7 @@ const Index = () => {
                 <div
                   ref={scrollListRef}
                   className="flex flex-row md:flex-col gap-0.5 md:overflow-y-auto overflow-x-auto rounded-xl bg-[hsl(var(--secondary))] p-2"
-                  style={{ maxHeight: "var(--consultant-panel-h, 420px)" }}
+                  style={{ maxHeight: `${profileHeight}px` }}
                 >
                   {CONSULTANTS.map((c, i) => (
                     <button

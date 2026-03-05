@@ -1,0 +1,11 @@
+
+INSERT INTO public.knowledge_base (category, title, content, sort_order) VALUES
+('kompetanse', 'Kjernekompetanse', E'Vi jobber med hele embedded-stacken:\n\n• C / C++ — Firmware & systemkode\n• Rust — Sikker lavnivåkode\n• RTOS — FreeRTOS, Zephyr m.fl.\n• Embedded Linux — Kernel, drivere, BSP\n• Yocto — Distribusjon & bygg\n• Security — TrustZone, sikker boot, krypto\n• ARM — Cortex-M/A, RISC-V\n• CI / Test — Hardware-in-the-loop, automatisert test', 1),
+('stillinger', 'Ledige stillinger', E'Vi ser etter Senior Embedded Konsulenter.\n\nKrav:\n• 5+ års erfaring\n• C / C++ / Rust (ett eller flere)\n• Embedded systemer / RTOS / Embedded Linux\n• Trives i team og tar ansvar for kvalitet\n\nKontakt jr@stacq.no for en uformell prat.', 2),
+('lønn', 'Lønn og provisjon', 'Vi tilbyr 70% provisjonsbasert lønn av fakturert beløp. Dette inkluderer arbeidsgiveravgift, pensjon og feriepenger.', 3),
+('forsikring', 'Forsikring og pensjon', E'Vi har solide ordninger:\n\n• 6% innskuddspensjon fra første krone\n• Yrkesskadeforsikring\n• Helseforsikring\n• Fritidsulykke\n• Gruppeliv\n• Uførepensjon', 4),
+('ferie', 'Ferie og permisjon', 'Du står fritt til å ta så mye ferie du ønsker, avtalt med kunden. Ved familieforøkelse gir vi kr 100.000 i gave.', 5),
+('håndbok', 'STACQ-håndboken', E'STACQ-håndboken dekker:\n\n• Lønn — 70% provisjonsmodell\n• Arbeidstid — Frihet under ansvar\n• Utstyr — Fritt valg av verktøy\n• Kjerneverdier — Kvalitet, stolthet, langsiktighet\n• Forsikring & pensjon — Full pakke', 6),
+('kontakt', 'Kontaktinformasjon', E'Ta gjerne kontakt:\n\n• Jon Richard Nygaard — 93 287 267 — jr@stacq.no\n• Thomas Eriksen — 97 500 321 — thomas@stacq.no', 7),
+('bransjer', 'Bransjer vi jobber i', E'Vi jobber innen:\n\n• Medisinsk teknologi\n• Halvleder og chip-utvikling\n• Energi og elektrisk mobilitet\n• Forbrukerelektronikk\n• Forsvar og sikkerhetskritiske systemer\n• Industriell automasjon\n• Telekom og kommunikasjon\n• IoT og smarte enheter', 8),
+('om', 'Om STACQ', 'STACQ er et norsk konsulentselskap som spesialiserer seg på embedded software og maskinvare-nær utvikling. Vi leverer eksperter til prosjekter innen embedded systemer, fra firmware og RTOS til embedded Linux og sikkerhetskritiske applikasjoner. Selskapet ble grunnlagt med en visjon om å samle de beste embedded-utviklerne i Norge under ett tak.', 9);

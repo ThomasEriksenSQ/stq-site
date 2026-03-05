@@ -359,10 +359,21 @@ const Index = () => {
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[4/5] bg-secondary flex items-center justify-center">
-                      <span className="text-4xl font-bold text-muted-foreground/30">
-                        {c.name.split(" ").map(n => n[0]).join("")}
-                      </span>
+                    <div className="aspect-[4/5] bg-gradient-to-br from-secondary via-secondary to-muted flex flex-col items-center justify-center relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-[0.04]">
+                        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                          <pattern id={`grid-${i}`} width="24" height="24" patternUnits="userSpaceOnUse">
+                            <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-foreground"/>
+                          </pattern>
+                          <rect width="100%" height="100%" fill={`url(#grid-${i})`} />
+                        </svg>
+                      </div>
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 relative z-10">
+                        <span className="text-2xl md:text-3xl font-bold text-primary/60 tracking-tight">
+                          {c.name.split(" ").map(n => n[0]).join("")}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-muted-foreground/50 font-medium relative z-10">Bilde kommer</span>
                     </div>
                   )}
                   <div className="p-3.5 md:p-4">
@@ -430,8 +441,8 @@ const Index = () => {
                           className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover flex-shrink-0"
                         />
                       ) : (
-                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
-                          <span className="text-3xl font-bold text-muted-foreground/30">
+                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-secondary to-muted border border-primary/10 flex items-center justify-center flex-shrink-0">
+                          <span className="text-2xl md:text-3xl font-bold text-primary/50 tracking-tight">
                             {CONSULTANTS[expandedConsultant].name.split(" ").map(n => n[0]).join("")}
                           </span>
                         </div>

@@ -263,13 +263,18 @@ const Index = () => {
       <section className="py-24 md:py-36 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Kompetanse</p>
-            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-8 bg-primary/40" />
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-primary">Kompetanse</p>
+              <span className="h-px w-8 bg-primary/40" />
+            </div>
+            <h2 className="text-foreground font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
               Hele embedded-stacken.
-              <br />
-              <span className="text-muted-foreground font-normal">Fra hardware til sky.</span>
             </h2>
-            <p className="mt-4 text-muted-foreground text-[16px] leading-relaxed">
+            <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+              Fra hardware til sky.
+            </p>
+            <p className="mt-5 text-muted-foreground text-[15px] leading-relaxed max-w-lg mx-auto">
               Vi dekker alle lag i embedded-utvikling — fra mikrokontrollere og drivere til systemprogramvare og DevOps.
             </p>
           </motion.div>
@@ -297,13 +302,18 @@ const Index = () => {
       <section id="consultants" className="py-24 md:py-36 px-6 md:px-12 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Våre konsulenter</p>
-            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-8 bg-primary/40" />
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-primary">Våre konsulenter</p>
+              <span className="h-px w-8 bg-primary/40" />
+            </div>
+            <h2 className="text-foreground font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
               Ekspertene bak
-              <br />
-              <span className="text-muted-foreground font-normal">løsningene.</span>
             </h2>
-            <p className="mt-4 text-muted-foreground text-[16px] leading-relaxed">
+            <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+              løsningene.
+            </p>
+            <p className="mt-5 text-muted-foreground text-[15px] leading-relaxed max-w-lg mx-auto">
               12 spesialiserte konsulenter med dyp erfaring fra kritiske embedded-prosjekter.
             </p>
           </motion.div>
@@ -483,13 +493,18 @@ const Index = () => {
       <section className="py-24 md:py-36 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">Bransjer</p>
-            <h2 className="mt-4 text-foreground font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-8 bg-primary/40" />
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-primary">Bransjer</p>
+              <span className="h-px w-8 bg-primary/40" />
+            </div>
+            <h2 className="text-foreground font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
               Der koden møter
-              <br />
-              <span className="text-muted-foreground font-normal">den virkelige verden.</span>
             </h2>
-            <p className="mt-4 text-muted-foreground text-[16px] leading-relaxed">
+            <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+              den virkelige verden.
+            </p>
+            <p className="mt-5 text-muted-foreground text-[15px] leading-relaxed max-w-lg mx-auto">
               Vi leverer løsninger til bransjer der kvalitet, sikkerhet og pålitelighet er avgjørende.
             </p>
           </motion.div>

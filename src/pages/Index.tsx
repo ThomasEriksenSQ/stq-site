@@ -273,9 +273,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Kompetanse ── */}
-      <section className="relative py-24 md:py-36 px-6 md:px-12">
-        <DotGridPattern className="opacity-[0.45]" />
+      {/* ── Kompetanse ── warm tinted surface with dot-grid vias */}
+      <section className="relative py-24 md:py-36 px-6 md:px-12" style={{ backgroundColor: "hsl(var(--surface-warm))" }}>
+        <DotGridPattern />
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2.5 mb-5">
@@ -321,9 +321,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Konsulenter ── */}
-      <section id="consultants" className="relative py-24 md:py-36 px-6 md:px-12 bg-secondary/30">
-        <TracePattern className="opacity-[0.35]" />
+      {/* ── Konsulenter ── cool blue tint with PCB traces */}
+      <section id="consultants" className="relative py-24 md:py-36 px-6 md:px-12" style={{ backgroundColor: "hsl(var(--surface-cool))" }}>
+        <TracePattern />
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2.5 mb-5">
@@ -509,9 +509,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Bransjer ── */}
-      <section className="relative py-24 md:py-36 px-6 md:px-12">
-        <PinGridPattern className="opacity-[0.6]" />
+      {/* ── Bransjer ── blue-tinted surface with IC pin grid */}
+      <section className="relative py-24 md:py-36 px-6 md:px-12" style={{ backgroundColor: "hsl(var(--surface-blue))" }}>
+        <PinGridPattern />
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2.5 mb-5">

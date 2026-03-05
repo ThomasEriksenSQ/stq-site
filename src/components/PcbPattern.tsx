@@ -99,7 +99,7 @@ const PcbPattern = () => {
   }, []);
 
   return (
-    <div className="absolute inset-x-0 top-0 h-[360px] overflow-hidden pointer-events-none" aria-hidden="true">
+    <div className="absolute inset-x-0 top-0 h-[200px] overflow-hidden pointer-events-none" aria-hidden="true">
       <svg
         className="w-full h-full"
         viewBox="0 0 1400 360"

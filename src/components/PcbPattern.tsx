@@ -71,7 +71,7 @@ const PcbPattern = () => {
       );
       // Traces near edges are more visible, center fades out
       const edgeFade = Math.min(1, centerDist * 0.8);
-      const opacity = 0.06 + edgeFade * 0.12 * r4;
+      const opacity = 0.03 + edgeFade * 0.07 * r4;
 
       result.push({
         points,
@@ -96,7 +96,7 @@ const PcbPattern = () => {
       const distFromCenter = Math.sqrt(
         Math.pow((x - 700) / 700, 2) + Math.pow((y - 180) / 180, 2)
       );
-      const opacity = 0.04 + Math.min(distFromCenter, 1) * 0.1 * r3;
+      const opacity = 0.02 + Math.min(distFromCenter, 1) * 0.06 * r3;
       dots.push({ x, y, r: 1.5 + r3 * 2, opacity });
     }
     return dots;

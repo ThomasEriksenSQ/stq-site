@@ -229,33 +229,59 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="relative min-h-screen flex items-center px-6 md:px-12">
+      <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12">
         <PcbPattern />
-        <div className="max-w-6xl mx-auto">
-          <div>
-            <img src={stacqLogo} alt="STACQ" className="h-10 md:h-12 mb-8" />
-            <h1
-              className="text-foreground font-bold tracking-tight"
-              style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Logo */}
+          <img src={stacqLogo} alt="STACQ" className="h-8 md:h-10 mx-auto mb-10 md:mb-14" />
+
+          {/* Headline */}
+          <h1
+            className="text-foreground font-bold tracking-tight"
+            style={{ fontSize: "clamp(40px, 5.5vw, 72px)", lineHeight: 1.06, letterSpacing: "-0.035em" }}
+          >
+            Embedded, firmware
+            <br />
+            og C/C++/Rust konsulenter
+          </h1>
+
+          {/* Supporting copy */}
+          <p
+            className="mt-6 md:mt-8 text-muted-foreground mx-auto max-w-xl"
+            style={{ fontSize: "clamp(16px, 1.8vw, 20px)", lineHeight: 1.55 }}
+          >
+            Vi leverer Norges beste spesialister innen embedded&nbsp;systems, firmware og lavnivå-programmering.
+          </p>
+
+          {/* CTA */}
+          <div className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => {
+                document.getElementById("consultants")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-8 py-3.5 bg-foreground text-background font-semibold text-[15px] rounded-full hover:opacity-90 transition-opacity"
             >
-              Embedded, firmware
-              <br />
-              og C/C++/Rust konsulenter
-            </h1>
+              Se våre konsulenter
+            </button>
+            <button
+              onClick={() => setIsJobOverlayOpen(true)}
+              className="px-8 py-3.5 border border-border text-foreground font-medium text-[15px] rounded-full hover:bg-secondary/80 transition-colors"
+            >
+              Vi ansetter
+            </button>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-2">
+          {/* Tags */}
+          <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-2">
             {TECH_TAGS.map((tag) => (
               <span
                 key={tag.label}
-                className="inline-flex items-center gap-1.5 px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground hover:bg-secondary transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
               >
-                
                 {tag.label}
               </span>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -291,7 +317,7 @@ const Index = () => {
       </section>
 
       {/* ── Konsulenter ── */}
-      <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
+      <section id="consultants" className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp}>
             <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Våre konsulenter</p>

@@ -317,7 +317,7 @@ const Index = () => {
       </section>
 
       {/* ── Konsulenter ── */}
-      <section className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
+      <section id="consultants" className="py-20 md:py-28 px-6 md:px-12 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp}>
             <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">Våre konsulenter</p>

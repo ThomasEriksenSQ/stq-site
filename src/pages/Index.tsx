@@ -452,7 +452,7 @@ const Index = () => {
                         <div className="flex items-center gap-3">
                           <img src={jonRichardContact} alt="Jon Richard Nygaard" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
                           <div>
-                            <p className="text-[14px] font-semibold text-foreground">Jon Richard Nygaard</p>
+                            <p className="text-[14px] font-semibold text-foreground">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></p>
                             <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
                               <a href="tel:93287267" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Phone className="w-3 h-3" />932 87 267</a>
                               <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Mail className="w-3 h-3" />jr@stacq.no</a>
@@ -462,7 +462,7 @@ const Index = () => {
                         <div className="flex items-center gap-3">
                           <img src={thomasEriksenContact} alt="Thomas Eriksen" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
                           <div>
-                            <p className="text-[14px] font-semibold text-foreground">Thomas Eriksen</p>
+                            <p className="text-[14px] font-semibold text-foreground">Thomas Eriksen <span className="font-normal text-muted-foreground">· Partner</span></p>
                             <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
                               <a href="tel:97500321" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Phone className="w-3 h-3" />975 00 321</a>
                               <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Mail className="w-3 h-3" />thomas@stacq.no</a>
@@ -562,11 +562,11 @@ const Index = () => {
             <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Kontakt oss</h4>
             <ul className="space-y-4 text-[14px] text-background/65">
               <li>
-                <span className="block font-medium text-background/85">Jon Richard Nygaard</span>
+                <span className="block font-medium text-background/85">Jon Richard Nygaard <span className="font-normal text-background/50">· Partner</span></span>
                 <span>932 87 267</span> · <a href="mailto:jr@stacq.no" className="hover:text-background transition-colors no-underline">jr@stacq.no</a>
               </li>
               <li>
-                <span className="block font-medium text-background/85">Thomas Eriksen</span>
+                <span className="block font-medium text-background/85">Thomas Eriksen <span className="font-normal text-background/50">· Partner</span></span>
                 <span>975 00 321</span> · <a href="mailto:thomas@stacq.no" className="hover:text-background transition-colors no-underline">thomas@stacq.no</a>
               </li>
             </ul>

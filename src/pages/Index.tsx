@@ -34,28 +34,46 @@ const TECH_TAGS = [
 
 const COMPETENCE_GROUPS = [
   {
-    title: "Språk",
-    items: ["C", "C++", "Rust", "Python"],
+    title: "Embedded systemer",
+    icon: Cpu,
+    description: "Utvikling av komplette embedded systemer – fra firmware til integrerte software-plattformer.",
+    tags: ["Firmware", "Hardware-integrasjon", "Sensorsystemer", "Systemarkitektur"],
   },
   {
-    title: "Systemer",
-    items: ["Embedded Linux", "Firmware Development", "RTOS", "Bare-metal Systems"],
+    title: "Sanntidssystemer",
+    icon: Zap,
+    description: "Systemer der stabilitet, timing og determinisme er kritisk.",
+    tags: ["RTOS (FreeRTOS, Zephyr, ThreadX)", "Multitråding", "Interrupt-styrte systemer", "Ytelsesoptimalisering"],
   },
   {
-    title: "Hardware",
-    items: ["Microcontrollers", "ARM Cortex", "Hardware Integration", "Board Bring-up"],
+    title: "Embedded Linux",
+    icon: Layers,
+    description: "Linux-baserte systemer for avanserte embedded produkter.",
+    tags: ["Embedded Linux", "Yocto / Buildroot", "Linux-kjerne", "Enhetsdrivere"],
   },
   {
-    title: "Software / system",
-    items: ["System Software", "Device Drivers", "Networking Protocols", "Performance Optimization"],
+    title: "Hardware-nær utvikling",
+    icon: CircuitBoard,
+    description: "Integrasjon mellom programvare, elektronikk og fysiske systemer.",
+    tags: ["Mikrokontrollere", "ARM Cortex", "Board bring-up", "Hardware-debugging"],
   },
   {
-    title: "Tools / plattform",
-    items: ["Yocto", "Build Systems (CMake / Bazel / Make)", "CI/CD"],
+    title: "Protokoller og kommunikasjon",
+    icon: Radio,
+    description: "Kommunikasjon mellom embedded systemer og andre systemer.",
+    tags: ["SPI / I2C / UART", "CAN / CANopen", "TCP/IP", "Industrielle protokoller"],
   },
   {
-    title: "Kvalitet",
-    items: ["Testing & Debugging"],
+    title: "Programmering",
+    icon: Code,
+    description: null,
+    tags: ["C", "C++", "Rust", "Python"],
+  },
+  {
+    title: "Testing og kvalitet",
+    icon: Shield,
+    description: "Robuste systemer krever systematisk testing.",
+    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Sikker firmware"],
   },
 ];
 
@@ -269,28 +287,39 @@ const Index = () => {
               <span className="h-px w-8 bg-primary/40" />
             </div>
             <h2 className="text-foreground font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
-              Hele embedded-stacken.
+              Ekspertise i embedded systemer
             </h2>
             <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
-              Fra hardware til sky.
+              Lavnivå programmering og hardware-nær utvikling
             </p>
           </motion.div>
 
           <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {COMPETENCE_GROUPS.map((group) => (
-              <motion.div
-                key={group.title}
-                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="p-6 rounded-2xl border border-border bg-card hover:shadow-md hover:border-border/80 transition-all duration-300"
-              >
-                <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-primary mb-4">{group.title}</h3>
-                <div className="flex flex-col gap-2">
-                  {group.items.map((item) => (
-                    <span key={item} className="text-[15px] text-foreground">{item}</span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+            {COMPETENCE_GROUPS.map((group) => {
+              const Icon = group.icon;
+              return (
+                <motion.div
+                  key={group.title}
+                  variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
+                  className="group p-6 rounded-2xl border border-border bg-card hover:shadow-md hover:border-primary/20 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/15 transition-colors">
+                      <Icon className="w-[18px] h-[18px]" />
+                    </div>
+                    <h3 className="text-[15px] font-bold tracking-tight text-foreground">{group.title}</h3>
+                  </div>
+                  {group.description && (
+                    <p className="text-[13px] leading-relaxed text-muted-foreground mb-4">{group.description}</p>
+                  )}
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.tags.map((tag) => (
+                      <span key={tag} className="text-[12px] px-2.5 py-1 rounded-full bg-secondary text-muted-foreground border border-border/60">{tag}</span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>

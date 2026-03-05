@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown, Phone, Mail, Activity, Microchip, BatteryCharging, Monitor, Radar, Cog, Signal, Router } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
@@ -212,6 +214,43 @@ const Index = () => {
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
+  // Image map for local fallback (until images are in Storage)
+  const localImageMap: Record<string, string> = {
+    "Kacper Wysocki": kacperWysocki,
+    "Lars Rudolfsen": larsRudolfsen,
+    "Ida Abrahamsson": idaAbrahamsson,
+    "Trine Ø. Olsen": trineOlsen,
+    "Tom Erik Lundesgaard": tomErikLundesgaard,
+    "Karl Eirik Bang Fossberg": karlEirikFossberg,
+    "Rikke Solbjørg": rikkeSolbjorg,
+    "Christian Steffen Poljac": christianPoljac,
+    "Martin Tysseland": martinTysseland,
+    "Mattis Asp": mattisAsp,
+  };
+
+  const { data: dbConsultants } = useQuery({
+    queryKey: ["consultants"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("consultants")
+        .select("*")
+        .eq("active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const consultants = (dbConsultants ?? CONSULTANTS).map((c: any) => ({
+    name: c.name,
+    image: c.image_url || localImageMap[c.name] || c.image || null,
+    competence: c.competences || c.competence || [],
+    industries: c.industries || [],
+    experience: c.experience_years ?? c.experience ?? 0,
+    location: c.location || "Oslo",
+    description: c.description || "",
+  }));
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -338,7 +377,7 @@ const Index = () => {
 
           {/* Consultant card grid */}
           <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-            {CONSULTANTS.map((c, i) => (
+            {consultants.map((c, i) => (
               <motion.div
                 key={c.name}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
@@ -426,40 +465,40 @@ const Index = () => {
 
                     {/* Profile header — image + name side by side */}
                     <div className="flex items-start gap-6">
-                      {CONSULTANTS[expandedConsultant].image ? (
+                      {consultants[expandedConsultant].image ? (
                         <img
-                          src={CONSULTANTS[expandedConsultant].image}
-                          alt={CONSULTANTS[expandedConsultant].name}
+                          src={consultants[expandedConsultant].image}
+                          alt={consultants[expandedConsultant].name}
                           className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover flex-shrink-0"
                         />
                       ) : (
                         <img
                           src={robotAvatar}
-                          alt={`${CONSULTANTS[expandedConsultant].name} avatar`}
+                          alt={`${consultants[expandedConsultant].name} avatar`}
                           className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover flex-shrink-0"
                         />
                       )}
                       <div className="pt-1">
                         <h3 className="text-[24px] md:text-[28px] font-bold text-foreground tracking-tight leading-tight">
-                          {CONSULTANTS[expandedConsultant].name}
+                          {consultants[expandedConsultant].name}
                         </h3>
                         <div className="mt-2 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
-                          <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{CONSULTANTS[expandedConsultant].experience}+ års erfaring</span>
-                          <span className="inline-flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" />{CONSULTANTS[expandedConsultant].location}</span>
+                          <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{consultants[expandedConsultant].experience}+ års erfaring</span>
+                          <span className="inline-flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" />{consultants[expandedConsultant].location}</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Description */}
                     <p className="mt-7 text-[15px] text-muted-foreground leading-relaxed">
-                      {CONSULTANTS[expandedConsultant].description}
+                      {consultants[expandedConsultant].description}
                     </p>
 
                     {/* Kompetanse */}
                     <div className="mt-8">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-3">Kompetanse</p>
                       <div className="flex flex-wrap gap-1.5">
-                        {CONSULTANTS[expandedConsultant].competence.map((comp) => (
+                        {consultants[expandedConsultant].competence.map((comp) => (
                           <span key={comp} className="px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground">{comp}</span>
                         ))}
                       </div>
@@ -469,7 +508,7 @@ const Index = () => {
                     <div className="mt-6">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-3">Bransjeerfaring</p>
                       <div className="flex flex-wrap gap-1.5">
-                        {CONSULTANTS[expandedConsultant].industries.map((ind) => (
+                        {consultants[expandedConsultant].industries.map((ind) => (
                           <span key={ind} className="px-3 py-1 text-[13px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground">{ind}</span>
                         ))}
                       </div>
@@ -478,7 +517,7 @@ const Index = () => {
                     {/* Contact CTA */}
                     <div className="mt-12 pt-6 border-t border-border">
                       <p className="text-[14px] text-muted-foreground mb-4">
-                        Interessert i å booke {CONSULTANTS[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
+                        Interessert i å booke {consultants[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
                       </p>
                       <div className="space-y-3">
                         {[

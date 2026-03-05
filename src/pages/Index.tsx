@@ -213,6 +213,19 @@ const Index = () => {
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Sync list height with profile panel
+  useEffect(() => {
+    const el = profileRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setProfileHeight(Math.max(entry.contentRect.height, 300));
+      }
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [activeConsultant]);
+
   return (
     <div className="min-h-screen bg-background">
       {/* ── Hero ── */}

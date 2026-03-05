@@ -398,34 +398,36 @@ const Index = () => {
                       <span className="text-sm">✕</span>
                     </button>
 
-                    {/* Profile image */}
-                    {CONSULTANTS[expandedConsultant].image ? (
-                      <img
-                        src={CONSULTANTS[expandedConsultant].image}
-                        alt={CONSULTANTS[expandedConsultant].name}
-                        className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover"
-                      />
-                    ) : (
-                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-secondary flex items-center justify-center">
-                        <span className="text-4xl font-bold text-muted-foreground/30">
-                          {CONSULTANTS[expandedConsultant].name.split(" ").map(n => n[0]).join("")}
-                        </span>
+                    {/* Profile header — image + name side by side */}
+                    <div className="flex items-start gap-6">
+                      {CONSULTANTS[expandedConsultant].image ? (
+                        <img
+                          src={CONSULTANTS[expandedConsultant].image}
+                          alt={CONSULTANTS[expandedConsultant].name}
+                          className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover flex-shrink-0"
+                        />
+                      ) : (
+                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
+                          <span className="text-3xl font-bold text-muted-foreground/30">
+                            {CONSULTANTS[expandedConsultant].name.split(" ").map(n => n[0]).join("")}
+                          </span>
+                        </div>
+                      )}
+                      <div className="pt-1">
+                        <h3 className="text-[24px] md:text-[28px] font-bold text-foreground tracking-tight leading-tight">
+                          {CONSULTANTS[expandedConsultant].name}
+                        </h3>
+                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
+                          <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{CONSULTANTS[expandedConsultant].experience}+ års erfaring</span>
+                          <span className="inline-flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" />{CONSULTANTS[expandedConsultant].location}</span>
+                        </div>
                       </div>
-                    )}
+                    </div>
 
-                    {/* Name & description */}
-                    <h3 className="mt-8 text-[26px] md:text-[30px] font-bold text-foreground tracking-tight">
-                      {CONSULTANTS[expandedConsultant].name}
-                    </h3>
-                    <p className="mt-4 text-[15px] text-muted-foreground leading-relaxed">
+                    {/* Description */}
+                    <p className="mt-7 text-[15px] text-muted-foreground leading-relaxed">
                       {CONSULTANTS[expandedConsultant].description}
                     </p>
-
-                    {/* Meta */}
-                    <div className="mt-5 flex flex-wrap items-center gap-5 text-[14px] text-muted-foreground">
-                      <span className="inline-flex items-center gap-1.5"><Clock className="w-4 h-4" />{CONSULTANTS[expandedConsultant].experience}+ års erfaring</span>
-                      <span className="inline-flex items-center gap-1.5"><MapPin className="w-4 h-4" />{CONSULTANTS[expandedConsultant].location}</span>
-                    </div>
 
                     {/* Kompetanse */}
                     <div className="mt-8">
@@ -447,32 +449,27 @@ const Index = () => {
                       </div>
                     </div>
 
-                    {/* Footer */}
+                    {/* Contact CTA */}
                     <div className="mt-12 pt-6 border-t border-border">
-                      <p className="text-[14px] text-muted-foreground mb-5">
+                      <p className="text-[14px] text-muted-foreground mb-4">
                         Interessert i å booke {CONSULTANTS[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
                       </p>
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-3">
-                          <img src={jonRichardContact} alt="Jon Richard Nygaard" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
-                          <div>
-                            <p className="text-[14px] font-semibold text-foreground">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></p>
-                            <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
-                              <a href="tel:93287267" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Phone className="w-3 h-3" />932 87 267</a>
-                              <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Mail className="w-3 h-3" />jr@stacq.no</a>
+                      <div className="space-y-3">
+                        {[
+                          { img: jonRichardContact, name: "Jon Richard Nygaard", tel: "932 87 267", telRaw: "93287267", email: "jr@stacq.no" },
+                          { img: thomasEriksenContact, name: "Thomas Eriksen", tel: "975 00 321", telRaw: "97500321", email: "thomas@stacq.no" },
+                        ].map((contact) => (
+                          <div key={contact.name} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/40">
+                            <img src={contact.img} alt={contact.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+                            <div className="min-w-0">
+                              <p className="text-[13px] font-semibold text-foreground">{contact.name} <span className="font-normal text-muted-foreground">· Partner</span></p>
+                              <div className="mt-0.5 flex items-center gap-3 text-[12px] text-muted-foreground">
+                                <a href={`tel:${contact.telRaw}`} className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"><Phone className="w-3 h-3" />{contact.tel}</a>
+                                <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"><Mail className="w-3 h-3" />{contact.email}</a>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <img src={thomasEriksenContact} alt="Thomas Eriksen" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
-                          <div>
-                            <p className="text-[14px] font-semibold text-foreground">Thomas Eriksen <span className="font-normal text-muted-foreground">· Partner</span></p>
-                            <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
-                              <a href="tel:97500321" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Phone className="w-3 h-3" />975 00 321</a>
-                              <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Mail className="w-3 h-3" />thomas@stacq.no</a>
-                            </div>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </div>
                   </div>

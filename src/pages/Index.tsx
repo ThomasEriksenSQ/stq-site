@@ -17,6 +17,8 @@ import rikkeSolbjorg from "@/assets/rikke-solbjorg.jpg";
 import christianPoljac from "@/assets/christian-poljac.jpg";
 import martinTysseland from "@/assets/martin-tysseland.jpg";
 import mattisAsp from "@/assets/mattis-asp.jpg";
+import jonRichardContact from "@/assets/jon-richard-nygaard-contact.jpg";
+import thomasEriksenContact from "@/assets/thomas-eriksen-contact.jpg";
 
 const TECH_TAGS = [
   { label: "C", icon: Code },
@@ -447,18 +449,24 @@ const Index = () => {
                         Interessert i å booke {CONSULTANTS[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
                       </p>
                       <div className="space-y-4">
-                        <div>
-                          <p className="text-[14px] font-semibold text-foreground">Jon Richard Nygaard</p>
-                          <div className="mt-1 flex items-center gap-4 text-[13px] text-muted-foreground">
-                            <a href="tel:93287267" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Phone className="w-3.5 h-3.5" />932 87 267</a>
-                            <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Mail className="w-3.5 h-3.5" />jr@stacq.no</a>
+                        <div className="flex items-center gap-3">
+                          <img src={jonRichardContact} alt="Jon Richard Nygaard" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+                          <div>
+                            <p className="text-[14px] font-semibold text-foreground">Jon Richard Nygaard</p>
+                            <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
+                              <a href="tel:93287267" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Phone className="w-3 h-3" />932 87 267</a>
+                              <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Mail className="w-3 h-3" />jr@stacq.no</a>
+                            </div>
                           </div>
                         </div>
-                        <div>
-                          <p className="text-[14px] font-semibold text-foreground">Thomas Eriksen</p>
-                          <div className="mt-1 flex items-center gap-4 text-[13px] text-muted-foreground">
-                            <a href="tel:97500321" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Phone className="w-3.5 h-3.5" />975 00 321</a>
-                            <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Mail className="w-3.5 h-3.5" />thomas@stacq.no</a>
+                        <div className="flex items-center gap-3">
+                          <img src={thomasEriksenContact} alt="Thomas Eriksen" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+                          <div>
+                            <p className="text-[14px] font-semibold text-foreground">Thomas Eriksen</p>
+                            <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
+                              <a href="tel:97500321" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Phone className="w-3 h-3" />975 00 321</a>
+                              <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1 hover:text-foreground transition-colors"><Mail className="w-3 h-3" />thomas@stacq.no</a>
+                            </div>
                           </div>
                         </div>
                       </div>

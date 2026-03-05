@@ -366,66 +366,91 @@ const Index = () => {
             ))}
           </motion.div>
 
-          {/* Expanded detail panel */}
+          {/* Consultant profile overlay */}
           <AnimatePresence>
             {expandedConsultant !== null && (
-              <motion.div
-                key={expandedConsultant}
-                initial={{ opacity: 0, y: -8, height: 0 }}
-                animate={{ opacity: 1, y: 0, height: "auto" }}
-                exit={{ opacity: 0, y: -8, height: 0 }}
-                transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-                className="mt-8 overflow-hidden"
-              >
-                <div className="bg-background rounded-2xl border border-border shadow-lg p-6 md:p-10">
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 bg-foreground/20 backdrop-blur-sm"
+                  onClick={() => setExpandedConsultant(null)}
+                />
+                <motion.div
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "spring", damping: 30, stiffness: 300 }}
+                  className="fixed top-0 right-0 bottom-0 z-50 w-[92vw] md:w-[45vw] bg-background overflow-y-auto"
+                >
+                  <div className="pt-24 pb-16 px-8 md:px-16">
+                    <button
+                      onClick={() => setExpandedConsultant(null)}
+                      className="absolute top-6 right-6 w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <span className="text-sm">✕</span>
+                    </button>
+
+                    {/* Profile image */}
                     {CONSULTANTS[expandedConsultant].image ? (
                       <img
                         src={CONSULTANTS[expandedConsultant].image}
                         alt={CONSULTANTS[expandedConsultant].name}
-                        className="w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover flex-shrink-0"
+                        className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover"
                       />
                     ) : (
-                      <div className="w-28 h-28 md:w-36 md:h-36 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
-                        <span className="text-3xl font-bold text-muted-foreground/30">
+                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-secondary flex items-center justify-center">
+                        <span className="text-4xl font-bold text-muted-foreground/30">
                           {CONSULTANTS[expandedConsultant].name.split(" ").map(n => n[0]).join("")}
                         </span>
                       </div>
                     )}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between">
-                        <h3 className="text-[22px] md:text-[26px] font-semibold text-foreground tracking-tight">
-                          {CONSULTANTS[expandedConsultant].name}
-                        </h3>
-                        <button onClick={() => setExpandedConsultant(null)} className="text-muted-foreground hover:text-foreground transition-colors p-1 text-lg">✕</button>
-                      </div>
-                      <p className="mt-3 text-[15px] text-muted-foreground leading-relaxed max-w-xl">
-                        {CONSULTANTS[expandedConsultant].description}
-                      </p>
-                      <div className="mt-4 flex flex-wrap items-center gap-5 text-[14px] text-muted-foreground">
-                        <span className="inline-flex items-center gap-1.5"><Clock className="w-4 h-4" />{CONSULTANTS[expandedConsultant].experience}+ års erfaring</span>
-                        <span className="inline-flex items-center gap-1.5"><MapPin className="w-4 h-4" />{CONSULTANTS[expandedConsultant].location}</span>
-                      </div>
-                      <div className="mt-5">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-2">Kompetanse</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {CONSULTANTS[expandedConsultant].competence.map((comp) => (
-                            <span key={comp} className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground">{comp}</span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="mt-4">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-2">Bransjeerfaring</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {CONSULTANTS[expandedConsultant].industries.map((ind) => (
-                            <span key={ind} className="px-2.5 py-0.5 text-[12px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground">{ind}</span>
-                          ))}
-                        </div>
+
+                    {/* Name & description */}
+                    <h3 className="mt-8 text-[26px] md:text-[30px] font-bold text-foreground tracking-tight">
+                      {CONSULTANTS[expandedConsultant].name}
+                    </h3>
+                    <p className="mt-4 text-[15px] text-muted-foreground leading-relaxed">
+                      {CONSULTANTS[expandedConsultant].description}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="mt-5 flex flex-wrap items-center gap-5 text-[14px] text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5"><Clock className="w-4 h-4" />{CONSULTANTS[expandedConsultant].experience}+ års erfaring</span>
+                      <span className="inline-flex items-center gap-1.5"><MapPin className="w-4 h-4" />{CONSULTANTS[expandedConsultant].location}</span>
+                    </div>
+
+                    {/* Kompetanse */}
+                    <div className="mt-8">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-3">Kompetanse</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {CONSULTANTS[expandedConsultant].competence.map((comp) => (
+                          <span key={comp} className="px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground">{comp}</span>
+                        ))}
                       </div>
                     </div>
+
+                    {/* Bransjeerfaring */}
+                    <div className="mt-6">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-3">Bransjeerfaring</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {CONSULTANTS[expandedConsultant].industries.map((ind) => (
+                          <span key={ind} className="px-3 py-1 text-[13px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground">{ind}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="mt-12 pt-6 border-t border-border">
+                      <p className="text-[12px] text-muted-foreground">
+                        Interessert i å booke {CONSULTANTS[expandedConsultant].name.split(" ")[0]}? Ta kontakt på{" "}
+                        <a href="mailto:post@stacq.no" className="underline hover:text-foreground transition-colors">post@stacq.no</a>
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </>
             )}
           </AnimatePresence>
         </div>

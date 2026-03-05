@@ -60,7 +60,7 @@ const SLACK_RESPONSES: Record<string, string[]> = {
 };
 
 const FloatingChat = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState<Mode>("bot");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);
@@ -93,12 +93,16 @@ const FloatingChat = () => {
 
   const handleOpen = () => {
     setIsOpen(true);
-    setIsExpanded(true);
+    setIsExpanded(false);
   };
 
   const handleClose = () => {
     setIsOpen(false);
     setIsExpanded(false);
+  };
+
+  const handleExpand = () => {
+    setIsExpanded(true);
   };
 
   const handleSend = useCallback(
@@ -185,6 +189,71 @@ const FloatingChat = () => {
     );
   }
 
+  // Compact bar state (default open, not expanded)
+  if (!isExpanded) {
+    return (
+      <div className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)]">
+        <motion.div
+          initial={{ opacity: 0, y: 12, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+        >
+          {/* Mode tabs + close */}
+          <div className="flex items-center justify-between px-4 pt-3 pb-2">
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => { setMode("bot"); setSlackRecipient(null); }}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+                  mode === "bot" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary"
+                }`}
+              >
+                <Bot className="w-3.5 h-3.5" />
+                STACQ-AI
+              </button>
+              <button
+                onClick={() => { setMode("slack"); setSlackRecipient(null); }}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+                  mode === "slack" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary"
+                }`}
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+                Chat direkte
+              </button>
+            </div>
+            <button
+              onClick={handleClose}
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Compact input */}
+          <div className="px-3 pb-3">
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onFocus={handleExpand}
+                placeholder="Spør vår AI eller chat direkte med oss"
+                className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
+              />
+              <button
+                onClick={() => { handleExpand(); }}
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity flex-shrink-0"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // Expanded full chat
   return (
     <div className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)]">
       <motion.div
@@ -215,12 +284,20 @@ const FloatingChat = () => {
               Chat direkte
             </button>
           </div>
-          <button
-            onClick={handleClose}
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+            >
+              <ChevronDown className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleClose}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Expanded content */}

@@ -3,6 +3,65 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, Bot, MessageSquare, ChevronDown, X, MessageCircle } from "lucide-react";
 import jonRichard from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksen from "@/assets/thomas-eriksen.avif";
+import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
+
+const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
+
+async function streamChat({
+  messages,
+  onDelta,
+  onDone,
+  onError,
+}: {
+  messages: { role: string; content: string }[];
+  onDelta: (text: string) => void;
+  onDone: () => void;
+  onError: (msg: string) => void;
+}) {
+  const resp = await fetch(CHAT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+    },
+    body: JSON.stringify({ messages }),
+  });
+
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ error: "Nettverksfeil" }));
+    onError(err.error || "Noe gikk galt");
+    return;
+  }
+
+  if (!resp.body) { onError("Ingen respons"); return; }
+
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+
+    let nl: number;
+    while ((nl = buf.indexOf("\n")) !== -1) {
+      let line = buf.slice(0, nl);
+      buf = buf.slice(nl + 1);
+      if (line.endsWith("\r")) line = line.slice(0, -1);
+      if (!line.startsWith("data: ")) continue;
+      const json = line.slice(6).trim();
+      if (json === "[DONE]") { onDone(); return; }
+      try {
+        const parsed = JSON.parse(json);
+        const c = parsed.choices?.[0]?.delta?.content;
+        if (c) onDelta(c);
+      } catch { /* partial chunk, wait */ }
+    }
+  }
+  onDone();
+}
 
 type Mode = "bot" | "slack";
 type SlackRecipient = { name: string; image: string; email: string } | null;
@@ -20,31 +79,10 @@ const SLACK_CONTACTS = [
 ];
 
 const BOT_SUGGESTIONS = [
-  { label: "Kjernekompetanse", query: "kompetanse" },
-  { label: "Stilling ledig", query: "stilling" },
-  { label: "Håndbok", query: "håndbok" },
+  { label: "Kjernekompetanse", query: "Hva er STACQs kjernekompetanse?" },
+  { label: "Stilling ledig", query: "Har dere ledige stillinger?" },
+  { label: "Håndbok", query: "Fortell meg om håndboken deres" },
 ];
-
-function getMockBotResponse(input: string): string {
-  const q = input.toLowerCase();
-  if (/kompetanse|teknologi|stack|tech/.test(q))
-    return "Vi jobber med hele embedded-stacken:\n\n• C / C++ — Firmware & systemkode\n• Rust — Sikker lavnivåkode\n• RTOS — FreeRTOS, Zephyr m.fl.\n• Embedded Linux — Kernel, drivere, BSP\n• Yocto — Distribusjon & bygg\n• Security — TrustZone, sikker boot, krypto\n• ARM — Cortex-M/A, RISC-V\n• CI / Test — Hardware-in-the-loop, automatisert test";
-  if (/stilling|jobb|karriere|ansett|ledig/.test(q))
-    return "Vi ser etter Senior Embedded Konsulenter.\n\nKrav:\n• 5+ års erfaring\n• C / C++ / Rust (ett eller flere)\n• Embedded systemer / RTOS / Embedded Linux\n• Trives i team og tar ansvar for kvalitet\n\nKontakt jr@stacq.no for en uformell prat.";
-  if (/lønn|provisjon|betalt|inntekt/.test(q))
-    return "Vi tilbyr 70% provisjonsbasert lønn av fakturert beløp. Dette inkluderer arbeidsgiveravgift, pensjon og feriepenger.";
-  if (/forsikring|pensjon|trygg/.test(q))
-    return "Vi har solide ordninger:\n\n• 6% innskuddspensjon fra første krone\n• Yrkesskadeforsikring\n• Helseforsikring\n• Fritidsulykke\n• Gruppeliv\n• Uførepensjon";
-  if (/ferie|permisjon|fravær|fri/.test(q))
-    return "Du står fritt til å ta så mye ferie du ønsker, avtalt med kunden. Ved familieforøkelse gir vi kr 100.000 i gave.";
-  if (/håndbok|handbook|verdier|kultur/.test(q))
-    return "STACQ-håndboken dekker:\n\n• Lønn — 70% provisjonsmodell\n• Arbeidstid — Frihet under ansvar\n• Utstyr — Fritt valg av verktøy\n• Kjerneverdier — Kvalitet, stolthet, langsiktighet\n• Forsikring & pensjon — Full pakke\n\nSpør gjerne om et spesifikt tema!";
-  if (/kontakt|epost|telefon|mail/.test(q))
-    return "Ta gjerne kontakt:\n\n• Jon Richard Nygaard — 93 287 267 — jr@stacq.no\n• Thomas Eriksen — 97 500 321 — thomas@stacq.no";
-  if (/bransje|domene|forsvar|medtech|industri|energi/.test(q))
-    return "Vi jobber innen:\n\n• Medisinsk teknologi\n• Halvleder og chip-utvikling\n• Energi og elektrisk mobilitet\n• Forbrukerelektronikk\n• Forsvar og sikkerhetskritiske systemer\n• Industriell automasjon\n• Telekom og kommunikasjon\n• IoT og smarte enheter";
-  return "Jeg kan svare på spørsmål om STACQs kompetanse, bransjer, ledige stillinger, lønn, forsikring, ferie, og håndboken vår. Hva lurer du på?";
-}
 
 const SLACK_RESPONSES: Record<string, string[]> = {
   "Thomas Eriksen": [
@@ -112,14 +150,35 @@ const FloatingChat = () => {
       setInput("");
 
       if (mode === "bot") {
-        setBotMessages((prev) => [...prev, { role: "user", content: msg }]);
+        const userMsg = { role: "user" as const, content: msg };
+        setBotMessages((prev) => [...prev, userMsg]);
         setIsTyping(true);
-        const response = getMockBotResponse(msg);
-        const delay = Math.min(400 + response.length * 2, 1200);
-        setTimeout(() => {
-          setBotMessages((prev) => [...prev, { role: "assistant", content: response }]);
-          setIsTyping(false);
-        }, delay);
+
+        const allMessages = [...botMessages, userMsg].map((m) => ({
+          role: m.role,
+          content: m.content,
+        }));
+
+        let assistantSoFar = "";
+        streamChat({
+          messages: allMessages,
+          onDelta: (chunk) => {
+            assistantSoFar += chunk;
+            setBotMessages((prev) => {
+              const last = prev[prev.length - 1];
+              if (last?.role === "assistant" && prev.length > botMessages.length + 1) {
+                return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
+              }
+              return [...prev, { role: "assistant" as const, content: assistantSoFar }];
+            });
+            setIsTyping(false);
+          },
+          onDone: () => setIsTyping(false),
+          onError: (errMsg) => {
+            setIsTyping(false);
+            toast.error(errMsg);
+          },
+        });
       } else if (slackRecipient) {
         const name = slackRecipient.name;
         const image = slackRecipient.image;
@@ -340,7 +399,11 @@ const FloatingChat = () => {
                       {msg.role === "assistant" && msg.name && (
                         <span className="block text-[12px] font-semibold text-muted-foreground mb-1">{msg.name}</span>
                       )}
-                      {msg.content}
+                      {msg.role === "assistant" && mode === "bot" ? (
+                        <div className="prose prose-sm prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                          <ReactMarkdown>{msg.content}</ReactMarkdown>
+                        </div>
+                      ) : msg.content}
                     </div>
                   </div>
                 ))}

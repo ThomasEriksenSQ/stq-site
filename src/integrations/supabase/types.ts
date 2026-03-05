@@ -62,6 +62,39 @@ export type Database = {
         }
         Relationships: []
       }
+      knowledge_base: {
+        Row: {
+          active: boolean
+          category: string
+          content: string
+          created_at: string | null
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          active?: boolean
+          category: string
+          content: string
+          created_at?: string | null
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          content?: string
+          created_at?: string | null
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string

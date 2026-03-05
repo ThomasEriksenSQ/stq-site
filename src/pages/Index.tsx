@@ -19,6 +19,7 @@ import martinTysseland from "@/assets/martin-tysseland.jpg";
 import mattisAsp from "@/assets/mattis-asp.jpg";
 import jonRichardContact from "@/assets/jon-richard-nygaard-contact.jpg";
 import thomasEriksenContact from "@/assets/thomas-eriksen-contact.jpg";
+import robotAvatar from "@/assets/robot-avatar.png";
 
 const TECH_TAGS = [
   { label: "C", icon: Code },

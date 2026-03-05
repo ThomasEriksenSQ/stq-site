@@ -16,10 +16,10 @@ const PcbPattern = () => {
   const traces = useMemo(() => {
     const result: Trace[] = [];
     const W = 1400;
-    const H = 360;
+    const H = 900;
 
     // Generate traces that start from edges and flow inward with 90° turns
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < 65; i++) {
       const r1 = seededRand(i * 3.7);
       const r2 = seededRand(i * 5.3 + 1);
       const r3 = seededRand(i * 7.1 + 2);
@@ -30,22 +30,26 @@ const PcbPattern = () => {
       let x: number, y: number;
 
       // Start from top or right edge
-      const edge = r1 > 0.5 ? "top" : "right";
+      const edgeChoice = r1;
+      const edge = edgeChoice > 0.6 ? "top" : edgeChoice > 0.3 ? "right" : "left";
       if (edge === "top") {
-        x = 200 + r2 * (W - 400);
+        x = 100 + r2 * (W - 200);
         y = -5;
-      } else {
+      } else if (edge === "right") {
         x = W + 5;
-        y = r2 * H * 0.7;
+        y = r2 * H * 0.8;
+      } else {
+        x = -5;
+        y = r2 * H * 0.8;
       }
       points.push({ x, y });
 
       // Generate 2-4 segments with 90° turns
       const segments = 2 + Math.floor(r3 * 3);
-      let horizontal = edge === "top" ? false : true; // first direction
+      let horizontal = edge !== "top"; // first direction
 
       for (let s = 0; s < segments; s++) {
-        const len = 30 + seededRand(i * 17 + s * 31) * 120;
+        const len = 40 + seededRand(i * 17 + s * 31) * 200;
         if (horizontal) {
           x += (seededRand(i * 23 + s * 41) > 0.4 ? -1 : 1) * len;
         } else {
@@ -88,7 +92,7 @@ const PcbPattern = () => {
       const r3 = seededRand(i * 29.1 + 300);
       // Cluster near top-right and top areas
       const x = 100 + r1 * 1200;
-      const y = 10 + r2 * 200;
+      const y = 10 + r2 * 600;
       const distFromCenter = Math.sqrt(
         Math.pow((x - 700) / 700, 2) + Math.pow((y - 180) / 180, 2)
       );
@@ -98,11 +102,11 @@ const PcbPattern = () => {
     return dots;
   }, []);
 
-  return (
-    <div className="absolute inset-x-0 top-0 h-[200px] overflow-hidden pointer-events-none" aria-hidden="true">
+    return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <svg
         className="w-full h-full"
-        viewBox="0 0 1400 360"
+        viewBox="0 0 1400 900"
         preserveAspectRatio="xMidYMin slice"
         fill="none"
       >
@@ -162,7 +166,7 @@ const PcbPattern = () => {
             <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <mask id="pcb-mask">
-            <rect width="1400" height="360" fill="url(#pcb-fade)" />
+            <rect width="1400" height="900" fill="url(#pcb-fade)" />
           </mask>
         </defs>
       </svg>

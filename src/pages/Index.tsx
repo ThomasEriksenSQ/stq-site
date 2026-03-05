@@ -195,7 +195,7 @@ const stagger = {
 const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
-  const [activeConsultant, setActiveConsultant] = useState(0);
+  const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
   const scrollListRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);

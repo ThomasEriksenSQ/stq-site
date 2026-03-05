@@ -504,9 +504,6 @@ const Index = () => {
             <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
               den virkelige verden.
             </p>
-            <p className="mt-5 text-muted-foreground text-[15px] leading-relaxed max-w-lg mx-auto">
-              Vi leverer løsninger til bransjer der kvalitet, sikkerhet og pålitelighet er avgjørende.
-            </p>
           </motion.div>
 
           <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -514,13 +511,13 @@ const Index = () => {
               <motion.div
                 key={d.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="group p-6 rounded-2xl border border-border bg-card hover:shadow-md hover:border-border/80 transition-all duration-300"
+                className="group p-7 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-border/80 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center mb-4 group-hover:bg-primary/12 transition-colors">
-                  <d.icon className="w-5 h-5 text-primary" />
+                <div className="w-12 h-12 rounded-2xl bg-primary/[0.07] flex items-center justify-center mb-5 group-hover:bg-primary/[0.12] transition-colors">
+                  <d.icon className="w-[22px] h-[22px] text-primary" strokeWidth={1.8} />
                 </div>
-                <h3 className="text-[15px] font-semibold text-foreground">{d.title}</h3>
-                <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed">{d.desc}</p>
+                <h3 className="text-[15px] font-bold text-foreground leading-snug">{d.title}</h3>
+                <p className="mt-2.5 text-[13px] text-muted-foreground leading-relaxed">{d.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -531,12 +528,19 @@ const Index = () => {
       <section className="py-24 md:py-36 px-6 md:px-12 bg-foreground text-background">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div {...fadeUp}>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-background/50">Vi ansetter</p>
-            <h2 className="mt-4 font-bold tracking-tight" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.12, letterSpacing: "-0.025em" }}>
-              Senior Embedded Konsulent
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-8 bg-background/25" />
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-background/50">Karriere</p>
+              <span className="h-px w-8 bg-background/25" />
+            </div>
+            <h2 className="text-background font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
+              Bli en del av teamet.
             </h2>
-            <p className="mt-5 text-background/70 text-[17px] max-w-lg mx-auto leading-relaxed">
-              Vi ser etter erfarne utviklere med lidenskap for embedded-systemer. Bli en del av Norges mest spesialiserte fagmiljø.
+            <p className="mt-2 font-medium text-background/45" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+              Vi ser etter deg.
+            </p>
+            <p className="mt-5 text-background/60 text-[15px] leading-relaxed max-w-lg mx-auto">
+              Erfarne utviklere med lidenskap for embedded-systemer — bli en del av Norges mest spesialiserte fagmiljø.
             </p>
             <div className="mt-10">
               <button

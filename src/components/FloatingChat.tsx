@@ -83,6 +83,7 @@ const BOT_SUGGESTIONS = [
   { label: "Håndbok", query: "Fortell meg om håndboken deres" },
 ];
 
+const SLACK_RESPONSES: Record<string, string[]> = {
   "Thomas Eriksen": [
     "Hei! Takk for meldingen. Jeg tar en titt og vender tilbake snart 👋",
     "God melding! La meg sjekke litt og komme tilbake til deg.",

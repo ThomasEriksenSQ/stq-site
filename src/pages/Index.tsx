@@ -197,34 +197,6 @@ const Index = () => {
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
-  const scrollListRef = useRef<HTMLDivElement>(null);
-  const profileRef = useRef<HTMLDivElement>(null);
-  const [showScrollHint, setShowScrollHint] = useState(true);
-  const [profileHeight, setProfileHeight] = useState(420);
-
-  useEffect(() => {
-    const el = scrollListRef.current;
-    if (!el) return;
-    const handleScroll = () => {
-      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 10;
-      setShowScrollHint(!atBottom);
-    };
-    el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Sync list height with profile panel
-  useEffect(() => {
-    const el = profileRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        setProfileHeight(Math.max(entry.contentRect.height, 300));
-      }
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [activeConsultant]);
 
   return (
     <div className="min-h-screen bg-background">

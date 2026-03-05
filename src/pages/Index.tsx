@@ -288,22 +288,23 @@ const Index = () => {
           </motion.div>
 
           <motion.div {...fadeUp} className="mt-12">
-            <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-0 md:gap-10">
               {/* Left — name list with scroll indicator */}
               <div className="relative">
                 <div
                   ref={scrollListRef}
-                  className="flex flex-row md:flex-col gap-1.5 md:max-h-[420px] md:overflow-y-auto overflow-x-auto scrollbar-thin"
+                  className="flex flex-row md:flex-col gap-0.5 md:overflow-y-auto overflow-x-auto rounded-xl bg-[hsl(var(--secondary))] p-2"
+                  style={{ maxHeight: "var(--consultant-panel-h, 420px)" }}
                 >
                   {CONSULTANTS.map((c, i) => (
                     <button
                       key={c.name}
                       onClick={() => setActiveConsultant(i)}
                       onMouseEnter={() => setActiveConsultant(i)}
-                      className={`text-left px-3 py-2 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal ${
+                      className={`text-left px-3.5 py-2.5 rounded-lg text-[14px] font-medium transition-all whitespace-nowrap md:whitespace-normal border ${
                         activeConsultant === i
-                          ? "bg-primary text-primary-foreground"
-                          : "text-muted-foreground hover:bg-secondary"
+                          ? "bg-background text-foreground border-border shadow-sm"
+                          : "text-muted-foreground hover:text-foreground hover:bg-background/60 border-transparent"
                       }`}
                     >
                       {c.name}
@@ -312,14 +313,15 @@ const Index = () => {
                 </div>
                 {/* Scroll hint */}
                 {showScrollHint && (
-                  <div className="hidden md:flex absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent items-end justify-center pb-1 pointer-events-none">
+                  <div className="hidden md:flex absolute -bottom-px left-0 right-0 pointer-events-none flex-col items-center">
+                    <div className="w-full h-16 bg-gradient-to-t from-[hsl(var(--secondary))] via-[hsl(var(--secondary)/0.8)] to-transparent rounded-b-xl" />
                     <motion.div
-                      animate={{ y: [0, 4, 0] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}
-                      className="flex items-center gap-1 text-[11px] text-muted-foreground"
+                      animate={{ y: [0, 3, 0] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                      className="flex items-center gap-1.5 -mt-8 px-3 py-1 rounded-full bg-background border border-border shadow-sm text-[11px] font-medium text-muted-foreground"
                     >
-                      <ChevronDown className="w-3.5 h-3.5" />
-                      <span>Scroll for flere</span>
+                      <ChevronDown className="w-3 h-3" />
+                      Scroll for flere
                     </motion.div>
                   </div>
                 )}

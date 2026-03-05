@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown, Phone, Mail } from "lucide-react";
+import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown, Phone, Mail, Activity, Microchip, BatteryCharging, Monitor, Radar, Cog, Signal, Router } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
@@ -60,14 +60,14 @@ const COMPETENCE_GROUPS = [
 ];
 
 const DOMAINS = [
-  { title: "Medisinsk teknologi", desc: "Pålitelig programvare for medisinsk utstyr der kvalitet redder liv.", icon: Heart },
-  { title: "Halvleder og chip-utvikling", desc: "Drivere, firmware og verktøykjeder for neste generasjons brikker.", icon: CircuitBoard },
-  { title: "Energi og elektrisk mobilitet", desc: "Styringssystemer for fornybar energi, lading og elektriske kjøretøy.", icon: Zap },
-  { title: "Forbrukerelektronikk", desc: "Embedded-løsninger for produkter som når millioner av brukere.", icon: Smartphone },
-  { title: "Forsvar og sikkerhetskritiske systemer", desc: "Robuste systemer som møter de strengeste kravene til sikkerhet.", icon: Shield },
-  { title: "Industriell automasjon", desc: "Sanntidsstyring og automasjon for moderne produksjonslinjer.", icon: Factory },
-  { title: "Telekom og kommunikasjon", desc: "Lavnivå-programvare for nettverksinfrastruktur og kommunikasjonsprotokoller.", icon: Radio },
-  { title: "IoT og smarte enheter", desc: "Tilkoblede enheter med fokus på strømeffektivitet og pålitelighet.", icon: Wifi },
+  { title: "Medisinsk teknologi", icon: Activity },
+  { title: "Halvleder og chip-utvikling", icon: Cpu },
+  { title: "Energi og elektrisk mobilitet", icon: BatteryCharging },
+  { title: "Forbrukerelektronikk", icon: Monitor },
+  { title: "Forsvar og sikkerhetskritiske systemer", icon: Shield },
+  { title: "Industriell automasjon", icon: Cog },
+  { title: "Telekom og kommunikasjon", icon: Signal },
+  { title: "IoT og smarte enheter", icon: Wifi },
 ];
 
 const CONSULTANTS = [
@@ -274,9 +274,6 @@ const Index = () => {
             <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
               Fra hardware til sky.
             </p>
-            <p className="mt-5 text-muted-foreground text-[15px] leading-relaxed max-w-lg mx-auto">
-              Vi dekker alle lag i embedded-utvikling — fra mikrokontrollere og drivere til systemprogramvare og DevOps.
-            </p>
           </motion.div>
 
           <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -312,9 +309,6 @@ const Index = () => {
             </h2>
             <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
               løsningene.
-            </p>
-            <p className="mt-5 text-muted-foreground text-[15px] leading-relaxed max-w-lg mx-auto">
-              12 spesialiserte konsulenter med dyp erfaring fra kritiske embedded-prosjekter.
             </p>
           </motion.div>
 
@@ -506,18 +500,17 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {DOMAINS.map((d) => (
               <motion.div
                 key={d.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="group p-7 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-border/80 transition-all duration-300"
+                className="group p-6 md:p-7 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-border/80 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-2xl bg-primary/[0.07] flex items-center justify-center mb-5 group-hover:bg-primary/[0.12] transition-colors">
-                  <d.icon className="w-[22px] h-[22px] text-primary" strokeWidth={1.8} />
+                <div className="w-11 h-11 rounded-xl bg-primary/[0.07] flex items-center justify-center mb-5 group-hover:bg-primary/[0.12] transition-colors">
+                  <d.icon className="w-5 h-5 text-primary" strokeWidth={1.7} />
                 </div>
-                <h3 className="text-[15px] font-bold text-foreground leading-snug">{d.title}</h3>
-                <p className="mt-2.5 text-[13px] text-muted-foreground leading-relaxed">{d.desc}</p>
+                <h3 className="text-[14px] md:text-[15px] font-bold text-foreground leading-snug">{d.title}</h3>
               </motion.div>
             ))}
           </motion.div>
@@ -538,9 +531,6 @@ const Index = () => {
             </h2>
             <p className="mt-2 font-medium text-background/45" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
               Vi ser etter deg.
-            </p>
-            <p className="mt-5 text-background/60 text-[15px] leading-relaxed max-w-lg mx-auto">
-              Erfarne utviklere med lidenskap for embedded-systemer — bli en del av Norges mest spesialiserte fagmiljø.
             </p>
             <div className="mt-10">
               <button
@@ -573,7 +563,10 @@ const Index = () => {
               <li><button onClick={() => setIsOverlayOpen(true)} className="text-[14px] text-background/65 hover:text-background transition-colors">Om STACQ</button></li>
               <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[14px] text-background/65 hover:text-background transition-colors">Karriere</button></li>
             </ul>
-            <p className="mt-5 text-[12px] text-background/30">STACQ AS · Org.nr: 932 575 442 MVA</p>
+            <p className="mt-5 text-[12px] text-background/30 leading-relaxed">
+              STACQ AS<br />
+              932 575 442 MVA
+            </p>
           </div>
 
           {/* Kontakt oss */}
@@ -582,11 +575,17 @@ const Index = () => {
             <ul className="space-y-4 text-[14px] text-background/65">
               <li>
                 <span className="block font-medium text-background/85">Jon Richard Nygaard <span className="font-normal text-background/50">· Partner</span></span>
-                <span>932 87 267</span> · <a href="mailto:jr@stacq.no" className="hover:text-background transition-colors no-underline">jr@stacq.no</a>
+                <div className="mt-1 flex flex-col gap-0.5">
+                  <a href="tel:93287267" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Phone className="w-3 h-3" />932 87 267</a>
+                  <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Mail className="w-3 h-3" />jr@stacq.no</a>
+                </div>
               </li>
               <li>
                 <span className="block font-medium text-background/85">Thomas Eriksen <span className="font-normal text-background/50">· Partner</span></span>
-                <span>975 00 321</span> · <a href="mailto:thomas@stacq.no" className="hover:text-background transition-colors no-underline">thomas@stacq.no</a>
+                <div className="mt-1 flex flex-col gap-0.5">
+                  <a href="tel:97500321" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Phone className="w-3 h-3" />975 00 321</a>
+                  <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Mail className="w-3 h-3" />thomas@stacq.no</a>
+                </div>
               </li>
             </ul>
           </div>
@@ -594,7 +593,22 @@ const Index = () => {
           {/* Besøk oss */}
           <div>
             <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Besøk oss</h4>
-            <p className="text-[14px] text-background/65">Øvre Slottsgate 27, 0157 Oslo</p>
+            <p className="text-[14px] text-background/65 leading-relaxed">
+              Øvre Slottsgate 27,<br />
+              0157 Oslo
+            </p>
+            <div className="mt-4 rounded-xl overflow-hidden border border-background/10">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000.0!2d10.7397!3d59.9139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46416e7be3b8cfc1%3A0x5e0ad81d0b2d6ef0!2s%C3%98vre%20Slottsgate%2027%2C%200157%20Oslo!5e0!3m2!1sno!2sno!4v1700000000000!5m2!1sno!2sno"
+                width="100%"
+                height="120"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="STACQ kontor"
+              />
+            </div>
           </div>
         </div>
       </footer>

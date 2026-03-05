@@ -4,6 +4,7 @@ import { Send, Bot, MessageSquare, ChevronDown, X, MessageCircle } from "lucide-
 import jonRichard from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksen from "@/assets/thomas-eriksen.avif";
 import { toast } from "sonner";
+import ReactMarkdown from "react-markdown";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
@@ -398,7 +399,11 @@ const FloatingChat = () => {
                       {msg.role === "assistant" && msg.name && (
                         <span className="block text-[12px] font-semibold text-muted-foreground mb-1">{msg.name}</span>
                       )}
-                      {msg.content}
+                      {msg.role === "assistant" && mode === "bot" ? (
+                        <div className="prose prose-sm prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                          <ReactMarkdown>{msg.content}</ReactMarkdown>
+                        </div>
+                      ) : msg.content}
                     </div>
                   </div>
                 ))}

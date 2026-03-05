@@ -198,7 +198,9 @@ const Index = () => {
   const [activeConsultant, setActiveConsultant] = useState(0);
 
   const scrollListRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
   const [showScrollHint, setShowScrollHint] = useState(true);
+  const [profileHeight, setProfileHeight] = useState(420);
 
   useEffect(() => {
     const el = scrollListRef.current;

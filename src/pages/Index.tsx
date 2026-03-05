@@ -232,8 +232,8 @@ const Index = () => {
       <section className="relative pt-20 pb-20 md:pt-32 md:pb-28 px-6 md:px-12">
         <PcbPattern />
         <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp}>
-            <img src={stacqLogo} alt="STACQ" className="h-6 mb-8" />
+          <div>
+            <img src={stacqLogo} alt="STACQ" className="h-10 md:h-12 mb-8" />
             <h1
               className="text-foreground font-bold tracking-tight"
               style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}
@@ -242,9 +242,9 @@ const Index = () => {
               <br />
               og C/C++/Rust konsulenter
             </h1>
-          </motion.div>
+          </div>
 
-          <motion.div {...fadeUp} className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-8 flex flex-wrap gap-2">
             {TECH_TAGS.map((tag) => (
               <span
                 key={tag.label}
@@ -254,7 +254,7 @@ const Index = () => {
                 {tag.label}
               </span>
             ))}
-          </motion.div>
+          </div>
 
         </div>
       </section>

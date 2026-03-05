@@ -62,7 +62,7 @@ const COMPETENCE_GROUPS = [
     title: "Programmering",
     icon: Code,
     description: null,
-    tags: ["C", "C++", "Rust", "Python"],
+    tags: ["C", "C++", "Rust", "Python", "Assembly"],
   },
   {
     title: "Testing og kvalitet",

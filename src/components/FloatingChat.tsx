@@ -218,7 +218,7 @@ const FloatingChat = () => {
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                Chat direkte
+                Chat direkte med oss
               </button>
             </div>
             <button

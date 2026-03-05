@@ -4,6 +4,7 @@ import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server,
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
+import PcbPattern from "@/components/PcbPattern";
 import stacqLogo from "@/assets/stacq-logo-black.png";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
@@ -213,7 +214,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="pt-20 pb-20 md:pt-32 md:pb-28 px-6 md:px-12">
+      <section className="relative pt-20 pb-20 md:pt-32 md:pb-28 px-6 md:px-12">
+        <PcbPattern />
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp}>
             <img src={stacqLogo} alt="STACQ" className="h-6 mb-8" />

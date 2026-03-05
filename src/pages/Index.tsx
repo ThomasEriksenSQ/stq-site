@@ -441,8 +441,8 @@ const Index = () => {
                           className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover flex-shrink-0"
                         />
                       ) : (
-                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
-                          <span className="text-3xl font-bold text-muted-foreground/30">
+                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-secondary to-muted border border-primary/10 flex items-center justify-center flex-shrink-0">
+                          <span className="text-2xl md:text-3xl font-bold text-primary/50 tracking-tight">
                             {CONSULTANTS[expandedConsultant].name.split(" ").map(n => n[0]).join("")}
                           </span>
                         </div>

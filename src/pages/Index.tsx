@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown } from "lucide-react";
+import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown, Phone, Mail } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
@@ -443,10 +443,25 @@ const Index = () => {
 
                     {/* Footer */}
                     <div className="mt-12 pt-6 border-t border-border">
-                      <p className="text-[12px] text-muted-foreground">
-                        Interessert i å booke {CONSULTANTS[expandedConsultant].name.split(" ")[0]}? Ta kontakt på{" "}
-                        <a href="mailto:post@stacq.no" className="underline hover:text-foreground transition-colors">post@stacq.no</a>
+                      <p className="text-[14px] text-muted-foreground mb-5">
+                        Interessert i å booke {CONSULTANTS[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
                       </p>
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-[14px] font-semibold text-foreground">Jon Richard Nygaard</p>
+                          <div className="mt-1 flex items-center gap-4 text-[13px] text-muted-foreground">
+                            <a href="tel:93287267" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Phone className="w-3.5 h-3.5" />932 87 267</a>
+                            <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Mail className="w-3.5 h-3.5" />jr@stacq.no</a>
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-[14px] font-semibold text-foreground">Thomas Eriksen</p>
+                          <div className="mt-1 flex items-center gap-4 text-[13px] text-muted-foreground">
+                            <a href="tel:97500321" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Phone className="w-3.5 h-3.5" />975 00 321</a>
+                            <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"><Mail className="w-3.5 h-3.5" />thomas@stacq.no</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -540,7 +555,7 @@ const Index = () => {
             <ul className="space-y-4 text-[14px] text-background/65">
               <li>
                 <span className="block font-medium text-background/85">Jon Richard Nygaard</span>
-                <a href="mailto:jr@stacq.no" className="hover:text-background transition-colors no-underline">jr@stacq.no</a>
+                <span>932 87 267</span> · <a href="mailto:jr@stacq.no" className="hover:text-background transition-colors no-underline">jr@stacq.no</a>
               </li>
               <li>
                 <span className="block font-medium text-background/85">Thomas Eriksen</span>

@@ -210,9 +210,42 @@ const stagger = {
 };
 
 const Index = () => {
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
-  const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
+  // Image map for local fallback (until images are in Storage)
+  const localImageMap: Record<string, string> = {
+    "Kacper Wysocki": kacperWysocki,
+    "Lars Rudolfsen": larsRudolfsen,
+    "Ida Abrahamsson": idaAbrahamsson,
+    "Trine Ø. Olsen": trineOlsen,
+    "Tom Erik Lundesgaard": tomErikLundesgaard,
+    "Karl Eirik Bang Fossberg": karlEirikFossberg,
+    "Rikke Solbjørg": rikkeSolbjorg,
+    "Christian Steffen Poljac": christianPoljac,
+    "Martin Tysseland": martinTysseland,
+    "Mattis Asp": mattisAsp,
+  };
+
+  const { data: dbConsultants } = useQuery({
+    queryKey: ["consultants"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("consultants")
+        .select("*")
+        .eq("active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const consultants = (dbConsultants ?? CONSULTANTS).map((c: any) => ({
+    name: c.name,
+    image: c.image_url || localImageMap[c.name] || c.image || null,
+    competence: c.competences || c.competence || [],
+    industries: c.industries || [],
+    experience: c.experience_years ?? c.experience ?? 0,
+    location: c.location || "Oslo",
+    description: c.description || "",
+  }));
 
 
   return (

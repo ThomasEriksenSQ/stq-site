@@ -5,7 +5,6 @@ import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
 import PcbPattern from "@/components/PcbPattern";
-import { DotGridPattern, TracePattern, CrosshatchPattern, DarkSectionPattern, PinGridPattern } from "@/components/SectionPatterns";
 import stacqLogo from "@/assets/stacq-logo-black.png";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
@@ -273,10 +272,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Kompetanse ── warm tinted surface with dot-grid vias */}
-      <section className="relative py-24 md:py-36 px-6 md:px-12" style={{ backgroundColor: "hsl(var(--surface-warm))" }}>
-        <DotGridPattern />
-        <div className="max-w-5xl mx-auto relative z-10">
+      {/* ── Kompetanse ── */}
+      <section className="py-24 md:py-36 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2.5 mb-5">
               <span className="h-px w-8 bg-primary/40" />
@@ -321,10 +319,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Konsulenter ── cool blue tint with PCB traces */}
-      <section id="consultants" className="relative py-24 md:py-36 px-6 md:px-12" style={{ backgroundColor: "hsl(var(--surface-cool))" }}>
-        <TracePattern />
-        <div className="max-w-5xl mx-auto relative z-10">
+      {/* ── Konsulenter ── */}
+      <section id="consultants" className="py-24 md:py-36 px-6 md:px-12 bg-secondary/30">
+        <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2.5 mb-5">
               <span className="h-px w-8 bg-primary/40" />
@@ -509,10 +506,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Bransjer ── blue-tinted surface with IC pin grid */}
-      <section className="relative py-24 md:py-36 px-6 md:px-12" style={{ backgroundColor: "hsl(var(--surface-blue))" }}>
-        <PinGridPattern />
-        <div className="max-w-5xl mx-auto relative z-10">
+      {/* ── Bransjer ── */}
+      <section className="py-24 md:py-36 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2.5 mb-5">
               <span className="h-px w-8 bg-primary/40" />
@@ -545,9 +541,8 @@ const Index = () => {
       </section>
 
       {/* ── Stilling ledig ── */}
-      <section className="relative py-24 md:py-36 px-6 md:px-12 bg-foreground text-background overflow-hidden">
-        <DarkSectionPattern />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
+      <section className="py-24 md:py-36 px-6 md:px-12 bg-foreground text-background">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.div {...fadeUp}>
             <div className="inline-flex items-center gap-2.5 mb-5">
               <span className="h-px w-8 bg-background/25" />
@@ -574,9 +569,8 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="relative bg-foreground text-background py-20 px-6 md:px-12 overflow-hidden">
-        <DarkSectionPattern />
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 relative z-10">
+      <footer className="bg-foreground text-background py-20 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-5 brightness-0 invert" />

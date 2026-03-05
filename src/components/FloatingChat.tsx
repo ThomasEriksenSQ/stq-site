@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, MessageSquare, ChevronDown } from "lucide-react";
+import { Send, Bot, MessageSquare, ChevronDown, X, MessageCircle } from "lucide-react";
 import jonRichard from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksen from "@/assets/thomas-eriksen.avif";
 
@@ -60,6 +60,7 @@ const SLACK_RESPONSES: Record<string, string[]> = {
 };
 
 const FloatingChat = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState<Mode>("bot");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);
@@ -73,9 +74,6 @@ const FloatingChat = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const responseIndex = useRef<Record<string, number>>({});
 
-  // Has user sent at least one message (to keep expanded after interaction)
-  const hasInteracted = botMessages.length > 1 || Object.keys(slackMessages).some(k => slackMessages[k].length > 1);
-
   const currentSlackMessages = slackRecipient ? (slackMessages[slackRecipient.name] || []) : [];
   const messages = mode === "bot" ? botMessages : currentSlackMessages;
 
@@ -88,10 +86,20 @@ const FloatingChat = () => {
   }, [botMessages, slackMessages, scrollToBottom]);
 
   useEffect(() => {
-    if (isExpanded && inputRef.current) {
+    if (isOpen && isExpanded && inputRef.current) {
       setTimeout(() => inputRef.current?.focus(), 300);
     }
-  }, [isExpanded]);
+  }, [isOpen, isExpanded]);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    setIsExpanded(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setIsExpanded(false);
+  };
 
   const handleSend = useCallback(
     (text?: string) => {
@@ -145,10 +153,6 @@ const FloatingChat = () => {
     if (!isExpanded) setIsExpanded(true);
   };
 
-  const handleInputFocus = () => {
-    if (!isExpanded) setIsExpanded(true);
-  };
-
   const selectRecipient = (contact: typeof SLACK_CONTACTS[0]) => {
     setSlackRecipient(contact);
     if (!slackMessages[contact.name]) {
@@ -163,11 +167,30 @@ const FloatingChat = () => {
 
   const showContactPicker = mode === "slack" && !slackRecipient;
 
+  // Bubble state (closed)
+  if (!isOpen) {
+    return (
+      <div className="fixed bottom-6 right-6 z-50">
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleOpen}
+          className="w-14 h-14 rounded-full bg-foreground text-background shadow-2xl flex items-center justify-center hover:opacity-90 transition-opacity"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </motion.button>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)]">
       <motion.div
-        layout
-        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+        initial={{ opacity: 0, y: 16, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
         className="bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
       >
         {/* Header with mode tabs */}
@@ -189,160 +212,126 @@ const FloatingChat = () => {
               }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              Chat direkte med oss
+              Chat direkte
             </button>
           </div>
-          {isExpanded && (
-            <button
-              onClick={() => setIsExpanded(false)}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary transition-colors"
-            >
-              <ChevronDown className="w-4 h-4" />
-            </button>
-          )}
+          <button
+            onClick={handleClose}
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
 
-        {/* Collapsed: just show input */}
-        {!isExpanded && (
-          <div className="px-4 py-3">
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onFocus={handleInputFocus}
-                placeholder="Spør vår AI eller chat direkte med oss"
-                className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
-              />
-              <button
-                disabled
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 flex-shrink-0"
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Expanded content */}
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ height: 0 }}
-              animate={{ height: 420 }}
-              exit={{ height: 0 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-              className="flex flex-col overflow-hidden"
-            >
-              {/* Slack contact picker */}
-              {showContactPicker ? (
-                <div className="flex-1 px-4 py-4 flex flex-col gap-3">
-                  <p className="text-[13px] text-muted-foreground font-medium">Hvem vil du sende melding til?</p>
-                  {SLACK_CONTACTS.map((contact) => (
-                    <button
-                      key={contact.name}
-                      onClick={() => selectRecipient(contact)}
-                      className="flex items-center gap-3 p-3 rounded-xl border border-border hover:bg-secondary transition-colors text-left"
-                    >
-                      <img src={contact.image} alt={contact.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
-                      <div>
-                        <span className="text-[14px] font-medium text-foreground block">{contact.name}</span>
-                        <span className="text-[12px] text-muted-foreground">{contact.email}</span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <>
-                  {/* Messages */}
-                  <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-                    {mode === "slack" && slackRecipient && (
-                      <button
-                        onClick={() => setSlackRecipient(null)}
-                        className="text-[12px] text-muted-foreground hover:text-foreground transition-colors mb-1"
-                      >
-                        ← Velg annen person
-                      </button>
-                    )}
-
-                    {messages.map((msg, i) => (
-                      <div key={`${mode}-${slackRecipient?.name || ""}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                        {msg.role === "assistant" && msg.avatar && (
-                          <img src={msg.avatar} alt={msg.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
-                        )}
-                        <div
-                          className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[14px] leading-relaxed whitespace-pre-line ${
-                            msg.role === "user"
-                              ? "bg-primary text-primary-foreground rounded-br-md"
-                              : "bg-secondary text-foreground rounded-bl-md"
-                          }`}
-                        >
-                          {msg.role === "assistant" && msg.name && (
-                            <span className="block text-[12px] font-semibold text-muted-foreground mb-1">{msg.name}</span>
-                          )}
-                          {msg.content}
-                        </div>
-                      </div>
-                    ))}
-
-                    {isTyping && (
-                      <div className="flex justify-start">
-                        {mode === "slack" && slackRecipient && (
-                          <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
-                        )}
-                        <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 rounded-2xl rounded-bl-md text-[14px]">
-                          <span className="inline-flex gap-1">
-                            <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                            <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                            <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Bot suggestions (only in expanded when initial) */}
-                    {mode === "bot" && botMessages.length === 1 && !isTyping && (
-                      <div className="flex flex-wrap gap-2 pt-1">
-                        {BOT_SUGGESTIONS.map((s) => (
-                          <button
-                            key={s.label}
-                            onClick={() => handleSend(s.query)}
-                            className="px-3 py-1.5 rounded-full border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors"
-                          >
-                            {s.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+        <div className="flex flex-col overflow-hidden" style={{ height: 420 }}>
+          {/* Slack contact picker */}
+          {showContactPicker ? (
+            <div className="flex-1 px-4 py-4 flex flex-col gap-3">
+              <p className="text-[13px] text-muted-foreground font-medium">Hvem vil du sende melding til?</p>
+              {SLACK_CONTACTS.map((contact) => (
+                <button
+                  key={contact.name}
+                  onClick={() => selectRecipient(contact)}
+                  className="flex items-center gap-3 p-3 rounded-xl border border-border hover:bg-secondary transition-colors text-left"
+                >
+                  <img src={contact.image} alt={contact.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+                  <div>
+                    <span className="text-[14px] font-medium text-foreground block">{contact.name}</span>
+                    <span className="text-[12px] text-muted-foreground">{contact.email}</span>
                   </div>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <>
+              {/* Messages */}
+              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+                {mode === "slack" && slackRecipient && (
+                  <button
+                    onClick={() => setSlackRecipient(null)}
+                    className="text-[12px] text-muted-foreground hover:text-foreground transition-colors mb-1"
+                  >
+                    ← Velg annen person
+                  </button>
+                )}
 
-                  {/* Input */}
-                  <div className="border-t border-border px-3 py-3">
-                    <div className="flex items-center gap-2">
-                      <input
-                        ref={inputRef}
-                        type="text"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Spør vår AI eller chat direkte med oss"
-                        className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
-                        disabled={isTyping}
-                      />
-                      <button
-                        onClick={() => handleSend()}
-                        disabled={!input.trim() || isTyping}
-                        className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 hover:opacity-90 transition-opacity flex-shrink-0"
-                      >
-                        <Send className="w-4 h-4" />
-                      </button>
+                {messages.map((msg, i) => (
+                  <div key={`${mode}-${slackRecipient?.name || ""}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                    {msg.role === "assistant" && msg.avatar && (
+                      <img src={msg.avatar} alt={msg.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
+                    )}
+                    <div
+                      className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[14px] leading-relaxed whitespace-pre-line ${
+                        msg.role === "user"
+                          ? "bg-primary text-primary-foreground rounded-br-md"
+                          : "bg-secondary text-foreground rounded-bl-md"
+                      }`}
+                    >
+                      {msg.role === "assistant" && msg.name && (
+                        <span className="block text-[12px] font-semibold text-muted-foreground mb-1">{msg.name}</span>
+                      )}
+                      {msg.content}
                     </div>
                   </div>
-                </>
-              )}
-            </motion.div>
+                ))}
+
+                {isTyping && (
+                  <div className="flex justify-start">
+                    {mode === "slack" && slackRecipient && (
+                      <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
+                    )}
+                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 rounded-2xl rounded-bl-md text-[14px]">
+                      <span className="inline-flex gap-1">
+                        <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                        <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                        <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Bot suggestions */}
+                {mode === "bot" && botMessages.length === 1 && !isTyping && (
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {BOT_SUGGESTIONS.map((s) => (
+                      <button
+                        key={s.label}
+                        onClick={() => handleSend(s.query)}
+                        className="px-3 py-1.5 rounded-full border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors"
+                      >
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Input */}
+              <div className="border-t border-border px-3 py-3">
+                <div className="flex items-center gap-2">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Skriv en melding..."
+                    className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                    disabled={isTyping}
+                  />
+                  <button
+                    onClick={() => handleSend()}
+                    disabled={!input.trim() || isTyping}
+                    className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 hover:opacity-90 transition-opacity flex-shrink-0"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </>
           )}
-        </AnimatePresence>
+        </div>
       </motion.div>
     </div>
   );

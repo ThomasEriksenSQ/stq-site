@@ -15,8 +15,8 @@ interface Message {
 }
 
 const SLACK_CONTACTS = [
-  { name: "Thomas Eriksen", image: thomasEriksen, email: "thomas@stacq.no" },
-  { name: "Jon Richard Nygaard", image: jonRichard, email: "jr@stacq.no" },
+  { name: "Thomas Eriksen", image: thomasEriksen, email: "Partner" },
+  { name: "Jon Richard Nygaard", image: jonRichard, email: "Partner" },
 ];
 
 const BOT_SUGGESTIONS = [
@@ -218,7 +218,7 @@ const FloatingChat = () => {
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                Chat direkte
+                Chat direkte med oss
               </button>
             </div>
             <button
@@ -281,23 +281,15 @@ const FloatingChat = () => {
               }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              Chat direkte
+              Chat direkte med oss
             </button>
           </div>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setIsExpanded(false)}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
-            >
-              <ChevronDown className="w-4 h-4" />
-            </button>
-            <button
+          <button
               onClick={handleClose}
               className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
-          </div>
         </div>
 
         {/* Expanded content */}

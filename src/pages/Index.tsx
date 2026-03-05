@@ -345,6 +345,7 @@ const Index = () => {
               {/* Right — profile */}
               <AnimatePresence mode="wait">
                 <motion.div
+                  ref={profileRef}
                   key={activeConsultant}
                   initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}

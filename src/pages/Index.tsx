@@ -423,7 +423,7 @@ const Index = () => {
 
                     {/* Bransjeerfaring */}
                     <div className="mt-6">
-                      <p className="text-[13px] tracking-[0.18em] uppercase mb-3 text-muted-foreground">Bransjeerfaring</p>
+                      <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">Bransjeerfaring</p>
                       <div className="flex flex-wrap gap-3">
                         {consultants[expandedConsultant].industries.map((ind) => (
                           <Tag key={ind}>{ind}</Tag>

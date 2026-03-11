@@ -297,7 +297,7 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px]">
+          <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
             {consultants.map((c, i) => (
               <motion.div
                 key={c.name}

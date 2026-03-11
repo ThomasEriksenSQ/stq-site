@@ -289,7 +289,7 @@ const Index = () => {
 
       {/* ── Konsulenter ── */}
       <section id="consultants" style={{ padding: '88px 10vw' }}>
-        <div className="max-w-5xl mx-auto">
+        <div>
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
             <h2 className="font-serif text-foreground mb-14" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>

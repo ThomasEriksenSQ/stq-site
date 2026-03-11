@@ -613,7 +613,7 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '80px 10vw 40px' }}>
+      <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '72px 10vw 40px' }}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
           {/* Logo + tagline */}
           <div>

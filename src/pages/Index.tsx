@@ -2,7 +2,12 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
-import { Phone, Mail, Clock, MapPin, Linkedin, X, Activity, Cpu, Zap, Smartphone, Shield, Cog, Radio, Wifi } from "lucide-react";
+import {
+  Phone, Mail, Clock, MapPin, Linkedin, X,
+  Activity, Cpu, Zap, Smartphone, Shield, Cog, Radio, Wifi,
+  ArrowRight, CheckCircle2, ChevronRight,
+  Code2, Layers, Bug, ShieldCheck, Wrench, FlaskConical,
+} from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
@@ -22,6 +27,8 @@ import jonRichardContact from "@/assets/jon-richard-nygaard-contact.jpg";
 import thomasEriksenContact from "@/assets/thomas-eriksen-contact.jpg";
 import robotAvatar from "@/assets/robot-avatar.png";
 
+/* ─── Data ─── */
+
 const TICKER_ITEMS = [
   "C", "C++", "Rust", "Zephyr", "FreeRTOS", "ThreadX", "Embedded Linux", "Yocto",
   "ARM Cortex", "RTOS", "CAN", "CANopen", "SPI", "I2C", "UART", "Board bring-up",
@@ -29,65 +36,117 @@ const TICKER_ITEMS = [
   "ISO 26262", "IEC 62443", "MISRA-C",
 ];
 
-const COMPETENCE_GROUPS = [
+const SERVICES = [
   {
-    hex: "0x01",
-    title: "Embedded systemer",
-    description: "Utvikling av komplette embedded systemer — fra firmware på mikrokontrollere til Linux-baserte produkter.",
-    tags: ["Firmware", "Embedded Linux", "Yocto / Buildroot", "Linux-kjerne og drivere"],
+    icon: Cpu,
+    title: "Embedded Software Development",
+    text: "Full-stack embedded development from BSP and drivers to application logic. We build software that runs reliably on constrained hardware in production.",
   },
   {
-    hex: "0x02",
-    title: "Sanntidssystemer",
-    description: "Systemer der stabilitet, timing og determinisme er kritisk.",
-    tags: ["RTOS (FreeRTOS, Zephyr, ThreadX)", "Multitråding", "Interrupt-styrte systemer", "Ytelsesoptimalisering"],
+    icon: Layers,
+    title: "Firmware Development",
+    text: "Custom firmware for microcontrollers and SoCs. From bare-metal to RTOS-based architectures, designed for performance and long-term maintainability.",
   },
   {
-    hex: "0x03",
-    title: "Hardware-nær utvikling",
-    description: "Integrasjon mellom programvare, elektronikk og fysiske systemer.",
-    tags: ["Mikrokontrollere", "ARM Cortex", "Board bring-up", "Hardware-debugging"],
+    icon: Code2,
+    title: "C / C++ / Rust Engineering",
+    text: "Deep expertise in low-level languages where every byte and cycle matters. We write code that meets the strictest requirements for safety and speed.",
   },
   {
-    hex: "0x04",
-    title: "Protokoller og kommunikasjon",
-    description: "Kommunikasjon mellom embedded systemer og andre systemer.",
-    tags: ["SPI / I2C / UART", "CAN / CANopen", "TCP/IP", "Industrielle protokoller"],
+    icon: Wrench,
+    title: "Hardware-Near Debugging & Integration",
+    text: "JTAG, oscilloscopes, logic analyzers — we bridge the gap between hardware and software. Board bring-up, driver development, and system integration.",
   },
   {
-    hex: "0x05",
-    title: "Programmering",
-    description: null,
-    tags: ["C", "C++", "Rust", "Python", "Assembly"],
+    icon: FlaskConical,
+    title: "Testing, Validation & Production Readiness",
+    text: "CI/CD for embedded, hardware-in-the-loop testing, and systematic validation. We make sure your product is production-ready, not just prototype-ready.",
   },
   {
-    hex: "0x06",
-    title: "Testing og kvalitet",
-    description: "Robuste systemer krever systematisk testing.",
-    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Sikker firmware"],
+    icon: ShieldCheck,
+    title: "Safety-Critical & High-Reliability Software",
+    text: "Development according to IEC 62443, ISO 26262, and IEC 62304. For domains where software failure has real-world consequences.",
+  },
+];
+
+const CASE_STUDIES = [
+  {
+    domain: "Medtech",
+    title: "Embedded platform for a Class IIb medical device",
+    challenge: "Legacy firmware on an aging MCU with no CI, no tests, and upcoming regulatory audit.",
+    delivered: "Full platform migration to Yocto Linux, TDD pipeline, and IEC 62304-compliant documentation.",
+    outcome: "Passed regulatory audit. 60% reduction in firmware defects post-release.",
+  },
+  {
+    domain: "Industrial Robotics",
+    title: "Real-time motion control for autonomous vehicles",
+    challenge: "Intermittent control loop failures under high load causing safety shutdowns in production.",
+    delivered: "Root cause analysis, RTOS architecture redesign, and deterministic scheduling with sub-ms jitter.",
+    outcome: "Zero unplanned shutdowns in 14 months. System certified for autonomous operation.",
+  },
+  {
+    domain: "EV Charging",
+    title: "Secure firmware for next-gen EV charging infrastructure",
+    challenge: "New ISO 15118 compliance requirements with tight go-to-market deadline.",
+    delivered: "TrustZone-based secure boot, encrypted firmware updates, and protocol stack implementation.",
+    outcome: "Launched on schedule. First Nordic charger with full ISO 15118-20 support.",
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    num: "01",
+    title: "Discovery",
+    text: "We map your technical landscape, constraints, and goals. No sales pitch — just an honest assessment of fit.",
+  },
+  {
+    num: "02",
+    title: "Technical Assessment",
+    text: "Our partners match the right consultant based on domain, tech stack, and team dynamics. One recommendation — not a CV pile.",
+  },
+  {
+    num: "03",
+    title: "Execution",
+    text: "Your consultant integrates into your team. Deep ownership, long-term commitment. Most engagements last one to three years.",
+  },
+  {
+    num: "04",
+    title: "Continuity",
+    text: "Knowledge transfer, documentation, and ongoing support. We build for handover from day one.",
   },
 ];
 
 const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
-  "Medisinsk teknologi": Activity,
-  "Halvleder og chip-utvikling": Cpu,
-  "Energi og elektrisk mobilitet": Zap,
-  "Forbrukerelektronikk": Smartphone,
-  "Forsvar og sikkerhetskritiske systemer": Shield,
-  "Industriell automasjon": Cog,
-  "Telekom og kommunikasjon": Radio,
-  "IoT og smarte enheter": Wifi,
+  "Industrial Systems": Cog,
+  "Medtech & Life Sciences": Activity,
+  "IoT & Connected Devices": Wifi,
+  "Robotics & Autonomy": Cpu,
+  "Defense & Security": Shield,
+  "Energy & E-Mobility": Zap,
+  "Automotive": Radio,
+  "Consumer Electronics": Smartphone,
 };
 
 const DOMAINS = [
-  "Medisinsk teknologi",
-  "Halvleder og chip-utvikling",
-  "Energi og elektrisk mobilitet",
-  "Forbrukerelektronikk",
-  "Forsvar og sikkerhetskritiske systemer",
-  "Industriell automasjon",
-  "Telekom og kommunikasjon",
-  "IoT og smarte enheter",
+  "Industrial Systems",
+  "Medtech & Life Sciences",
+  "IoT & Connected Devices",
+  "Robotics & Autonomy",
+  "Defense & Security",
+  "Energy & E-Mobility",
+  "Automotive",
+  "Consumer Electronics",
+];
+
+const TRUST_LOGOS = [
+  "Kongsberg", "Nordic Semiconductor", "Zaptec", "Laerdal", "Aker Solutions",
+  "Kitron", "Elliptic Labs", "Autostore",
+];
+
+const VALUE_PROPS = [
+  { num: "01", title: "Only seniors.", text: "Every consultant has 8+ years building real products in production. No juniors. No generalists." },
+  { num: "02", title: "Deeply embedded.", text: "Our people become part of your team — not an external resource. Most engagements last one to three years." },
+  { num: "03", title: "Curated, not catalogued.", text: "15 consultants. Our partners know every one personally. One phone call — and you know who you need." },
 ];
 
 const CONSULTANTS = [
@@ -105,11 +164,7 @@ const CONSULTANTS = [
   { name: "Mattis Asp", image: mattisAsp, competence: ["Embedded", "Systems", "C/C++", "Architecture", "Integration"], industries: ["Embedded", "Systemintegrasjon"], experience: 10, location: "Oslo", description: "Erfaren systemutvikler med bred embedded-kompetanse og evne til å levere robuste løsninger." },
 ];
 
-const MANIFEST = [
-  { num: "01", title: "Kun seniorer.", text: "Alle våre konsulenter har minimum 8 års erfaring fra reelle produkter i produksjon. Ingen juniorer. Ingen generalister." },
-  { num: "02", title: "Dypt integrert.", text: "Konsulentene våre blir en del av teamet ditt — ikke en ekstern ressurs. De fleste oppdrag varer i ett til tre år." },
-  { num: "03", title: "Kuratert, ikke katalogisert.", text: "Vi er 15 konsulenter. Thomas og Jon kjenner alle personlig. Én telefonsamtale — så vet du hvem du trenger." },
-];
+/* ─── Animation presets ─── */
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -120,9 +175,11 @@ const fadeUp = {
 
 const stagger = {
   initial: {},
-  whileInView: { transition: { staggerChildren: 0.1 } },
+  whileInView: { transition: { staggerChildren: 0.08 } },
   viewport: { once: true, margin: "-60px" },
 };
+
+/* ─── Component ─── */
 
 const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -170,7 +227,7 @@ const Index = () => {
   };
 
   const Tag = ({ children }: { children: string }) => (
-    <span className="text-[13px] font-mono inline-flex items-center gap-0">
+    <span className="text-[13px] font-mono inline-flex items-center">
       <span className="text-primary">[</span>
       <span className="text-muted-foreground">&nbsp;{children}&nbsp;</span>
       <span className="text-primary">]</span>
@@ -178,57 +235,49 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
 
-      {/* ── Hero ── */}
-      <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
+      {/* ════════════════════════════════════════════
+          1. HERO
+      ════════════════════════════════════════════ */}
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ padding: '0 10vw' }}>
         <PcbPattern />
-        <div className="relative z-10 max-w-[580px]">
-          {/* Logo */}
-          <img src={stacqLogoWhite} alt="STACQ" className="h-7 brightness-0 invert mb-[52px]" />
+        <div className="relative z-10 max-w-[640px]">
+          <img src={stacqLogoWhite} alt="STACQ" className="h-7 brightness-0 invert mb-12" />
 
-          {/* Overline */}
-          <p className="text-[13px] tracking-[0.18em] uppercase font-mono text-primary/80 mb-5">
-            Konsulentselskap — Oslo, Norge
+          <p className="text-[12px] tracking-[0.22em] uppercase font-mono text-primary/75 mb-6">
+            Embedded Systems Consultancy — Oslo, Norway
           </p>
 
-          {/* H1 */}
-          <h1
-            className="font-serif text-foreground"
-            style={{ fontSize: "clamp(48px, 5.5vw, 78px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
-          >
-            Embedded, firmware<br />og C/C++/Rust konsulenter.
+          <h1 className="font-serif text-foreground" style={{ fontSize: "clamp(44px, 5vw, 72px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
+            Engineering software<br />that can't afford to fail.
           </h1>
 
-          {/* Ingress */}
-          <p className="mt-7 text-[18px] text-muted-foreground leading-[2.0] max-w-[480px]">
-            Senior-nivå spesialister innen embedded
-            <br />
-            systems og lavnivå-programmering.
-            <br />
-            For oppdrag som ikke tåler halvgode løsninger.
+          <p className="mt-7 text-[16px] text-muted-foreground leading-[1.9] max-w-[500px]">
+            We provide senior embedded, firmware, and C/C++/Rust engineers for
+            projects where reliability, safety, and performance are non-negotiable.
+            All 15 consultants are currently in active engagements.
           </p>
 
-          {/* CTAs */}
-          <div className="mt-11 flex items-center gap-3">
-            <button
-              onClick={() => scrollTo("consultants")}
-              className="px-7 py-3.5 bg-foreground text-background text-[14px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
-              style={{ borderRadius: '2px' }}
-            >
-              Se konsulentene
-            </button>
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <button
               onClick={() => scrollTo("footer-contact")}
-              className="px-7 py-3.5 border border-border text-muted-foreground text-[14px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
+              className="px-7 py-3.5 bg-foreground text-background text-[13px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Ta kontakt
+              Start a project
+            </button>
+            <button
+              onClick={() => scrollTo("consultants")}
+              className="px-7 py-3.5 border border-border text-muted-foreground text-[13px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
+              style={{ borderRadius: '2px' }}
+            >
+              See our experts
             </button>
           </div>
         </div>
 
-        {/* Tech ticker at bottom */}
+        {/* Tech ticker */}
         <div className="absolute bottom-0 left-0 right-0 border-t" style={{ borderColor: 'hsl(var(--border-subtle))' }}>
           <div className="overflow-hidden h-10 flex items-center">
             <div className="ticker-animate whitespace-nowrap flex">
@@ -242,59 +291,144 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Manifest ── */}
-      <section id="manifest" className="border-t border-b border-border" style={{ padding: '88px 10vw' }}>
+      {/* ════════════════════════════════════════════
+          2. TRUSTED BY
+      ════════════════════════════════════════════ */}
+      <section className="border-t border-b border-border" style={{ padding: '40px 10vw' }}>
+        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+          <p className="text-[11px] tracking-[0.2em] uppercase font-mono text-muted-foreground/60 whitespace-nowrap shrink-0">
+            Trusted by
+          </p>
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-10 gap-y-4 w-full">
+            {TRUST_LOGOS.map((logo) => (
+              <span key={logo} className="text-[13px] font-mono text-muted-foreground/40 tracking-[0.06em] hover:text-muted-foreground transition-colors duration-300">
+                {logo}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          3. SERVICES / EXPERTISE
+      ════════════════════════════════════════════ */}
+      <section id="services" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
+        <motion.div {...fadeUp} className="max-w-2xl mb-14">
+          <p className="text-[12px] tracking-[0.2em] uppercase mb-4 font-mono text-muted-foreground/60">
+            Services
+          </p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 3.5vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            What we do.
+          </h2>
+          <p className="mt-5 text-[15px] text-muted-foreground leading-[1.85] max-w-[480px]">
+            Deep technical capabilities across the full embedded stack — from bare-metal firmware to production-grade Linux systems.
+          </p>
+        </motion.div>
+
+        <motion.div {...stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] w-full">
+          {SERVICES.map((s) => {
+            const IconComp = s.icon;
+            return (
+              <motion.div
+                key={s.title}
+                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                className="group relative bg-background border border-border hover:border-primary/40 transition-colors duration-[400ms]"
+                style={{ borderRadius: '2px', padding: '32px' }}
+              >
+                <IconComp className="w-6 h-6 text-primary mb-5" strokeWidth={1.5} />
+                <h3 className="text-[15px] font-semibold text-foreground mb-3">{s.title}</h3>
+                <p className="text-[13px] text-muted-foreground leading-[1.85]">{s.text}</p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          4. WHY STACQ / VALUE PROPOSITION
+      ════════════════════════════════════════════ */}
+      <section className="border-t border-b border-border" style={{ padding: '88px 10vw' }}>
+        <motion.div {...fadeUp} className="max-w-2xl mb-14">
+          <p className="text-[12px] tracking-[0.2em] uppercase mb-4 font-mono text-muted-foreground/60">
+            Why Stacq
+          </p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 3.5vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Not a staffing agency.<br />A curated network.
+          </h2>
+        </motion.div>
+
         <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
-          {MANIFEST.map((item, i) => (
-            <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
+          {VALUE_PROPS.map((item, i) => (
+            <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < VALUE_PROPS.length - 1 ? 'md:pr-12' : ''}`}>
               <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-5">{item.num}</p>
-              <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
-              <p className="text-[15px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
+              <h3 className="text-[17px] font-semibold text-foreground tracking-[0.01em] mb-3">{item.title}</h3>
+              <p className="text-[14px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
             </div>
           ))}
         </motion.div>
       </section>
 
-      {/* ── Kompetanse ── */}
-      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
-        <motion.div {...fadeUp} className="max-w-2xl">
-          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
-          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-            Lavnivå. Høy presisjon.
+      {/* ════════════════════════════════════════════
+          5. CASE STUDIES
+      ════════════════════════════════════════════ */}
+      <section id="cases" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
+        <motion.div {...fadeUp} className="max-w-2xl mb-14">
+          <p className="text-[12px] tracking-[0.2em] uppercase mb-4 font-mono text-muted-foreground/60">
+            Selected Projects
+          </p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 3.5vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Proven in production.
           </h2>
         </motion.div>
 
-        <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] w-full">
-          {COMPETENCE_GROUPS.map((group) => (
+        <motion.div {...stagger} className="grid grid-cols-1 lg:grid-cols-3 gap-[1px] w-full">
+          {CASE_STUDIES.map((cs) => (
             <motion.div
-              key={group.title}
+              key={cs.title}
               variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-              className="group relative border border-border bg-background hover:border-primary/40 transition-colors duration-[400ms]"
-              style={{ borderRadius: '2px', padding: '28px' }}
+              className="bg-background border border-border hover:border-primary/30 transition-colors duration-[400ms] flex flex-col"
+              style={{ borderRadius: '2px', padding: '32px' }}
             >
-              <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
-              <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
-              {group.description && (
-                <p className="text-[14px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
-              )}
-              <div className="flex flex-wrap gap-3">
-                {group.tags.map((tag) => (
-                  <Tag key={tag}>{tag}</Tag>
-                ))}
+              <span className="text-[11px] tracking-[0.18em] uppercase font-mono text-primary mb-4">{cs.domain}</span>
+              <h3 className="text-[15px] font-semibold text-foreground mb-5 leading-snug">{cs.title}</h3>
+
+              <div className="space-y-4 flex-1">
+                <div>
+                  <p className="text-[11px] tracking-[0.15em] uppercase font-mono text-muted-foreground/50 mb-1">Challenge</p>
+                  <p className="text-[13px] text-muted-foreground leading-[1.8]">{cs.challenge}</p>
+                </div>
+                <div>
+                  <p className="text-[11px] tracking-[0.15em] uppercase font-mono text-muted-foreground/50 mb-1">Delivered</p>
+                  <p className="text-[13px] text-muted-foreground leading-[1.8]">{cs.delivered}</p>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-5 border-t border-border">
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <p className="text-[13px] text-foreground/80 leading-[1.7]">{cs.outcome}</p>
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
-      {/* ── Konsulenter ── */}
+      {/* ════════════════════════════════════════════
+          6. TEAM / CONSULTANTS
+      ════════════════════════════════════════════ */}
       <section id="consultants" style={{ padding: '88px 10vw' }}>
         <div>
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
-            <h2 className="font-serif text-foreground mb-14" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Konsulentene.
+            <p className="text-[12px] tracking-[0.2em] uppercase mb-4 font-mono text-muted-foreground/60">
+              Our Consultants
+            </p>
+            <h2 className="font-serif text-foreground mb-3" style={{ fontSize: "clamp(32px, 3.5vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+              The people behind the systems.
             </h2>
+            <p className="text-[15px] text-muted-foreground leading-[1.85] max-w-[500px] mb-14">
+              Senior specialists with deep domain expertise. Each personally vetted by our founding partners.
+            </p>
           </motion.div>
 
           <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
@@ -332,12 +466,12 @@ const Index = () => {
                   <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '16px 18px' }}>
                     <h3 className="text-[14px] font-medium text-foreground leading-snug">{c.name}</h3>
                     <div className="mt-1 flex items-center gap-3 text-[12px] text-muted-foreground">
-                      <span>{c.experience}+ år</span>
+                      <span>{c.experience}+ yrs</span>
                       <span>{c.location}</span>
                     </div>
                     <div className="mt-2.5 flex flex-wrap gap-3">
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[12px] font-mono whitespace-nowrap">
+                        <span key={comp} className="text-[11px] font-mono whitespace-nowrap">
                           <span className="text-primary">[</span>
                           <span className="text-muted-foreground/60">&nbsp;{comp}&nbsp;</span>
                           <span className="text-primary">]</span>
@@ -350,7 +484,7 @@ const Index = () => {
             ))}
           </motion.div>
 
-          {/* Consultant profile drawer */}
+          {/* Consultant drawer */}
           <AnimatePresence>
             {expandedConsultant !== null && (
               <>
@@ -378,42 +512,29 @@ const Index = () => {
                       <X className="w-4 h-4" />
                     </button>
 
-                    {/* Profile header */}
                     <div className="flex items-start gap-6">
                       {consultants[expandedConsultant].image ? (
-                        <img
-                          src={consultants[expandedConsultant].image}
-                          alt={consultants[expandedConsultant].name}
-                          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
-                          style={{ borderRadius: '2px' }}
-                        />
+                        <img src={consultants[expandedConsultant].image} alt={consultants[expandedConsultant].name} className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0" style={{ borderRadius: '2px' }} />
                       ) : (
-                        <img
-                          src={robotAvatar}
-                          alt={`${consultants[expandedConsultant].name} avatar`}
-                          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
-                          style={{ borderRadius: '2px' }}
-                        />
+                        <img src={robotAvatar} alt={`${consultants[expandedConsultant].name} avatar`} className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0" style={{ borderRadius: '2px' }} />
                       )}
                       <div className="pt-1">
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
                           {consultants[expandedConsultant].name}
                         </h3>
                         <div className="mt-2 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
-                          <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
+                          <span>{consultants[expandedConsultant].experience}+ years experience</span>
                           <span>{consultants[expandedConsultant].location}</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Description */}
-                    <p className="mt-7 text-[16px] text-muted-foreground leading-[1.9]">
+                    <p className="mt-7 text-[15px] text-muted-foreground leading-[1.9]">
                       {consultants[expandedConsultant].description}
                     </p>
 
-                    {/* Kompetanse */}
                     <div className="mt-8">
-                      <p className="text-[13px] tracking-[0.18em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
+                      <p className="text-[12px] tracking-[0.18em] uppercase mb-3 text-muted-foreground/60">Competence</p>
                       <div className="flex flex-wrap gap-3">
                         {consultants[expandedConsultant].competence.map((comp) => (
                           <Tag key={comp}>{comp}</Tag>
@@ -421,9 +542,8 @@ const Index = () => {
                       </div>
                     </div>
 
-                    {/* Bransjeerfaring */}
                     <div className="mt-6">
-                      <p className="text-[13px] tracking-[0.18em] uppercase mb-3 text-muted-foreground">Bransjeerfaring</p>
+                      <p className="text-[12px] tracking-[0.18em] uppercase mb-3 text-muted-foreground/60">Industry experience</p>
                       <div className="flex flex-wrap gap-3">
                         {consultants[expandedConsultant].industries.map((ind) => (
                           <Tag key={ind}>{ind}</Tag>
@@ -431,10 +551,9 @@ const Index = () => {
                       </div>
                     </div>
 
-                    {/* Contact CTA */}
                     <div className="mt-12 pt-6 border-t border-border">
-                      <p className="text-[15px] text-muted-foreground mb-4">
-                        Interessert i å booke {consultants[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
+                      <p className="text-[14px] text-muted-foreground mb-4">
+                        Interested in booking {consultants[expandedConsultant].name.split(" ")[0]}? Contact:
                       </p>
                       <div className="space-y-3">
                         {[
@@ -444,7 +563,7 @@ const Index = () => {
                           <div key={contact.name} className="flex items-center gap-3 p-3 border border-border" style={{ borderRadius: '2px', background: 'hsl(var(--surface))' }}>
                             <img src={contact.img} alt={contact.name} className="w-10 h-10 object-cover flex-shrink-0" style={{ borderRadius: '2px' }} />
                             <div className="min-w-0">
-                              <p className="text-[14px] font-medium text-foreground">{contact.name} <span className="font-normal text-muted-foreground">· Partner</span></p>
+                              <p className="text-[13px] font-medium text-foreground">{contact.name} <span className="font-normal text-muted-foreground">· Partner</span></p>
                               <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
                                 <a href={`tel:${contact.telRaw}`} className="inline-flex items-center gap-1 hover:text-primary transition-colors"><Phone className="w-3 h-3" />{contact.tel}</a>
                                 <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1 hover:text-primary transition-colors"><Mail className="w-3 h-3" />{contact.email}</a>
@@ -462,89 +581,118 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Bransjer ── */}
+      {/* ════════════════════════════════════════════
+          7. HOW WE WORK
+      ════════════════════════════════════════════ */}
       <section style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
-        <motion.div {...fadeUp} className="max-w-2xl">
-          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
-          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-            Der koden møter<br />den virkelige verden.
+        <motion.div {...fadeUp} className="max-w-2xl mb-14">
+          <p className="text-[12px] tracking-[0.2em] uppercase mb-4 font-mono text-muted-foreground/60">
+            Process
+          </p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 3.5vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            How we work.
           </h2>
         </motion.div>
 
-        <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px] w-full">
+        <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-0">
+          {PROCESS_STEPS.map((step, i) => (
+            <div key={step.num} className={`relative ${i > 0 ? 'md:border-l md:border-border md:pl-8' : ''} ${i < PROCESS_STEPS.length - 1 ? 'md:pr-8' : ''}`}>
+              <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-4">{step.num}</p>
+              <h3 className="text-[16px] font-semibold text-foreground mb-3">{step.title}</h3>
+              <p className="text-[13px] text-muted-foreground leading-[1.85] max-w-[260px]">{step.text}</p>
+            </div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          8. INDUSTRIES / DOMAINS
+      ════════════════════════════════════════════ */}
+      <section style={{ padding: '88px 10vw' }}>
+        <motion.div {...fadeUp} className="max-w-2xl mb-14">
+          <p className="text-[12px] tracking-[0.2em] uppercase mb-4 font-mono text-muted-foreground/60">
+            Industries
+          </p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 3.5vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Where code meets<br />the real world.
+          </h2>
+        </motion.div>
+
+        <motion.div {...stagger} className="grid grid-cols-2 md:grid-cols-4 gap-[1px] w-full">
           {DOMAINS.map((title) => {
             const IconComp = DOMAIN_ICONS[title];
             return (
               <motion.div
                 key={title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group flex flex-col items-start border border-border bg-background hover:border-primary/40 transition-colors duration-300"
+                className="group flex flex-col items-start border border-border bg-card hover:border-primary/40 transition-colors duration-300"
                 style={{ borderRadius: '2px', padding: '32px 28px', minHeight: '180px' }}
               >
                 {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
-                <h3 className="text-[15px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
+                <h3 className="text-[14px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
               </motion.div>
             );
           })}
         </motion.div>
       </section>
 
-      {/* ── Karriere ── */}
-      <section id="career" className="border-t border-border" style={{ padding: '88px 10vw' }}>
-        <div className="max-w-3xl">
-          <motion.div {...fadeUp}>
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Karriere</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Bli en del av teamet.
-            </h2>
-            <h2 className="font-serif text-foreground/45 italic mt-3" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Vi ser etter deg.
-            </h2>
-            <p className="mt-8 text-[16px] text-muted-foreground leading-[1.9] max-w-[420px]">
-              Er du senior embedded-ingeniør med erfaring fra
-              reelle produkter i produksjon? Vi er alltid
-              interessert i å snakke med de riktige menneskene.
-            </p>
-            <div className="mt-9">
-              <button
-                onClick={() => setIsJobOverlayOpen(true)}
-                className="px-7 py-3.5 bg-foreground text-background text-[14px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
-                style={{ borderRadius: '2px' }}
-              >
-                Søk nå →
-              </button>
-            </div>
-          </motion.div>
-        </div>
+      {/* ════════════════════════════════════════════
+          9. CTA SECTION
+      ════════════════════════════════════════════ */}
+      <section className="border-t border-b border-border" style={{ padding: '88px 10vw' }}>
+        <motion.div {...fadeUp} className="max-w-xl">
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 3.5vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Let's build something<br />that works.
+          </h2>
+          <p className="mt-6 text-[15px] text-muted-foreground leading-[1.85] max-w-[440px]">
+            Whether you're scaling a team, starting a new product, or solving a hard embedded problem — we'd like to hear about it.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => scrollTo("footer-contact")}
+              className="px-7 py-3.5 bg-foreground text-background text-[13px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
+              style={{ borderRadius: '2px' }}
+            >
+              Start a conversation <ArrowRight className="inline w-3.5 h-3.5 ml-1.5" />
+            </button>
+            <button
+              onClick={() => setIsJobOverlayOpen(true)}
+              className="px-7 py-3.5 border border-border text-muted-foreground text-[13px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
+              style={{ borderRadius: '2px' }}
+            >
+              Join as consultant
+            </button>
+          </div>
+        </motion.div>
       </section>
 
-      {/* ── Footer ── */}
+      {/* ════════════════════════════════════════════
+          10. FOOTER
+      ════════════════════════════════════════════ */}
       <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '72px 10vw 40px' }}>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
-          {/* Logo + tagline */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
-            <p className="text-[14px] tracking-[0.04em] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
-              Der stakken begynner.
+            <p className="text-[13px] tracking-[0.04em] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
+              Engineering software<br />that can't afford to fail.
             </p>
-          </div>
-
-          {/* Selskap */}
-          <div>
-            <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
-            <ul className="space-y-3">
-              <li><button onClick={() => scrollTo("consultants")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Konsulenter</button></li>
-              <li><button onClick={() => scrollTo("career")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Karriere</button></li>
-            </ul>
-            <p className="mt-7 text-[14px] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="mt-6 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
               STACQ AS · 932 575 442 MVA
             </p>
           </div>
 
-          {/* Kontakt oss */}
           <div>
-            <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
-            <ul className="space-y-4 text-[14px] text-muted-foreground leading-[1.8]">
+            <h4 className="text-[11px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Company</h4>
+            <ul className="space-y-3">
+              <li><button onClick={() => scrollTo("services")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Services</button></li>
+              <li><button onClick={() => scrollTo("consultants")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Consultants</button></li>
+              <li><button onClick={() => scrollTo("cases")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Case Studies</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[11px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Contact</h4>
+            <ul className="space-y-4 text-[13px] text-muted-foreground leading-[1.8]">
               <li>
                 <span className="block font-medium text-foreground/85">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></span>
                 <div className="mt-1 flex flex-col gap-0.5">
@@ -562,12 +710,10 @@ const Index = () => {
             </ul>
           </div>
 
-          {/* Besøk oss */}
           <div>
-            <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
-            <p className="text-[14px] text-muted-foreground leading-[1.8]">
-              Øvre Slottsgate 27,<br />
-              0157 Oslo
+            <h4 className="text-[11px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Visit us</h4>
+            <p className="text-[13px] text-muted-foreground leading-[1.8]">
+              Øvre Slottsgate 27,<br />0157 Oslo
             </p>
             <div className="mt-4 overflow-hidden border border-border" style={{ borderRadius: '2px' }}>
               <iframe

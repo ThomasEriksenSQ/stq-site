@@ -241,18 +241,18 @@ const CONSULTANTS = [
 const MANIFEST = [
   {
     num: "01",
-    title: "Kun seniorer.",
-    text: "Alle våre konsulenter har minimum 8 års erfaring fra reelle produkter i produksjon. Ingen juniorer. Ingen generalister.",
+    title: "Solid erfaring.",
+    text: "Konsulentene våre arbeider med systemnær utvikling i C, C++ og Rust. Alle har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
   },
   {
     num: "02",
-    title: "Dypt integrert.",
-    text: "Konsulentene våre blir en del av teamet ditt — ikke en ekstern ressurs. De fleste oppdrag varer i ett til tre år.",
+    title: "Selvstendige konsulenter.",
+    text: "De setter seg raskt inn i systemer og problemstillinger, og tar ansvar for sitt område. Arbeidet drives fremover med faglig trygghet og uten behov for tett oppfølging.",
   },
   {
     num: "03",
-    title: "Kuratert, ikke katalogisert.",
-    text: "Vi er 15 konsulenter. Thomas og Jon kjenner alle personlig. Én telefonsamtale — så vet du hvem du trenger.",
+    title: "Gode å jobbe med.",
+    text: "Folkene våre er ryddige, åpne om fremdrift og samarbeider godt med teamet rundt seg. Det gjør prosjekter mer forutsigbare – også når arbeidet er krevende.",
   },
 ];
 

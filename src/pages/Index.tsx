@@ -246,7 +246,7 @@ const MANIFEST = [
   },
   {
     num: "02",
-    title: "Selvstendige konsulenter.",
+    title: "Selvstendige.",
     text: "De setter seg raskt inn i systemer og problemstillinger, og tar ansvar for sitt område. Arbeidet drives fremover med faglig trygghet og uten behov for tett oppfølging.",
   },
   {

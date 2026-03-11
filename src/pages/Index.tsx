@@ -257,36 +257,34 @@ const Index = () => {
 
       {/* ── Kompetanse ── */}
       <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
-        <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Lavnivå. Høy presisjon.
-            </h2>
-          </motion.div>
+        <motion.div {...fadeUp} className="max-w-2xl">
+          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Lavnivå. Høy presisjon.
+          </h2>
+        </motion.div>
 
-          <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px]">
-            {COMPETENCE_GROUPS.map((group) => (
-              <motion.div
-                key={group.title}
-                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group relative p-7 border border-border bg-background hover:border-primary/40 transition-colors duration-[400ms]"
-                style={{ borderRadius: '2px' }}
-              >
-                <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
-                <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
-                {group.description && (
-                  <p className="text-[15px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
-                )}
-                <div className="flex flex-wrap gap-3">
-                  {group.tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+        <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] w-full">
+          {COMPETENCE_GROUPS.map((group) => (
+            <motion.div
+              key={group.title}
+              variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+              className="group relative border border-border bg-background hover:border-primary/40 transition-colors duration-[400ms]"
+              style={{ borderRadius: '2px', padding: '28px' }}
+            >
+              <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
+              <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
+              {group.description && (
+                <p className="text-[14px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
+              )}
+              <div className="flex flex-wrap gap-3">
+                {group.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* ── Konsulenter ── */}

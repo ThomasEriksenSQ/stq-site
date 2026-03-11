@@ -506,8 +506,53 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ── Om Thomas og Jon ── */}
+      <section id="om-oss" className="border-t border-b border-border" style={{ background: 'hsl(var(--surface))', padding: '100px 10vw' }}>
+        <div className="max-w-6xl mx-auto">
+          <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20">
+            {/* Left column - text */}
+            <div className="lg:col-span-2">
+              <p className="text-[11px] tracking-[0.2em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Partnerne</p>
+              <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.05 }}>
+                Personlig kjennskap.
+                <br />
+                Ikke et søk i en database.
+              </h2>
+              <p className="mt-6 text-[14px] text-muted-foreground leading-[1.9]">
+                Thomas Eriksen og Jon Richard Nygaard bygget STACQ fordi de så det samme problemet gjentatte ganger: selskaper med krevende embedded-prosjekter fikk CVer fra folk som hadde lest om teknologien — ikke brukt den.
+              </p>
+              <p className="mt-4 text-[14px] text-muted-foreground leading-[1.9]">
+                Vi kjenner alle i nettverket vårt personlig. Vi vet hvem som passer hvor. Ring oss.
+              </p>
+            </div>
+
+            {/* Right column - partner cards */}
+            <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { img: thomasEriksenContact, name: "Thomas Eriksen", tel: "975 00 321", telRaw: "97500321", email: "thomas@stacq.no" },
+                { img: jonRichardContact, name: "Jon Richard Nygaard", tel: "932 87 267", telRaw: "93287267", email: "jr@stacq.no" },
+              ].map((partner) => (
+                <div key={partner.name} className="p-6 border border-border bg-background" style={{ borderRadius: '2px' }}>
+                  <img src={partner.img} alt={partner.name} className="w-[72px] h-[72px] object-cover rounded-full mb-4" />
+                  <h3 className="text-[14px] font-semibold text-foreground">{partner.name}</h3>
+                  <p className="text-[11px] mt-1 mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Partner</p>
+                  <div className="space-y-2 text-[13px] text-muted-foreground">
+                    <a href={`tel:${partner.telRaw}`} className="flex items-center gap-2 hover:text-primary transition-colors">
+                      <Phone className="w-3.5 h-3.5" />{partner.tel}
+                    </a>
+                    <a href={`mailto:${partner.email}`} className="flex items-center gap-2 hover:text-primary transition-colors">
+                      <Mail className="w-3.5 h-3.5" />{partner.email}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Bransjer ── */}
-      <section className="py-24 md:py-36 px-6 md:px-12" style={{ background: 'hsl(var(--surface))' }}>
+      <section style={{ padding: '100px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Bransjer</p>
@@ -518,18 +563,18 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
             {DOMAINS.map((title, i) => (
               <motion.div
                 key={title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group p-7 border border-border bg-background hover:border-primary/30 transition-colors duration-300"
-                style={{ borderRadius: '2px' }}
+                className="group border border-border hover:border-primary/30 transition-colors duration-300"
+                style={{ borderRadius: '2px', background: 'hsl(var(--surface))', padding: '32px 28px' }}
               >
-                <p className="text-[32px] font-light text-primary/20 font-mono mb-4">
+                <p className="text-[28px] font-light text-primary/20 font-mono mb-auto">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="text-[14px] font-medium text-foreground leading-snug">{title}</h3>
+                <h3 className="text-[14px] font-medium text-foreground leading-snug mt-12">{title}</h3>
               </motion.div>
             ))}
           </motion.div>

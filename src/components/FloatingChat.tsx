@@ -346,7 +346,7 @@ const FloatingChat = () => {
                       <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover mr-2 mt-1 flex-shrink-0" style={{ borderRadius: '2px' }} />
                     )}
                     <div
-                      className={`max-w-[80%] px-3.5 py-2.5 text-[13px] font-mono leading-relaxed whitespace-pre-line ${
+                      className={`max-w-[80%] px-3.5 py-2.5 text-[15px] font-mono leading-[1.75] whitespace-pre-line ${
                         msg.role === "user"
                           ? "bg-primary text-primary-foreground"
                           : "bg-secondary text-foreground"

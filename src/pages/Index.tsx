@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
-import { Phone, Mail, Clock, MapPin, Linkedin, Menu, X } from "lucide-react";
+import { Phone, Mail, Clock, MapPin, Linkedin, X, Activity, Cpu, Zap, Smartphone, Shield, Cog, Radio, Wifi } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
@@ -68,6 +68,17 @@ const COMPETENCE_GROUPS = [
   },
 ];
 
+const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
+  "Medisinsk teknologi": Activity,
+  "Halvleder og chip-utvikling": Cpu,
+  "Energi og elektrisk mobilitet": Zap,
+  "Forbrukerelektronikk": Smartphone,
+  "Forsvar og sikkerhetskritiske systemer": Shield,
+  "Industriell automasjon": Cog,
+  "Telekom og kommunikasjon": Radio,
+  "IoT og smarte enheter": Wifi,
+};
+
 const DOMAINS = [
   "Medisinsk teknologi",
   "Halvleder og chip-utvikling",
@@ -117,7 +128,6 @@ const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const localImageMap: Record<string, string> = {
     "Kacper Wysocki": kacperWysocki,
@@ -157,11 +167,10 @@ const Index = () => {
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMobileMenuOpen(false);
   };
 
   const Tag = ({ children }: { children: string }) => (
-    <span className="text-[11px] font-mono inline-flex items-center gap-0">
+    <span className="text-[13px] font-mono inline-flex items-center gap-0">
       <span className="text-primary">[</span>
       <span className="text-muted-foreground">&nbsp;{children}&nbsp;</span>
       <span className="text-primary">]</span>
@@ -170,68 +179,23 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ── Navigation ── */}
-      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border" style={{ background: 'rgba(9,9,11,0.9)', backdropFilter: 'blur(12px)' }}>
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 h-14">
-          <button onClick={() => scrollTo("hero")}>
-            <img src={stacqLogoWhite} alt="STACQ" className="h-5 brightness-0 invert" />
-          </button>
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {[
-              { label: "Konsulenter", id: "consultants" },
-              { label: "Kompetanse", id: "competence" },
-              { label: "Karriere", id: "career" },
-              { label: "Kontakt", id: "footer-contact" },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className="text-[12px] tracking-[0.06em] text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-          {/* Mobile nav icon */}
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-muted-foreground hover:text-foreground transition-colors">
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-        {/* Mobile dropdown */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border px-6 py-4 flex flex-col gap-3" style={{ background: 'hsla(240, 6%, 4%, 0.95)' }}>
-            {[
-              { label: "Konsulenter", id: "consultants" },
-              { label: "Kompetanse", id: "competence" },
-              { label: "Karriere", id: "career" },
-              { label: "Kontakt", id: "footer-contact" },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className="text-[12px] tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors text-left"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </nav>
 
       {/* ── Hero ── */}
       <section id="hero" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
         <PcbPattern />
-        <div className="relative z-10 max-w-[660px]">
+        <div className="relative z-10 max-w-[580px]">
+          {/* Logo */}
+          <img src={stacqLogoWhite} alt="STACQ" className="h-7 brightness-0 invert mb-[52px]" />
+
           {/* Overline */}
-          <p className="text-[11px] tracking-[0.22em] uppercase font-mono text-primary/75 mb-7">
+          <p className="text-[13px] tracking-[0.18em] uppercase font-mono text-primary/80 mb-5">
             Konsulentselskap — Oslo, Norge
           </p>
 
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(42px, 5.5vw, 76px)", lineHeight: 1.0, letterSpacing: "-0.025em" }}
+            style={{ fontSize: "clamp(44px, 6vw, 80px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
           >
             Embedded, firmware
             <br />
@@ -239,26 +203,26 @@ const Index = () => {
           </h1>
 
           {/* Ingress */}
-          <p className="mt-6 text-[15px] text-muted-foreground leading-[1.85] max-w-[460px]">
+          <p className="mt-7 text-[18px] text-muted-foreground leading-[2.0] max-w-[480px]">
             Senior-nivå spesialister innen embedded
-            <br className="hidden sm:inline" />
-            {" "}systems og lavnivå-programmering.
+            <br />
+            systems og lavnivå-programmering.
             <br />
             For oppdrag som ikke tåler halvgode løsninger.
           </p>
 
           {/* CTAs */}
-          <div className="mt-10 flex items-center gap-3">
+          <div className="mt-11 flex items-center gap-3">
             <button
               onClick={() => scrollTo("consultants")}
-              className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
+              className="px-7 py-3.5 bg-foreground text-background text-[14px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Se våre konsulenter
+              Se konsulentene
             </button>
             <button
               onClick={() => scrollTo("footer-contact")}
-              className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
+              className="px-7 py-3.5 border border-border text-muted-foreground text-[14px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
               style={{ borderRadius: '2px' }}
             >
               Ta kontakt
@@ -286,9 +250,9 @@ const Index = () => {
           <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
             {MANIFEST.map((item, i) => (
               <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
-                <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-6">{item.num}</p>
-                <h3 className="text-[16px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
-                <p className="text-[13px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
+                <p className="text-[13px] tracking-[0.18em] text-primary font-mono mb-6">{item.num}</p>
+                <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
+                <p className="text-[16px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
               </div>
             ))}
           </motion.div>
@@ -299,11 +263,9 @@ const Index = () => {
       <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Kompetanse</p>
+            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
             <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Koden som
-              <br />
-              ikke kan feile.
+              Lavnivå. Høy presisjon.
             </h2>
           </motion.div>
 
@@ -316,11 +278,11 @@ const Index = () => {
                 style={{ borderRadius: '2px' }}
               >
                 <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
-                <h3 className="text-[14px] font-semibold text-foreground mb-2.5">{group.title}</h3>
+                <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
                 {group.description && (
-                  <p className="text-[13px] text-muted-foreground leading-[1.8] mb-5">{group.description}</p>
+                  <p className="text-[15px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
                 )}
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-3">
                   {group.tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>
                   ))}
@@ -335,11 +297,9 @@ const Index = () => {
       <section id="consultants" style={{ padding: '88px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Våre konsulenter</p>
+            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
             <h2 className="font-serif text-foreground mb-14" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Menneskene bak
-              <br />
-              maskinene.
+              Konsulentene.
             </h2>
           </motion.div>
 
@@ -376,16 +336,16 @@ const Index = () => {
                     </div>
                   )}
                   <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '14px 16px' }}>
-                    <h3 className="text-[13px] font-medium text-foreground leading-snug">{c.name}</h3>
-                    <div className="mt-1 flex items-center gap-3 text-[11px] text-muted-foreground">
+                    <h3 className="text-[15px] font-medium text-foreground leading-snug">{c.name}</h3>
+                    <div className="mt-1 flex items-center gap-3 text-[13px] text-muted-foreground">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>
                     </div>
-                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                    <div className="mt-2.5 flex flex-wrap gap-3">
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[10px] font-mono whitespace-nowrap">
+                        <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
                           <span className="text-primary">[</span>
-                          <span style={{ color: 'hsl(var(--text-faint))' }}>&nbsp;{comp}&nbsp;</span>
+                          <span className="text-muted-foreground/60">&nbsp;{comp}&nbsp;</span>
                           <span className="text-primary">]</span>
                         </span>
                       ))}
@@ -445,7 +405,7 @@ const Index = () => {
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
                           {consultants[expandedConsultant].name}
                         </h3>
-                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[12px] text-muted-foreground">
+                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
                           <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
                           <span>{consultants[expandedConsultant].location}</span>
                         </div>
@@ -453,14 +413,14 @@ const Index = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="mt-7 text-[14px] text-muted-foreground leading-[1.8]">
+                    <p className="mt-7 text-[16px] text-muted-foreground leading-[1.9]">
                       {consultants[expandedConsultant].description}
                     </p>
 
                     {/* Kompetanse */}
                     <div className="mt-8">
-                      <p className="text-[10px] tracking-[0.22em] uppercase mb-3" style={{ color: 'hsl(var(--text-faint))' }}>Kompetanse</p>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-[13px] tracking-[0.18em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
+                      <div className="flex flex-wrap gap-3">
                         {consultants[expandedConsultant].competence.map((comp) => (
                           <Tag key={comp}>{comp}</Tag>
                         ))}
@@ -469,8 +429,8 @@ const Index = () => {
 
                     {/* Bransjeerfaring */}
                     <div className="mt-6">
-                      <p className="text-[10px] tracking-[0.22em] uppercase mb-3" style={{ color: 'hsl(var(--text-faint))' }}>Bransjeerfaring</p>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-[13px] tracking-[0.18em] uppercase mb-3 text-muted-foreground">Bransjeerfaring</p>
+                      <div className="flex flex-wrap gap-3">
                         {consultants[expandedConsultant].industries.map((ind) => (
                           <Tag key={ind}>{ind}</Tag>
                         ))}
@@ -479,7 +439,7 @@ const Index = () => {
 
                     {/* Contact CTA */}
                     <div className="mt-12 pt-6 border-t border-border">
-                      <p className="text-[13px] text-muted-foreground mb-4">
+                      <p className="text-[15px] text-muted-foreground mb-4">
                         Interessert i å booke {consultants[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
                       </p>
                       <div className="space-y-3">
@@ -490,8 +450,8 @@ const Index = () => {
                           <div key={contact.name} className="flex items-center gap-3 p-3 border border-border" style={{ borderRadius: '2px', background: 'hsl(var(--surface))' }}>
                             <img src={contact.img} alt={contact.name} className="w-10 h-10 object-cover flex-shrink-0" style={{ borderRadius: '2px' }} />
                             <div className="min-w-0">
-                              <p className="text-[13px] font-medium text-foreground">{contact.name} <span className="font-normal text-muted-foreground">· Partner</span></p>
-                              <div className="mt-0.5 flex items-center gap-3 text-[12px] text-muted-foreground">
+                              <p className="text-[14px] font-medium text-foreground">{contact.name} <span className="font-normal text-muted-foreground">· Partner</span></p>
+                              <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
                                 <a href={`tel:${contact.telRaw}`} className="inline-flex items-center gap-1 hover:text-primary transition-colors"><Phone className="w-3 h-3" />{contact.tel}</a>
                                 <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1 hover:text-primary transition-colors"><Mail className="w-3 h-3" />{contact.email}</a>
                               </div>
@@ -508,56 +468,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Om Thomas og Jon ── */}
-      <section id="om-oss" className="border-t border-b border-border" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20">
-            {/* Left column - text */}
-            <div className="lg:col-span-2">
-              <p className="text-[10px] tracking-[0.22em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Partnerne</p>
-              <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.05 }}>
-                Personlig kjennskap.
-                <br />
-                Ikke et søk i en database.
-              </h2>
-              <p className="mt-6 text-[14px] text-muted-foreground leading-[1.9]">
-                Thomas Eriksen og Jon Richard Nygaard bygget STACQ fordi de så det samme problemet gjentatte ganger: selskaper med krevende embedded-prosjekter fikk CVer fra folk som hadde lest om teknologien — ikke brukt den.
-              </p>
-              <p className="mt-4 text-[14px] text-muted-foreground leading-[1.9]">
-                Vi kjenner alle i nettverket vårt personlig. Vi vet hvem som passer hvor. Ring oss.
-              </p>
-            </div>
-
-            {/* Right column - partner cards */}
-            <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { img: thomasEriksenContact, name: "Thomas Eriksen", tel: "975 00 321", telRaw: "97500321", email: "thomas@stacq.no" },
-                { img: jonRichardContact, name: "Jon Richard Nygaard", tel: "932 87 267", telRaw: "93287267", email: "jr@stacq.no" },
-              ].map((partner) => (
-                <div key={partner.name} className="p-6 border border-border bg-background" style={{ borderRadius: '2px' }}>
-                  <img src={partner.img} alt={partner.name} className="w-[72px] h-[72px] object-cover rounded-full mb-4" />
-                  <h3 className="text-[14px] font-semibold text-foreground">{partner.name}</h3>
-                  <p className="text-[11px] mt-1 mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Partner</p>
-                  <div className="space-y-2 text-[13px] text-muted-foreground">
-                    <a href={`tel:${partner.telRaw}`} className="flex items-center gap-2 hover:text-primary transition-colors">
-                      <Phone className="w-3.5 h-3.5" />{partner.tel}
-                    </a>
-                    <a href={`mailto:${partner.email}`} className="flex items-center gap-2 hover:text-primary transition-colors">
-                      <Mail className="w-3.5 h-3.5" />{partner.email}
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* ── Bransjer ── */}
-      <section style={{ padding: '88px 10vw' }}>
+      <section style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Bransjer</p>
+            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
             <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Der koden møter
               <br />
@@ -566,35 +481,36 @@ const Index = () => {
           </motion.div>
 
           <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
-            {DOMAINS.map((title, i) => (
-              <motion.div
-                key={title}
-                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group flex flex-col justify-between border border-border hover:border-primary/30 transition-colors duration-300"
-                style={{ borderRadius: '2px', background: 'hsl(var(--surface))', padding: '28px 24px', minHeight: '130px' }}
-              >
-                <p className="text-[24px] font-light text-primary/20 font-mono">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="text-[13px] font-medium text-foreground leading-snug mt-12">{title}</h3>
-              </motion.div>
-            ))}
+            {DOMAINS.map((title) => {
+              const IconComp = DOMAIN_ICONS[title];
+              return (
+                <motion.div
+                  key={title}
+                  variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                  className="group flex flex-col items-start border border-border hover:border-primary/40 transition-colors duration-300"
+                  style={{ borderRadius: '2px', background: 'hsl(var(--bg, var(--background)))', padding: '32px 28px', minHeight: '160px' }}
+                >
+                  {IconComp && <IconComp className="w-7 h-7 text-primary mb-4" strokeWidth={1.5} />}
+                  <h3 className="text-[15px] font-medium text-foreground leading-snug mt-auto">{title}</h3>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
       {/* ── Karriere ── */}
-      <section id="career" className="border-t border-border" style={{ padding: '110px 10vw' }}>
+      <section id="career" className="border-t border-border" style={{ padding: '88px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
-            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Karriere</p>
+            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Karriere</p>
             <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Bli en del av teamet.
             </h2>
             <h2 className="font-serif text-foreground/45 italic mt-3" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Vi ser etter deg.
             </h2>
-            <p className="mt-8 text-[14px] text-muted-foreground leading-[1.9] max-w-[420px]">
+            <p className="mt-8 text-[16px] text-muted-foreground leading-[1.9] max-w-[420px]">
               Er du senior embedded-ingeniør med erfaring fra
               reelle produkter i produksjon? Vi er alltid
               interessert i å snakke med de riktige menneskene.
@@ -602,7 +518,7 @@ const Index = () => {
             <div className="mt-9">
               <button
                 onClick={() => setIsJobOverlayOpen(true)}
-                className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
+                className="px-7 py-3.5 bg-foreground text-background text-[14px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
                 style={{ borderRadius: '2px' }}
               >
                 Søk nå →
@@ -618,27 +534,27 @@ const Index = () => {
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
-            <p className="text-[12px] tracking-[0.04em] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="text-[14px] tracking-[0.04em] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
               Der stakken begynner.
             </p>
           </div>
 
           {/* Selskap */}
           <div>
-            <h4 className="text-[10px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
+            <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => scrollTo("om-oss")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Om STACQ</button></li>
-              <li><button onClick={() => scrollTo("career")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Karriere</button></li>
+              <li><button onClick={() => scrollTo("consultants")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Konsulenter</button></li>
+              <li><button onClick={() => scrollTo("career")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Karriere</button></li>
             </ul>
-            <p className="mt-7 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="mt-7 text-[14px] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
               STACQ AS · 932 575 442 MVA
             </p>
           </div>
 
           {/* Kontakt oss */}
           <div>
-            <h4 className="text-[10px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
-            <ul className="space-y-4 text-[13px] text-muted-foreground">
+            <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
+            <ul className="space-y-4 text-[14px] text-muted-foreground leading-[1.8]">
               <li>
                 <span className="block font-medium text-foreground/85">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></span>
                 <div className="mt-1 flex flex-col gap-0.5">
@@ -658,8 +574,8 @@ const Index = () => {
 
           {/* Besøk oss */}
           <div>
-            <h4 className="text-[10px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
-            <p className="text-[13px] text-muted-foreground leading-relaxed">
+            <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
+            <p className="text-[14px] text-muted-foreground leading-[1.8]">
               Øvre Slottsgate 27,<br />
               0157 Oslo
             </p>

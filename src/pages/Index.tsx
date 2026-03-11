@@ -524,7 +524,7 @@ const Index = () => {
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
-            <p className="text-[14px] tracking-[0.04em] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="text-[15px] tracking-[0.04em] font-mono leading-[1.85]" style={{ color: 'hsl(var(--text-faint))' }}>
               Der stakken begynner.
             </p>
           </div>

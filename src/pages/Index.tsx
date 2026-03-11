@@ -181,13 +181,13 @@ const Index = () => {
             {[
               { label: "Konsulenter", id: "consultants" },
               { label: "Kompetanse", id: "competence" },
-              { label: "Om oss", id: "om-oss" },
+              { label: "Karriere", id: "career" },
               { label: "Kontakt", id: "footer-contact" },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="text-[12px] tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+                className="text-[12px] tracking-[0.06em] text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
                 {item.label}
               </button>

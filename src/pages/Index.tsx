@@ -343,7 +343,7 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px]">
             {consultants.map((c, i) => (
               <motion.div
                 key={c.name}
@@ -351,7 +351,7 @@ const Index = () => {
               >
                 <button
                   onClick={() => setExpandedConsultant(expandedConsultant === i ? null : i)}
-                  className="w-full text-left group border border-border overflow-hidden hover:border-primary/30 transition-colors duration-500"
+                  className="w-full text-left group border border-border overflow-hidden hover:border-primary/35 transition-colors duration-[400ms]"
                   style={{ borderRadius: '0px' }}
                 >
                   {c.image ? (
@@ -359,10 +359,10 @@ const Index = () => {
                       <img
                         src={c.image}
                         alt={c.name}
-                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                        style={{ filter: 'grayscale(15%)' }}
-                        onMouseEnter={(e) => (e.currentTarget.style.filter = 'grayscale(0%)')}
-                        onMouseLeave={(e) => (e.currentTarget.style.filter = 'grayscale(15%)')}
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
+                        style={{ filter: 'grayscale(12%) brightness(0.92)' }}
+                        onMouseEnter={(e) => (e.currentTarget.style.filter = 'grayscale(0%) brightness(1.0)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.filter = 'grayscale(12%) brightness(0.92)')}
                       />
                     </div>
                   ) : (
@@ -370,20 +370,24 @@ const Index = () => {
                       <img
                         src={robotAvatar}
                         alt={`${c.name} avatar`}
-                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                        style={{ filter: 'grayscale(15%)' }}
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
+                        style={{ filter: 'grayscale(12%) brightness(0.92)' }}
                       />
                     </div>
                   )}
-                  <div className="p-4" style={{ background: 'hsl(var(--surface))' }}>
-                    <h3 className="text-[14px] font-medium text-foreground">{c.name}</h3>
-                    <div className="mt-1.5 flex items-center gap-3 text-[11px] text-muted-foreground">
+                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '14px 16px' }}>
+                    <h3 className="text-[13px] font-medium text-foreground leading-snug">{c.name}</h3>
+                    <div className="mt-1 flex items-center gap-3 text-[11px] text-muted-foreground">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>
                     </div>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
                       {c.competence.slice(0, 3).map((comp) => (
-                        <Tag key={comp}>{comp}</Tag>
+                        <span key={comp} className="text-[10px] font-mono whitespace-nowrap">
+                          <span className="text-primary">[</span>
+                          <span style={{ color: 'hsl(var(--text-faint))' }}>&nbsp;{comp}&nbsp;</span>
+                          <span className="text-primary">]</span>
+                        </span>
                       ))}
                     </div>
                   </div>

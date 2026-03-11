@@ -195,7 +195,7 @@ const Index = () => {
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(48px, 5.5vw, 78px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
+            style={{ fontSize: "clamp(56px, 6.5vw, 88px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
           >
             Embedded, firmware<br />og C/C++/Rust konsulenter.
           </h1>

@@ -582,21 +582,21 @@ const Index = () => {
       </section>
 
       {/* ── Karriere ── */}
-      <section id="career" className="border-t border-border" style={{ padding: '160px 10vw' }}>
+      <section id="career" className="border-t border-border" style={{ padding: '120px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Karriere</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05, maxWidth: '560px' }}>
               Vi rekrutterer de som
               <br />
               koder nærmest metallet.
             </h2>
-            <p className="mt-6 text-[15px] text-muted-foreground leading-[1.7] max-w-[480px]">
-              Er du en senior embedded-ingeniør som vil jobbe
-              med krevende oppdrag over tid? Vi er alltid interessert
-              i å snakke med de riktige menneskene.
+            <p className="mt-6 text-[14px] text-muted-foreground leading-[1.9] max-w-[440px]">
+              Er du senior embedded-ingeniør med erfaring fra
+              reelle produkter i produksjon? Vi er alltid
+              interessert i å snakke med de riktige menneskene.
             </p>
-            <div className="mt-10">
+            <div className="mt-9">
               <button
                 onClick={() => setIsJobOverlayOpen(true)}
                 className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"

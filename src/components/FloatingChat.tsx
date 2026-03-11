@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, MessageSquare, ChevronDown, X, MessageCircle } from "lucide-react";
+import { Send, Bot, MessageSquare, X, MessageCircle } from "lucide-react";
 import jonRichard from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksen from "@/assets/thomas-eriksen.avif";
 import { toast } from "sonner";
@@ -119,9 +119,7 @@ const FloatingChat = () => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, []);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [botMessages, slackMessages, scrollToBottom]);
+  useEffect(() => { scrollToBottom(); }, [botMessages, slackMessages, scrollToBottom]);
 
   useEffect(() => {
     if (isOpen && isExpanded && inputRef.current) {
@@ -129,19 +127,9 @@ const FloatingChat = () => {
     }
   }, [isOpen, isExpanded]);
 
-  const handleOpen = () => {
-    setIsOpen(true);
-    setIsExpanded(false);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    setIsExpanded(false);
-  };
-
-  const handleExpand = () => {
-    setIsExpanded(true);
-  };
+  const handleOpen = () => { setIsOpen(true); setIsExpanded(false); };
+  const handleClose = () => { setIsOpen(false); setIsExpanded(false); };
+  const handleExpand = () => { setIsExpanded(true); };
 
   const handleSend = useCallback(
     (text?: string) => {
@@ -153,12 +141,7 @@ const FloatingChat = () => {
         const userMsg = { role: "user" as const, content: msg };
         setBotMessages((prev) => [...prev, userMsg]);
         setIsTyping(true);
-
-        const allMessages = [...botMessages, userMsg].map((m) => ({
-          role: m.role,
-          content: m.content,
-        }));
-
+        const allMessages = [...botMessages, userMsg].map((m) => ({ role: m.role, content: m.content }));
         let assistantSoFar = "";
         streamChat({
           messages: allMessages,
@@ -174,10 +157,7 @@ const FloatingChat = () => {
             setIsTyping(false);
           },
           onDone: () => setIsTyping(false),
-          onError: (errMsg) => {
-            setIsTyping(false);
-            toast.error(errMsg);
-          },
+          onError: (errMsg) => { setIsTyping(false); toast.error(errMsg); },
         });
       } else if (slackRecipient) {
         const name = slackRecipient.name;
@@ -204,10 +184,7 @@ const FloatingChat = () => {
   );
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); }
   };
 
   const handleModeSwitch = (newMode: Mode) => {
@@ -230,6 +207,21 @@ const FloatingChat = () => {
 
   const showContactPicker = mode === "slack" && !slackRecipient;
 
+  const tabBtn = (m: Mode, icon: React.ReactNode, label: string) => (
+    <button
+      onClick={() => m === mode && isExpanded ? null : handleModeSwitch(m)}
+      className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono tracking-[0.02em] transition-colors duration-300 ${
+        mode === m
+          ? "bg-primary text-primary-foreground"
+          : "text-muted-foreground hover:text-foreground"
+      }`}
+      style={{ borderRadius: '2px' }}
+    >
+      {icon}
+      {label}
+    </button>
+  );
+
   // Bubble state (closed)
   if (!isOpen) {
     return (
@@ -240,7 +232,8 @@ const FloatingChat = () => {
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleOpen}
-          className="w-14 h-14 rounded-full bg-foreground text-background shadow-2xl flex items-center justify-center hover:opacity-90 transition-opacity"
+          className="w-14 h-14 bg-primary text-primary-foreground shadow-2xl flex items-center justify-center hover:opacity-90 transition-opacity"
+          style={{ borderRadius: '2px' }}
         >
           <MessageCircle className="w-6 h-6" />
         </motion.button>
@@ -248,47 +241,26 @@ const FloatingChat = () => {
     );
   }
 
-  // Compact bar state (default open, not expanded)
+  // Compact bar state
   if (!isExpanded) {
     return (
       <div className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)]">
         <motion.div
           initial={{ opacity: 0, y: 12, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-          className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+          transition={{ duration: 0.3 }}
+          className="bg-card border border-border overflow-hidden"
+          style={{ borderRadius: '2px' }}
         >
-          {/* Mode tabs + close */}
           <div className="flex items-center justify-between px-4 pt-3 pb-2">
             <div className="flex items-center gap-1">
-              <button
-                onClick={() => { setMode("bot"); setSlackRecipient(null); }}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                  mode === "bot" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary"
-                }`}
-              >
-                <Bot className="w-3.5 h-3.5" />
-                STACQ-AI
-              </button>
-              <button
-                onClick={() => { setMode("slack"); setSlackRecipient(null); }}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                  mode === "slack" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary"
-                }`}
-              >
-                <MessageSquare className="w-3.5 h-3.5" />
-                Chat direkte med oss
-              </button>
+              {tabBtn("bot", <Bot className="w-3.5 h-3.5" />, "STACQ-AI")}
+              {tabBtn("slack", <MessageSquare className="w-3.5 h-3.5" />, "Chat direkte")}
             </div>
-            <button
-              onClick={handleClose}
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
-            >
+            <button onClick={handleClose} className="w-7 h-7 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
-
-          {/* Compact input */}
           <div className="px-3 pb-3">
             <div className="flex items-center gap-2">
               <input
@@ -297,11 +269,13 @@ const FloatingChat = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onFocus={handleExpand}
                 placeholder="Spør vår AI eller chat direkte med oss"
-                className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[13px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
+                style={{ borderRadius: '2px' }}
               />
               <button
-                onClick={() => { handleExpand(); }}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity flex-shrink-0"
+                onClick={handleExpand}
+                className="flex items-center justify-center w-9 h-9 bg-primary text-primary-foreground hover:opacity-90 transition-opacity flex-shrink-0"
+                style={{ borderRadius: '2px' }}
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -318,55 +292,37 @@ const FloatingChat = () => {
       <motion.div
         initial={{ opacity: 0, y: 16, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-        className="bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+        transition={{ duration: 0.3 }}
+        className="bg-card border border-border flex flex-col overflow-hidden"
+        style={{ borderRadius: '2px' }}
       >
-        {/* Header with mode tabs */}
+        {/* Header */}
         <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-border">
           <div className="flex items-center gap-1">
-            <button
-              onClick={() => handleModeSwitch("bot")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                mode === "bot" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary"
-              }`}
-            >
-              <Bot className="w-3.5 h-3.5" />
-              STACQ-AI
-            </button>
-            <button
-              onClick={() => handleModeSwitch("slack")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                mode === "slack" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-secondary"
-              }`}
-            >
-              <MessageSquare className="w-3.5 h-3.5" />
-              Chat direkte med oss
-            </button>
+            {tabBtn("bot", <Bot className="w-3.5 h-3.5" />, "STACQ-AI")}
+            {tabBtn("slack", <MessageSquare className="w-3.5 h-3.5" />, "Chat direkte")}
           </div>
-          <button
-              onClick={handleClose}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
+          <button onClick={handleClose} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+            <X className="w-4 h-4" />
+          </button>
         </div>
 
-        {/* Expanded content */}
+        {/* Content */}
         <div className="flex flex-col overflow-hidden" style={{ height: 420 }}>
-          {/* Slack contact picker */}
           {showContactPicker ? (
             <div className="flex-1 px-4 py-4 flex flex-col gap-3">
-              <p className="text-[13px] text-muted-foreground font-medium">Hvem vil du sende melding til?</p>
+              <p className="text-[12px] text-muted-foreground font-mono">Hvem vil du sende melding til?</p>
               {SLACK_CONTACTS.map((contact) => (
                 <button
                   key={contact.name}
                   onClick={() => selectRecipient(contact)}
-                  className="flex items-center gap-3 p-3 rounded-xl border border-border hover:bg-secondary transition-colors text-left"
+                  className="flex items-center gap-3 p-3 border border-border hover:border-primary/30 transition-colors text-left"
+                  style={{ borderRadius: '2px' }}
                 >
-                  <img src={contact.image} alt={contact.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+                  <img src={contact.image} alt={contact.name} className="w-10 h-10 object-cover flex-shrink-0" style={{ borderRadius: '2px' }} />
                   <div>
-                    <span className="text-[14px] font-medium text-foreground block">{contact.name}</span>
-                    <span className="text-[12px] text-muted-foreground">{contact.email}</span>
+                    <span className="text-[13px] font-medium text-foreground block font-mono">{contact.name}</span>
+                    <span className="text-[11px] text-muted-foreground font-mono">{contact.email}</span>
                   </div>
                 </button>
               ))}
@@ -378,7 +334,7 @@ const FloatingChat = () => {
                 {mode === "slack" && slackRecipient && (
                   <button
                     onClick={() => setSlackRecipient(null)}
-                    className="text-[12px] text-muted-foreground hover:text-foreground transition-colors mb-1"
+                    className="text-[11px] text-muted-foreground hover:text-foreground transition-colors mb-1 font-mono"
                   >
                     ← Velg annen person
                   </button>
@@ -387,20 +343,21 @@ const FloatingChat = () => {
                 {messages.map((msg, i) => (
                   <div key={`${mode}-${slackRecipient?.name || ""}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                     {msg.role === "assistant" && msg.avatar && (
-                      <img src={msg.avatar} alt={msg.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
+                      <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover mr-2 mt-1 flex-shrink-0" style={{ borderRadius: '2px' }} />
                     )}
                     <div
-                      className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-[14px] leading-relaxed whitespace-pre-line ${
+                      className={`max-w-[80%] px-3.5 py-2.5 text-[13px] font-mono leading-relaxed whitespace-pre-line ${
                         msg.role === "user"
-                          ? "bg-primary text-primary-foreground rounded-br-md"
-                          : "bg-secondary text-foreground rounded-bl-md"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-foreground"
                       }`}
+                      style={{ borderRadius: '2px' }}
                     >
                       {msg.role === "assistant" && msg.name && (
-                        <span className="block text-[12px] font-semibold text-muted-foreground mb-1">{msg.name}</span>
+                        <span className="block text-[11px] font-medium text-muted-foreground mb-1">{msg.name}</span>
                       )}
                       {msg.role === "assistant" && mode === "bot" ? (
-                        <div className="prose prose-sm prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                        <div className="prose prose-sm prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_*]:font-mono">
                           <ReactMarkdown>{msg.content}</ReactMarkdown>
                         </div>
                       ) : msg.content}
@@ -411,9 +368,9 @@ const FloatingChat = () => {
                 {isTyping && (
                   <div className="flex justify-start">
                     {mode === "slack" && slackRecipient && (
-                      <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 rounded-full object-cover mr-2 mt-1 flex-shrink-0" />
+                      <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 object-cover mr-2 mt-1 flex-shrink-0" style={{ borderRadius: '2px' }} />
                     )}
-                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 rounded-2xl rounded-bl-md text-[14px]">
+                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 text-[13px]" style={{ borderRadius: '2px' }}>
                       <span className="inline-flex gap-1">
                         <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                         <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -430,7 +387,8 @@ const FloatingChat = () => {
                       <button
                         key={s.label}
                         onClick={() => handleSend(s.query)}
-                        className="px-3 py-1.5 rounded-full border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors"
+                        className="px-3 py-1.5 border border-border text-[12px] font-mono text-foreground hover:border-primary/40 transition-colors"
+                        style={{ borderRadius: '2px' }}
                       >
                         {s.label}
                       </button>
@@ -449,13 +407,15 @@ const FloatingChat = () => {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Skriv en melding..."
-                    className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-xl text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow"
+                    className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[13px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
+                    style={{ borderRadius: '2px' }}
                     disabled={isTyping}
                   />
                   <button
                     onClick={() => handleSend()}
                     disabled={!input.trim() || isTyping}
-                    className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary text-primary-foreground disabled:opacity-40 hover:opacity-90 transition-opacity flex-shrink-0"
+                    className="flex items-center justify-center w-9 h-9 bg-primary text-primary-foreground disabled:opacity-40 hover:opacity-90 transition-opacity flex-shrink-0"
+                    style={{ borderRadius: '2px' }}
                   >
                     <Send className="w-4 h-4" />
                   </button>

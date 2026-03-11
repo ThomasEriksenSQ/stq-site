@@ -2,12 +2,11 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
-import { Shield, Heart, Factory, Zap, Cpu, Code, Terminal, Layers, Lock, Server, GitBranch, Workflow, Radio, Smartphone, CircuitBoard, Wifi, Linkedin, MapPin, Clock, ChevronDown, Phone, Mail, Activity, Microchip, BatteryCharging, Monitor, Radar, Cog, Signal, Router } from "lucide-react";
+import { Phone, Mail, Clock, MapPin, Linkedin, Menu, X } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
 import PcbPattern from "@/components/PcbPattern";
-import stacqLogo from "@/assets/stacq-logo-black.png";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
 import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";
@@ -23,189 +22,93 @@ import jonRichardContact from "@/assets/jon-richard-nygaard-contact.jpg";
 import thomasEriksenContact from "@/assets/thomas-eriksen-contact.jpg";
 import robotAvatar from "@/assets/robot-avatar.png";
 
-const TECH_TAGS = [
-  { label: "C", icon: Code },
-  { label: "C+", icon: Code },
-  { label: "Rust", icon: Terminal },
-  { label: "Embedded Linux", icon: Layers },
-  { label: "Firmware", icon: Cpu },
-  { label: "RTOS", icon: Server },
-  { label: "Mikrokontrollere", icon: CircuitBoard },
-  { label: "Security", icon: Lock },
-  { label: "+mer", icon: null },
+const TICKER_ITEMS = [
+  "C", "C++", "Rust", "Zephyr", "FreeRTOS", "ThreadX", "Embedded Linux", "Yocto",
+  "ARM Cortex", "RTOS", "CAN", "SPI", "I2C", "UART", "Board bring-up",
+  "Bare-metal", "TrustZone", "CMake", "Conan", "Linux-kjerne",
 ];
 
 const COMPETENCE_GROUPS = [
   {
+    hex: "0x01",
     title: "Embedded systemer",
-    icon: Cpu,
-    description: "Utvikling av komplette embedded systemer – fra firmware på mikrokontrollere til Linux-baserte produkter.",
+    description: "Utvikling av komplette embedded systemer — fra firmware på mikrokontrollere til Linux-baserte produkter.",
     tags: ["Firmware", "Embedded Linux", "Yocto / Buildroot", "Linux-kjerne og drivere"],
   },
   {
+    hex: "0x02",
     title: "Sanntidssystemer",
-    icon: Zap,
     description: "Systemer der stabilitet, timing og determinisme er kritisk.",
     tags: ["RTOS (FreeRTOS, Zephyr, ThreadX)", "Multitråding", "Interrupt-styrte systemer", "Ytelsesoptimalisering"],
   },
   {
+    hex: "0x03",
     title: "Hardware-nær utvikling",
-    icon: CircuitBoard,
     description: "Integrasjon mellom programvare, elektronikk og fysiske systemer.",
     tags: ["Mikrokontrollere", "ARM Cortex", "Board bring-up", "Hardware-debugging"],
   },
   {
+    hex: "0x04",
     title: "Protokoller og kommunikasjon",
-    icon: Radio,
     description: "Kommunikasjon mellom embedded systemer og andre systemer.",
     tags: ["SPI / I2C / UART", "CAN / CANopen", "TCP/IP", "Industrielle protokoller"],
   },
   {
+    hex: "0x05",
     title: "Programmering",
-    icon: Code,
     description: null,
     tags: ["C", "C++", "Rust", "Python", "Assembly"],
   },
   {
+    hex: "0x06",
     title: "Testing og kvalitet",
-    icon: Shield,
     description: "Robuste systemer krever systematisk testing.",
     tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Sikker firmware"],
   },
 ];
 
 const DOMAINS = [
-  { title: "Medisinsk teknologi", icon: Activity },
-  { title: "Halvleder og chip-utvikling", icon: Cpu },
-  { title: "Energi og elektrisk mobilitet", icon: BatteryCharging },
-  { title: "Forbrukerelektronikk", icon: Monitor },
-  { title: "Forsvar og sikkerhetskritiske systemer", icon: Shield },
-  { title: "Industriell automasjon", icon: Cog },
-  { title: "Telekom og kommunikasjon", icon: Signal },
-  { title: "IoT og smarte enheter", icon: Wifi },
+  "Medisinsk teknologi",
+  "Halvleder og chip-utvikling",
+  "Energi og elektrisk mobilitet",
+  "Forbrukerelektronikk",
+  "Forsvar og sikkerhetskritiske systemer",
+  "Industriell automasjon",
+  "Telekom og kommunikasjon",
+  "IoT og smarte enheter",
 ];
 
 const CONSULTANTS = [
-  {
-    name: "Kacper Wysocki",
-    image: kacperWysocki,
-    competence: ["Embedded Linux", "RTOS", "Security", "Firmware", "CI/CD", "Board Bring-up"],
-    industries: ["IoT", "Kamera", "Sikkerhet"],
-    experience: 15,
-    location: "Oslo",
-    description: "Senior embedded-profil med tung erfaring fra komplekse produkter (kamera/IoT) og sikkerhet. Sterk på arkitektur, ytelse, release/infrastruktur og teamledelse.",
-  },
-  {
-    name: "Lars Rudolfsen",
-    image: larsRudolfsen,
-    competence: ["Autonomi", "Regulering", "STM32", "FreeRTOS", "CANopen", "Embedded Linux"],
-    industries: ["Robotikk", "Autonomi", "Industri"],
-    experience: 8,
-    location: "Oslo",
-    description: "Kybernetikk/robotikk-ingeniør med erfaring fra sanntidsstyring og integrasjon i komplekse systemer. Spiss på regulering, sensorer og robust embedded kommunikasjon.",
-  },
-  {
-    name: "Ida Abrahamsson",
-    image: idaAbrahamsson,
-    competence: ["Embedded", "FreeRTOS", "CANopen", "IoT", "AWS", "C/C++"],
-    industries: ["IoT", "Automasjon", "Robotikk"],
-    experience: 10,
-    location: "Oslo",
-    description: "Senior embedded- og kontrollsystemingeniør med bred erfaring fra IoT, automasjon og robotikk. Leverer prototyper og produksjonsklare løsninger med struktur og driv.",
-  },
-  {
-    name: "Trine Ø. Olsen",
-    image: trineOlsen,
-    competence: ["Defence", "C2", "RTOS", "Sensor Fusion", "Networking", "Robust Systems"],
-    industries: ["Forsvar", "Sikkerhet", "Taktiske systemer"],
-    experience: 10,
-    location: "Østlandet",
-    description: "Embedded-ingeniør med erfaring fra forsvar og sikkerhetskritiske systemer (C2, sensorer, taktiske nett). Sterk på robusthet, integrasjon og systemer som må fungere i krevende miljø.",
-  },
-  {
-    name: "Tom Erik Lundesgaard",
-    image: tomErikLundesgaard,
-    competence: ["Embedded", "Bare-metal", "Zigbee", "Test/Debug", "Electronics", "Subsea"],
-    industries: ["Forsvar", "MedTech", "Subsea"],
-    experience: 20,
-    location: "Oslo",
-    description: "Senior embedded-ingeniør med lang fartstid fra forsvar, medtech og subsea. Praktisk sterk på feilsøking, RF/kommunikasjon og samspillet SW–HW.",
-  },
-  {
-    name: "Karl Eirik Bang Fossberg",
-    image: karlEirikFossberg,
-    competence: ["Robotics", "RTOS", "Embedded Linux", "Qt", "IoT", "CI/CD"],
-    industries: ["Robotikk", "Industri", "IoT"],
-    experience: 12,
-    location: "Oslo",
-    description: "Senior embedded med dokumentert leveranse i robotsystemer og industrielle løsninger. Kombinerer arkitektur, motor/sensor-integrasjon og DevOps for raske og stabile leveranser.",
-  },
-  {
-    name: "Rikke Solbjørg",
-    image: rikkeSolbjorg,
-    competence: ["MedTech", "Yocto", "Embedded Linux", "Verification", "CI/CD", "TDD"],
-    industries: ["MedTech", "Regulert utvikling"],
-    experience: 10,
-    location: "Oslo",
-    description: "Senior embedded-profil med erfaring fra regulert medisinsk utvikling og høy kvalitet. Sterk på Yocto, testdrevet utvikling, automasjon og risikoreduserende engineering.",
-  },
-  {
-    name: "Anders Larsen",
-    image: null,
-    competence: ["C++", "Qt", "Embedded Linux", "Leadership", "Graphics", "Developer Tooling"],
-    industries: ["Plattform", "Grafikk/3D", "Produktutvikling"],
-    experience: 15,
-    location: "Oslo",
-    description: "Senior C++/Qt med ledelseserfaring og produktutvikling i skalerbare team. Solid på plattform, verktøy og robuste applikasjoner – også grafikk/3D ved behov.",
-  },
-  {
-    name: "Trond Hübertz Emaus",
-    image: null,
-    competence: ["Rust", "C++", "Architecture", "Embedded", "CMake/Conan", "System Design"],
-    industries: ["Embedded", "Plattform", "Systemarkitektur"],
-    experience: 12,
-    location: "Oslo",
-    description: "Arkitektursterk systemutvikler som bygger fundament og mønstre som øker teamhastighet. Bred bakgrunn fra embedded og plattformnære systemer.",
-  },
-  {
-    name: "Christian Steffen Poljac",
-    image: christianPoljac,
-    competence: ["Security", "TrustZone", "RTOS", "Firmware", "Zephyr", "ISO15118"],
-    industries: ["EV/Charging", "Halvleder", "Sikkerhet"],
-    experience: 10,
-    location: "Oslo",
-    description: "Senior embedded med tydelig sikkerhetsprofil (TrustZone, fuzzing, hardening) og erfaring fra EV/charging og SoC. Leverer robust, testbar firmware med høy kvalitet.",
-  },
-  {
-    name: "Martin Tysseland",
-    image: martinTysseland,
-    competence: ["Embedded Linux", "Yocto", "C++", "CI/CD", "Docker", "Systems"],
-    industries: ["Produktutvikling", "DevOps", "Embedded"],
-    experience: 8,
-    location: "Oslo",
-    description: "Embedded Linux/Yocto-utvikler med erfaring fra produktutvikling og drift/byggkjeder. God på helhet fra device-image til applikasjon og automasjon.",
-  },
-  {
-    name: "Mattis Asp",
-    image: mattisAsp,
-    competence: ["Embedded", "Systems", "C/C++", "Architecture", "Integration"],
-    industries: ["Embedded", "Systemintegrasjon"],
-    experience: 10,
-    location: "Oslo",
-    description: "Erfaren systemutvikler med bred embedded-kompetanse og evne til å levere robuste løsninger.",
-  },
+  { name: "Kacper Wysocki", image: kacperWysocki, competence: ["Embedded Linux", "RTOS", "Security", "Firmware", "CI/CD", "Board Bring-up"], industries: ["IoT", "Kamera", "Sikkerhet"], experience: 15, location: "Oslo", description: "Senior embedded-profil med tung erfaring fra komplekse produkter (kamera/IoT) og sikkerhet. Sterk på arkitektur, ytelse, release/infrastruktur og teamledelse." },
+  { name: "Lars Rudolfsen", image: larsRudolfsen, competence: ["Autonomi", "Regulering", "STM32", "FreeRTOS", "CANopen", "Embedded Linux"], industries: ["Robotikk", "Autonomi", "Industri"], experience: 8, location: "Oslo", description: "Kybernetikk/robotikk-ingeniør med erfaring fra sanntidsstyring og integrasjon i komplekse systemer." },
+  { name: "Ida Abrahamsson", image: idaAbrahamsson, competence: ["Embedded", "FreeRTOS", "CANopen", "IoT", "AWS", "C/C++"], industries: ["IoT", "Automasjon", "Robotikk"], experience: 10, location: "Oslo", description: "Senior embedded- og kontrollsystemingeniør med bred erfaring fra IoT, automasjon og robotikk." },
+  { name: "Trine Ø. Olsen", image: trineOlsen, competence: ["Defence", "C2", "RTOS", "Sensor Fusion", "Networking", "Robust Systems"], industries: ["Forsvar", "Sikkerhet", "Taktiske systemer"], experience: 10, location: "Østlandet", description: "Embedded-ingeniør med erfaring fra forsvar og sikkerhetskritiske systemer." },
+  { name: "Tom Erik Lundesgaard", image: tomErikLundesgaard, competence: ["Embedded", "Bare-metal", "Zigbee", "Test/Debug", "Electronics", "Subsea"], industries: ["Forsvar", "MedTech", "Subsea"], experience: 20, location: "Oslo", description: "Senior embedded-ingeniør med lang fartstid fra forsvar, medtech og subsea." },
+  { name: "Karl Eirik Bang Fossberg", image: karlEirikFossberg, competence: ["Robotics", "RTOS", "Embedded Linux", "Qt", "IoT", "CI/CD"], industries: ["Robotikk", "Industri", "IoT"], experience: 12, location: "Oslo", description: "Senior embedded med dokumentert leveranse i robotsystemer og industrielle løsninger." },
+  { name: "Rikke Solbjørg", image: rikkeSolbjorg, competence: ["MedTech", "Yocto", "Embedded Linux", "Verification", "CI/CD", "TDD"], industries: ["MedTech", "Regulert utvikling"], experience: 10, location: "Oslo", description: "Senior embedded-profil med erfaring fra regulert medisinsk utvikling og høy kvalitet." },
+  { name: "Anders Larsen", image: null, competence: ["C++", "Qt", "Embedded Linux", "Leadership", "Graphics", "Developer Tooling"], industries: ["Plattform", "Grafikk/3D", "Produktutvikling"], experience: 15, location: "Oslo", description: "Senior C++/Qt med ledelseserfaring og produktutvikling i skalerbare team." },
+  { name: "Trond Hübertz Emaus", image: null, competence: ["Rust", "C++", "Architecture", "Embedded", "CMake/Conan", "System Design"], industries: ["Embedded", "Plattform", "Systemarkitektur"], experience: 12, location: "Oslo", description: "Arkitektursterk systemutvikler som bygger fundament og mønstre som øker teamhastighet." },
+  { name: "Christian Steffen Poljac", image: christianPoljac, competence: ["Security", "TrustZone", "RTOS", "Firmware", "Zephyr", "ISO15118"], industries: ["EV/Charging", "Halvleder", "Sikkerhet"], experience: 10, location: "Oslo", description: "Senior embedded med tydelig sikkerhetsprofil og erfaring fra EV/charging og SoC." },
+  { name: "Martin Tysseland", image: martinTysseland, competence: ["Embedded Linux", "Yocto", "C++", "CI/CD", "Docker", "Systems"], industries: ["Produktutvikling", "DevOps", "Embedded"], experience: 8, location: "Oslo", description: "Embedded Linux/Yocto-utvikler med erfaring fra produktutvikling og drift/byggkjeder." },
+  { name: "Mattis Asp", image: mattisAsp, competence: ["Embedded", "Systems", "C/C++", "Architecture", "Integration"], industries: ["Embedded", "Systemintegrasjon"], experience: 10, location: "Oslo", description: "Erfaren systemutvikler med bred embedded-kompetanse og evne til å levere robuste løsninger." },
+];
+
+const MANIFEST = [
+  { num: "01", title: "Kun seniorer.", text: "Alle våre konsulenter har minimum 8 års erfaring fra reelle produkter i produksjon. Ingen juniorer. Ingen generalister." },
+  { num: "02", title: "Integrert, ikke innleid.", text: "Konsulentene våre sitter i langsiktige oppdrag — ofte i årevis hos én kunde. De blir en del av teamet ditt, ikke en ekstern ressurs." },
+  { num: "03", title: "Domenet, ikke bare koden.", text: "Vi rekrutterer folk som forstår hva koden styrer — fra medisinsk utstyr til forsvarssystemer. Kontekst er alt i embedded." },
 ];
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
 };
 
 const stagger = {
   initial: {},
-  whileInView: { transition: { staggerChildren: 0.08 } },
+  whileInView: { transition: { staggerChildren: 0.1 } },
   viewport: { once: true, margin: "-60px" },
 };
 
@@ -213,8 +116,8 @@ const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Image map for local fallback (until images are in Storage)
   const localImageMap: Record<string, string> = {
     "Kacper Wysocki": kacperWysocki,
     "Lars Rudolfsen": larsRudolfsen,
@@ -251,185 +154,234 @@ const Index = () => {
     description: c.description || "",
   }));
 
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
+  };
+
+  const Tag = ({ children }: { children: string }) => (
+    <span className="text-[11px] font-mono">
+      <span className="text-primary">[</span>
+      <span className="text-muted-foreground">{children}</span>
+      <span className="text-primary">]</span>
+    </span>
+  );
 
   return (
     <div className="min-h-screen bg-background">
+      {/* ── Navigation ── */}
+      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border" style={{ background: 'hsla(240, 6%, 4%, 0.85)', backdropFilter: 'blur(12px)' }}>
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 h-14">
+          <button onClick={() => scrollTo("hero")}>
+            <img src={stacqLogoWhite} alt="STACQ" className="h-5 brightness-0 invert" />
+          </button>
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {[
+              { label: "Konsulenter", id: "consultants" },
+              { label: "Kompetanse", id: "competence" },
+              { label: "Karriere", id: "career" },
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="text-[12px] tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+          {/* Mobile nav icon */}
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-muted-foreground hover:text-foreground transition-colors">
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+        {/* Mobile dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-border px-6 py-4 flex flex-col gap-3" style={{ background: 'hsla(240, 6%, 4%, 0.95)' }}>
+            {[
+              { label: "Konsulenter", id: "consultants" },
+              { label: "Kompetanse", id: "competence" },
+              { label: "Karriere", id: "career" },
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="text-[12px] tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors text-left"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </nav>
+
       {/* ── Hero ── */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12">
+      <section id="hero" className="relative min-h-screen flex items-center" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
         <PcbPattern />
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Logo */}
-          <img src={stacqLogo} alt="STACQ" className="h-8 md:h-10 mx-auto mb-10 md:mb-14" />
-
-          {/* Headline */}
-          <h1
-            className="text-foreground font-bold tracking-tight"
-            style={{ fontSize: "clamp(40px, 5.5vw, 72px)", lineHeight: 1.06, letterSpacing: "-0.035em" }}
-          >
-            Embedded, firmware
-            <br />
-            og C/C++/Rust konsulenter
-          </h1>
-
-          {/* Supporting copy */}
-          <p
-            className="mt-6 md:mt-8 text-muted-foreground mx-auto max-w-xl"
-            style={{ fontSize: "clamp(16px, 1.8vw, 20px)", lineHeight: 1.55 }}
-          >
-            Vi leverer Norges beste spesialister innen embedded&nbsp;systems, firmware og lavnivå-programmering.
+        <div className="relative z-10 max-w-[720px]">
+          {/* Overline */}
+          <p className="text-[11px] tracking-[0.2em] uppercase font-mono text-primary/70 mb-6">
+            Konsulentselskap — Oslo, Norge
           </p>
 
-          {/* CTA */}
-          <div className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* H1 */}
+          <h1
+            className="font-serif text-foreground"
+            style={{ fontSize: "clamp(44px, 6vw, 88px)", lineHeight: 1.0, letterSpacing: "-0.02em" }}
+          >
+            Der stakken
+            <br />
+            begynner.
+          </h1>
+
+          {/* Ingress */}
+          <p className="mt-6 text-[15px] text-muted-foreground leading-[1.7] max-w-[480px]">
+            Senior embedded-, firmware- og C/C++-konsulenter.
+            <br />
+            For oppdrag som krever ekte dybde og lang horisont.
+          </p>
+
+          {/* CTAs */}
+          <div className="mt-10 flex items-center gap-3">
             <button
-              onClick={() => {
-                document.getElementById("consultants")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-8 py-3.5 bg-foreground text-background font-semibold text-[15px] rounded-full hover:opacity-90 transition-opacity"
+              onClick={() => scrollTo("consultants")}
+              className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
+              style={{ borderRadius: '2px' }}
             >
               Se våre konsulenter
             </button>
             <button
               onClick={() => setIsJobOverlayOpen(true)}
-              className="px-8 py-3.5 border border-border text-foreground font-medium text-[15px] rounded-full hover:bg-secondary/80 transition-colors"
+              className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.05em] font-medium hover:text-foreground hover:border-foreground/30 transition-all duration-300"
+              style={{ borderRadius: '2px' }}
             >
               Vi ansetter
             </button>
           </div>
+        </div>
 
-          {/* Tags */}
-          <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-2">
-            {TECH_TAGS.map((tag) => (
-              <span
-                key={tag.label}
-                className="inline-flex items-center gap-1.5 px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground"
-              >
-                {tag.label}
-              </span>
-            ))}
+        {/* Tech ticker at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 border-t" style={{ borderColor: 'hsl(var(--border-subtle))' }}>
+          <div className="overflow-hidden py-3">
+            <div className="ticker-animate whitespace-nowrap flex">
+              {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+                <span key={i} className="text-[12px] tracking-[0.1em] mx-4" style={{ color: 'hsl(var(--text-faint))' }}>
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
+      {/* ── Manifest ── */}
+      <section className="border-t border-b border-border" style={{ padding: '120px 10vw' }}>
+        <div className="max-w-6xl mx-auto">
+          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
+            {MANIFEST.map((item, i) => (
+              <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-10' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-10' : ''}`}>
+                <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-6">{item.num}</p>
+                <h3 className="text-[18px] font-medium text-foreground mb-3">{item.title}</h3>
+                <p className="text-[14px] text-muted-foreground leading-[1.8]">{item.text}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Kompetanse ── */}
-      <section className="py-24 md:py-36 px-6 md:px-12">
+      <section id="competence" className="py-24 md:py-36 px-6 md:px-12" style={{ background: 'hsl(var(--surface))' }}>
         <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="h-px w-8 bg-primary/40" />
-              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-primary">Kompetanse</p>
-              <span className="h-px w-8 bg-primary/40" />
-            </div>
-            <h2 className="text-foreground font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
-              Ekspertise i embedded systemer
+          <motion.div {...fadeUp} className="max-w-2xl">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Kompetanse</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+              Koden som
+              <br />
+              ikke kan feile.
             </h2>
-            <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
-              Lavnivå programmering og hardware-nær utvikling
-            </p>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {COMPETENCE_GROUPS.map((group) => {
-              const Icon = group.icon;
-              return (
-                <motion.div
-                  key={group.title}
-                  variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                  className="group p-6 rounded-2xl border border-border bg-card hover:shadow-md hover:border-primary/20 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/15 transition-colors">
-                      <Icon className="w-[18px] h-[18px]" />
-                    </div>
-                    <h3 className="text-[15px] font-bold tracking-tight text-foreground">{group.title}</h3>
-                  </div>
-                  {group.description && (
-                    <p className="text-[13px] leading-relaxed text-muted-foreground mb-4">{group.description}</p>
-                  )}
-                  <div className="flex flex-wrap gap-1.5">
-                    {group.tags.map((tag) => (
-                      <span key={tag} className="text-[12px] px-2.5 py-1 rounded-full bg-secondary text-muted-foreground border border-border/60">{tag}</span>
-                    ))}
-                  </div>
-                </motion.div>
-              );
-            })}
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {COMPETENCE_GROUPS.map((group) => (
+              <motion.div
+                key={group.title}
+                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                className="group p-7 border border-border bg-background hover:border-primary/40 transition-colors duration-300"
+                style={{ borderRadius: '2px' }}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-[14px] font-semibold text-foreground">{group.title}</h3>
+                  <span className="text-[11px] text-text-faint font-mono">{group.hex}</span>
+                </div>
+                {group.description && (
+                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-5">{group.description}</p>
+                )}
+                <div className="flex flex-wrap gap-2">
+                  {group.tags.map((tag) => (
+                    <Tag key={tag}>{tag}</Tag>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
 
       {/* ── Konsulenter ── */}
-      <section id="consultants" className="py-24 md:py-36 px-6 md:px-12 bg-secondary/30">
+      <section id="consultants" className="py-24 md:py-36 px-6 md:px-12">
         <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="h-px w-8 bg-primary/40" />
-              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-primary">Våre konsulenter</p>
-              <span className="h-px w-8 bg-primary/40" />
-            </div>
-            <h2 className="text-foreground font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
-              Ekspertene bak
+          <motion.div {...fadeUp} className="max-w-2xl">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Våre konsulenter</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+              Menneskene bak
+              <br />
+              maskinene.
             </h2>
-            <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
-              løsningene.
-            </p>
           </motion.div>
 
-          {/* Consultant card grid */}
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {consultants.map((c, i) => (
               <motion.div
                 key={c.name}
-                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
+                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
               >
                 <button
                   onClick={() => setExpandedConsultant(expandedConsultant === i ? null : i)}
-                  className={`w-full text-left group rounded-2xl border transition-all duration-300 overflow-hidden ${
-                    expandedConsultant === i
-                      ? "bg-background border-border shadow-lg ring-2 ring-primary/10"
-                      : "bg-background/80 border-border/60 hover:border-border hover:shadow-md"
-                  }`}
+                  className="w-full text-left group border border-border overflow-hidden hover:border-primary/30 transition-colors duration-500"
+                  style={{ borderRadius: '0px' }}
                 >
                   {c.image ? (
-                    <div className="aspect-[4/5] overflow-hidden">
+                    <div className="aspect-[3/4] overflow-hidden">
                       <img
                         src={c.image}
                         alt={c.name}
                         className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                        style={{ filter: 'grayscale(15%)' }}
+                        onMouseEnter={(e) => (e.currentTarget.style.filter = 'grayscale(0%)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.filter = 'grayscale(15%)')}
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[4/5] overflow-hidden bg-muted">
+                    <div className="aspect-[3/4] overflow-hidden bg-secondary">
                       <img
                         src={robotAvatar}
                         alt={`${c.name} avatar`}
                         className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                        style={{ filter: 'grayscale(15%)' }}
                       />
                     </div>
                   )}
-                  <div className="p-3.5 md:p-4">
-                    <h3 className="text-[14px] md:text-[15px] font-semibold text-foreground leading-tight">{c.name}</h3>
-                    <div className="mt-1.5 flex items-center gap-2.5 text-[11px] md:text-[12px] text-muted-foreground">
-                      <span className="inline-flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {c.experience}+ år
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <MapPin className="w-3 h-3" />
-                        {c.location}
-                      </span>
+                  <div className="p-4" style={{ background: 'hsl(var(--surface))' }}>
+                    <h3 className="text-[14px] font-medium text-foreground">{c.name}</h3>
+                    <div className="mt-1.5 flex items-center gap-3 text-[11px] text-muted-foreground">
+                      <span>{c.experience}+ år</span>
+                      <span>{c.location}</span>
                     </div>
-                    <div className="mt-2.5 flex flex-wrap gap-1">
+                    <div className="mt-3 flex flex-wrap gap-1.5">
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="px-2 py-0.5 text-[10px] md:text-[11px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground">
-                          {comp}
-                        </span>
+                        <Tag key={comp}>{comp}</Tag>
                       ))}
-                      {c.competence.length > 3 && (
-                        <span className="px-2 py-0.5 text-[10px] md:text-[11px] font-medium rounded-full text-muted-foreground/50">
-                          +{c.competence.length - 3}
-                        </span>
-                      )}
                     </div>
                   </div>
                 </button>
@@ -437,7 +389,7 @@ const Index = () => {
             ))}
           </motion.div>
 
-          {/* Consultant profile overlay */}
+          {/* Consultant profile drawer */}
           <AnimatePresence>
             {expandedConsultant !== null && (
               <>
@@ -445,7 +397,9 @@ const Index = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-50 bg-foreground/20 backdrop-blur-sm"
+                  transition={{ duration: 0.3 }}
+                  className="fixed inset-0 z-50"
+                  style={{ background: 'hsla(240, 6%, 4%, 0.6)', backdropFilter: 'blur(4px)' }}
                   onClick={() => setExpandedConsultant(null)}
                 />
                 <motion.div
@@ -453,70 +407,72 @@ const Index = () => {
                   animate={{ x: 0 }}
                   exit={{ x: "100%" }}
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                  className="fixed top-0 right-0 bottom-0 z-50 w-[92vw] md:w-[45vw] bg-background overflow-y-auto"
+                  className="fixed top-0 right-0 bottom-0 z-50 w-[92vw] md:w-[45vw] bg-background border-l border-border overflow-y-auto"
                 >
                   <div className="pt-24 pb-16 px-8 md:px-16">
                     <button
                       onClick={() => setExpandedConsultant(null)}
-                      className="absolute top-6 right-6 w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                      className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <span className="text-sm">✕</span>
+                      <X className="w-4 h-4" />
                     </button>
 
-                    {/* Profile header — image + name side by side */}
+                    {/* Profile header */}
                     <div className="flex items-start gap-6">
                       {consultants[expandedConsultant].image ? (
                         <img
                           src={consultants[expandedConsultant].image}
                           alt={consultants[expandedConsultant].name}
-                          className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover flex-shrink-0"
+                          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
+                          style={{ borderRadius: '2px' }}
                         />
                       ) : (
                         <img
                           src={robotAvatar}
                           alt={`${consultants[expandedConsultant].name} avatar`}
-                          className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover flex-shrink-0"
+                          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
+                          style={{ borderRadius: '2px' }}
                         />
                       )}
                       <div className="pt-1">
-                        <h3 className="text-[24px] md:text-[28px] font-bold text-foreground tracking-tight leading-tight">
+                        <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
                           {consultants[expandedConsultant].name}
                         </h3>
-                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
-                          <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{consultants[expandedConsultant].experience}+ års erfaring</span>
-                          <span className="inline-flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" />{consultants[expandedConsultant].location}</span>
+                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[12px] text-muted-foreground">
+                          <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
+                          <span>{consultants[expandedConsultant].location}</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Description */}
-                    <p className="mt-7 text-[15px] text-muted-foreground leading-relaxed">
+                    <p className="mt-7 text-[14px] text-muted-foreground leading-[1.8]">
                       {consultants[expandedConsultant].description}
                     </p>
 
                     {/* Kompetanse */}
                     <div className="mt-8">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-3">Kompetanse</p>
-                      <div className="flex flex-wrap gap-1.5">
+                      <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-3">Kompetanse</p>
+                      <div className="flex flex-wrap gap-2">
                         {consultants[expandedConsultant].competence.map((comp) => (
-                          <span key={comp} className="px-3 py-1 text-[13px] font-medium rounded-full border border-border bg-secondary/50 text-muted-foreground">{comp}</span>
+                          <Tag key={comp}>{comp}</Tag>
                         ))}
                       </div>
                     </div>
 
                     {/* Bransjeerfaring */}
                     <div className="mt-6">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/50 mb-3">Bransjeerfaring</p>
-                      <div className="flex flex-wrap gap-1.5">
+                      <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-3">Bransjeerfaring</p>
+                      <div className="flex flex-wrap gap-2">
                         {consultants[expandedConsultant].industries.map((ind) => (
-                          <span key={ind} className="px-3 py-1 text-[13px] font-medium rounded-full border border-primary/20 bg-primary/5 text-foreground">{ind}</span>
+                          <Tag key={ind}>{ind}</Tag>
                         ))}
                       </div>
                     </div>
 
                     {/* Contact CTA */}
                     <div className="mt-12 pt-6 border-t border-border">
-                      <p className="text-[14px] text-muted-foreground mb-4">
+                      <p className="text-[13px] text-muted-foreground mb-4">
                         Interessert i å booke {consultants[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
                       </p>
                       <div className="space-y-3">
@@ -524,13 +480,13 @@ const Index = () => {
                           { img: jonRichardContact, name: "Jon Richard Nygaard", tel: "932 87 267", telRaw: "93287267", email: "jr@stacq.no" },
                           { img: thomasEriksenContact, name: "Thomas Eriksen", tel: "975 00 321", telRaw: "97500321", email: "thomas@stacq.no" },
                         ].map((contact) => (
-                          <div key={contact.name} className="flex items-center gap-3 p-3 rounded-xl bg-secondary/40">
-                            <img src={contact.img} alt={contact.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+                          <div key={contact.name} className="flex items-center gap-3 p-3 border border-border" style={{ borderRadius: '2px', background: 'hsl(var(--surface))' }}>
+                            <img src={contact.img} alt={contact.name} className="w-10 h-10 object-cover flex-shrink-0" style={{ borderRadius: '2px' }} />
                             <div className="min-w-0">
-                              <p className="text-[13px] font-semibold text-foreground">{contact.name} <span className="font-normal text-muted-foreground">· Partner</span></p>
+                              <p className="text-[13px] font-medium text-foreground">{contact.name} <span className="font-normal text-muted-foreground">· Partner</span></p>
                               <div className="mt-0.5 flex items-center gap-3 text-[12px] text-muted-foreground">
-                                <a href={`tel:${contact.telRaw}`} className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"><Phone className="w-3 h-3" />{contact.tel}</a>
-                                <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"><Mail className="w-3 h-3" />{contact.email}</a>
+                                <a href={`tel:${contact.telRaw}`} className="inline-flex items-center gap-1 hover:text-primary transition-colors"><Phone className="w-3 h-3" />{contact.tel}</a>
+                                <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1 hover:text-primary transition-colors"><Mail className="w-3 h-3" />{contact.email}</a>
                               </div>
                             </div>
                           </div>
@@ -546,61 +502,57 @@ const Index = () => {
       </section>
 
       {/* ── Bransjer ── */}
-      <section className="py-24 md:py-36 px-6 md:px-12">
+      <section className="py-24 md:py-36 px-6 md:px-12" style={{ background: 'hsl(var(--surface))' }}>
         <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="h-px w-8 bg-primary/40" />
-              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-primary">Bransjer</p>
-              <span className="h-px w-8 bg-primary/40" />
-            </div>
-            <h2 className="text-foreground font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
+          <motion.div {...fadeUp} className="max-w-2xl">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Bransjer</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
               Der koden møter
-            </h2>
-            <p className="mt-2 font-medium text-muted-foreground/70" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+              <br />
               den virkelige verden.
-            </p>
+            </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-            {DOMAINS.map((d) => (
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {DOMAINS.map((title, i) => (
               <motion.div
-                key={d.title}
-                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="group p-6 md:p-7 rounded-2xl border border-border bg-card hover:shadow-lg hover:border-border/80 transition-all duration-300"
+                key={title}
+                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                className="group p-7 border border-border bg-background hover:border-primary/30 transition-colors duration-300"
+                style={{ borderRadius: '2px' }}
               >
-                <div className="w-11 h-11 rounded-xl bg-primary/[0.07] flex items-center justify-center mb-5 group-hover:bg-primary/[0.12] transition-colors">
-                  <d.icon className="w-5 h-5 text-primary" strokeWidth={1.7} />
-                </div>
-                <h3 className="text-[14px] md:text-[15px] font-bold text-foreground leading-snug">{d.title}</h3>
+                <p className="text-[32px] font-light text-primary/20 font-mono mb-4">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="text-[14px] font-medium text-foreground leading-snug">{title}</h3>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ── Stilling ledig ── */}
-      <section className="py-24 md:py-36 px-6 md:px-12 bg-foreground text-background">
-        <div className="max-w-3xl mx-auto text-center">
+      {/* ── Karriere ── */}
+      <section id="career" className="border-t border-border" style={{ padding: '160px 10vw' }}>
+        <div className="max-w-3xl">
           <motion.div {...fadeUp}>
-            <div className="inline-flex items-center gap-2.5 mb-5">
-              <span className="h-px w-8 bg-background/25" />
-              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-background/50">Karriere</p>
-              <span className="h-px w-8 bg-background/25" />
-            </div>
-            <h2 className="text-background font-extrabold tracking-tight" style={{ fontSize: "clamp(30px, 4vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
-              Bli en del av teamet.
+            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Karriere</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+              Vi rekrutterer de som
+              <br />
+              koder nærmest metallet.
             </h2>
-            <p className="mt-2 font-medium text-background/45" style={{ fontSize: "clamp(24px, 3vw, 38px)", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
-              Vi ser etter deg.
+            <p className="mt-6 text-[15px] text-muted-foreground leading-[1.7] max-w-[480px]">
+              Er du en senior embedded-ingeniør som vil jobbe
+              med krevende oppdrag over tid? Vi er alltid interessert
+              i å snakke med de riktige menneskene.
             </p>
             <div className="mt-10">
               <button
                 onClick={() => setIsJobOverlayOpen(true)}
-                className="inline-flex items-center gap-2.5 bg-background text-foreground px-8 py-3.5 rounded-full text-[15px] font-semibold hover:opacity-90 transition-opacity"
+                className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
+                style={{ borderRadius: '2px' }}
               >
-                Søk nå
-                <span className="text-[16px]">→</span>
+                Send en åpen søknad →
               </button>
             </div>
           </motion.div>
@@ -608,24 +560,24 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="bg-foreground text-background py-20 px-6 md:px-12">
+      <footer className="border-t border-border py-20 px-6 md:px-12" style={{ background: 'hsl(240, 10%, 2%)' }}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-5 brightness-0 invert" />
-            <p className="text-[14px] text-background/50 leading-relaxed">
-              Norges ledende konsulentselskap innen embedded-systemer og lavnivå-programmering.
+            <p className="text-[13px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+              Der stakken begynner.
             </p>
           </div>
 
           {/* Selskap */}
           <div>
-            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Selskap</h4>
+            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Selskap</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => setIsOverlayOpen(true)} className="text-[14px] text-background/65 hover:text-background transition-colors">Om STACQ</button></li>
-              <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[14px] text-background/65 hover:text-background transition-colors">Karriere</button></li>
+              <li><button onClick={() => setIsOverlayOpen(true)} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Om STACQ</button></li>
+              <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Karriere</button></li>
             </ul>
-            <p className="mt-5 text-[12px] text-background/30 leading-relaxed">
+            <p className="mt-5 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
               STACQ AS<br />
               932 575 442 MVA
             </p>
@@ -633,20 +585,20 @@ const Index = () => {
 
           {/* Kontakt oss */}
           <div>
-            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Kontakt oss</h4>
-            <ul className="space-y-4 text-[14px] text-background/65">
+            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Kontakt oss</h4>
+            <ul className="space-y-4 text-[13px] text-muted-foreground">
               <li>
-                <span className="block font-medium text-background/85">Jon Richard Nygaard <span className="font-normal text-background/50">· Partner</span></span>
+                <span className="block font-medium text-foreground/85">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></span>
                 <div className="mt-1 flex flex-col gap-0.5">
-                  <a href="tel:93287267" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Phone className="w-3 h-3" />932 87 267</a>
-                  <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Mail className="w-3 h-3" />jr@stacq.no</a>
+                  <a href="tel:93287267" className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"><Phone className="w-3 h-3" />932 87 267</a>
+                  <a href="mailto:jr@stacq.no" className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"><Mail className="w-3 h-3" />jr@stacq.no</a>
                 </div>
               </li>
               <li>
-                <span className="block font-medium text-background/85">Thomas Eriksen <span className="font-normal text-background/50">· Partner</span></span>
+                <span className="block font-medium text-foreground/85">Thomas Eriksen <span className="font-normal text-muted-foreground">· Partner</span></span>
                 <div className="mt-1 flex flex-col gap-0.5">
-                  <a href="tel:97500321" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Phone className="w-3 h-3" />975 00 321</a>
-                  <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1.5 hover:text-background transition-colors"><Mail className="w-3 h-3" />thomas@stacq.no</a>
+                  <a href="tel:97500321" className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"><Phone className="w-3 h-3" />975 00 321</a>
+                  <a href="mailto:thomas@stacq.no" className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"><Mail className="w-3 h-3" />thomas@stacq.no</a>
                 </div>
               </li>
             </ul>
@@ -654,17 +606,17 @@ const Index = () => {
 
           {/* Besøk oss */}
           <div>
-            <h4 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-background/35 mb-5">Besøk oss</h4>
-            <p className="text-[14px] text-background/65 leading-relaxed">
+            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Besøk oss</h4>
+            <p className="text-[13px] text-muted-foreground leading-relaxed">
               Øvre Slottsgate 27,<br />
               0157 Oslo
             </p>
-            <div className="mt-4 rounded-xl overflow-hidden border border-background/10">
+            <div className="mt-4 overflow-hidden border border-border" style={{ borderRadius: '2px' }}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000.0!2d10.7397!3d59.9139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46416e7be3b8cfc1%3A0x5e0ad81d0b2d6ef0!2s%C3%98vre%20Slottsgate%2027%2C%200157%20Oslo!5e0!3m2!1sno!2sno!4v1700000000000!5m2!1sno!2sno"
                 width="100%"
                 height="120"
-                style={{ border: 0 }}
+                style={{ border: 0, filter: 'invert(0.9) hue-rotate(180deg) grayscale(0.3)' }}
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

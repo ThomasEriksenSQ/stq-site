@@ -171,7 +171,7 @@ const Index = () => {
   };
 
   const Tag = ({ children }: { children: string }) => (
-    <span className="text-[13px] font-mono inline-flex items-center gap-0">
+    <span className="text-[14px] font-mono inline-flex items-center gap-0">
       <span className="text-primary">[</span>
       <span className="text-muted-foreground">&nbsp;{children}&nbsp;</span>
       <span className="text-primary">]</span>
@@ -203,7 +203,7 @@ const Index = () => {
           </h1>
 
           {/* Ingress */}
-          <p className="mt-7 text-[18px] text-muted-foreground leading-[2.0] max-w-[480px]">
+          <p className="mt-7 text-[20px] text-muted-foreground leading-[2.0] max-w-[500px]">
             Vi leverer Norges beste spesialister innen<br />
             embedded systems, firmware og<br />
             lavnivå-programmering.
@@ -247,9 +247,9 @@ const Index = () => {
         <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
           {MANIFEST.map((item, i) => (
             <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
-              <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-5">{item.num}</p>
-              <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-4">{item.title}</h3>
-              <p className="text-[15px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
+              <p className="text-[13px] tracking-[0.16em] text-primary font-mono mb-5">{item.num}</p>
+              <h3 className="text-[19px] font-semibold text-foreground tracking-[0.01em] mb-4">{item.title}</h3>
+              <p className="text-[17px] text-muted-foreground leading-[1.95] max-w-[300px]">{item.text}</p>
             </div>
           ))}
         </motion.div>
@@ -258,7 +258,7 @@ const Index = () => {
       {/* ── Kompetanse ── */}
       <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '80px 10vw' }}>
         <motion.div {...fadeUp} className="max-w-2xl">
-          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
+          <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
           <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
             Lavnivå. Høy presisjon.
           </h2>
@@ -291,7 +291,7 @@ const Index = () => {
       <section id="consultants" style={{ padding: '80px 10vw' }}>
         <div>
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
+            <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
             <h2 className="font-serif text-foreground mb-14" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Konsulentene.
             </h2>
@@ -399,7 +399,7 @@ const Index = () => {
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
                           {consultants[expandedConsultant].name}
                         </h3>
-                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
+                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[14px] text-muted-foreground">
                           <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
                           <span>{consultants[expandedConsultant].location}</span>
                         </div>
@@ -407,13 +407,13 @@ const Index = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="mt-7 text-[16px] text-muted-foreground leading-[1.9]">
+                    <p className="mt-7 text-[17px] text-muted-foreground leading-[1.95]">
                       {consultants[expandedConsultant].description}
                     </p>
 
                     {/* Kompetanse */}
                     <div className="mt-8">
-                      <p className="text-[13px] tracking-[0.18em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
+                      <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
                       <div className="flex flex-wrap gap-3">
                         {consultants[expandedConsultant].competence.map((comp) => (
                           <Tag key={comp}>{comp}</Tag>
@@ -423,7 +423,7 @@ const Index = () => {
 
                     {/* Bransjeerfaring */}
                     <div className="mt-6">
-                      <p className="text-[13px] tracking-[0.18em] uppercase mb-3 text-muted-foreground">Bransjeerfaring</p>
+                      <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">Bransjeerfaring</p>
                       <div className="flex flex-wrap gap-3">
                         {consultants[expandedConsultant].industries.map((ind) => (
                           <Tag key={ind}>{ind}</Tag>
@@ -465,7 +465,7 @@ const Index = () => {
       {/* ── Bransjer ── */}
       <section style={{ background: 'hsl(var(--surface))', padding: '80px 10vw' }}>
         <motion.div {...fadeUp} className="max-w-2xl">
-          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
+          <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Bransjer</p>
           <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
             Der koden møter<br />den virkelige verden.
           </h2>
@@ -482,7 +482,7 @@ const Index = () => {
                 style={{ borderRadius: '2px', padding: '32px 28px', minHeight: '180px' }}
               >
                 {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
-                <h3 className="text-[15px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
+                <h3 className="text-[17px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
               </motion.div>
             );
           })}
@@ -493,14 +493,14 @@ const Index = () => {
       <section id="career" className="border-t border-border" style={{ padding: '80px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Karriere</p>
+            <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Karriere</p>
             <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Bli en del av teamet.
             </h2>
             <h2 className="font-serif text-foreground/45 italic mt-3" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Vi ser etter deg.
             </h2>
-            <p className="mt-8 text-[16px] text-muted-foreground leading-[1.9] max-w-[420px]">
+            <p className="mt-8 text-[17px] text-muted-foreground leading-[1.95] max-w-[420px]">
               Er du senior embedded-ingeniør med erfaring fra
               reelle produkter i produksjon? Vi er alltid
               interessert i å snakke med de riktige menneskene.
@@ -524,7 +524,7 @@ const Index = () => {
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
-            <p className="text-[14px] tracking-[0.04em] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="text-[15px] tracking-[0.04em] font-mono leading-[1.85]" style={{ color: 'hsl(var(--text-faint))' }}>
               Der stakken begynner.
             </p>
           </div>
@@ -533,10 +533,10 @@ const Index = () => {
           <div>
             <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => scrollTo("consultants")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Konsulenter</button></li>
-              <li><button onClick={() => scrollTo("career")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Karriere</button></li>
+              <li><button onClick={() => scrollTo("consultants")} className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]">Konsulenter</button></li>
+              <li><button onClick={() => scrollTo("career")} className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]">Karriere</button></li>
             </ul>
-            <p className="mt-7 text-[14px] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="mt-7 text-[15px] font-mono leading-[1.85]" style={{ color: 'hsl(var(--text-faint))' }}>
               STACQ AS · 932 575 442 MVA
             </p>
           </div>
@@ -544,7 +544,7 @@ const Index = () => {
           {/* Kontakt oss */}
           <div>
             <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
-            <ul className="space-y-4 text-[14px] text-muted-foreground leading-[1.8]">
+            <ul className="space-y-4 text-[15px] text-muted-foreground leading-[1.85]">
               <li>
                 <span className="block font-medium text-foreground/85">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></span>
                 <div className="mt-1 flex flex-col gap-0.5">
@@ -565,7 +565,7 @@ const Index = () => {
           {/* Besøk oss */}
           <div>
             <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
-            <p className="text-[14px] text-muted-foreground leading-[1.8]">
+            <p className="text-[15px] text-muted-foreground leading-[1.85]">
               Øvre Slottsgate 27,<br />
               0157 Oslo
             </p>

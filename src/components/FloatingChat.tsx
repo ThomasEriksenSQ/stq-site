@@ -269,7 +269,7 @@ const FloatingChat = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onFocus={handleExpand}
                 placeholder="Spør vår AI eller chat direkte med oss"
-                className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[13px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
+                className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[15px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
                 style={{ borderRadius: '2px' }}
               />
               <button
@@ -346,7 +346,7 @@ const FloatingChat = () => {
                       <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover mr-2 mt-1 flex-shrink-0" style={{ borderRadius: '2px' }} />
                     )}
                     <div
-                      className={`max-w-[80%] px-3.5 py-2.5 text-[13px] font-mono leading-relaxed whitespace-pre-line ${
+                      className={`max-w-[80%] px-3.5 py-2.5 text-[15px] font-mono leading-[1.75] whitespace-pre-line ${
                         msg.role === "user"
                           ? "bg-primary text-primary-foreground"
                           : "bg-secondary text-foreground"
@@ -370,7 +370,7 @@ const FloatingChat = () => {
                     {mode === "slack" && slackRecipient && (
                       <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 object-cover mr-2 mt-1 flex-shrink-0" style={{ borderRadius: '2px' }} />
                     )}
-                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 text-[13px]" style={{ borderRadius: '2px' }}>
+                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 text-[15px]" style={{ borderRadius: '2px' }}>
                       <span className="inline-flex gap-1">
                         <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                         <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -407,7 +407,7 @@ const FloatingChat = () => {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Skriv en melding..."
-                    className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[13px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
+                    className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[15px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
                     style={{ borderRadius: '2px' }}
                     disabled={isTyping}
                   />

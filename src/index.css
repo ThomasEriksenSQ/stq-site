@@ -5,28 +5,28 @@
 @layer base {
   :root {
     --background: 240 6% 4%;
-    --foreground: 36 14% 93%;
+    --foreground: 40 25% 93%;
 
     --card: 240 5% 7%;
-    --card-foreground: 36 14% 93%;
+    --card-foreground: 40 25% 93%;
 
     --popover: 240 5% 7%;
-    --popover-foreground: 36 14% 93%;
+    --popover-foreground: 40 25% 93%;
 
     --primary: 23 54% 50%;
     --primary-foreground: 240 6% 4%;
 
     --secondary: 240 4% 11%;
-    --secondary-foreground: 36 14% 93%;
+    --secondary-foreground: 40 25% 93%;
 
     --muted: 240 4% 11%;
-    --muted-foreground: 240 4% 56%;
+    --muted-foreground: 240 5% 67%;
 
     --accent: 23 54% 50%;
     --accent-foreground: 240 6% 4%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 36 14% 93%;
+    --destructive-foreground: 40 25% 93%;
 
     --border: 240 4% 18%;
     --input: 240 4% 18%;
@@ -37,12 +37,12 @@
     --surface: 240 5% 7%;
     --surface-raised: 240 4% 12%;
     --border-subtle: 240 4% 12%;
-    --text-faint: 240 4% 25%;
+    --text-faint: 240 4% 39%;
     --accent-dim: 23 40% 7%;
     --footer-bg: 240 10% 2%;
 
     --sidebar-background: 240 5% 7%;
-    --sidebar-foreground: 36 14% 93%;
+    --sidebar-foreground: 40 25% 93%;
     --sidebar-primary: 28 55% 50%;
     --sidebar-primary-foreground: 240 6% 4%;
     --sidebar-accent: 240 4% 11%;
@@ -66,7 +66,7 @@
 
   ::selection {
     background: hsl(28 55% 50% / 0.2);
-    color: hsl(36 14% 93%);
+    color: hsl(40 25% 93%);
   }
 
   a {

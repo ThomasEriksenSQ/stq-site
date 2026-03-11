@@ -247,7 +247,7 @@ const MANIFEST = [
   {
     num: "02",
     title: "Selvstendige.",
-    text: "De setter seg raskt inn i systemer og problemstillinger, og tar ansvar for sitt område. Arbeidet drives fremover med faglig trygghet og uten behov for tett oppfølging.",
+    text: "Setter seg raskt inn i systemer og problemstillinger, og tar ansvar for sitt område. Arbeidet drives fremover uten behov for tett oppfølging.",
   },
   {
     num: "03",

@@ -399,7 +399,7 @@ const Index = () => {
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
                           {consultants[expandedConsultant].name}
                         </h3>
-                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
+                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[14px] text-muted-foreground">
                           <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
                           <span>{consultants[expandedConsultant].location}</span>
                         </div>

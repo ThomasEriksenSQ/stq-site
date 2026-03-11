@@ -370,7 +370,7 @@ const FloatingChat = () => {
                     {mode === "slack" && slackRecipient && (
                       <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 object-cover mr-2 mt-1 flex-shrink-0" style={{ borderRadius: '2px' }} />
                     )}
-                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 text-[13px]" style={{ borderRadius: '2px' }}>
+                    <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 text-[15px]" style={{ borderRadius: '2px' }}>
                       <span className="inline-flex gap-1">
                         <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                         <span className="w-1.5 h-1.5 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />

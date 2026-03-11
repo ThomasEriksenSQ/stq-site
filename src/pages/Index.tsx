@@ -610,8 +610,8 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-border py-20 px-6 md:px-12" style={{ background: 'hsl(240, 10%, 2%)' }}>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+      <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '80px 10vw 40px' }}>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-5 brightness-0 invert" />

@@ -565,18 +565,18 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
+          <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
             {DOMAINS.map((title, i) => (
               <motion.div
                 key={title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group border border-border hover:border-primary/30 transition-colors duration-300"
-                style={{ borderRadius: '2px', background: 'hsl(var(--surface))', padding: '32px 28px' }}
+                className="group flex flex-col justify-between border border-border hover:border-primary/30 transition-colors duration-300"
+                style={{ borderRadius: '2px', background: 'hsl(var(--surface))', padding: '28px 24px', minHeight: '130px' }}
               >
-                <p className="text-[28px] font-light text-primary/20 font-mono mb-auto">
+                <p className="text-[24px] font-light text-primary/20 font-mono">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="text-[14px] font-medium text-foreground leading-snug mt-12">{title}</h3>
+                <h3 className="text-[13px] font-medium text-foreground leading-snug mt-12">{title}</h3>
               </motion.div>
             ))}
           </motion.div>

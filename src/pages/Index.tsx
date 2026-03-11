@@ -493,7 +493,7 @@ const Index = () => {
       <section id="career" className="border-t border-border" style={{ padding: '80px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Karriere</p>
+            <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Karriere</p>
             <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Bli en del av teamet.
             </h2>

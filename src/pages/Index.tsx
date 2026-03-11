@@ -588,6 +588,7 @@ const Index = () => {
       {/* Overlays & Chat */}
       <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
       <JobApplyOverlay isOpen={isJobOverlayOpen} onClose={() => setIsJobOverlayOpen(false)} />
+      <AccentSwitcher />
       <FloatingChat />
     </div>
   );

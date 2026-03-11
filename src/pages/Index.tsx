@@ -407,7 +407,7 @@ const Index = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="mt-7 text-[16px] text-muted-foreground leading-[1.9]">
+                    <p className="mt-7 text-[17px] text-muted-foreground leading-[1.95]">
                       {consultants[expandedConsultant].description}
                     </p>
 

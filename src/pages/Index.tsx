@@ -307,22 +307,20 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px]">
             {COMPETENCE_GROUPS.map((group) => (
               <motion.div
                 key={group.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group p-7 border border-border bg-background hover:border-primary/40 transition-colors duration-300"
+                className="group relative p-7 border border-border bg-background hover:border-primary/40 transition-colors duration-[400ms]"
                 style={{ borderRadius: '2px' }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-[14px] font-semibold text-foreground">{group.title}</h3>
-                  <span className="text-[11px] text-text-faint font-mono">{group.hex}</span>
-                </div>
+                <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
+                <h3 className="text-[14px] font-semibold text-foreground mb-2.5">{group.title}</h3>
                 {group.description && (
-                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-5">{group.description}</p>
+                  <p className="text-[13px] text-muted-foreground leading-[1.8] mb-5">{group.description}</p>
                 )}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   {group.tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>
                   ))}

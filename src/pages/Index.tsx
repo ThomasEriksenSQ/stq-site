@@ -217,11 +217,11 @@ const Index = () => {
               Se konsulentene
             </button>
             <button
-              onClick={() => scrollTo("footer-contact")}
+              onClick={() => setIsJobOverlayOpen(true)}
               className="px-7 py-3.5 border border-border text-muted-foreground text-[14px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Ta kontakt
+              Vi ansetter
             </button>
           </div>
         </div>

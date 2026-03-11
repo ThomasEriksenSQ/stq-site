@@ -189,24 +189,22 @@ const Index = () => {
 
           {/* Overline */}
           <p className="text-[13px] tracking-[0.18em] uppercase font-mono text-primary/80 mb-5">
-            Konsulentselskap — Oslo, Norge
+            Konsulentselskap — Oslo, Trondheim, Norge
           </p>
 
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(48px, 5.5vw, 78px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
+            style={{ fontSize: "clamp(56px, 6.5vw, 88px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
           >
             Embedded, firmware<br />og C/C++/Rust konsulenter.
           </h1>
 
           {/* Ingress */}
           <p className="mt-7 text-[18px] text-muted-foreground leading-[2.0] max-w-[480px]">
-            Senior-nivå spesialister innen embedded
-            <br />
-            systems og lavnivå-programmering.
-            <br />
-            For oppdrag som ikke tåler halvgode løsninger.
+            Vi leverer Norges beste spesialister innen<br />
+            embedded systems, firmware og<br />
+            lavnivå-programmering.
           </p>
 
           {/* CTAs */}
@@ -219,11 +217,11 @@ const Index = () => {
               Se konsulentene
             </button>
             <button
-              onClick={() => scrollTo("footer-contact")}
+              onClick={() => setIsJobOverlayOpen(true)}
               className="px-7 py-3.5 border border-border text-muted-foreground text-[14px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Ta kontakt
+              Vi ansetter
             </button>
           </div>
         </div>

@@ -242,17 +242,17 @@ const MANIFEST = [
   {
     num: "01",
     title: "Solid erfaring.",
-    text: "Konsulentene våre arbeider med systemnær utvikling i C, C++ og Rust. Alle har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
+    text: "Alle har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
   },
   {
     num: "02",
     title: "Selvstendige.",
-    text: "De setter seg raskt inn i systemer og problemstillinger, og tar ansvar for sitt område. Arbeidet drives fremover med faglig trygghet og uten behov for tett oppfølging.",
+    text: "Setter seg raskt inn i systemer og problemstillinger, og tar ansvar for sitt område. Arbeidet drives fremover uten behov for tett oppfølging.",
   },
   {
     num: "03",
     title: "Gode å jobbe med.",
-    text: "Folkene våre er ryddige, åpne om fremdrift og samarbeider godt med teamet rundt seg. Det gjør prosjekter mer forutsigbare – også når arbeidet er krevende.",
+    text: "Vi er opptatt av gode holdninger. Ryddige, åpne om fremdrift og gode å samarbeide med.",
   },
 ];
 

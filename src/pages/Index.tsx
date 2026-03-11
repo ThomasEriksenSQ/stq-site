@@ -24,8 +24,9 @@ import robotAvatar from "@/assets/robot-avatar.png";
 
 const TICKER_ITEMS = [
   "C", "C++", "Rust", "Zephyr", "FreeRTOS", "ThreadX", "Embedded Linux", "Yocto",
-  "ARM Cortex", "RTOS", "CAN", "SPI", "I2C", "UART", "Board bring-up",
-  "Bare-metal", "TrustZone", "CMake", "Conan", "Linux-kjerne",
+  "ARM Cortex", "RTOS", "CAN / CANopen", "SPI", "I2C", "UART", "Board bring-up",
+  "Bare-metal", "TrustZone", "CMake", "Linux-kjerne", "Hardware-debugging",
+  "ISO 26262", "IEC 62443",
 ];
 
 const COMPETENCE_GROUPS = [
@@ -95,8 +96,8 @@ const CONSULTANTS = [
 
 const MANIFEST = [
   { num: "01", title: "Kun seniorer.", text: "Alle våre konsulenter har minimum 8 års erfaring fra reelle produkter i produksjon. Ingen juniorer. Ingen generalister." },
-  { num: "02", title: "Integrert, ikke innleid.", text: "Konsulentene våre sitter i langsiktige oppdrag — ofte i årevis hos én kunde. De blir en del av teamet ditt, ikke en ekstern ressurs." },
-  { num: "03", title: "Domenet, ikke bare koden.", text: "Vi rekrutterer folk som forstår hva koden styrer — fra medisinsk utstyr til forsvarssystemer. Kontekst er alt i embedded." },
+  { num: "02", title: "Dypt integrert.", text: "Konsulentene våre blir en del av teamet ditt — ikke en ekstern ressurs. De fleste oppdrag varer i ett til tre år." },
+  { num: "03", title: "Kuratert, ikke katalogisert.", text: "Vi er 15 konsulenter. Thomas og Jon kjenner alle personlig. Når du ringer, får du en anbefaling — ikke en CV-bunke." },
 ];
 
 const fadeUp = {
@@ -170,7 +171,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* ── Navigation ── */}
-      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border" style={{ background: 'hsla(240, 6%, 4%, 0.85)', backdropFilter: 'blur(12px)' }}>
+      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border" style={{ background: 'rgba(9,9,11,0.9)', backdropFilter: 'blur(12px)' }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 h-14">
           <button onClick={() => scrollTo("hero")}>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 brightness-0 invert" />
@@ -180,7 +181,8 @@ const Index = () => {
             {[
               { label: "Konsulenter", id: "consultants" },
               { label: "Kompetanse", id: "competence" },
-              { label: "Karriere", id: "career" },
+              { label: "Om oss", id: "om-oss" },
+              { label: "Kontakt", id: "footer-contact" },
             ].map((item) => (
               <button
                 key={item.id}
@@ -202,7 +204,8 @@ const Index = () => {
             {[
               { label: "Konsulenter", id: "consultants" },
               { label: "Kompetanse", id: "competence" },
-              { label: "Karriere", id: "career" },
+              { label: "Om oss", id: "om-oss" },
+              { label: "Kontakt", id: "footer-contact" },
             ].map((item) => (
               <button
                 key={item.id}
@@ -228,7 +231,7 @@ const Index = () => {
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(44px, 6vw, 88px)", lineHeight: 1.0, letterSpacing: "-0.02em" }}
+            style={{ fontSize: "clamp(52px, 7vw, 96px)", lineHeight: 0.95, letterSpacing: "-0.03em" }}
           >
             Der stakken
             <br />
@@ -236,10 +239,12 @@ const Index = () => {
           </h1>
 
           {/* Ingress */}
-          <p className="mt-6 text-[15px] text-muted-foreground leading-[1.7] max-w-[480px]">
-            Senior embedded-, firmware- og C/C++-konsulenter.
+          <p className="mt-7 text-[15px] text-muted-foreground leading-[1.8] max-w-[460px]">
+            15 senior embedded-, firmware- og C/C++-konsulenter.
             <br />
-            For oppdrag som krever ekte dybde og lang horisont.
+            Alle i aktive oppdrag. Alle tilgjengelige
+            <br />
+            for de rette prosjektene.
           </p>
 
           {/* CTAs */}
@@ -249,14 +254,14 @@ const Index = () => {
               className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Se våre konsulenter
+              Se konsulentene
             </button>
             <button
-              onClick={() => setIsJobOverlayOpen(true)}
+              onClick={() => scrollTo("om-oss")}
               className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.05em] font-medium hover:text-foreground hover:border-foreground/30 transition-all duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Vi ansetter
+              Ta kontakt
             </button>
           </div>
         </div>
@@ -276,7 +281,7 @@ const Index = () => {
       </section>
 
       {/* ── Manifest ── */}
-      <section className="border-t border-b border-border" style={{ padding: '120px 10vw' }}>
+      <section id="manifest" className="border-t border-b border-border" style={{ padding: '100px 10vw' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
             {MANIFEST.map((item, i) => (
@@ -291,7 +296,7 @@ const Index = () => {
       </section>
 
       {/* ── Kompetanse ── */}
-      <section id="competence" className="py-24 md:py-36 px-6 md:px-12" style={{ background: 'hsl(var(--surface))' }}>
+      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '100px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Kompetanse</p>
@@ -329,7 +334,7 @@ const Index = () => {
       </section>
 
       {/* ── Konsulenter ── */}
-      <section id="consultants" className="py-24 md:py-36 px-6 md:px-12">
+      <section id="consultants" style={{ padding: '100px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Våre konsulenter</p>
@@ -501,8 +506,53 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ── Om Thomas og Jon ── */}
+      <section id="om-oss" className="border-t border-b border-border" style={{ background: 'hsl(var(--surface))', padding: '100px 10vw' }}>
+        <div className="max-w-6xl mx-auto">
+          <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20">
+            {/* Left column - text */}
+            <div className="lg:col-span-2">
+              <p className="text-[11px] tracking-[0.2em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Partnerne</p>
+              <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.05 }}>
+                Personlig kjennskap.
+                <br />
+                Ikke et søk i en database.
+              </h2>
+              <p className="mt-6 text-[14px] text-muted-foreground leading-[1.9]">
+                Thomas Eriksen og Jon Richard Nygaard bygget STACQ fordi de så det samme problemet gjentatte ganger: selskaper med krevende embedded-prosjekter fikk CVer fra folk som hadde lest om teknologien — ikke brukt den.
+              </p>
+              <p className="mt-4 text-[14px] text-muted-foreground leading-[1.9]">
+                Vi kjenner alle i nettverket vårt personlig. Vi vet hvem som passer hvor. Ring oss.
+              </p>
+            </div>
+
+            {/* Right column - partner cards */}
+            <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { img: thomasEriksenContact, name: "Thomas Eriksen", tel: "975 00 321", telRaw: "97500321", email: "thomas@stacq.no" },
+                { img: jonRichardContact, name: "Jon Richard Nygaard", tel: "932 87 267", telRaw: "93287267", email: "jr@stacq.no" },
+              ].map((partner) => (
+                <div key={partner.name} className="p-6 border border-border bg-background" style={{ borderRadius: '2px' }}>
+                  <img src={partner.img} alt={partner.name} className="w-[72px] h-[72px] object-cover rounded-full mb-4" />
+                  <h3 className="text-[14px] font-semibold text-foreground">{partner.name}</h3>
+                  <p className="text-[11px] mt-1 mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Partner</p>
+                  <div className="space-y-2 text-[13px] text-muted-foreground">
+                    <a href={`tel:${partner.telRaw}`} className="flex items-center gap-2 hover:text-primary transition-colors">
+                      <Phone className="w-3.5 h-3.5" />{partner.tel}
+                    </a>
+                    <a href={`mailto:${partner.email}`} className="flex items-center gap-2 hover:text-primary transition-colors">
+                      <Mail className="w-3.5 h-3.5" />{partner.email}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── Bransjer ── */}
-      <section className="py-24 md:py-36 px-6 md:px-12" style={{ background: 'hsl(var(--surface))' }}>
+      <section style={{ padding: '100px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Bransjer</p>
@@ -513,18 +563,18 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
             {DOMAINS.map((title, i) => (
               <motion.div
                 key={title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group p-7 border border-border bg-background hover:border-primary/30 transition-colors duration-300"
-                style={{ borderRadius: '2px' }}
+                className="group border border-border hover:border-primary/30 transition-colors duration-300"
+                style={{ borderRadius: '2px', background: 'hsl(var(--surface))', padding: '32px 28px' }}
               >
-                <p className="text-[32px] font-light text-primary/20 font-mono mb-4">
+                <p className="text-[28px] font-light text-primary/20 font-mono mb-auto">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="text-[14px] font-medium text-foreground leading-snug">{title}</h3>
+                <h3 className="text-[14px] font-medium text-foreground leading-snug mt-12">{title}</h3>
               </motion.div>
             ))}
           </motion.div>
@@ -532,21 +582,21 @@ const Index = () => {
       </section>
 
       {/* ── Karriere ── */}
-      <section id="career" className="border-t border-border" style={{ padding: '160px 10vw' }}>
+      <section id="career" className="border-t border-border" style={{ padding: '120px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Karriere</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05, maxWidth: '560px' }}>
               Vi rekrutterer de som
               <br />
               koder nærmest metallet.
             </h2>
-            <p className="mt-6 text-[15px] text-muted-foreground leading-[1.7] max-w-[480px]">
-              Er du en senior embedded-ingeniør som vil jobbe
-              med krevende oppdrag over tid? Vi er alltid interessert
-              i å snakke med de riktige menneskene.
+            <p className="mt-6 text-[14px] text-muted-foreground leading-[1.9] max-w-[440px]">
+              Er du senior embedded-ingeniør med erfaring fra
+              reelle produkter i produksjon? Vi er alltid
+              interessert i å snakke med de riktige menneskene.
             </p>
-            <div className="mt-10">
+            <div className="mt-9">
               <button
                 onClick={() => setIsJobOverlayOpen(true)}
                 className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
@@ -560,8 +610,8 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-border py-20 px-6 md:px-12" style={{ background: 'hsl(240, 10%, 2%)' }}>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+      <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '80px 10vw 40px' }}>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-5 brightness-0 invert" />
@@ -572,20 +622,19 @@ const Index = () => {
 
           {/* Selskap */}
           <div>
-            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Selskap</h4>
+            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => setIsOverlayOpen(true)} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Om STACQ</button></li>
-              <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Karriere</button></li>
+              <li><button onClick={() => scrollTo("om-oss")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Om STACQ</button></li>
+              <li><button onClick={() => scrollTo("career")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Karriere</button></li>
             </ul>
-            <p className="mt-5 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
-              STACQ AS<br />
-              932 575 442 MVA
+            <p className="mt-6 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+              STACQ AS · 932 575 442 MVA
             </p>
           </div>
 
           {/* Kontakt oss */}
           <div>
-            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Kontakt oss</h4>
+            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
             <ul className="space-y-4 text-[13px] text-muted-foreground">
               <li>
                 <span className="block font-medium text-foreground/85">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></span>
@@ -606,7 +655,7 @@ const Index = () => {
 
           {/* Besøk oss */}
           <div>
-            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Besøk oss</h4>
+            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
             <p className="text-[13px] text-muted-foreground leading-relaxed">
               Øvre Slottsgate 27,<br />
               0157 Oslo

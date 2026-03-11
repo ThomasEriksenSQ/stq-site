@@ -459,7 +459,7 @@ const Index = () => {
 
                     {/* Kompetanse */}
                     <div className="mt-8">
-                      <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-3">Kompetanse</p>
+                      <p className="text-[10px] tracking-[0.22em] uppercase mb-3" style={{ color: 'hsl(var(--text-faint))' }}>Kompetanse</p>
                       <div className="flex flex-wrap gap-2">
                         {consultants[expandedConsultant].competence.map((comp) => (
                           <Tag key={comp}>{comp}</Tag>

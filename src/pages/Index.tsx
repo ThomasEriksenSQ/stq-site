@@ -241,7 +241,7 @@ const CONSULTANTS = [
 const MANIFEST = [
   {
     num: "01",
-    title: "Solid årelang erfaring.",
+    title: "Solid fagkompetanse.",
     text: "Alle har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
   },
   {

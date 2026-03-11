@@ -183,7 +183,7 @@ const Index = () => {
       {/* ── Hero ── */}
       <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
         <PcbPattern />
-        <div className="relative z-10 max-w-[900px]">
+        <div className="relative z-10 max-w-[1100px]">
           {/* Logo */}
           <img src={stacqLogoWhite} alt="STACQ" className="h-7 brightness-0 invert mb-[52px]" />
 
@@ -197,7 +197,8 @@ const Index = () => {
             className="font-serif text-foreground"
             style={{ fontSize: "clamp(56px, 6.5vw, 88px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
           >
-            Embedded, firmware<br />og C/C++/Rust konsulenter.
+            <span className="md:whitespace-nowrap">Embedded, firmware</span><br />
+            <span className="md:whitespace-nowrap">og C/C++/Rust konsulenter.</span>
           </h1>
 
           {/* Ingress */}

@@ -171,7 +171,7 @@ const Index = () => {
   };
 
   const Tag = ({ children }: { children: string }) => (
-    <span className="text-[13px] font-mono inline-flex items-center gap-0">
+    <span className="text-[14px] font-mono inline-flex items-center gap-0">
       <span className="text-primary">[</span>
       <span className="text-muted-foreground">&nbsp;{children}&nbsp;</span>
       <span className="text-primary">]</span>

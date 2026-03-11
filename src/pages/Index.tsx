@@ -195,11 +195,9 @@ const Index = () => {
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(44px, 6vw, 80px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
+            style={{ fontSize: "clamp(48px, 5.5vw, 78px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
           >
-            Embedded, firmware
-            <br />
-            og C/C++/Rust konsulenter.
+            Embedded, firmware<br />og C/C++/Rust konsulenter.
           </h1>
 
           {/* Ingress */}

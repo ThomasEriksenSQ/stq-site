@@ -617,8 +617,8 @@ const Index = () => {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
           {/* Logo + tagline */}
           <div>
-            <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-5 brightness-0 invert" />
-            <p className="text-[13px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+            <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
+            <p className="text-[12px] tracking-[0.04em] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
               Der stakken begynner.
             </p>
           </div>

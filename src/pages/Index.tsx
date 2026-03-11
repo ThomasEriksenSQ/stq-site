@@ -242,12 +242,12 @@ const Index = () => {
       </section>
 
       {/* ── Manifest ── */}
-      <section id="manifest" className="border-t border-b border-border" style={{ padding: '88px 10vw' }}>
+      <section id="manifest" className="border-t border-b border-border" style={{ padding: '80px 10vw' }}>
         <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
           {MANIFEST.map((item, i) => (
             <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
               <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-5">{item.num}</p>
-              <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
+              <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-4">{item.title}</h3>
               <p className="text-[15px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
             </div>
           ))}
@@ -255,7 +255,7 @@ const Index = () => {
       </section>
 
       {/* ── Kompetanse ── */}
-      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
+      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '80px 10vw' }}>
         <motion.div {...fadeUp} className="max-w-2xl">
           <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
           <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
@@ -263,7 +263,7 @@ const Index = () => {
           </h2>
         </motion.div>
 
-        <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] w-full">
+        <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px]">
           {COMPETENCE_GROUPS.map((group) => (
             <motion.div
               key={group.title}
@@ -287,7 +287,7 @@ const Index = () => {
       </section>
 
       {/* ── Konsulenter ── */}
-      <section id="consultants" style={{ padding: '88px 10vw' }}>
+      <section id="consultants" style={{ padding: '80px 10vw' }}>
         <div>
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
@@ -328,17 +328,17 @@ const Index = () => {
                       />
                     </div>
                   )}
-                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '16px 18px' }}>
-                    <h3 className="text-[14px] font-medium text-foreground leading-snug">{c.name}</h3>
-                    <div className="mt-1 flex items-center gap-3 text-[12px] text-muted-foreground">
+                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '18px 20px' }}>
+                    <h3 className="text-[15px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
+                    <div className="flex items-center gap-3 text-[13px] text-muted-foreground mb-2.5">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>
                     </div>
-                    <div className="mt-2.5 flex flex-wrap gap-3">
+                    <div className="flex flex-wrap" style={{ gap: '10px' }}>
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[12px] font-mono whitespace-nowrap">
+                        <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
                           <span className="text-primary">[</span>
-                          <span className="text-muted-foreground/60">&nbsp;{comp}&nbsp;</span>
+                          <span className="text-muted-foreground">&nbsp;{comp}&nbsp;</span>
                           <span className="text-primary">]</span>
                         </span>
                       ))}
@@ -462,7 +462,7 @@ const Index = () => {
       </section>
 
       {/* ── Bransjer ── */}
-      <section style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
+      <section style={{ background: 'hsl(var(--surface))', padding: '80px 10vw' }}>
         <motion.div {...fadeUp} className="max-w-2xl">
           <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
           <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
@@ -489,7 +489,7 @@ const Index = () => {
       </section>
 
       {/* ── Karriere ── */}
-      <section id="career" className="border-t border-border" style={{ padding: '88px 10vw' }}>
+      <section id="career" className="border-t border-border" style={{ padding: '80px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
             <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Karriere</p>

@@ -329,7 +329,7 @@ const Index = () => {
         <PcbPattern />
         <div className="relative z-10 max-w-[1100px]">
           {/* Logo */}
-          <img src={stacqLogoWhite} alt="STACQ" className="h-7 brightness-0 invert mb-[52px]" />
+          <img src={stacqLogoWhite} alt="STACQ" className="h-5 brightness-0 invert mb-16" />
 
           {/* Overline */}
           <p className="text-[13px] tracking-[0.18em] uppercase font-mono text-primary/80 mb-5">

@@ -634,7 +634,7 @@ const Index = () => {
 
           {/* Kontakt oss */}
           <div>
-            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Kontakt oss</h4>
+            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
             <ul className="space-y-4 text-[13px] text-muted-foreground">
               <li>
                 <span className="block font-medium text-foreground/85">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></span>

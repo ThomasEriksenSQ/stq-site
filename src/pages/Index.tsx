@@ -242,12 +242,12 @@ const Index = () => {
       </section>
 
       {/* ── Manifest ── */}
-      <section id="manifest" className="border-t border-b border-border" style={{ padding: '88px 10vw' }}>
+      <section id="manifest" className="border-t border-b border-border" style={{ padding: '80px 10vw' }}>
         <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
           {MANIFEST.map((item, i) => (
             <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
               <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-5">{item.num}</p>
-              <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
+              <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-4">{item.title}</h3>
               <p className="text-[15px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
             </div>
           ))}

@@ -171,7 +171,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* ── Navigation ── */}
-      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border" style={{ background: 'hsla(240, 6%, 4%, 0.85)', backdropFilter: 'blur(12px)' }}>
+      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border" style={{ background: 'rgba(9,9,11,0.9)', backdropFilter: 'blur(12px)' }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 h-14">
           <button onClick={() => scrollTo("hero")}>
             <img src={stacqLogoWhite} alt="STACQ" className="h-5 brightness-0 invert" />

@@ -536,7 +536,7 @@ const Index = () => {
               <li><button onClick={() => scrollTo("consultants")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Konsulenter</button></li>
               <li><button onClick={() => scrollTo("career")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Karriere</button></li>
             </ul>
-            <p className="mt-7 text-[14px] font-mono leading-[1.8]" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="mt-7 text-[15px] font-mono leading-[1.85]" style={{ color: 'hsl(var(--text-faint))' }}>
               STACQ AS · 932 575 442 MVA
             </p>
           </div>

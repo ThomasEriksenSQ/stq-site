@@ -533,8 +533,8 @@ const Index = () => {
           <div>
             <h4 className="text-[13px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => scrollTo("consultants")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Konsulenter</button></li>
-              <li><button onClick={() => scrollTo("career")} className="text-[14px] text-muted-foreground hover:text-foreground transition-colors leading-[1.8]">Karriere</button></li>
+              <li><button onClick={() => scrollTo("consultants")} className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]">Konsulenter</button></li>
+              <li><button onClick={() => scrollTo("career")} className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]">Karriere</button></li>
             </ul>
             <p className="mt-7 text-[15px] font-mono leading-[1.85]" style={{ color: 'hsl(var(--text-faint))' }}>
               STACQ AS · 932 575 442 MVA

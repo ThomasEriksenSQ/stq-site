@@ -97,7 +97,7 @@ const CONSULTANTS = [
 const MANIFEST = [
   { num: "01", title: "Kun seniorer.", text: "Alle våre konsulenter har minimum 8 års erfaring fra reelle produkter i produksjon. Ingen juniorer. Ingen generalister." },
   { num: "02", title: "Dypt integrert.", text: "Konsulentene våre blir en del av teamet ditt — ikke en ekstern ressurs. De fleste oppdrag varer i ett til tre år." },
-  { num: "03", title: "Kuratert, ikke katalogisert.", text: "Vi er 15 konsulenter. Thomas og Jon kjenner alle personlig. Når du ringer, får du en anbefaling — ikke en CV-bunke." },
+  { num: "03", title: "Kuratert, ikke katalogisert.", text: "Vi er 15 konsulenter. Thomas og Jon kjenner alle personlig. Én telefonsamtale — så vet du hvem du trenger." },
 ];
 
 const fadeUp = {

@@ -24,9 +24,9 @@ import robotAvatar from "@/assets/robot-avatar.png";
 
 const TICKER_ITEMS = [
   "C", "C++", "Rust", "Zephyr", "FreeRTOS", "ThreadX", "Embedded Linux", "Yocto",
-  "ARM Cortex", "RTOS", "CAN / CANopen", "SPI", "I2C", "UART", "Board bring-up",
+  "ARM Cortex", "RTOS", "CAN", "CANopen", "SPI", "I2C", "UART", "Board bring-up",
   "Bare-metal", "TrustZone", "CMake", "Linux-kjerne", "Hardware-debugging",
-  "ISO 26262", "IEC 62443",
+  "ISO 26262", "IEC 62443", "MISRA-C",
 ];
 
 const COMPETENCE_GROUPS = [

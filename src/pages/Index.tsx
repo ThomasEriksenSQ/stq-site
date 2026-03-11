@@ -281,7 +281,7 @@ const Index = () => {
       </section>
 
       {/* ── Manifest ── */}
-      <section className="border-t border-b border-border" style={{ padding: '120px 10vw' }}>
+      <section id="manifest" className="border-t border-b border-border" style={{ padding: '100px 10vw' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
             {MANIFEST.map((item, i) => (

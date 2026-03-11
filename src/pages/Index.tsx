@@ -23,6 +23,7 @@ import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
 import PcbPattern from "@/components/PcbPattern";
 import AccentSwitcher from "@/components/AccentSwitcher";
+import ConsultantInquiry from "@/components/ConsultantInquiry";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
 import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";
@@ -34,8 +35,6 @@ import rikkeSolbjorg from "@/assets/rikke-solbjorg.jpg";
 import christianPoljac from "@/assets/christian-poljac.jpg";
 import martinTysseland from "@/assets/martin-tysseland.jpg";
 import mattisAsp from "@/assets/mattis-asp.jpg";
-import jonRichardContact from "@/assets/jon-richard-nygaard-contact.jpg";
-import thomasEriksenContact from "@/assets/thomas-eriksen-contact.jpg";
 import robotAvatar from "@/assets/robot-avatar.png";
 
 const TICKER_ITEMS = [
@@ -603,64 +602,8 @@ const Index = () => {
                       </div>
                     </div>
 
-                    {/* Contact CTA */}
-                    <div className="mt-12 pt-6 border-t border-border">
-                      <p className="text-[15px] text-muted-foreground mb-4">
-                        Interessert i å booke {consultants[expandedConsultant].name.split(" ")[0]}? Ta kontakt med:
-                      </p>
-                      <div className="space-y-3">
-                        {[
-                          {
-                            img: jonRichardContact,
-                            name: "Jon Richard Nygaard",
-                            tel: "932 87 267",
-                            telRaw: "93287267",
-                            email: "jr@stacq.no",
-                          },
-                          {
-                            img: thomasEriksenContact,
-                            name: "Thomas Eriksen",
-                            tel: "975 00 321",
-                            telRaw: "97500321",
-                            email: "thomas@stacq.no",
-                          },
-                        ].map((contact) => (
-                          <div
-                            key={contact.name}
-                            className="flex items-center gap-3 p-3 border border-border"
-                            style={{ borderRadius: "2px", background: "hsl(var(--surface))" }}
-                          >
-                            <img
-                              src={contact.img}
-                              alt={contact.name}
-                              className="w-10 h-10 object-cover flex-shrink-0"
-                              style={{ borderRadius: "2px" }}
-                            />
-                            <div className="min-w-0">
-                              <p className="text-[14px] font-medium text-foreground">
-                                {contact.name} <span className="font-normal text-muted-foreground">· Partner</span>
-                              </p>
-                              <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
-                                <a
-                                  href={`tel:${contact.telRaw}`}
-                                  className="inline-flex items-center gap-1 hover:text-primary transition-colors"
-                                >
-                                  <Phone className="w-3 h-3" />
-                                  {contact.tel}
-                                </a>
-                                <a
-                                  href={`mailto:${contact.email}`}
-                                  className="inline-flex items-center gap-1 hover:text-primary transition-colors"
-                                >
-                                  <Mail className="w-3 h-3" />
-                                  {contact.email}
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    {/* Availability inquiry */}
+                    <ConsultantInquiry consultantName={consultants[expandedConsultant].name} />
                   </div>
                 </motion.div>
               </>

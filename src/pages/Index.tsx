@@ -181,7 +181,8 @@ const Index = () => {
             {[
               { label: "Konsulenter", id: "consultants" },
               { label: "Kompetanse", id: "competence" },
-              { label: "Karriere", id: "career" },
+              { label: "Om oss", id: "om-oss" },
+              { label: "Kontakt", id: "footer-contact" },
             ].map((item) => (
               <button
                 key={item.id}

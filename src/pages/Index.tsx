@@ -220,45 +220,45 @@ const Index = () => {
       </nav>
 
       {/* ── Hero ── */}
-      <section id="hero" className="relative min-h-screen flex items-center" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
         <PcbPattern />
-        <div className="relative z-10 max-w-[720px]">
+        <div className="relative z-10 max-w-[660px]">
           {/* Overline */}
-          <p className="text-[11px] tracking-[0.2em] uppercase font-mono text-primary/70 mb-6">
+          <p className="text-[11px] tracking-[0.22em] uppercase font-mono text-primary/75 mb-7">
             Konsulentselskap — Oslo, Norge
           </p>
 
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(52px, 7vw, 96px)", lineHeight: 0.95, letterSpacing: "-0.03em" }}
+            style={{ fontSize: "clamp(42px, 5.5vw, 76px)", lineHeight: 1.0, letterSpacing: "-0.025em" }}
           >
-            Der stakken
+            Embedded, firmware
             <br />
-            begynner.
+            og C/C++/Rust konsulenter.
           </h1>
 
           {/* Ingress */}
-          <p className="mt-7 text-[15px] text-muted-foreground leading-[1.8] max-w-[460px]">
-            15 senior embedded-, firmware- og C/C++-konsulenter.
+          <p className="mt-6 text-[15px] text-muted-foreground leading-[1.85] max-w-[460px]">
+            Senior-nivå spesialister innen embedded
+            <br className="hidden sm:inline" />
+            {" "}systems og lavnivå-programmering.
             <br />
-            Alle i aktive oppdrag. Alle tilgjengelige
-            <br />
-            for de rette prosjektene.
+            For oppdrag som ikke tåler halvgode løsninger.
           </p>
 
           {/* CTAs */}
           <div className="mt-10 flex items-center gap-3">
             <button
               onClick={() => scrollTo("consultants")}
-              className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
+              className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Se konsulentene
+              Se våre konsulenter
             </button>
             <button
-              onClick={() => scrollTo("om-oss")}
-              className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.05em] font-medium hover:text-foreground hover:border-foreground/30 transition-all duration-300"
+              onClick={() => scrollTo("footer-contact")}
+              className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
               style={{ borderRadius: '2px' }}
             >
               Ta kontakt
@@ -268,10 +268,10 @@ const Index = () => {
 
         {/* Tech ticker at bottom */}
         <div className="absolute bottom-0 left-0 right-0 border-t" style={{ borderColor: 'hsl(var(--border-subtle))' }}>
-          <div className="overflow-hidden py-3">
+          <div className="overflow-hidden h-10 flex items-center">
             <div className="ticker-animate whitespace-nowrap flex">
               {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-                <span key={i} className="text-[12px] tracking-[0.1em] mx-4" style={{ color: 'hsl(var(--text-faint))' }}>
+                <span key={i} className="text-[11px] tracking-[0.14em] mx-4" style={{ color: 'hsl(var(--text-faint))' }}>
                   {item}
                 </span>
               ))}

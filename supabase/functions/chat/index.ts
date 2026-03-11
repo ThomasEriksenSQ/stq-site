@@ -22,12 +22,11 @@ serve(async (req) => {
     );
     const { data: knowledge } = await supabase
       .from("knowledge_base")
-      .select("category, title, content")
-      .eq("active", true)
-      .order("sort_order");
+      .select("category, visibility, content")
+      .in("visibility", ["public", "ai_only"]);
 
     const knowledgeText = (knowledge || [])
-      .map((k: any) => `## ${k.title} (${k.category})\n${k.content}`)
+      .map((k: any) => `[${k.category}] ${k.content}`)
       .join("\n\n");
 
     const systemPrompt = `Du er STACQs AI-assistent på nettsiden stacq.no. Du svarer alltid på norsk med en vennlig og profesjonell tone.

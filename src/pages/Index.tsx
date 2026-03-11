@@ -482,7 +482,7 @@ const Index = () => {
                 style={{ borderRadius: '2px', padding: '32px 28px', minHeight: '180px' }}
               >
                 {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
-                <h3 className="text-[15px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
+                <h3 className="text-[17px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
               </motion.div>
             );
           })}

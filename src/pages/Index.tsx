@@ -329,15 +329,15 @@ const Index = () => {
                       />
                     </div>
                   )}
-                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '14px 16px' }}>
-                    <h3 className="text-[15px] font-medium text-foreground leading-snug">{c.name}</h3>
-                    <div className="mt-1 flex items-center gap-3 text-[13px] text-muted-foreground">
+                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '16px 18px' }}>
+                    <h3 className="text-[14px] font-medium text-foreground leading-snug">{c.name}</h3>
+                    <div className="mt-1 flex items-center gap-3 text-[12px] text-muted-foreground">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>
                     </div>
                     <div className="mt-2.5 flex flex-wrap gap-3">
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
+                        <span key={comp} className="text-[12px] font-mono whitespace-nowrap">
                           <span className="text-primary">[</span>
                           <span className="text-muted-foreground/60">&nbsp;{comp}&nbsp;</span>
                           <span className="text-primary">]</span>

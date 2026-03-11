@@ -469,7 +469,7 @@ const Index = () => {
 
                     {/* Bransjeerfaring */}
                     <div className="mt-6">
-                      <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-3">Bransjeerfaring</p>
+                      <p className="text-[10px] tracking-[0.22em] uppercase mb-3" style={{ color: 'hsl(var(--text-faint))' }}>Bransjeerfaring</p>
                       <div className="flex flex-wrap gap-2">
                         {consultants[expandedConsultant].industries.map((ind) => (
                           <Tag key={ind}>{ind}</Tag>

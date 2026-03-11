@@ -242,7 +242,7 @@ const MANIFEST = [
   {
     num: "01",
     title: "Solid erfaring.",
-    text: "Konsulentene våre arbeider med systemnær utvikling i C, C++ og Rust. Alle har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
+    text: "Alle har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
   },
   {
     num: "02",

@@ -464,33 +464,29 @@ const Index = () => {
 
       {/* ── Bransjer ── */}
       <section style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
-        <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Der koden møter
-              <br />
-              den virkelige verden.
-            </h2>
-          </motion.div>
+        <motion.div {...fadeUp} className="max-w-2xl">
+          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Der koden møter<br />den virkelige verden.
+          </h2>
+        </motion.div>
 
-          <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
-            {DOMAINS.map((title) => {
-              const IconComp = DOMAIN_ICONS[title];
-              return (
-                <motion.div
-                  key={title}
-                  variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                  className="group flex flex-col items-start border border-border hover:border-primary/40 transition-colors duration-300"
-                  style={{ borderRadius: '2px', background: 'hsl(var(--bg, var(--background)))', padding: '32px 28px', minHeight: '160px' }}
-                >
-                  {IconComp && <IconComp className="w-7 h-7 text-primary mb-4" strokeWidth={1.5} />}
-                  <h3 className="text-[15px] font-medium text-foreground leading-snug mt-auto">{title}</h3>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
+        <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px] w-full">
+          {DOMAINS.map((title) => {
+            const IconComp = DOMAIN_ICONS[title];
+            return (
+              <motion.div
+                key={title}
+                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                className="group flex flex-col items-start border border-border bg-background hover:border-primary/40 transition-colors duration-300"
+                style={{ borderRadius: '2px', padding: '32px 28px', minHeight: '180px' }}
+              >
+                {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
+                <h3 className="text-[15px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </section>
 
       {/* ── Karriere ── */}

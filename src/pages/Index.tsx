@@ -622,14 +622,13 @@ const Index = () => {
 
           {/* Selskap */}
           <div>
-            <h4 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-5">Selskap</h4>
+            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
             <ul className="space-y-3">
-              <li><button onClick={() => setIsOverlayOpen(true)} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Om STACQ</button></li>
-              <li><button onClick={() => setIsJobOverlayOpen(true)} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Karriere</button></li>
+              <li><button onClick={() => scrollTo("om-oss")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Om STACQ</button></li>
+              <li><button onClick={() => scrollTo("career")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Karriere</button></li>
             </ul>
-            <p className="mt-5 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
-              STACQ AS<br />
-              932 575 442 MVA
+            <p className="mt-6 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+              STACQ AS · 932 575 442 MVA
             </p>
           </div>
 

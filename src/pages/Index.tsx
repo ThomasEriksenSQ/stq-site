@@ -476,7 +476,7 @@ const Index = () => {
                   style={{ borderRadius: "0px" }}
                 >
                   {c.image ? (
-                    <div className="aspect-[3/4] overflow-hidden">
+                    <div className="aspect-[4/5] overflow-hidden">
                       <img
                         src={c.image}
                         alt={c.name}
@@ -487,7 +487,7 @@ const Index = () => {
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[3/4] overflow-hidden bg-secondary">
+                    <div className="aspect-[4/5] overflow-hidden bg-secondary">
                       <img
                         src={robotAvatar}
                         alt={`${c.name} avatar`}

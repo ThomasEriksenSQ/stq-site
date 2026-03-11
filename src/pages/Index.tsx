@@ -500,7 +500,7 @@ const Index = () => {
             <h2 className="font-serif text-foreground/45 italic mt-3" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Vi ser etter deg.
             </h2>
-            <p className="mt-8 text-[16px] text-muted-foreground leading-[1.9] max-w-[420px]">
+            <p className="mt-8 text-[17px] text-muted-foreground leading-[1.95] max-w-[420px]">
               Er du senior embedded-ingeniør med erfaring fra
               reelle produkter i produksjon? Vi er alltid
               interessert i å snakke med de riktige menneskene.

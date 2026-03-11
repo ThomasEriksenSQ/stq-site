@@ -24,9 +24,9 @@ import robotAvatar from "@/assets/robot-avatar.png";
 
 const TICKER_ITEMS = [
   "C", "C++", "Rust", "Zephyr", "FreeRTOS", "ThreadX", "Embedded Linux", "Yocto",
-  "ARM Cortex", "RTOS", "CAN / CANopen", "SPI", "I2C", "UART", "Board bring-up",
+  "ARM Cortex", "RTOS", "CAN", "CANopen", "SPI", "I2C", "UART", "Board bring-up",
   "Bare-metal", "TrustZone", "CMake", "Linux-kjerne", "Hardware-debugging",
-  "ISO 26262", "IEC 62443",
+  "ISO 26262", "IEC 62443", "MISRA-C",
 ];
 
 const COMPETENCE_GROUPS = [
@@ -97,7 +97,7 @@ const CONSULTANTS = [
 const MANIFEST = [
   { num: "01", title: "Kun seniorer.", text: "Alle våre konsulenter har minimum 8 års erfaring fra reelle produkter i produksjon. Ingen juniorer. Ingen generalister." },
   { num: "02", title: "Dypt integrert.", text: "Konsulentene våre blir en del av teamet ditt — ikke en ekstern ressurs. De fleste oppdrag varer i ett til tre år." },
-  { num: "03", title: "Kuratert, ikke katalogisert.", text: "Vi er 15 konsulenter. Thomas og Jon kjenner alle personlig. Når du ringer, får du en anbefaling — ikke en CV-bunke." },
+  { num: "03", title: "Kuratert, ikke katalogisert.", text: "Vi er 15 konsulenter. Thomas og Jon kjenner alle personlig. Én telefonsamtale — så vet du hvem du trenger." },
 ];
 
 const fadeUp = {
@@ -161,9 +161,9 @@ const Index = () => {
   };
 
   const Tag = ({ children }: { children: string }) => (
-    <span className="text-[11px] font-mono">
+    <span className="text-[11px] font-mono inline-flex items-center gap-0">
       <span className="text-primary">[</span>
-      <span className="text-muted-foreground">{children}</span>
+      <span className="text-muted-foreground">&nbsp;{children}&nbsp;</span>
       <span className="text-primary">]</span>
     </span>
   );
@@ -181,13 +181,13 @@ const Index = () => {
             {[
               { label: "Konsulenter", id: "consultants" },
               { label: "Kompetanse", id: "competence" },
-              { label: "Om oss", id: "om-oss" },
+              { label: "Karriere", id: "career" },
               { label: "Kontakt", id: "footer-contact" },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="text-[12px] tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+                className="text-[12px] tracking-[0.06em] text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
                 {item.label}
               </button>
@@ -204,7 +204,7 @@ const Index = () => {
             {[
               { label: "Konsulenter", id: "consultants" },
               { label: "Kompetanse", id: "competence" },
-              { label: "Om oss", id: "om-oss" },
+              { label: "Karriere", id: "career" },
               { label: "Kontakt", id: "footer-contact" },
             ].map((item) => (
               <button
@@ -220,45 +220,45 @@ const Index = () => {
       </nav>
 
       {/* ── Hero ── */}
-      <section id="hero" className="relative min-h-screen flex items-center" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
         <PcbPattern />
-        <div className="relative z-10 max-w-[720px]">
+        <div className="relative z-10 max-w-[660px]">
           {/* Overline */}
-          <p className="text-[11px] tracking-[0.2em] uppercase font-mono text-primary/70 mb-6">
+          <p className="text-[11px] tracking-[0.22em] uppercase font-mono text-primary/75 mb-7">
             Konsulentselskap — Oslo, Norge
           </p>
 
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(52px, 7vw, 96px)", lineHeight: 0.95, letterSpacing: "-0.03em" }}
+            style={{ fontSize: "clamp(42px, 5.5vw, 76px)", lineHeight: 1.0, letterSpacing: "-0.025em" }}
           >
-            Der stakken
+            Embedded, firmware
             <br />
-            begynner.
+            og C/C++/Rust konsulenter.
           </h1>
 
           {/* Ingress */}
-          <p className="mt-7 text-[15px] text-muted-foreground leading-[1.8] max-w-[460px]">
-            15 senior embedded-, firmware- og C/C++-konsulenter.
+          <p className="mt-6 text-[15px] text-muted-foreground leading-[1.85] max-w-[460px]">
+            Senior-nivå spesialister innen embedded
+            <br className="hidden sm:inline" />
+            {" "}systems og lavnivå-programmering.
             <br />
-            Alle i aktive oppdrag. Alle tilgjengelige
-            <br />
-            for de rette prosjektene.
+            For oppdrag som ikke tåler halvgode løsninger.
           </p>
 
           {/* CTAs */}
           <div className="mt-10 flex items-center gap-3">
             <button
               onClick={() => scrollTo("consultants")}
-              className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
+              className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Se konsulentene
+              Se våre konsulenter
             </button>
             <button
-              onClick={() => scrollTo("om-oss")}
-              className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.05em] font-medium hover:text-foreground hover:border-foreground/30 transition-all duration-300"
+              onClick={() => scrollTo("footer-contact")}
+              className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.02em] hover:text-foreground hover:border-muted-foreground transition-all duration-300"
               style={{ borderRadius: '2px' }}
             >
               Ta kontakt
@@ -268,10 +268,10 @@ const Index = () => {
 
         {/* Tech ticker at bottom */}
         <div className="absolute bottom-0 left-0 right-0 border-t" style={{ borderColor: 'hsl(var(--border-subtle))' }}>
-          <div className="overflow-hidden py-3">
+          <div className="overflow-hidden h-10 flex items-center">
             <div className="ticker-animate whitespace-nowrap flex">
               {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-                <span key={i} className="text-[12px] tracking-[0.1em] mx-4" style={{ color: 'hsl(var(--text-faint))' }}>
+                <span key={i} className="text-[11px] tracking-[0.14em] mx-4" style={{ color: 'hsl(var(--text-faint))' }}>
                   {item}
                 </span>
               ))}
@@ -281,14 +281,14 @@ const Index = () => {
       </section>
 
       {/* ── Manifest ── */}
-      <section id="manifest" className="border-t border-b border-border" style={{ padding: '100px 10vw' }}>
+      <section id="manifest" className="border-t border-b border-border" style={{ padding: '88px 10vw' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
             {MANIFEST.map((item, i) => (
-              <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-10' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-10' : ''}`}>
+              <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
                 <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-6">{item.num}</p>
-                <h3 className="text-[18px] font-medium text-foreground mb-3">{item.title}</h3>
-                <p className="text-[14px] text-muted-foreground leading-[1.8]">{item.text}</p>
+                <h3 className="text-[16px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
+                <p className="text-[13px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
               </div>
             ))}
           </motion.div>
@@ -296,33 +296,31 @@ const Index = () => {
       </section>
 
       {/* ── Kompetanse ── */}
-      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '100px 10vw' }}>
+      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Kompetanse</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Kompetanse</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Koden som
               <br />
               ikke kan feile.
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px]">
             {COMPETENCE_GROUPS.map((group) => (
               <motion.div
                 key={group.title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group p-7 border border-border bg-background hover:border-primary/40 transition-colors duration-300"
+                className="group relative p-7 border border-border bg-background hover:border-primary/40 transition-colors duration-[400ms]"
                 style={{ borderRadius: '2px' }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-[14px] font-semibold text-foreground">{group.title}</h3>
-                  <span className="text-[11px] text-text-faint font-mono">{group.hex}</span>
-                </div>
+                <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
+                <h3 className="text-[14px] font-semibold text-foreground mb-2.5">{group.title}</h3>
                 {group.description && (
-                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-5">{group.description}</p>
+                  <p className="text-[13px] text-muted-foreground leading-[1.8] mb-5">{group.description}</p>
                 )}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   {group.tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>
                   ))}
@@ -334,18 +332,18 @@ const Index = () => {
       </section>
 
       {/* ── Konsulenter ── */}
-      <section id="consultants" style={{ padding: '100px 10vw' }}>
+      <section id="consultants" style={{ padding: '88px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Våre konsulenter</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Våre konsulenter</p>
+            <h2 className="font-serif text-foreground mb-14" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Menneskene bak
               <br />
               maskinene.
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px]">
             {consultants.map((c, i) => (
               <motion.div
                 key={c.name}
@@ -353,7 +351,7 @@ const Index = () => {
               >
                 <button
                   onClick={() => setExpandedConsultant(expandedConsultant === i ? null : i)}
-                  className="w-full text-left group border border-border overflow-hidden hover:border-primary/30 transition-colors duration-500"
+                  className="w-full text-left group border border-border overflow-hidden hover:border-primary/35 transition-colors duration-[400ms]"
                   style={{ borderRadius: '0px' }}
                 >
                   {c.image ? (
@@ -361,10 +359,10 @@ const Index = () => {
                       <img
                         src={c.image}
                         alt={c.name}
-                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                        style={{ filter: 'grayscale(15%)' }}
-                        onMouseEnter={(e) => (e.currentTarget.style.filter = 'grayscale(0%)')}
-                        onMouseLeave={(e) => (e.currentTarget.style.filter = 'grayscale(15%)')}
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
+                        style={{ filter: 'grayscale(12%) brightness(0.92)' }}
+                        onMouseEnter={(e) => (e.currentTarget.style.filter = 'grayscale(0%) brightness(1.0)')}
+                        onMouseLeave={(e) => (e.currentTarget.style.filter = 'grayscale(12%) brightness(0.92)')}
                       />
                     </div>
                   ) : (
@@ -372,20 +370,24 @@ const Index = () => {
                       <img
                         src={robotAvatar}
                         alt={`${c.name} avatar`}
-                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                        style={{ filter: 'grayscale(15%)' }}
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
+                        style={{ filter: 'grayscale(12%) brightness(0.92)' }}
                       />
                     </div>
                   )}
-                  <div className="p-4" style={{ background: 'hsl(var(--surface))' }}>
-                    <h3 className="text-[14px] font-medium text-foreground">{c.name}</h3>
-                    <div className="mt-1.5 flex items-center gap-3 text-[11px] text-muted-foreground">
+                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '14px 16px' }}>
+                    <h3 className="text-[13px] font-medium text-foreground leading-snug">{c.name}</h3>
+                    <div className="mt-1 flex items-center gap-3 text-[11px] text-muted-foreground">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>
                     </div>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
                       {c.competence.slice(0, 3).map((comp) => (
-                        <Tag key={comp}>{comp}</Tag>
+                        <span key={comp} className="text-[10px] font-mono whitespace-nowrap">
+                          <span className="text-primary">[</span>
+                          <span style={{ color: 'hsl(var(--text-faint))' }}>&nbsp;{comp}&nbsp;</span>
+                          <span className="text-primary">]</span>
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -457,7 +459,7 @@ const Index = () => {
 
                     {/* Kompetanse */}
                     <div className="mt-8">
-                      <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-3">Kompetanse</p>
+                      <p className="text-[10px] tracking-[0.22em] uppercase mb-3" style={{ color: 'hsl(var(--text-faint))' }}>Kompetanse</p>
                       <div className="flex flex-wrap gap-2">
                         {consultants[expandedConsultant].competence.map((comp) => (
                           <Tag key={comp}>{comp}</Tag>
@@ -467,7 +469,7 @@ const Index = () => {
 
                     {/* Bransjeerfaring */}
                     <div className="mt-6">
-                      <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-3">Bransjeerfaring</p>
+                      <p className="text-[10px] tracking-[0.22em] uppercase mb-3" style={{ color: 'hsl(var(--text-faint))' }}>Bransjeerfaring</p>
                       <div className="flex flex-wrap gap-2">
                         {consultants[expandedConsultant].industries.map((ind) => (
                           <Tag key={ind}>{ind}</Tag>
@@ -507,12 +509,12 @@ const Index = () => {
       </section>
 
       {/* ── Om Thomas og Jon ── */}
-      <section id="om-oss" className="border-t border-b border-border" style={{ background: 'hsl(var(--surface))', padding: '100px 10vw' }}>
+      <section id="om-oss" className="border-t border-b border-border" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20">
             {/* Left column - text */}
             <div className="lg:col-span-2">
-              <p className="text-[11px] tracking-[0.2em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Partnerne</p>
+              <p className="text-[10px] tracking-[0.22em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Partnerne</p>
               <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.05 }}>
                 Personlig kjennskap.
                 <br />
@@ -552,29 +554,29 @@ const Index = () => {
       </section>
 
       {/* ── Bransjer ── */}
-      <section style={{ padding: '100px 10vw' }}>
+      <section style={{ padding: '88px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Bransjer</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Bransjer</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Der koden møter
               <br />
               den virkelige verden.
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
+          <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
             {DOMAINS.map((title, i) => (
               <motion.div
                 key={title}
                 variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group border border-border hover:border-primary/30 transition-colors duration-300"
-                style={{ borderRadius: '2px', background: 'hsl(var(--surface))', padding: '32px 28px' }}
+                className="group flex flex-col justify-between border border-border hover:border-primary/30 transition-colors duration-300"
+                style={{ borderRadius: '2px', background: 'hsl(var(--surface))', padding: '28px 24px', minHeight: '130px' }}
               >
-                <p className="text-[28px] font-light text-primary/20 font-mono mb-auto">
+                <p className="text-[24px] font-light text-primary/20 font-mono">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="text-[14px] font-medium text-foreground leading-snug mt-12">{title}</h3>
+                <h3 className="text-[13px] font-medium text-foreground leading-snug mt-12">{title}</h3>
               </motion.div>
             ))}
           </motion.div>
@@ -582,16 +584,17 @@ const Index = () => {
       </section>
 
       {/* ── Karriere ── */}
-      <section id="career" className="border-t border-border" style={{ padding: '120px 10vw' }}>
+      <section id="career" className="border-t border-border" style={{ padding: '110px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Karriere</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05, maxWidth: '560px' }}>
-              Vi rekrutterer de som
-              <br />
-              koder nærmest metallet.
+            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Karriere</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+              Bli en del av teamet.
             </h2>
-            <p className="mt-6 text-[14px] text-muted-foreground leading-[1.9] max-w-[440px]">
+            <h2 className="font-serif text-foreground/45 italic mt-3" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+              Vi ser etter deg.
+            </h2>
+            <p className="mt-8 text-[14px] text-muted-foreground leading-[1.9] max-w-[420px]">
               Er du senior embedded-ingeniør med erfaring fra
               reelle produkter i produksjon? Vi er alltid
               interessert i å snakke med de riktige menneskene.
@@ -599,10 +602,10 @@ const Index = () => {
             <div className="mt-9">
               <button
                 onClick={() => setIsJobOverlayOpen(true)}
-                className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
+                className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.02em] font-medium hover:opacity-90 transition-opacity duration-300"
                 style={{ borderRadius: '2px' }}
               >
-                Send en åpen søknad →
+                Søk nå →
               </button>
             </div>
           </motion.div>
@@ -610,31 +613,31 @@ const Index = () => {
       </section>
 
       {/* ── Footer ── */}
-      <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '80px 10vw 40px' }}>
+      <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '72px 10vw 40px' }}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
           {/* Logo + tagline */}
           <div>
-            <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-5 brightness-0 invert" />
-            <p className="text-[13px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+            <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
+            <p className="text-[12px] tracking-[0.04em] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
               Der stakken begynner.
             </p>
           </div>
 
           {/* Selskap */}
           <div>
-            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
+            <h4 className="text-[10px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Selskap</h4>
             <ul className="space-y-3">
               <li><button onClick={() => scrollTo("om-oss")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Om STACQ</button></li>
               <li><button onClick={() => scrollTo("career")} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">Karriere</button></li>
             </ul>
-            <p className="mt-6 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
+            <p className="mt-7 text-[11px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>
               STACQ AS · 932 575 442 MVA
             </p>
           </div>
 
           {/* Kontakt oss */}
           <div>
-            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
+            <h4 className="text-[10px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Kontakt</h4>
             <ul className="space-y-4 text-[13px] text-muted-foreground">
               <li>
                 <span className="block font-medium text-foreground/85">Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span></span>
@@ -655,7 +658,7 @@ const Index = () => {
 
           {/* Besøk oss */}
           <div>
-            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
+            <h4 className="text-[10px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
             <p className="text-[13px] text-muted-foreground leading-relaxed">
               Øvre Slottsgate 27,<br />
               0157 Oslo

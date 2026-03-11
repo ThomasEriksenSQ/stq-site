@@ -13,16 +13,16 @@
     --popover: 240 5% 7%;
     --popover-foreground: 36 14% 93%;
 
-    --primary: 28 55% 50%;
+    --primary: 23 54% 50%;
     --primary-foreground: 240 6% 4%;
 
     --secondary: 240 4% 11%;
     --secondary-foreground: 36 14% 93%;
 
     --muted: 240 4% 11%;
-    --muted-foreground: 240 5% 44%;
+    --muted-foreground: 240 4% 56%;
 
-    --accent: 28 55% 50%;
+    --accent: 23 54% 50%;
     --accent-foreground: 240 6% 4%;
 
     --destructive: 0 84% 60%;
@@ -30,7 +30,7 @@
 
     --border: 240 4% 18%;
     --input: 240 4% 18%;
-    --ring: 28 55% 50%;
+    --ring: 23 54% 50%;
 
     --radius: 2px;
 
@@ -38,7 +38,7 @@
     --surface-raised: 240 4% 12%;
     --border-subtle: 240 4% 12%;
     --text-faint: 240 4% 25%;
-    --accent-dim: 28 40% 7%;
+    --accent-dim: 23 40% 7%;
     --footer-bg: 240 10% 2%;
 
     --sidebar-background: 240 5% 7%;
@@ -85,7 +85,7 @@
 }
 
 .ticker-animate {
-  animation: ticker-scroll 40s linear infinite;
+  animation: ticker-scroll 55s linear infinite;
 }
 
 /* Animated grid background */
@@ -95,5 +95,5 @@
 }
 
 .grid-drift {
-  animation: grid-drift 60s linear infinite;
+  animation: grid-drift 80s linear infinite;
 }

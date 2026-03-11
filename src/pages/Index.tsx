@@ -252,7 +252,7 @@ const MANIFEST = [
   {
     num: "03",
     title: "Gode å jobbe med.",
-    text: "Folkene våre er ryddige, åpne om fremdrift og samarbeider godt med teamet rundt seg. Det gjør prosjekter mer forutsigbare – også når arbeidet er krevende.",
+    text: "Vi er opptatt av gode holdninger. Ryddige, åpne om fremdrift og gode å samarbeide med.",
   },
 ];
 

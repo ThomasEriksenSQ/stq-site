@@ -255,7 +255,7 @@ const Index = () => {
       </section>
 
       {/* ── Kompetanse ── */}
-      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
+      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '80px 10vw' }}>
         <motion.div {...fadeUp} className="max-w-2xl">
           <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
           <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
@@ -263,7 +263,7 @@ const Index = () => {
           </h2>
         </motion.div>
 
-        <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] w-full">
+        <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px]">
           {COMPETENCE_GROUPS.map((group) => (
             <motion.div
               key={group.title}

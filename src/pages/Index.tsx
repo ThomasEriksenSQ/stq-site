@@ -554,11 +554,11 @@ const Index = () => {
       </section>
 
       {/* ── Bransjer ── */}
-      <section style={{ padding: '100px 10vw' }}>
+      <section style={{ padding: '88px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Bransjer</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.05 }}>
+            <p className="text-[10px] tracking-[0.22em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Bransjer</p>
+            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
               Der koden møter
               <br />
               den virkelige verden.

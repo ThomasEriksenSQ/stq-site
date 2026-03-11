@@ -181,7 +181,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
+      <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
         <PcbPattern />
         <div className="relative z-10 max-w-[580px]">
           {/* Logo */}
@@ -195,11 +195,9 @@ const Index = () => {
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(44px, 6vw, 80px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
+            style={{ fontSize: "clamp(48px, 5.5vw, 78px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
           >
-            Embedded, firmware
-            <br />
-            og C/C++/Rust konsulenter.
+            Embedded, firmware<br />og C/C++/Rust konsulenter.
           </h1>
 
           {/* Ingress */}
@@ -246,56 +244,52 @@ const Index = () => {
 
       {/* ── Manifest ── */}
       <section id="manifest" className="border-t border-b border-border" style={{ padding: '88px 10vw' }}>
-        <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
-            {MANIFEST.map((item, i) => (
-              <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
-                <p className="text-[13px] tracking-[0.18em] text-primary font-mono mb-6">{item.num}</p>
-                <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
-                <p className="text-[16px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+        <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
+          {MANIFEST.map((item, i) => (
+            <div key={item.num} className={`${i > 0 ? 'md:border-l md:border-border md:pl-12' : ''} ${i < MANIFEST.length - 1 ? 'md:pr-12' : ''}`}>
+              <p className="text-[11px] tracking-[0.2em] text-primary font-mono mb-5">{item.num}</p>
+              <h3 className="text-[18px] font-semibold text-foreground tracking-[0.01em] mb-3.5">{item.title}</h3>
+              <p className="text-[15px] text-muted-foreground leading-[1.9] max-w-[300px]">{item.text}</p>
+            </div>
+          ))}
+        </motion.div>
       </section>
 
       {/* ── Kompetanse ── */}
       <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
-        <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Lavnivå. Høy presisjon.
-            </h2>
-          </motion.div>
+        <motion.div {...fadeUp} className="max-w-2xl">
+          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Lavnivå. Høy presisjon.
+          </h2>
+        </motion.div>
 
-          <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px]">
-            {COMPETENCE_GROUPS.map((group) => (
-              <motion.div
-                key={group.title}
-                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                className="group relative p-7 border border-border bg-background hover:border-primary/40 transition-colors duration-[400ms]"
-                style={{ borderRadius: '2px' }}
-              >
-                <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
-                <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
-                {group.description && (
-                  <p className="text-[15px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
-                )}
-                <div className="flex flex-wrap gap-3">
-                  {group.tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+        <motion.div {...stagger} className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] w-full">
+          {COMPETENCE_GROUPS.map((group) => (
+            <motion.div
+              key={group.title}
+              variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+              className="group relative border border-border bg-background hover:border-primary/40 transition-colors duration-[400ms]"
+              style={{ borderRadius: '2px', padding: '28px' }}
+            >
+              <span className="absolute top-4 right-4 text-[10px] font-mono" style={{ color: 'hsl(var(--text-faint))' }}>{group.hex}</span>
+              <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
+              {group.description && (
+                <p className="text-[14px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
+              )}
+              <div className="flex flex-wrap gap-3">
+                {group.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* ── Konsulenter ── */}
       <section id="consultants" style={{ padding: '88px 10vw' }}>
-        <div className="max-w-5xl mx-auto">
+        <div>
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
             <h2 className="font-serif text-foreground mb-14" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
@@ -303,7 +297,7 @@ const Index = () => {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px]">
+          <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
             {consultants.map((c, i) => (
               <motion.div
                 key={c.name}
@@ -335,15 +329,15 @@ const Index = () => {
                       />
                     </div>
                   )}
-                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '14px 16px' }}>
-                    <h3 className="text-[15px] font-medium text-foreground leading-snug">{c.name}</h3>
-                    <div className="mt-1 flex items-center gap-3 text-[13px] text-muted-foreground">
+                  <div className="border-t border-border" style={{ background: 'hsl(var(--surface))', padding: '16px 18px' }}>
+                    <h3 className="text-[14px] font-medium text-foreground leading-snug">{c.name}</h3>
+                    <div className="mt-1 flex items-center gap-3 text-[12px] text-muted-foreground">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>
                     </div>
                     <div className="mt-2.5 flex flex-wrap gap-3">
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
+                        <span key={comp} className="text-[12px] font-mono whitespace-nowrap">
                           <span className="text-primary">[</span>
                           <span className="text-muted-foreground/60">&nbsp;{comp}&nbsp;</span>
                           <span className="text-primary">]</span>
@@ -470,33 +464,29 @@ const Index = () => {
 
       {/* ── Bransjer ── */}
       <section style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
-        <div className="max-w-5xl mx-auto">
-          <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
-            <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-              Der koden møter
-              <br />
-              den virkelige verden.
-            </h2>
-          </motion.div>
+        <motion.div {...fadeUp} className="max-w-2xl">
+          <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Bransjer</p>
+          <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Der koden møter<br />den virkelige verden.
+          </h2>
+        </motion.div>
 
-          <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px]">
-            {DOMAINS.map((title) => {
-              const IconComp = DOMAIN_ICONS[title];
-              return (
-                <motion.div
-                  key={title}
-                  variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                  className="group flex flex-col items-start border border-border hover:border-primary/40 transition-colors duration-300"
-                  style={{ borderRadius: '2px', background: 'hsl(var(--bg, var(--background)))', padding: '32px 28px', minHeight: '160px' }}
-                >
-                  {IconComp && <IconComp className="w-7 h-7 text-primary mb-4" strokeWidth={1.5} />}
-                  <h3 className="text-[15px] font-medium text-foreground leading-snug mt-auto">{title}</h3>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
+        <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px] w-full">
+          {DOMAINS.map((title) => {
+            const IconComp = DOMAIN_ICONS[title];
+            return (
+              <motion.div
+                key={title}
+                variants={{ initial: { opacity: 0, y: 16 }, whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                className="group flex flex-col items-start border border-border bg-background hover:border-primary/40 transition-colors duration-300"
+                style={{ borderRadius: '2px', padding: '32px 28px', minHeight: '180px' }}
+              >
+                {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
+                <h3 className="text-[15px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </section>
 
       {/* ── Karriere ── */}
@@ -530,7 +520,7 @@ const Index = () => {
 
       {/* ── Footer ── */}
       <footer id="footer-contact" className="border-t border-border" style={{ background: '#050507', padding: '72px 10vw 40px' }}>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
           {/* Logo + tagline */}
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />

@@ -658,7 +658,7 @@ const Index = () => {
 
           {/* Besøk oss */}
           <div>
-            <h4 className="text-[10px] tracking-[0.15em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
+            <h4 className="text-[10px] tracking-[0.16em] uppercase mb-4" style={{ color: 'hsl(var(--text-faint))' }}>Besøk oss</h4>
             <p className="text-[13px] text-muted-foreground leading-relaxed">
               Øvre Slottsgate 27,<br />
               0157 Oslo

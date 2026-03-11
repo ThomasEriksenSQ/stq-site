@@ -296,7 +296,7 @@ const Index = () => {
       </section>
 
       {/* ── Kompetanse ── */}
-      <section id="competence" className="py-24 md:py-36 px-6 md:px-12" style={{ background: 'hsl(var(--surface))' }}>
+      <section id="competence" style={{ background: 'hsl(var(--surface))', padding: '100px 10vw' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div {...fadeUp} className="max-w-2xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-4">Kompetanse</p>

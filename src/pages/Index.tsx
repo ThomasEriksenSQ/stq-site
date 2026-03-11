@@ -202,11 +202,9 @@ const Index = () => {
 
           {/* Ingress */}
           <p className="mt-7 text-[18px] text-muted-foreground leading-[2.0] max-w-[480px]">
-            Senior-nivå spesialister innen embedded
-            <br />
-            systems og lavnivå-programmering.
-            <br />
-            For oppdrag som ikke tåler halvgode løsninger.
+            Vi leverer Norges beste spesialister innen<br />
+            embedded systems, firmware og<br />
+            lavnivå-programmering.
           </p>
 
           {/* CTAs */}

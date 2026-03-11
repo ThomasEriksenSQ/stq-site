@@ -509,12 +509,12 @@ const Index = () => {
       </section>
 
       {/* ── Om Thomas og Jon ── */}
-      <section id="om-oss" className="border-t border-b border-border" style={{ background: 'hsl(var(--surface))', padding: '100px 10vw' }}>
+      <section id="om-oss" className="border-t border-b border-border" style={{ background: 'hsl(var(--surface))', padding: '88px 10vw' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20">
             {/* Left column - text */}
             <div className="lg:col-span-2">
-              <p className="text-[11px] tracking-[0.2em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Partnerne</p>
+              <p className="text-[10px] tracking-[0.22em] uppercase mb-5" style={{ color: 'hsl(var(--text-faint))' }}>Partnerne</p>
               <h2 className="font-serif text-foreground" style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.05 }}>
                 Personlig kjennskap.
                 <br />

@@ -7,6 +7,7 @@ import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
 import PcbPattern from "@/components/PcbPattern";
+import AccentSwitcher from "@/components/AccentSwitcher";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
 import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";

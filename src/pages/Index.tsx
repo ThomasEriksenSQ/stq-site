@@ -181,7 +181,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
+      <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden" style={{ paddingLeft: '10vw', paddingRight: '6vw' }}>
         <PcbPattern />
         <div className="relative z-10 max-w-[580px]">
           {/* Logo */}

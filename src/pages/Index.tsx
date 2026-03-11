@@ -487,7 +487,7 @@ const Index = () => {
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[3/4] overflow-hidden bg-secondary">
+                    <div className="aspect-[4/5] overflow-hidden bg-secondary">
                       <img
                         src={robotAvatar}
                         alt={`${c.name} avatar`}

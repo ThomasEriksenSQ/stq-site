@@ -231,7 +231,7 @@ const Index = () => {
           {/* H1 */}
           <h1
             className="font-serif text-foreground"
-            style={{ fontSize: "clamp(44px, 6vw, 88px)", lineHeight: 1.0, letterSpacing: "-0.02em" }}
+            style={{ fontSize: "clamp(52px, 7vw, 96px)", lineHeight: 0.95, letterSpacing: "-0.03em" }}
           >
             Der stakken
             <br />
@@ -239,10 +239,12 @@ const Index = () => {
           </h1>
 
           {/* Ingress */}
-          <p className="mt-6 text-[15px] text-muted-foreground leading-[1.7] max-w-[480px]">
-            Senior embedded-, firmware- og C/C++-konsulenter.
+          <p className="mt-7 text-[15px] text-muted-foreground leading-[1.8] max-w-[460px]">
+            15 senior embedded-, firmware- og C/C++-konsulenter.
             <br />
-            For oppdrag som krever ekte dybde og lang horisont.
+            Alle i aktive oppdrag. Alle tilgjengelige
+            <br />
+            for de rette prosjektene.
           </p>
 
           {/* CTAs */}
@@ -252,14 +254,14 @@ const Index = () => {
               className="px-7 py-3 bg-foreground text-background text-[13px] tracking-[0.05em] font-medium hover:opacity-90 transition-opacity duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Se våre konsulenter
+              Se konsulentene
             </button>
             <button
-              onClick={() => setIsJobOverlayOpen(true)}
+              onClick={() => scrollTo("om-oss")}
               className="px-7 py-3 border border-border text-muted-foreground text-[13px] tracking-[0.05em] font-medium hover:text-foreground hover:border-foreground/30 transition-all duration-300"
               style={{ borderRadius: '2px' }}
             >
-              Vi ansetter
+              Ta kontakt
             </button>
           </div>
         </div>

@@ -489,7 +489,7 @@ const Index = () => {
       </section>
 
       {/* ── Karriere ── */}
-      <section id="career" className="border-t border-border" style={{ padding: '88px 10vw' }}>
+      <section id="career" className="border-t border-border" style={{ padding: '80px 10vw' }}>
         <div className="max-w-3xl">
           <motion.div {...fadeUp}>
             <p className="text-[13px] tracking-[0.18em] uppercase mb-4 text-muted-foreground">Karriere</p>

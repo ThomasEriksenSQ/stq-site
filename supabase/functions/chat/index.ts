@@ -50,7 +50,7 @@ ${knowledgeText}
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model: "claude-sonnet-4-20250514",
         messages: [{ role: "system", content: systemPrompt }, ...messages],
         stream: true,
       }),

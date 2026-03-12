@@ -26,16 +26,6 @@ import AccentSwitcher from "@/components/AccentSwitcher";
 import ConsultantInquiry from "@/components/ConsultantInquiry";
 import HandbookOverlay from "@/components/HandbookOverlay";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
-import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
-import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";
-import idaAbrahamsson from "@/assets/ida-abrahamsson.jpg";
-import trineOlsen from "@/assets/trine-olsen.jpg";
-import tomErikLundesgaard from "@/assets/tom-erik-lundesgaard.jpg";
-import karlEirikFossberg from "@/assets/karl-eirik-fossberg.jpg";
-import rikkeSolbjorg from "@/assets/rikke-solbjorg.jpg";
-import christianPoljac from "@/assets/christian-poljac.jpg";
-import martinTysseland from "@/assets/martin-tysseland.jpg";
-import mattisAsp from "@/assets/mattis-asp.jpg";
 import robotAvatar from "@/assets/robot-avatar.png";
 
 const TICKER_ITEMS = [

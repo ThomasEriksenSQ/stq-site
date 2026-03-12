@@ -5,6 +5,7 @@ import { X, Upload } from "lucide-react";
 interface JobApplyOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenHandbok?: () => void;
 }
 
 const JobApplyOverlay = ({ isOpen, onClose }: JobApplyOverlayProps) => {

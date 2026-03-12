@@ -306,9 +306,9 @@ const Index = () => {
               >
                 {group.hex}
               </span>
-              <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
+               <h3 className="text-[16px] font-semibold text-foreground mb-4">{group.title}</h3>
               {group.description && (
-                <p className="text-[14px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
+                <p className="text-[15px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
               )}
               <div className="flex flex-wrap gap-3">
                 {group.tags.map((tag) => (

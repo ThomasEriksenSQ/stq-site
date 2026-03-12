@@ -528,9 +528,9 @@ const Index = () => {
                   whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                 }}
                 className="group flex flex-col items-start border border-border bg-background hover:border-primary/40 transition-colors duration-300"
-                style={{ borderRadius: "2px", padding: "32px 28px", minHeight: "180px" }}
+                style={{ borderRadius: "2px", padding: "32px 28px", minHeight: "200px" }}
               >
-                {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
+                {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} aria-hidden="true" />}
                 <h3 className="text-[17px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
               </motion.div>
             );

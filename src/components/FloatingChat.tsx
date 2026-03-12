@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
+const SLACK_CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/slack-chat`;
 
 async function streamChat({
   messages,

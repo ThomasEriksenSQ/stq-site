@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface HandbookOverlayProps {
@@ -31,12 +31,75 @@ interface Section {
   title: string;
   level: "h2" | "h3";
   content: string | string[];
+  afterSlot?: string;
 }
+
+const formatNOK = (n: number) =>
+  "kr " + Math.round(n).toLocaleString("nb-NO");
+
+const SalaryCalculator = () => {
+  const [hours, setHours] = useState(157.5);
+  const [rate, setRate] = useState(1450);
+
+  const monthly = (hours * rate * 0.7) / 1.3;
+  const yearly = monthly * 11 * 1.12;
+
+  return (
+    <motion.section variants={fadeUpItem} className="space-y-4">
+      <h3 className="text-[22px] font-semibold text-foreground">Lønnskalkulator</h3>
+
+      <div className="space-y-4">
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-[15px] text-muted-foreground">
+            <span>Timer per måned</span>
+            <span className="font-mono text-foreground">{hours}</span>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={200}
+            step={0.5}
+            value={hours}
+            onChange={(e) => setHours(Number(e.target.value))}
+            className="w-full h-2 rounded-full appearance-none cursor-pointer bg-secondary accent-primary"
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-[15px] text-muted-foreground">
+            <span>Timespris (kr)</span>
+            <span className="font-mono text-foreground">{formatNOK(rate).replace("kr ", "")}</span>
+          </div>
+          <input
+            type="range"
+            min={1200}
+            max={1700}
+            step={50}
+            value={rate}
+            onChange={(e) => setRate(Number(e.target.value))}
+            className="w-full h-2 rounded-full appearance-none cursor-pointer bg-secondary accent-primary"
+          />
+        </div>
+      </div>
+
+      <div className="bg-secondary rounded-lg p-4 space-y-2">
+        <div className="flex items-center justify-between text-[15px]">
+          <span className="text-muted-foreground">Brutto månedslønn</span>
+          <span className="font-mono font-semibold text-foreground">{formatNOK(monthly)}</span>
+        </div>
+        <div className="flex items-center justify-between text-[15px]">
+          <span className="text-muted-foreground">Brutto årslønn</span>
+          <span className="font-mono font-semibold text-foreground">{formatNOK(yearly)}</span>
+        </div>
+      </div>
+    </motion.section>
+  );
+};
 
 const SECTIONS: Section[] = [
   // LØNN
   { title: "Lønn", level: "h2", content: "Vi ønsker å tilby våre ansatte en lønn som er både konkurransedyktig og rettferdig, en lønn som speiler deres erfaring, kompetanse og dedikasjon. Lønn er en faktor for å tiltrekke og beholde talentfulle medarbeidere, samtidig som det bidrar til et positivt og produktivt arbeidsmiljø." },
-  { title: "Provisjonslønn", level: "h3", content: "Vi tilbyr en provisjonsbasert lønn på 70% av fakturert beløp. Dette inkluderer arbeidsgiveravgift, pensjon og dine feriepenger. Din kunnskap og erfaring spiller en direkte rolle i å bestemme din inntekt. Vi ser på dette som en drivkraft for å fremme engasjement og motivasjon, og å oppmuntre til kontinuerlig utvikling blant ansatte." },
+  { title: "Provisjonslønn", level: "h3", content: "Vi tilbyr en provisjonsbasert lønn på 70% av fakturert beløp. Dette inkluderer arbeidsgiveravgift, pensjon og dine feriepenger. Din kunnskap og erfaring spiller en direkte rolle i å bestemme din inntekt. Vi ser på dette som en drivkraft for å fremme engasjement og motivasjon, og å oppmuntre til kontinuerlig utvikling blant ansatte.", afterSlot: "calculator" },
   { title: "Feriepenger", level: "h3", content: "Det settes av feriepenger tilsvarende 12% av din bruttolønn hver måned. Disse blir utbetalt normalt sett i juni påfølgende år hvis ikke annet er avtalt." },
   { title: "Arbeidstid", level: "h3", content: "Normal arbeidstid er 37,5 timer i uken. Din arbeidstid kan du selv styre i henhold til kundens forventinger og avtale. Du kan for eksempel starte sent en dag og jobbe det inn på ettermiddagen, eller jobbe helg en dag og ta fri en ukedag. Dette avtales individuelt med kunde." },
 
@@ -128,20 +191,23 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
 
                 <div className="space-y-10">
                   {SECTIONS.map((section) => (
-                    <motion.section key={section.title} variants={fadeUpItem} className="space-y-3">
-                      {section.level === "h2" ? (
-                        <h2 className="text-[26px] font-serif font-semibold text-foreground">{section.title}</h2>
-                      ) : (
-                        <h3 className="text-[22px] font-semibold text-foreground">{section.title}</h3>
-                      )}
-                      {section.content && (
-                        Array.isArray(section.content)
-                          ? <div className="space-y-3 text-muted-foreground text-[17px] leading-[1.95]">
-                              {section.content.map((p, i) => <p key={i}>{p}</p>)}
-                            </div>
-                          : <p className="text-muted-foreground text-[17px] leading-[1.95]">{section.content}</p>
-                      )}
-                    </motion.section>
+                    <div key={section.title} className="contents">
+                      <motion.section variants={fadeUpItem} className="space-y-3">
+                        {section.level === "h2" ? (
+                          <h2 className="text-[26px] font-serif font-semibold text-foreground">{section.title}</h2>
+                        ) : (
+                          <h3 className="text-[22px] font-semibold text-foreground">{section.title}</h3>
+                        )}
+                        {section.content && (
+                          Array.isArray(section.content)
+                            ? <div className="space-y-3 text-muted-foreground text-[17px] leading-[1.95]">
+                                {section.content.map((p, i) => <p key={i}>{p}</p>)}
+                              </div>
+                            : <p className="text-muted-foreground text-[17px] leading-[1.95]">{section.content}</p>
+                        )}
+                      </motion.section>
+                      {section.afterSlot === "calculator" && <SalaryCalculator />}
+                    </div>
                   ))}
                 </div>
               </div>

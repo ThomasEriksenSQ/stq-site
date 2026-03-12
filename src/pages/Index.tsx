@@ -158,9 +158,14 @@ const Index = () => {
   const { data: dbConsultants } = useQuery({
     queryKey: ["consultants"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("consultants").select("*").eq("active", true).order("sort_order");
+      const { data, error } = await supabase.from("consultants").select("*").eq("active", true);
       if (error) throw error;
-      return data;
+      const arr = [...(data || [])];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
     },
   });
 

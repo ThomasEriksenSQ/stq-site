@@ -171,6 +171,7 @@ const Index = () => {
 
   const consultants = (dbConsultants ?? []).map((c: any) => ({
     name: c.name,
+    title: c.title || "",
     image: c.image_url || null,
     competence: c.competences || [],
     industries: c.industries || [],

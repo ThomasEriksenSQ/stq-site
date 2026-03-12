@@ -171,7 +171,6 @@ const Index = () => {
 
   const consultants = (dbConsultants ?? []).map((c: any) => ({
     name: c.name,
-    title: c.title || "",
     image: c.image_url || null,
     competence: c.competences || [],
     industries: c.industries || [],
@@ -386,26 +385,21 @@ const Index = () => {
                       />
                     </div>
                   )}
-                   <div
+                  <div
                     className="border-t border-border"
                     style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}
                   >
-                    <h3 className="text-lg font-bold text-foreground leading-snug mb-1">{c.name}</h3>
-                    {c.title && (
-                      <p className="text-sm font-medium text-primary mb-1.5">{c.title}</p>
-                    )}
-                    <p className="text-sm text-muted-foreground mb-2.5 line-clamp-3" style={{ lineHeight: 1.6 }}>
-                      {c.description}
-                    </p>
-                    <div className="flex items-center gap-1.5 text-muted-foreground mb-3" style={{ fontSize: "0.8125rem" }}>
+                    <h3 className="text-[15px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
+                    <div className="flex items-center gap-3 text-[13px] text-muted-foreground mb-2.5">
                       <span>{c.experience}+ år</span>
-                      <span>·</span>
                       <span>{c.location}</span>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap" style={{ gap: "10px" }}>
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-xs font-mono text-muted-foreground border border-border rounded-full px-2.5 py-0.5">
-                          {comp}
+                        <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
+                          <span className="text-primary">[</span>
+                          <span className="text-muted-foreground">&nbsp;{comp}&nbsp;</span>
+                          <span className="text-primary">]</span>
                         </span>
                       ))}
                     </div>

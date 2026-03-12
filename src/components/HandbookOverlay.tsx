@@ -92,6 +92,10 @@ const SalaryCalculator = () => {
           <span className="font-mono font-semibold text-foreground">{formatNOK(yearly)}</span>
         </div>
       </div>
+
+      <p className="text-[13px] text-muted-foreground italic mt-3">
+        Lønnskalkulatoren er et beregnet estimat, avvik vil forekomme. Utregning av reelle lønn blir formidlet ved utbetaling av lønn.
+      </p>
     </motion.section>
   );
 };
@@ -192,7 +196,7 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
                 <div className="space-y-10">
                   {SECTIONS.map((section) => (
                     <div key={section.title} className="contents">
-                      <motion.section variants={fadeUpItem} className="space-y-3">
+                      <motion.section variants={fadeUpItem} className={section.level === "h2" ? "mt-14 mb-6 space-y-3" : "mt-8 mb-3 space-y-3"}>
                         {section.level === "h2" ? (
                           <h2 className="text-[26px] font-serif font-semibold text-foreground">{section.title}</h2>
                         ) : (

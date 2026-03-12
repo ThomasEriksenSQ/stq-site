@@ -350,7 +350,7 @@ const Index = () => {
 
           {/* Ingress */}
           <p className="mt-7 text-[20px] text-muted-foreground leading-[2.0] max-w-[620px]">
-            Vi leverer Norges beste spesialister innen embedded systems firmware og lavnivå-programmering.
+            Vi leverer noen av Norges beste spesialister innen embedded systems firmware og lavnivå-programmering.
           </p>
 
           {/* CTAs */}
@@ -815,7 +815,10 @@ const Index = () => {
       <JobApplyOverlay
         isOpen={isJobOverlayOpen}
         onClose={() => setIsJobOverlayOpen(false)}
-        onOpenHandbok={() => { setIsJobOverlayOpen(false); setIsHandbookOpen(true); }}
+        onOpenHandbok={() => {
+          setIsJobOverlayOpen(false);
+          setIsHandbookOpen(true);
+        }}
       />
       <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
       <AccentSwitcher />

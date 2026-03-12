@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
+const SLACK_CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/slack-chat`;
 
 async function streamChat({
   messages,
@@ -84,18 +85,6 @@ const BOT_SUGGESTIONS = [
   { label: "Håndbok", query: "Fortell meg om håndboken deres" },
 ];
 
-const SLACK_RESPONSES: Record<string, string[]> = {
-  "Thomas Eriksen": [
-    "Hei! Takk for meldingen. Jeg tar en titt og vender tilbake snart 👋",
-    "God melding! La meg sjekke litt og komme tilbake til deg.",
-    "Takk! Jeg ringer deg gjerne. Send meg nummeret ditt på thomas@stacq.no 😊",
-  ],
-  "Jon Richard Nygaard": [
-    "Hei! Takk for at du tar kontakt. Jeg svarer deg så fort jeg kan 👋",
-    "Spennende! Vi er alltid interessert i å snakke med dyktige folk. Har du tid til en kaffe denne uken?",
-    "Takk for meldingen! Send meg nummeret ditt på jr@stacq.no, så ringer jeg deg.",
-  ],
-};
 
 const FloatingChat = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -110,7 +99,7 @@ const FloatingChat = () => {
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const responseIndex = useRef<Record<string, number>>({});
+  
 
   const currentSlackMessages = slackRecipient ? (slackMessages[slackRecipient.name] || []) : [];
   const messages = mode === "bot" ? botMessages : currentSlackMessages;
@@ -167,17 +156,35 @@ const FloatingChat = () => {
           [name]: [...(prev[name] || []), { role: "user", content: msg }],
         }));
         setIsTyping(true);
-        const delay = 2000 + Math.random() * 2000;
-        const responses = SLACK_RESPONSES[name] || ["Takk for meldingen!"];
-        const idx = responseIndex.current[name] || 0;
-        responseIndex.current[name] = idx + 1;
-        setTimeout(() => {
-          setSlackMessages((prev) => ({
-            ...prev,
-            [name]: [...(prev[name] || []), { role: "assistant", content: responses[idx % responses.length], avatar: image, name }],
-          }));
-          setIsTyping(false);
-        }, delay);
+
+        // Send to Slack via edge function
+        fetch(SLACK_CHAT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({ recipient: name, message: msg }),
+        })
+          .then(async (resp) => {
+            if (!resp.ok) {
+              const err = await resp.json().catch(() => ({ error: "Nettverksfeil" }));
+              throw new Error(err.error || "Kunne ikke sende melding");
+            }
+            setSlackMessages((prev) => ({
+              ...prev,
+              [name]: [...(prev[name] || []), {
+                role: "assistant",
+                content: `Meldingen din er sendt til ${name}. Du vil få svar på e-post eller telefon.`,
+                avatar: image,
+                name,
+              }],
+            }));
+          })
+          .catch((err) => {
+            toast.error(err.message || "Kunne ikke sende melding");
+          })
+          .finally(() => setIsTyping(false));
       }
     },
     [input, isTyping, mode, slackRecipient]

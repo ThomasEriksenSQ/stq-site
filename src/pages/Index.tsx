@@ -712,7 +712,7 @@ const Index = () => {
         }}
       />
       <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
-      <AccentSwitcher />
+      
       <FloatingChat />
     </div>
   );

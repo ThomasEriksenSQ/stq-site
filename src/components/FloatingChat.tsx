@@ -168,17 +168,35 @@ const FloatingChat = () => {
           [name]: [...(prev[name] || []), { role: "user", content: msg }],
         }));
         setIsTyping(true);
-        const delay = 2000 + Math.random() * 2000;
-        const responses = SLACK_RESPONSES[name] || ["Takk for meldingen!"];
-        const idx = responseIndex.current[name] || 0;
-        responseIndex.current[name] = idx + 1;
-        setTimeout(() => {
-          setSlackMessages((prev) => ({
-            ...prev,
-            [name]: [...(prev[name] || []), { role: "assistant", content: responses[idx % responses.length], avatar: image, name }],
-          }));
-          setIsTyping(false);
-        }, delay);
+
+        // Send to Slack via edge function
+        fetch(SLACK_CHAT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({ recipient: name, message: msg }),
+        })
+          .then(async (resp) => {
+            if (!resp.ok) {
+              const err = await resp.json().catch(() => ({ error: "Nettverksfeil" }));
+              throw new Error(err.error || "Kunne ikke sende melding");
+            }
+            setSlackMessages((prev) => ({
+              ...prev,
+              [name]: [...(prev[name] || []), {
+                role: "assistant",
+                content: `Meldingen din er sendt til ${name}. Du vil få svar på e-post eller telefon.`,
+                avatar: image,
+                name,
+              }],
+            }));
+          })
+          .catch((err) => {
+            toast.error(err.message || "Kunne ikke sende melding");
+          })
+          .finally(() => setIsTyping(false));
       }
     },
     [input, isTyping, mode, slackRecipient]

@@ -38,7 +38,7 @@ const formatNOK = (n: number) =>
   "kr " + Math.round(n).toLocaleString("nb-NO");
 
 const SalaryCalculator = () => {
-  const [hours, setHours] = useState(157.5);
+  const [hours, setHours] = useState(157);
   const [rate, setRate] = useState(1450);
 
   const monthly = (hours * rate * 0.7) / 1.3;

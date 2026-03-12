@@ -146,6 +146,15 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                     </button>
                   </form>
 
+                  <div className="mt-10">
+                    <button
+                      onClick={() => onOpenHandbok?.()}
+                      className="text-[14px] text-primary hover:underline"
+                    >
+                      Les håndboken vår →
+                    </button>
+                  </div>
+
                   <div className="mt-12 pt-6 border-t border-border">
                     <p className="text-[12px] text-muted-foreground">
                       STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389

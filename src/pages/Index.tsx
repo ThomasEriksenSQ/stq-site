@@ -328,6 +328,23 @@ const Index = () => {
             </h2>
           </motion.div>
 
+          {!dbConsultants ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="border border-border overflow-hidden">
+                  <div className="aspect-[4/5] bg-muted animate-pulse" />
+                  <div className="border-t border-border" style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}>
+                    <div className="h-4 w-2/3 bg-muted animate-pulse rounded mb-2" />
+                    <div className="h-3 w-1/3 bg-muted animate-pulse rounded mb-3" />
+                    <div className="flex gap-2">
+                      <div className="h-3 w-16 bg-muted animate-pulse rounded" />
+                      <div className="h-3 w-16 bg-muted animate-pulse rounded" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
           <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
             {consultants.map((c, i) => (
               <motion.div
@@ -386,6 +403,7 @@ const Index = () => {
               </motion.div>
             ))}
           </motion.div>
+          )}
 
           {/* Consultant profile drawer */}
           <AnimatePresence>

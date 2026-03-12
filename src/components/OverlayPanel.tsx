@@ -332,7 +332,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             </div>
           </motion.div>
 
-          <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} />
+          <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} onOpenHandbok={() => { setIsJobOpen(false); setIsHandbookOpen(true); }} />
           <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
         </div>
       )}

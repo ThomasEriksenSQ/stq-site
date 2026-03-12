@@ -251,7 +251,7 @@ const MANIFEST = [
   },
   {
     num: "03",
-    title: "Gode å jobbe med.",
+    title: "Gode holdninger.",
     text: "Vi er opptatt av gode holdninger. Ryddige, åpne om fremdrift og gode å samarbeide med.",
   },
 ];

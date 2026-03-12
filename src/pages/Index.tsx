@@ -24,6 +24,7 @@ import JobApplyOverlay from "@/components/JobApplyOverlay";
 import PcbPattern from "@/components/PcbPattern";
 import AccentSwitcher from "@/components/AccentSwitcher";
 import ConsultantInquiry from "@/components/ConsultantInquiry";
+import HandbookOverlay from "@/components/HandbookOverlay";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
 import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";

@@ -85,18 +85,6 @@ const BOT_SUGGESTIONS = [
   { label: "Håndbok", query: "Fortell meg om håndboken deres" },
 ];
 
-const SLACK_RESPONSES: Record<string, string[]> = {
-  "Thomas Eriksen": [
-    "Hei! Takk for meldingen. Jeg tar en titt og vender tilbake snart 👋",
-    "God melding! La meg sjekke litt og komme tilbake til deg.",
-    "Takk! Jeg ringer deg gjerne. Send meg nummeret ditt på thomas@stacq.no 😊",
-  ],
-  "Jon Richard Nygaard": [
-    "Hei! Takk for at du tar kontakt. Jeg svarer deg så fort jeg kan 👋",
-    "Spennende! Vi er alltid interessert i å snakke med dyktige folk. Har du tid til en kaffe denne uken?",
-    "Takk for meldingen! Send meg nummeret ditt på jr@stacq.no, så ringer jeg deg.",
-  ],
-};
 
 const FloatingChat = () => {
   const [isOpen, setIsOpen] = useState(true);

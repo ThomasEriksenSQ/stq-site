@@ -114,7 +114,7 @@ const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClo
                   </div>
 
                   <div className="pt-4 border-t border-border">
-                    <button onClick={() => { setIsJobOpen(false); setIsHandbookOpen(true); }} className="text-[14px] text-accent hover:underline">STACQ Håndbok →</button>
+                    <button onClick={() => onOpenHandbok?.()} className="text-[14px] text-accent hover:underline">STACQ Håndbok →</button>
                   </div>
                 </motion.div>
               </div>

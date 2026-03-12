@@ -734,9 +734,7 @@ const Index = () => {
             </h4>
             <ul className="space-y-4 text-[15px] text-muted-foreground leading-[1.85]">
               <li>
-                <span className="block font-medium text-foreground/85">
-                  Jon Richard Nygaard <span className="font-normal text-muted-foreground">· Partner</span>
-                </span>
+                <span className="block font-medium text-foreground/85">Jon Richard Nygaard</span>
                 <div className="mt-1 flex flex-col gap-0.5">
                   <a
                     href="tel:93287267"
@@ -755,9 +753,7 @@ const Index = () => {
                 </div>
               </li>
               <li>
-                <span className="block font-medium text-foreground/85">
-                  Thomas Eriksen <span className="font-normal text-muted-foreground">· Partner</span>
-                </span>
+                <span className="block font-medium text-foreground/85">Thomas Eriksen</span>
                 <div className="mt-1 flex flex-col gap-0.5">
                   <a
                     href="tel:97500321"

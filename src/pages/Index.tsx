@@ -396,7 +396,7 @@ const Index = () => {
                     </div>
                     <div className="flex flex-wrap" style={{ gap: "10px" }}>
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
+                        <span key={comp} className="text-[14px] font-mono whitespace-nowrap">
                           <span className="text-primary">[</span>
                           <span className="text-muted-foreground">&nbsp;{comp}&nbsp;</span>
                           <span className="text-primary">]</span>

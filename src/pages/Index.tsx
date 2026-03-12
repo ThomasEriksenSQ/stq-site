@@ -22,7 +22,7 @@ import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
 import JobApplyOverlay from "@/components/JobApplyOverlay";
 import PcbPattern from "@/components/PcbPattern";
-
+import AccentSwitcher from "@/components/AccentSwitcher";
 import ConsultantInquiry from "@/components/ConsultantInquiry";
 import HandbookOverlay from "@/components/HandbookOverlay";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
@@ -116,7 +116,6 @@ const DOMAINS = [
   "Telekom og kommunikasjon",
   "IoT og smarte enheter",
 ];
-
 
 const MANIFEST = [
   {
@@ -306,9 +305,9 @@ const Index = () => {
               >
                 {group.hex}
               </span>
-               <h3 className="text-[16px] font-semibold text-foreground mb-4">{group.title}</h3>
+              <h3 className="text-[16px] font-semibold text-foreground mb-2.5">{group.title}</h3>
               {group.description && (
-                <p className="text-[15px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
+                <p className="text-[14px] text-muted-foreground leading-[1.85] mb-5">{group.description}</p>
               )}
               <div className="flex flex-wrap gap-3">
                 {group.tags.map((tag) => (
@@ -338,7 +337,10 @@ const Index = () => {
               {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} className="border border-border overflow-hidden">
                   <div className="aspect-[4/5] bg-muted animate-pulse" />
-                  <div className="border-t border-border" style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}>
+                  <div
+                    className="border-t border-border"
+                    style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}
+                  >
                     <div className="h-4 w-2/3 bg-muted animate-pulse rounded mb-2" />
                     <div className="h-3 w-1/3 bg-muted animate-pulse rounded mb-3" />
                     <div className="flex gap-2">
@@ -350,64 +352,64 @@ const Index = () => {
               ))}
             </div>
           ) : (
-          <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
-            {consultants.map((c, i) => (
-              <motion.div
-                key={c.name}
-                variants={{
-                  initial: { opacity: 0, y: 16 },
-                  whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-                }}
-              >
-                <button
-                  onClick={() => setExpandedConsultant(expandedConsultant === i ? null : i)}
-                  className="w-full text-left group border border-border overflow-hidden hover:border-primary/35 transition-colors duration-[400ms]"
-                  style={{ borderRadius: "0px" }}
+            <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
+              {consultants.map((c, i) => (
+                <motion.div
+                  key={c.name}
+                  variants={{
+                    initial: { opacity: 0, y: 16 },
+                    whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                  }}
                 >
-                  {c.image ? (
-                    <div className="aspect-[4/5] overflow-hidden">
-                      <img
-                        src={c.image}
-                        alt={c.name}
-                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
-                        style={{ filter: "grayscale(12%) brightness(0.92)" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.filter = "grayscale(0%) brightness(1.0)")}
-                        onMouseLeave={(e) => (e.currentTarget.style.filter = "grayscale(12%) brightness(0.92)")}
-                      />
-                    </div>
-                  ) : (
-                    <div className="aspect-[4/5] overflow-hidden bg-secondary">
-                      <img
-                        src={robotAvatar}
-                        alt={`${c.name} avatar`}
-                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
-                        style={{ filter: "grayscale(12%) brightness(0.92)" }}
-                      />
-                    </div>
-                  )}
-                  <div
-                    className="border-t border-border"
-                    style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}
+                  <button
+                    onClick={() => setExpandedConsultant(expandedConsultant === i ? null : i)}
+                    className="w-full text-left group border border-border overflow-hidden hover:border-primary/35 transition-colors duration-[400ms]"
+                    style={{ borderRadius: "0px" }}
                   >
-                    <h3 className="text-[16px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
-                    <div className="flex items-center gap-3 text-[14px] text-muted-foreground mb-2.5">
-                      <span>{c.experience}+ år</span>
-                      <span>{c.location}</span>
+                    {c.image ? (
+                      <div className="aspect-[4/5] overflow-hidden">
+                        <img
+                          src={c.image}
+                          alt={c.name}
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
+                          style={{ filter: "grayscale(12%) brightness(0.92)" }}
+                          onMouseEnter={(e) => (e.currentTarget.style.filter = "grayscale(0%) brightness(1.0)")}
+                          onMouseLeave={(e) => (e.currentTarget.style.filter = "grayscale(12%) brightness(0.92)")}
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-[4/5] overflow-hidden bg-secondary">
+                        <img
+                          src={robotAvatar}
+                          alt={`${c.name} avatar`}
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
+                          style={{ filter: "grayscale(12%) brightness(0.92)" }}
+                        />
+                      </div>
+                    )}
+                    <div
+                      className="border-t border-border"
+                      style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}
+                    >
+                      <h3 className="text-[15px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
+                      <div className="flex items-center gap-3 text-[13px] text-muted-foreground mb-2.5">
+                        <span>{c.experience}+ år</span>
+                        <span>{c.location}</span>
+                      </div>
+                      <div className="flex flex-wrap" style={{ gap: "10px" }}>
+                        {c.competence.slice(0, 3).map((comp) => (
+                          <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
+                            <span className="text-primary">[</span>
+                            <span className="text-muted-foreground">&nbsp;{comp}&nbsp;</span>
+                            <span className="text-primary">]</span>
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex flex-wrap" style={{ gap: "10px" }}>
-                      {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[14px] font-mono whitespace-nowrap">
-                          <span className="text-primary">[</span>
-                          <span className="text-muted-foreground">&nbsp;{comp}&nbsp;</span>
-                          <span className="text-primary">]</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </button>
-              </motion.div>
-            ))}
-          </motion.div>
+                  </button>
+                </motion.div>
+              ))}
+            </motion.div>
           )}
 
           {/* Consultant profile drawer */}
@@ -528,9 +530,9 @@ const Index = () => {
                   whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                 }}
                 className="group flex flex-col items-start border border-border bg-background hover:border-primary/40 transition-colors duration-300"
-                style={{ borderRadius: "2px", padding: "32px 28px", minHeight: "200px" }}
+                style={{ borderRadius: "2px", padding: "32px 28px", minHeight: "180px" }}
               >
-                {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} aria-hidden="true" />}
+                {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
                 <h3 className="text-[17px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
               </motion.div>
             );
@@ -622,7 +624,7 @@ const Index = () => {
               </li>
             </ul>
             <p className="mt-7 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
-              STACQ AS<br />932 575 442 MVA
+              STACQ AS · 932575442MVA
             </p>
           </div>
 
@@ -710,7 +712,7 @@ const Index = () => {
         }}
       />
       <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
-      
+      <AccentSwitcher />
       <FloatingChat />
     </div>
   );

@@ -39,7 +39,7 @@ const fadeUpItem = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] } },
 };
 
-const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClose: () => void; onOpenHandbok?: () => void }) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();

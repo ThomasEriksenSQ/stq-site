@@ -5,9 +5,10 @@ import { X, Upload } from "lucide-react";
 interface JobApplyOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenHandbok?: () => void;
 }
 
-const JobApplyOverlay = ({ isOpen, onClose }: JobApplyOverlayProps) => {
+const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [fileName, setFileName] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -144,6 +145,15 @@ const JobApplyOverlay = ({ isOpen, onClose }: JobApplyOverlayProps) => {
                       Send søknad →
                     </button>
                   </form>
+
+                  <div className="mt-10">
+                    <button
+                      onClick={() => onOpenHandbok?.()}
+                      className="text-[14px] text-primary hover:underline"
+                    >
+                      Les håndboken vår →
+                    </button>
+                  </div>
 
                   <div className="mt-12 pt-6 border-t border-border">
                     <p className="text-[12px] text-muted-foreground">

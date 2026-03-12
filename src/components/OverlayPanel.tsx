@@ -39,7 +39,7 @@ const fadeUpItem = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] } },
 };
 
-const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClose: () => void; onOpenHandbok?: () => void }) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -114,7 +114,7 @@ const JobOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                   </div>
 
                   <div className="pt-4 border-t border-border">
-                    <a href="#" className="text-[14px] text-accent hover:underline">STACQ Handbook →</a>
+                    <button onClick={() => onOpenHandbok?.()} className="text-[14px] text-accent hover:underline">STACQ Håndbok →</button>
                   </div>
                 </motion.div>
               </div>
@@ -332,7 +332,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             </div>
           </motion.div>
 
-          <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} />
+          <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} onOpenHandbok={() => { setIsJobOpen(false); setIsHandbookOpen(true); }} />
           <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
         </div>
       )}

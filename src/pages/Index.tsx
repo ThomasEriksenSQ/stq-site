@@ -24,6 +24,7 @@ import JobApplyOverlay from "@/components/JobApplyOverlay";
 import PcbPattern from "@/components/PcbPattern";
 import AccentSwitcher from "@/components/AccentSwitcher";
 import ConsultantInquiry from "@/components/ConsultantInquiry";
+import HandbookOverlay from "@/components/HandbookOverlay";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
 import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
 import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";
@@ -272,6 +273,7 @@ const stagger = {
 const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
+  const [isHandbookOpen, setIsHandbookOpen] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
   const localImageMap: Record<string, string> = {
@@ -721,6 +723,14 @@ const Index = () => {
                   Karriere
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => setIsHandbookOpen(true)}
+                  className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
+                >
+                  Håndbok
+                </button>
+              </li>
             </ul>
             <p className="mt-7 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
               STACQ AS · 932 575 442 MVA
@@ -802,7 +812,12 @@ const Index = () => {
 
       {/* Overlays & Chat */}
       <OverlayPanel isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
-      <JobApplyOverlay isOpen={isJobOverlayOpen} onClose={() => setIsJobOverlayOpen(false)} />
+      <JobApplyOverlay
+        isOpen={isJobOverlayOpen}
+        onClose={() => setIsJobOverlayOpen(false)}
+        onOpenHandbok={() => { setIsJobOverlayOpen(false); setIsHandbookOpen(true); }}
+      />
+      <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
       <AccentSwitcher />
       <FloatingChat />
     </div>

@@ -8,7 +8,7 @@ interface JobApplyOverlayProps {
   onOpenHandbok?: () => void;
 }
 
-const JobApplyOverlay = ({ isOpen, onClose }: JobApplyOverlayProps) => {
+const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [fileName, setFileName] = useState("");
   const [submitted, setSubmitted] = useState(false);

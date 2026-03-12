@@ -31,7 +31,70 @@ interface Section {
   title: string;
   level: "h2" | "h3";
   content: string | string[];
+  afterSlot?: string;
 }
+
+const formatNOK = (n: number) =>
+  "kr " + Math.round(n).toLocaleString("nb-NO");
+
+const SalaryCalculator = () => {
+  const [hours, setHours] = useState(157.5);
+  const [rate, setRate] = useState(1450);
+
+  const monthly = (hours * rate * 0.7) / 1.3;
+  const yearly = monthly * 11 * 1.12;
+
+  return (
+    <motion.section variants={fadeUpItem} className="space-y-4">
+      <h3 className="text-[22px] font-semibold text-foreground">Lønnskalkulator</h3>
+
+      <div className="space-y-4">
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-[15px] text-muted-foreground">
+            <span>Timer per måned</span>
+            <span className="font-mono text-foreground">{hours}</span>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={200}
+            step={0.5}
+            value={hours}
+            onChange={(e) => setHours(Number(e.target.value))}
+            className="w-full h-2 rounded-full appearance-none cursor-pointer bg-secondary accent-primary"
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-[15px] text-muted-foreground">
+            <span>Timespris (kr)</span>
+            <span className="font-mono text-foreground">{formatNOK(rate).replace("kr ", "")}</span>
+          </div>
+          <input
+            type="range"
+            min={1200}
+            max={1700}
+            step={50}
+            value={rate}
+            onChange={(e) => setRate(Number(e.target.value))}
+            className="w-full h-2 rounded-full appearance-none cursor-pointer bg-secondary accent-primary"
+          />
+        </div>
+      </div>
+
+      <div className="bg-secondary rounded-lg p-4 space-y-2">
+        <div className="flex items-center justify-between text-[15px]">
+          <span className="text-muted-foreground">Brutto månedslønn</span>
+          <span className="font-mono font-semibold text-foreground">{formatNOK(monthly)}</span>
+        </div>
+        <div className="flex items-center justify-between text-[15px]">
+          <span className="text-muted-foreground">Brutto årslønn</span>
+          <span className="font-mono font-semibold text-foreground">{formatNOK(yearly)}</span>
+        </div>
+      </div>
+    </motion.section>
+  );
+};
 
 const SECTIONS: Section[] = [
   // LØNN

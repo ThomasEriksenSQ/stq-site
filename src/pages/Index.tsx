@@ -155,19 +155,6 @@ const Index = () => {
   const [isHandbookOpen, setIsHandbookOpen] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
-  const localImageMap: Record<string, string> = {
-    "Kacper Wysocki": kacperWysocki,
-    "Lars Rudolfsen": larsRudolfsen,
-    "Ida Abrahamsson": idaAbrahamsson,
-    "Trine Ø. Olsen": trineOlsen,
-    "Tom Erik Lundesgaard": tomErikLundesgaard,
-    "Karl Eirik Bang Fossberg": karlEirikFossberg,
-    "Rikke Solbjørg": rikkeSolbjorg,
-    "Christian Steffen Poljac": christianPoljac,
-    "Martin Tysseland": martinTysseland,
-    "Mattis Asp": mattisAsp,
-  };
-
   const { data: dbConsultants } = useQuery({
     queryKey: ["consultants"],
     queryFn: async () => {
@@ -177,12 +164,12 @@ const Index = () => {
     },
   });
 
-  const consultants = (dbConsultants ?? CONSULTANTS).map((c: any) => ({
+  const consultants = (dbConsultants ?? []).map((c: any) => ({
     name: c.name,
-    image: c.image_url || localImageMap[c.name] || c.image || null,
-    competence: c.competences || c.competence || [],
+    image: c.image_url || null,
+    competence: c.competences || [],
     industries: c.industries || [],
-    experience: c.experience_years ?? c.experience ?? 0,
+    experience: c.experience_years ?? 0,
     location: c.location || "Oslo",
     description: c.description || "",
   }));

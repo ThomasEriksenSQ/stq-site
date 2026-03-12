@@ -26,16 +26,6 @@ import AccentSwitcher from "@/components/AccentSwitcher";
 import ConsultantInquiry from "@/components/ConsultantInquiry";
 import HandbookOverlay from "@/components/HandbookOverlay";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
-import kacperWysocki from "@/assets/kacper-wysocki.jpeg";
-import larsRudolfsen from "@/assets/lars-rudolfsen.jpg";
-import idaAbrahamsson from "@/assets/ida-abrahamsson.jpg";
-import trineOlsen from "@/assets/trine-olsen.jpg";
-import tomErikLundesgaard from "@/assets/tom-erik-lundesgaard.jpg";
-import karlEirikFossberg from "@/assets/karl-eirik-fossberg.jpg";
-import rikkeSolbjorg from "@/assets/rikke-solbjorg.jpg";
-import christianPoljac from "@/assets/christian-poljac.jpg";
-import martinTysseland from "@/assets/martin-tysseland.jpg";
-import mattisAsp from "@/assets/mattis-asp.jpg";
 import robotAvatar from "@/assets/robot-avatar.png";
 
 const TICKER_ITEMS = [
@@ -127,117 +117,6 @@ const DOMAINS = [
   "IoT og smarte enheter",
 ];
 
-const CONSULTANTS = [
-  {
-    name: "Kacper Wysocki",
-    image: kacperWysocki,
-    competence: ["Embedded Linux", "RTOS", "Security", "Firmware", "CI/CD", "Board Bring-up"],
-    industries: ["IoT", "Kamera", "Sikkerhet"],
-    experience: 15,
-    location: "Oslo",
-    description:
-      "Senior embedded-profil med tung erfaring fra komplekse produkter (kamera/IoT) og sikkerhet. Sterk på arkitektur, ytelse, release/infrastruktur og teamledelse.",
-  },
-  {
-    name: "Lars Rudolfsen",
-    image: larsRudolfsen,
-    competence: ["Autonomi", "Regulering", "STM32", "FreeRTOS", "CANopen", "Embedded Linux"],
-    industries: ["Robotikk", "Autonomi", "Industri"],
-    experience: 8,
-    location: "Oslo",
-    description: "Kybernetikk/robotikk-ingeniør med erfaring fra sanntidsstyring og integrasjon i komplekse systemer.",
-  },
-  {
-    name: "Ida Abrahamsson",
-    image: idaAbrahamsson,
-    competence: ["Embedded", "FreeRTOS", "CANopen", "IoT", "AWS", "C/C++"],
-    industries: ["IoT", "Automasjon", "Robotikk"],
-    experience: 10,
-    location: "Oslo",
-    description: "Senior embedded- og kontrollsystemingeniør med bred erfaring fra IoT, automasjon og robotikk.",
-  },
-  {
-    name: "Trine Ø. Olsen",
-    image: trineOlsen,
-    competence: ["Defence", "C2", "RTOS", "Sensor Fusion", "Networking", "Robust Systems"],
-    industries: ["Forsvar", "Sikkerhet", "Taktiske systemer"],
-    experience: 10,
-    location: "Østlandet",
-    description: "Embedded-ingeniør med erfaring fra forsvar og sikkerhetskritiske systemer.",
-  },
-  {
-    name: "Tom Erik Lundesgaard",
-    image: tomErikLundesgaard,
-    competence: ["Embedded", "Bare-metal", "Zigbee", "Test/Debug", "Electronics", "Subsea"],
-    industries: ["Forsvar", "MedTech", "Subsea"],
-    experience: 20,
-    location: "Oslo",
-    description: "Senior embedded-ingeniør med lang fartstid fra forsvar, medtech og subsea.",
-  },
-  {
-    name: "Karl Eirik Bang Fossberg",
-    image: karlEirikFossberg,
-    competence: ["Robotics", "RTOS", "Embedded Linux", "Qt", "IoT", "CI/CD"],
-    industries: ["Robotikk", "Industri", "IoT"],
-    experience: 12,
-    location: "Oslo",
-    description: "Senior embedded med dokumentert leveranse i robotsystemer og industrielle løsninger.",
-  },
-  {
-    name: "Rikke Solbjørg",
-    image: rikkeSolbjorg,
-    competence: ["MedTech", "Yocto", "Embedded Linux", "Verification", "CI/CD", "TDD"],
-    industries: ["MedTech", "Regulert utvikling"],
-    experience: 10,
-    location: "Oslo",
-    description: "Senior embedded-profil med erfaring fra regulert medisinsk utvikling og høy kvalitet.",
-  },
-  {
-    name: "Anders Larsen",
-    image: null,
-    competence: ["C++", "Qt", "Embedded Linux", "Leadership", "Graphics", "Developer Tooling"],
-    industries: ["Plattform", "Grafikk/3D", "Produktutvikling"],
-    experience: 15,
-    location: "Oslo",
-    description: "Senior C++/Qt med ledelseserfaring og produktutvikling i skalerbare team.",
-  },
-  {
-    name: "Trond Hübertz Emaus",
-    image: null,
-    competence: ["Rust", "C++", "Architecture", "Embedded", "CMake/Conan", "System Design"],
-    industries: ["Embedded", "Plattform", "Systemarkitektur"],
-    experience: 12,
-    location: "Oslo",
-    description: "Arkitektursterk systemutvikler som bygger fundament og mønstre som øker teamhastighet.",
-  },
-  {
-    name: "Christian Steffen Poljac",
-    image: christianPoljac,
-    competence: ["Security", "TrustZone", "RTOS", "Firmware", "Zephyr", "ISO15118"],
-    industries: ["EV/Charging", "Halvleder", "Sikkerhet"],
-    experience: 10,
-    location: "Oslo",
-    description: "Senior embedded med tydelig sikkerhetsprofil og erfaring fra EV/charging og SoC.",
-  },
-  {
-    name: "Martin Tysseland",
-    image: martinTysseland,
-    competence: ["Embedded Linux", "Yocto", "C++", "CI/CD", "Docker", "Systems"],
-    industries: ["Produktutvikling", "DevOps", "Embedded"],
-    experience: 8,
-    location: "Oslo",
-    description: "Embedded Linux/Yocto-utvikler med erfaring fra produktutvikling og drift/byggkjeder.",
-  },
-  {
-    name: "Mattis Asp",
-    image: mattisAsp,
-    competence: ["Embedded", "Systems", "C/C++", "Architecture", "Integration"],
-    industries: ["Embedded", "Systemintegrasjon"],
-    experience: 10,
-    location: "Oslo",
-    description: "Erfaren systemutvikler med bred embedded-kompetanse og evne til å levere robuste løsninger.",
-  },
-];
 
 const MANIFEST = [
   {
@@ -276,19 +155,6 @@ const Index = () => {
   const [isHandbookOpen, setIsHandbookOpen] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
-  const localImageMap: Record<string, string> = {
-    "Kacper Wysocki": kacperWysocki,
-    "Lars Rudolfsen": larsRudolfsen,
-    "Ida Abrahamsson": idaAbrahamsson,
-    "Trine Ø. Olsen": trineOlsen,
-    "Tom Erik Lundesgaard": tomErikLundesgaard,
-    "Karl Eirik Bang Fossberg": karlEirikFossberg,
-    "Rikke Solbjørg": rikkeSolbjorg,
-    "Christian Steffen Poljac": christianPoljac,
-    "Martin Tysseland": martinTysseland,
-    "Mattis Asp": mattisAsp,
-  };
-
   const { data: dbConsultants } = useQuery({
     queryKey: ["consultants"],
     queryFn: async () => {
@@ -298,12 +164,12 @@ const Index = () => {
     },
   });
 
-  const consultants = (dbConsultants ?? CONSULTANTS).map((c: any) => ({
+  const consultants = (dbConsultants ?? []).map((c: any) => ({
     name: c.name,
-    image: c.image_url || localImageMap[c.name] || c.image || null,
-    competence: c.competences || c.competence || [],
+    image: c.image_url || null,
+    competence: c.competences || [],
     industries: c.industries || [],
-    experience: c.experience_years ?? c.experience ?? 0,
+    experience: c.experience_years ?? 0,
     location: c.location || "Oslo",
     description: c.description || "",
   }));
@@ -462,6 +328,23 @@ const Index = () => {
             </h2>
           </motion.div>
 
+          {!dbConsultants ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="border border-border overflow-hidden">
+                  <div className="aspect-[4/5] bg-muted animate-pulse" />
+                  <div className="border-t border-border" style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}>
+                    <div className="h-4 w-2/3 bg-muted animate-pulse rounded mb-2" />
+                    <div className="h-3 w-1/3 bg-muted animate-pulse rounded mb-3" />
+                    <div className="flex gap-2">
+                      <div className="h-3 w-16 bg-muted animate-pulse rounded" />
+                      <div className="h-3 w-16 bg-muted animate-pulse rounded" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
           <motion.div {...stagger} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] w-full">
             {consultants.map((c, i) => (
               <motion.div
@@ -520,6 +403,7 @@ const Index = () => {
               </motion.div>
             ))}
           </motion.div>
+          )}
 
           {/* Consultant profile drawer */}
           <AnimatePresence>

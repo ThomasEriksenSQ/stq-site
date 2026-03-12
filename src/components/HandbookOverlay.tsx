@@ -38,7 +38,7 @@ const formatNOK = (n: number) =>
   "kr " + Math.round(n).toLocaleString("nb-NO");
 
 const SalaryCalculator = () => {
-  const [hours, setHours] = useState(157.5);
+  const [hours, setHours] = useState(157);
   const [rate, setRate] = useState(1450);
 
   const monthly = (hours * rate * 0.7) / 1.3;
@@ -58,7 +58,7 @@ const SalaryCalculator = () => {
             type="range"
             min={0}
             max={200}
-            step={0.5}
+            step={1}
             value={hours}
             onChange={(e) => setHours(Number(e.target.value))}
             className="w-full h-2 rounded-full appearance-none cursor-pointer bg-secondary accent-primary"

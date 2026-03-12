@@ -723,6 +723,14 @@ const Index = () => {
                   Karriere
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => setIsHandbookOpen(true)}
+                  className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
+                >
+                  Håndbok
+                </button>
+              </li>
             </ul>
             <p className="mt-7 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
               STACQ AS · 932 575 442 MVA

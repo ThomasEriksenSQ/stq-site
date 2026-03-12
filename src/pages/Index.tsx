@@ -389,14 +389,14 @@ const Index = () => {
                     className="border-t border-border"
                     style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}
                   >
-                    <h3 className="text-[15px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
-                    <div className="flex items-center gap-3 text-[13px] text-muted-foreground mb-2.5">
+                    <h3 className="text-[16px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
+                    <div className="flex items-center gap-3 text-[14px] text-muted-foreground mb-2.5">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>
                     </div>
                     <div className="flex flex-wrap" style={{ gap: "10px" }}>
                       {c.competence.slice(0, 3).map((comp) => (
-                        <span key={comp} className="text-[13px] font-mono whitespace-nowrap">
+                        <span key={comp} className="text-[14px] font-mono whitespace-nowrap">
                           <span className="text-primary">[</span>
                           <span className="text-muted-foreground">&nbsp;{comp}&nbsp;</span>
                           <span className="text-primary">]</span>

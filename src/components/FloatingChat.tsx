@@ -99,7 +99,7 @@ const FloatingChat = () => {
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const responseIndex = useRef<Record<string, number>>({});
+  
 
   const currentSlackMessages = slackRecipient ? (slackMessages[slackRecipient.name] || []) : [];
   const messages = mode === "bot" ? botMessages : currentSlackMessages;

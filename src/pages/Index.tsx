@@ -350,7 +350,7 @@ const Index = () => {
 
           {/* Ingress */}
           <p className="mt-7 text-[20px] text-muted-foreground leading-[2.0] max-w-[620px]">
-            Vi leverer noen av Norges beste spesialister innen embedded systems firmware og lavnivå-programmering.
+            Vi har noen av Norges beste spesialister innen embedded systems firmware og lavnivå-programmering.
           </p>
 
           {/* CTAs */}

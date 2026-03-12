@@ -389,7 +389,7 @@ const Index = () => {
                     className="border-t border-border"
                     style={{ background: "hsl(var(--surface))", padding: "18px 20px" }}
                   >
-                    <h3 className="text-[15px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
+                    <h3 className="text-[16px] font-medium text-foreground leading-snug mb-1.5">{c.name}</h3>
                     <div className="flex items-center gap-3 text-[13px] text-muted-foreground mb-2.5">
                       <span>{c.experience}+ år</span>
                       <span>{c.location}</span>

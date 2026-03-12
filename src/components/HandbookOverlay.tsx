@@ -58,7 +58,7 @@ const SalaryCalculator = () => {
             type="range"
             min={0}
             max={200}
-            step={0.5}
+            step={1}
             value={hours}
             onChange={(e) => setHours(Number(e.target.value))}
             className="w-full h-2 rounded-full appearance-none cursor-pointer bg-secondary accent-primary"

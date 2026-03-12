@@ -191,20 +191,23 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
 
                 <div className="space-y-10">
                   {SECTIONS.map((section) => (
-                    <motion.section key={section.title} variants={fadeUpItem} className="space-y-3">
-                      {section.level === "h2" ? (
-                        <h2 className="text-[26px] font-serif font-semibold text-foreground">{section.title}</h2>
-                      ) : (
-                        <h3 className="text-[22px] font-semibold text-foreground">{section.title}</h3>
-                      )}
-                      {section.content && (
-                        Array.isArray(section.content)
-                          ? <div className="space-y-3 text-muted-foreground text-[17px] leading-[1.95]">
-                              {section.content.map((p, i) => <p key={i}>{p}</p>)}
-                            </div>
-                          : <p className="text-muted-foreground text-[17px] leading-[1.95]">{section.content}</p>
-                      )}
-                    </motion.section>
+                    <div key={section.title} className="contents">
+                      <motion.section variants={fadeUpItem} className="space-y-3">
+                        {section.level === "h2" ? (
+                          <h2 className="text-[26px] font-serif font-semibold text-foreground">{section.title}</h2>
+                        ) : (
+                          <h3 className="text-[22px] font-semibold text-foreground">{section.title}</h3>
+                        )}
+                        {section.content && (
+                          Array.isArray(section.content)
+                            ? <div className="space-y-3 text-muted-foreground text-[17px] leading-[1.95]">
+                                {section.content.map((p, i) => <p key={i}>{p}</p>)}
+                              </div>
+                            : <p className="text-muted-foreground text-[17px] leading-[1.95]">{section.content}</p>
+                        )}
+                      </motion.section>
+                      {section.afterSlot === "calculator" && <SalaryCalculator />}
+                    </div>
                   ))}
                 </div>
               </div>

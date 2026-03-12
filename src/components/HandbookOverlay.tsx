@@ -92,6 +92,10 @@ const SalaryCalculator = () => {
           <span className="font-mono font-semibold text-foreground">{formatNOK(yearly)}</span>
         </div>
       </div>
+
+      <p className="text-[13px] text-muted-foreground italic mt-3">
+        Lønnskalkulatoren er et beregnet estimat, avvik vil forekomme. Utregning av reelle lønn blir formidlet ved utbetaling av lønn.
+      </p>
     </motion.section>
   );
 };

@@ -342,7 +342,7 @@ const Index = () => {
               className="font-serif text-foreground mb-14"
               style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
             >
-              Konsulentene.
+              Ingeniørene.
             </h2>
           </motion.div>
 

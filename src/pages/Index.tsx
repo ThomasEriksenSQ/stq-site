@@ -627,9 +627,6 @@ const Index = () => {
                 </button>
               </li>
             </ul>
-            <p className="mt-7 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
-              STACQ AS<br />932 575 442 MVA
-            </p>
           </div>
 
           {/* Kontakt oss */}

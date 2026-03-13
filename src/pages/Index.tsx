@@ -211,7 +211,7 @@ const Index = () => {
 
           {/* Overline */}
           <p className="text-[13px] tracking-[0.18em] uppercase font-mono text-primary/80 mb-5">
-            Konsulentselskap — Oslo, Trondheim, Norge
+            Konsulentselskap — Oslo, Trondheim, Kongsberg, Norge
           </p>
 
           {/* H1 */}

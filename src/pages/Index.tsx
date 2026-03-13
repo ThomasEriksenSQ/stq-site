@@ -159,18 +159,14 @@ const Index = () => {
     queryFn: async () => {
       const { data, error } = await supabase.from("consultants").select("*").eq("active", true);
       if (error) throw error;
-      const arr = [...(data || [])];
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      // Sort so ikke_startet = true always appear last
-      arr.sort((a, b) => {
-        const aLast = a.ikke_startet ? 1 : 0;
-        const bLast = b.ikke_startet ? 1 : 0;
-        return aLast - bLast;
+      const getLastName = (name: string) => name.trim().split(' ').slice(-1)[0].toLowerCase();
+      const sorted = [...(data || [])].sort((a, b) => {
+        const aLast = a.ikke_startet ?? false;
+        const bLast = b.ikke_startet ?? false;
+        if (aLast !== bLast) return aLast ? 1 : -1;
+        return getLastName(a.name).localeCompare(getLastName(b.name), 'nb');
       });
-      return arr;
+      return sorted;
     },
   });
 

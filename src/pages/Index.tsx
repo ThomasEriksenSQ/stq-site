@@ -609,10 +609,10 @@ const Index = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollTo("career")}
+                  onClick={() => setIsJobOverlayOpen(true)}
                   className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
                 >
-                  Karriere
+                  Stilling ledig
                 </button>
               </li>
               <li>

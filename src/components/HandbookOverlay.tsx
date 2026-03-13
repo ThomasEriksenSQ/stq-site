@@ -220,7 +220,7 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
             <div className="px-6 md:px-[88px] py-6 border-t border-border mt-auto">
               <div className="max-w-[640px] w-full">
                 <p className="text-[13px] text-muted-foreground">
-                  STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 931 871 389
+                  STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 932 575 442 MVA
                 </p>
               </div>
             </div>

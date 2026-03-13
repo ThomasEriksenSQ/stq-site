@@ -78,7 +78,7 @@ const COMPETENCE_GROUPS = [
   {
     hex: "0x04",
     title: "Protokoller og kommunikasjon",
-    description: "Kommunikasjon mellom embedded systemer og andre systemer.",
+    description: "Kommunikasjon mellom embedded systemer, sensorer og eksterne systemer.",
     tags: ["SPI / I2C / UART", "CAN / CANopen", "TCP/IP", "Industrielle protokoller"],
   },
   {

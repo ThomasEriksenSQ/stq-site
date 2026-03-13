@@ -164,6 +164,12 @@ const Index = () => {
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
+      // Sort so ikke_startet = true always appear last
+      arr.sort((a, b) => {
+        const aLast = a.ikke_startet ? 1 : 0;
+        const bLast = b.ikke_startet ? 1 : 0;
+        return aLast - bLast;
+      });
       return arr;
     },
   });

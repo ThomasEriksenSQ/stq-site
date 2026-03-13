@@ -560,8 +560,7 @@ const Index = () => {
               Vi ser etter deg.
             </h2>
             <p className="mt-8 text-[17px] text-muted-foreground leading-[1.95] max-w-[420px]">
-              Er du senior embedded-ingeniør med erfaring fra reelle produkter i produksjon? Vi er alltid interessert i
-              å snakke med de riktige menneskene.
+              Vi er alltid interessert i å snakke med de riktige menneskene.
             </p>
             <div className="mt-9">
               <button

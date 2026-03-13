@@ -121,7 +121,7 @@ const MANIFEST = [
   {
     num: "01",
     title: "Solid fagkompetanse.",
-    text: "Alle har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
+    text: "Vi har lang erfaring fra systemer i produksjon og er vant til å ta tekniske beslutninger der kvalitet og stabilitet er avgjørende.",
   },
   {
     num: "02",

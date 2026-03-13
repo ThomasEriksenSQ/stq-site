@@ -26,7 +26,7 @@ import PcbPattern from "@/components/PcbPattern";
 import ConsultantInquiry from "@/components/ConsultantInquiry";
 import HandbookOverlay from "@/components/HandbookOverlay";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
-import robotAvatar from "@/assets/robot-avatar.png";
+import RobotAvatar from "@/components/RobotAvatar";
 
 const TICKER_ITEMS = [
   "C",

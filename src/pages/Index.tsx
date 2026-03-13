@@ -84,7 +84,7 @@ const COMPETENCE_GROUPS = [
   {
     hex: "0x05",
     title: "Programmering",
-    description: null,
+    description: "Programvareutvikling for embedded- og systemnære miljøer.",
     tags: ["C", "C++", "Rust", "Python", "Assembly", "Bash"],
   },
   {

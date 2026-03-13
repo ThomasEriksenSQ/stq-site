@@ -9,14 +9,18 @@ import {
   MapPin,
   Linkedin,
   X,
-  Activity,
   Cpu,
   Zap,
   Smartphone,
   Shield,
-  Cog,
   Radio,
   Wifi,
+  HeartPulse,
+  Settings2,
+  Anchor,
+  Gauge,
+  Bot,
+  Waves,
 } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";

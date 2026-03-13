@@ -26,7 +26,7 @@ import PcbPattern from "@/components/PcbPattern";
 import ConsultantInquiry from "@/components/ConsultantInquiry";
 import HandbookOverlay from "@/components/HandbookOverlay";
 import stacqLogoWhite from "@/assets/stacq-logo-white.png";
-import robotAvatar from "@/assets/robot-avatar.png";
+import RobotAvatar from "@/components/RobotAvatar";
 
 const TICKER_ITEMS = [
   "C",
@@ -378,14 +378,7 @@ const Index = () => {
                         />
                       </div>
                     ) : (
-                      <div className="aspect-[4/5] overflow-hidden bg-secondary">
-                        <img
-                          src={robotAvatar}
-                          alt={`${c.name} avatar`}
-                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
-                          style={{ filter: "grayscale(12%) brightness(0.92)" }}
-                        />
-                      </div>
+                      <RobotAvatar className="aspect-[4/5] w-full" />
                     )}
                     <div
                       className="border-t border-border"
@@ -450,12 +443,7 @@ const Index = () => {
                           style={{ borderRadius: "2px" }}
                         />
                       ) : (
-                        <img
-                          src={robotAvatar}
-                          alt={`${consultants[expandedConsultant].name} avatar`}
-                          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
-                          style={{ borderRadius: "2px" }}
-                        />
+                        <RobotAvatar className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0" />
                       )}
                       <div className="pt-1">
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">

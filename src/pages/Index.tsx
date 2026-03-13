@@ -67,7 +67,7 @@ const COMPETENCE_GROUPS = [
     hex: "0x02",
     title: "Sanntidssystemer",
     description: "Systemer der stabilitet, timing og determinisme er kritisk.",
-    tags: ["RTOS (FreeRTOS, Zephyr, ThreadX)", "Multitråding", "Interrupt-styrte systemer", "Ytelsesoptimalisering"],
+    tags: ["FreeRTOS", "Zephyr", "ThreadX", "Multithreading", "Interrupt-driven systems"],
   },
   {
     hex: "0x03",

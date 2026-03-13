@@ -1,4 +1,4 @@
-const ASCII_ROBOT = `
+const ASCII_ROBOT = `   
    ┌────────────┐
    │  ○      ○  │
    │     ──     │

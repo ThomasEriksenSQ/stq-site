@@ -280,7 +280,7 @@ const Index = () => {
 
       {/* ── Kompetanse ── */}
       <section id="competence" style={{ background: "hsl(var(--surface))", padding: "80px 10vw" }}>
-        <motion.div {...fadeUp} className="max-w-3xl">
+        <motion.div {...fadeUp} className="max-w-4xl">
           <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Kompetanse</p>
           <h2
             className="font-serif text-foreground"

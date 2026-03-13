@@ -60,7 +60,7 @@ const COMPETENCE_GROUPS = [
     hex: "0x01",
     title: "Embedded systemer",
     description:
-      "Utvikling av komplette embedded systemer — fra firmware på mikrokontrollere til Linux-baserte produkter.",
+      "Utvikling av embedded systemer – fra firmware på mikrokontrollere til Linux-baserte produkter og integrerte plattformer.",
     tags: ["Firmware", "Embedded Linux", "Yocto / Buildroot", "Linux-kjerne og drivere"],
   },
   {

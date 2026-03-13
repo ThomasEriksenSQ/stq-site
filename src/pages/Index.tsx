@@ -85,7 +85,7 @@ const COMPETENCE_GROUPS = [
     hex: "0x05",
     title: "Programmering",
     description: null,
-    tags: ["C", "C++", "Rust", "Python", "Assembly"],
+    tags: ["C", "C++", "Rust", "Python", "Assembly", "Bash"],
   },
   {
     hex: "0x06",

@@ -508,7 +508,7 @@ const Index = () => {
       </section>
 
       {/* ── Bransjer ── */}
-      <section style={{ background: "hsl(var(--surface))", padding: "80px 10vw" }}>
+      <section id="industries" style={{ background: "hsl(var(--surface))", padding: "80px 10vw" }}>
         <motion.div {...fadeUp} className="max-w-2xl">
           <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Bransjer</p>
           <h2

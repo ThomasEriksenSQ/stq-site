@@ -604,10 +604,26 @@ const Index = () => {
             <ul className="space-y-3">
               <li>
                 <button
+                  onClick={() => scrollTo("competence")}
+                  className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
+                >
+                  Kompetanse
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => scrollTo("consultants")}
                   className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
                 >
                   Konsulenter
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollTo("industries")}
+                  className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
+                >
+                  Bransjer
                 </button>
               </li>
               <li>

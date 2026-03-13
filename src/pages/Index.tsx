@@ -508,7 +508,7 @@ const Index = () => {
       </section>
 
       {/* ── Bransjer ── */}
-      <section style={{ background: "hsl(var(--surface))", padding: "80px 10vw" }}>
+      <section id="industries" style={{ background: "hsl(var(--surface))", padding: "80px 10vw" }}>
         <motion.div {...fadeUp} className="max-w-2xl">
           <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Bransjer</p>
           <h2
@@ -604,10 +604,26 @@ const Index = () => {
             <ul className="space-y-3">
               <li>
                 <button
+                  onClick={() => scrollTo("competence")}
+                  className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
+                >
+                  Kompetanse
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => scrollTo("consultants")}
                   className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
                 >
                   Konsulenter
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollTo("industries")}
+                  className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
+                >
+                  Bransjer
                 </button>
               </li>
               <li>

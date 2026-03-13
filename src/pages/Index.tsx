@@ -225,7 +225,7 @@ const Index = () => {
           </h1>
 
           {/* Ingress */}
-          <p className="mt-7 text-[20px] text-muted-foreground leading-[2.0] max-w-[620px]">
+          <p className="mt-7 text-[20px] text-muted-foreground leading-[2.0] max-w-[750px]">
             Vi har noen av Norges fremste spesialister innen embedded systems, firmware og lavnivå-programmering.
           </p>
 

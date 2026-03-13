@@ -443,12 +443,7 @@ const Index = () => {
                           style={{ borderRadius: "2px" }}
                         />
                       ) : (
-                        <img
-                          src={robotAvatar}
-                          alt={`${consultants[expandedConsultant].name} avatar`}
-                          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
-                          style={{ borderRadius: "2px" }}
-                        />
+                        <RobotAvatar className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0" />
                       )}
                       <div className="pt-1">
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">

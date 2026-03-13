@@ -589,7 +589,7 @@ const Index = () => {
               className="text-[15px] tracking-[0.04em] font-mono leading-[1.85]"
               style={{ color: "hsl(var(--text-faint))" }}
             >
-              Der stakken begynner.
+              Spesialister på embedded-systemer og lavnivå-programmering.
             </p>
           </div>
 

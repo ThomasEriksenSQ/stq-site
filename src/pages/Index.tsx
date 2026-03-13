@@ -286,7 +286,7 @@ const Index = () => {
             className="font-serif text-foreground"
             style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
           >
-            Lavnivå. Høy presisjon.
+            Teknisk dybde. Robuste løsninger.
           </h2>
         </motion.div>
 

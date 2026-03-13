@@ -91,7 +91,7 @@ const COMPETENCE_GROUPS = [
     hex: "0x06",
     title: "Testing og kvalitet",
     description: "Robuste systemer krever systematisk testing.",
-    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Sikker firmware"],
+    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Automatisert testing"],
   },
 ];
 

@@ -612,7 +612,7 @@ const Index = () => {
                   onClick={() => setIsJobOverlayOpen(true)}
                   className="text-[15px] text-muted-foreground hover:text-foreground transition-colors leading-[1.85]"
                 >
-                  Stilling ledig
+                  Karriere
                 </button>
               </li>
               <li>

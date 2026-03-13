@@ -9,14 +9,18 @@ import {
   MapPin,
   Linkedin,
   X,
-  Activity,
   Cpu,
   Zap,
   Smartphone,
   Shield,
-  Cog,
   Radio,
   Wifi,
+  HeartPulse,
+  Settings2,
+  Anchor,
+  Gauge,
+  Bot,
+  Waves,
 } from "lucide-react";
 import OverlayPanel from "@/components/OverlayPanel";
 import FloatingChat from "@/components/FloatingChat";
@@ -96,24 +100,32 @@ const COMPETENCE_GROUPS = [
 ];
 
 const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
-  "Medisinsk teknologi": Activity,
-  "Halvleder og chip-utvikling": Cpu,
-  "Energi og elektrisk mobilitet": Zap,
-  Forbrukerelektronikk: Smartphone,
-  "Forsvar og sikkerhetskritiske systemer": Shield,
-  "Industriell automasjon": Cog,
-  "Telekom og kommunikasjon": Radio,
+  "Forsvar og forsvarsteknologi": Shield,
+  "Halvlederindustri": Cpu,
+  "Medisinsk teknologi": HeartPulse,
+  "Industriell automasjon": Settings2,
+  "Maritim industri": Anchor,
+  "Telekommunikasjon": Radio,
+  "Test- og målesystemer": Gauge,
+  "Energi og elektriske kjøretøy": Zap,
+  "Industriell robotikk": Bot,
+  "Forbrukerelektronikk": Smartphone,
+  "Subsea og offshore teknologi": Waves,
   "IoT og smarte enheter": Wifi,
 };
 
 const DOMAINS = [
+  "Forsvar og forsvarsteknologi",
+  "Halvlederindustri",
   "Medisinsk teknologi",
-  "Halvleder og chip-utvikling",
-  "Energi og elektrisk mobilitet",
-  "Forbrukerelektronikk",
-  "Forsvar og sikkerhetskritiske systemer",
   "Industriell automasjon",
-  "Telekom og kommunikasjon",
+  "Maritim industri",
+  "Telekommunikasjon",
+  "Test- og målesystemer",
+  "Energi og elektriske kjøretøy",
+  "Industriell robotikk",
+  "Forbrukerelektronikk",
+  "Subsea og offshore teknologi",
   "IoT og smarte enheter",
 ];
 

@@ -378,14 +378,7 @@ const Index = () => {
                         />
                       </div>
                     ) : (
-                      <div className="aspect-[4/5] overflow-hidden bg-secondary">
-                        <img
-                          src={robotAvatar}
-                          alt={`${c.name} avatar`}
-                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
-                          style={{ filter: "grayscale(12%) brightness(0.92)" }}
-                        />
-                      </div>
+                      <RobotAvatar className="aspect-[4/5] w-full" />
                     )}
                     <div
                       className="border-t border-border"

@@ -71,6 +71,9 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
       setSubmitted(false);
       setForm({ name: "", email: "", phone: "", message: "" });
       setFileName("");
+      setFile(null);
+      setErrorMsg("");
+      setEmailError("");
     }, 300);
   };
 

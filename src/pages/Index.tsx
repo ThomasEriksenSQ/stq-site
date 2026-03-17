@@ -164,6 +164,7 @@ const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [isHandbookOpen, setIsHandbookOpen] = useState(false);
+  const [handbookOpenedFromJob, setHandbookOpenedFromJob] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
   const { data: dbConsultants } = useQuery({

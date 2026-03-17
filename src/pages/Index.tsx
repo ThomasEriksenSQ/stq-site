@@ -457,11 +457,11 @@ const Index = () => {
                         <img
                           src={consultants[expandedConsultant].image}
                           alt={consultants[expandedConsultant].name}
-                          className="w-[100px] h-[133px] object-cover flex-shrink-0"
-                          style={{ objectPosition: consultants[expandedConsultant].imagePosition }}
-                        />
-                      ) : (
-                        <RobotAvatar className="w-[100px] h-[133px] flex-shrink-0" fontSize="6px" />
+                           className="w-[120px] h-[160px] object-cover flex-shrink-0"
+                           style={{ objectPosition: consultants[expandedConsultant].imagePosition }}
+                         />
+                       ) : (
+                        <RobotAvatar className="w-[120px] h-[160px] flex-shrink-0" fontSize="8px" />
                       )}
                       <div>
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">

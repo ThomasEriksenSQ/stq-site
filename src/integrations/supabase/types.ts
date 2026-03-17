@@ -148,7 +148,6 @@ export type Database = {
           experience_years: number | null
           id: string
           ikke_startet: boolean | null
-          image_position: string | null
           image_url: string | null
           industries: string[] | null
           location: string | null
@@ -168,7 +167,6 @@ export type Database = {
           experience_years?: number | null
           id?: string
           ikke_startet?: boolean | null
-          image_position?: string | null
           image_url?: string | null
           industries?: string[] | null
           location?: string | null
@@ -188,7 +186,6 @@ export type Database = {
           experience_years?: number | null
           id?: string
           ikke_startet?: boolean | null
-          image_position?: string | null
           image_url?: string | null
           industries?: string[] | null
           location?: string | null

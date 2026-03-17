@@ -164,6 +164,7 @@ const Index = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isJobOverlayOpen, setIsJobOverlayOpen] = useState(false);
   const [isHandbookOpen, setIsHandbookOpen] = useState(false);
+  const [handbookOpenedFromJob, setHandbookOpenedFromJob] = useState(false);
   const [expandedConsultant, setExpandedConsultant] = useState<number | null>(null);
 
   const { data: dbConsultants } = useQuery({
@@ -726,9 +727,14 @@ const Index = () => {
         onOpenHandbok={() => {
           setIsJobOverlayOpen(false);
           setIsHandbookOpen(true);
+          setHandbookOpenedFromJob(true);
         }}
       />
-      <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
+      <HandbookOverlay
+        isOpen={isHandbookOpen}
+        onClose={() => { setIsHandbookOpen(false); setHandbookOpenedFromJob(false); }}
+        onBack={handbookOpenedFromJob ? () => { setIsHandbookOpen(false); setHandbookOpenedFromJob(false); setIsJobOverlayOpen(true); } : undefined}
+      />
       
       <FloatingChat />
     </div>

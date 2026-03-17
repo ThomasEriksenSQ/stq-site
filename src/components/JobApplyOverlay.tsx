@@ -189,11 +189,14 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   
                     </label>
 
+                    {errorMsg && <p className="text-[13px] text-destructive">{errorMsg}</p>}
+
                     <button
                   type="submit"
-                  className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg text-[15px] font-medium hover:opacity-90 transition-opacity">
+                  disabled={loading}
+                  className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg text-[15px] font-medium hover:opacity-90 transition-opacity disabled:opacity-50">
                   
-                      Send søknad →
+                      {loading ? "Sender..." : "Send søknad →"}
                     </button>
                   </form>
 

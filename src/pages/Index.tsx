@@ -457,7 +457,7 @@ const Index = () => {
                           src={consultants[expandedConsultant].image}
                           alt={consultants[expandedConsultant].name}
                           className="w-[100px] h-[133px] object-cover flex-shrink-0"
-                          style={{ objectPosition: consultants[expandedConsultant].imagePosition || 'center top' }}
+                          />
                         />
                       ) : (
                         <RobotAvatar className="w-[100px] h-[133px] flex-shrink-0" />

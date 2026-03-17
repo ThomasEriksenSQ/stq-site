@@ -138,6 +138,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const [isJobOpen, setIsJobOpen] = useState(false);
   const [isHandbookOpen, setIsHandbookOpen] = useState(false);
+  const [handbookFromJob, setHandbookFromJob] = useState(false);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -332,8 +333,8 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             </div>
           </motion.div>
 
-          <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} onOpenHandbok={() => { setIsJobOpen(false); setIsHandbookOpen(true); }} />
-          <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
+          <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} onOpenHandbok={() => { setIsJobOpen(false); setHandbookFromJob(true); setIsHandbookOpen(true); }} />
+          <HandbookOverlay isOpen={isHandbookOpen} onClose={() => { setIsHandbookOpen(false); setHandbookFromJob(false); }} onBack={handbookFromJob ? () => { setIsHandbookOpen(false); setHandbookFromJob(false); setIsJobOpen(true); } : undefined} />
         </div>
       )}
     </AnimatePresence>

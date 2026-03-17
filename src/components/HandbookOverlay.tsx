@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface HandbookOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onBack?: () => void;
 }
 
 const slideSecondary = {
@@ -148,7 +149,7 @@ const SECTIONS: Section[] = [
   { title: "Sluttattest", level: "h3", content: "Ved avslutning av arbeidsforholdet vil du motta en sluttattest fra oss. Denne attesten vil dokumentere lengden på din ansettelse og detaljert beskrive de arbeidsoppgavene du har utført." },
 ];
 
-const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
+const HandbookOverlay = ({ isOpen, onClose, onBack }: HandbookOverlayProps) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -169,7 +170,7 @@ const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
             <div className="sticky top-0 z-10 px-6 md:px-[88px] py-4 bg-background border-b border-border">
               <div className="max-w-[640px] w-full">
                 <button
-                  onClick={onClose}
+                  onClick={onBack || onClose}
                   className="flex items-center gap-1.5 text-accent hover:underline text-[13px]"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>

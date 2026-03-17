@@ -461,7 +461,7 @@ const Index = () => {
                           style={{ objectPosition: consultants[expandedConsultant].imagePosition }}
                         />
                       ) : (
-                        <RobotAvatar className="w-[100px] h-[133px] flex-shrink-0 overflow-hidden" />
+                        <RobotAvatar className="w-[100px] h-[133px] flex-shrink-0" fontSize="6px" />
                       )}
                       <div>
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">

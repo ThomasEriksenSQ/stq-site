@@ -451,15 +451,16 @@ const Index = () => {
                     </button>
 
                     {/* Profile header */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-start gap-4">
                       {consultants[expandedConsultant].image ? (
                         <img
                           src={consultants[expandedConsultant].image}
                           alt={consultants[expandedConsultant].name}
-                          className="w-[80px] h-[80px] object-cover flex-shrink-0"
+                          className="w-[100px] h-[133px] object-cover flex-shrink-0"
+                          style={{ objectPosition: consultants[expandedConsultant].imagePosition || 'center top' }}
                         />
                       ) : (
-                        <RobotAvatar className="w-[80px] h-[80px] flex-shrink-0" />
+                        <RobotAvatar className="w-[100px] h-[133px] flex-shrink-0" />
                       )}
                       <div>
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
@@ -470,7 +471,7 @@ const Index = () => {
                           <span>{consultants[expandedConsultant].location}</span>
                         </div>
                         {(consultants[expandedConsultant].education_1 || consultants[expandedConsultant].education_2) && (
-                          <div className="mt-2 flex flex-col gap-0.5 text-[14px] text-muted-foreground">
+                          <div className="mt-2 flex flex-col gap-0.5" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', color: 'hsl(var(--muted-foreground))' }}>
                             {consultants[expandedConsultant].education_1 && (
                               <span>{consultants[expandedConsultant].education_1}</span>
                             )}

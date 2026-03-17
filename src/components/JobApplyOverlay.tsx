@@ -183,9 +183,9 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                       </span>
                       <input
                     type="file"
-                    accept=".pdf,.doc,.docx"
+                    accept=".pdf"
                     className="hidden"
-                    onChange={(e) => setFileName(e.target.files?.[0]?.name || "")} />
+                    onChange={(e) => { const f = e.target.files?.[0]; setFileName(f?.name || ""); setFile(f || null); }} />
                   
                     </label>
 

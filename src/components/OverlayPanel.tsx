@@ -333,7 +333,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           </motion.div>
 
           <JobOverlay isOpen={isJobOpen} onClose={() => setIsJobOpen(false)} onOpenHandbok={() => { setIsJobOpen(false); setIsHandbookOpen(true); }} />
-          <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
+          <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} onBack={isJobOpen || true ? () => { setIsHandbookOpen(false); setIsJobOpen(true); } : undefined} />
         </div>
       )}
     </AnimatePresence>

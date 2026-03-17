@@ -259,22 +259,14 @@ const FloatingChat = () => {
           className="bg-card border border-border overflow-hidden"
           style={{ borderRadius: '2px' }}
         >
-          <div className="flex items-center justify-between px-4 pt-3 pb-2">
-            <div className="flex items-center gap-1">
-              {tabBtn("bot", <Bot className="w-3.5 h-3.5" />, "STACQ-AI")}
-              {tabBtn("slack", <MessageSquare className="w-3.5 h-3.5" />, "Chat direkte")}
-            </div>
-            <button onClick={handleClose} className="w-7 h-7 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-              <X className="w-3.5 h-3.5" />
-            </button>
-          </div>
-          <div className="px-3 pb-3">
+          <div className="px-3 py-3">
             <div className="flex items-center gap-2">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onFocus={handleExpand}
+                onClick={handleExpand}
                 placeholder="Spør vår AI eller chat direkte med oss"
                 className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[15px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
                 style={{ borderRadius: '2px' }}
@@ -309,9 +301,18 @@ const FloatingChat = () => {
             {tabBtn("bot", <Bot className="w-3.5 h-3.5" />, "STACQ-AI")}
             {tabBtn("slack", <MessageSquare className="w-3.5 h-3.5" />, "Chat direkte")}
           </div>
-          <button onClick={handleClose} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+              title="Minimer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button onClick={handleClose} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Content */}

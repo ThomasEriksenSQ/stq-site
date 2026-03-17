@@ -20,7 +20,7 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
     const { error } = await supabase.from("website_leads").insert({
       email: email.trim(),
       consultant_name: consultantName,
-      message: "Forespørsel om tilgjengelighet",
+      message: "Forespørsel om tilgjengelighet"
     });
 
     if (error) {
@@ -37,8 +37,8 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
         <p className="text-[15px] text-muted-foreground">
           Takk! Vi tar kontakt med deg snart.
         </p>
-      </div>
-    );
+      </div>);
+
   }
 
   return (
@@ -46,9 +46,9 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
       <p className="text-[16px] font-semibold text-foreground mb-2">
         Er {firstName} tilgjengelig?
       </p>
-      <p className="text-[14px] text-muted-foreground mb-5">
-        Legg igjen e-posten din så tar vi kontakt.
-      </p>
+      
+
+      
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -63,14 +63,14 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
             fontFamily: "'IBM Plex Mono', monospace",
             background: "hsl(var(--surface))",
             borderRadius: "2px",
-            padding: "12px 16px",
-          }}
-        />
-        {status === "error" && (
-          <p className="text-[13px] mt-2" style={{ color: "hsl(var(--accent))" }}>
+            padding: "12px 16px"
+          }} />
+        
+        {status === "error" &&
+        <p className="text-[13px] mt-2" style={{ color: "hsl(var(--accent))" }}>
             Noe gikk galt. Prøv igjen.
           </p>
-        )}
+        }
         <button
           type="submit"
           disabled={!isValidEmail || status === "sending"}
@@ -80,14 +80,14 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
             background: "hsl(var(--accent))",
             color: "#09090B",
             padding: "12px 20px",
-            borderRadius: "2px",
-          }}
-        >
+            borderRadius: "2px"
+          }}>
+          
           {status === "sending" ? "Sender..." : "Sjekk tilgjengelighet →"}
         </button>
       </form>
-    </div>
-  );
+    </div>);
+
 };
 
 export default ConsultantInquiry;

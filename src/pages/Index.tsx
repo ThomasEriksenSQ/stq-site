@@ -193,7 +193,7 @@ const Index = () => {
     description: c.description || "",
     education_1: c.education_1 || "",
     education_2: c.education_2 || "",
-    imagePosition: c.image_position || 'center center',
+    imagePosition: c.bilde_posisjon || '50% 50%',
   }));
 
   const scrollTo = (id: string) => {

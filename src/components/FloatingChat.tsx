@@ -301,9 +301,18 @@ const FloatingChat = () => {
             {tabBtn("bot", <Bot className="w-3.5 h-3.5" />, "STACQ-AI")}
             {tabBtn("slack", <MessageSquare className="w-3.5 h-3.5" />, "Chat direkte")}
           </div>
-          <button onClick={handleClose} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+              title="Minimer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button onClick={handleClose} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Content */}

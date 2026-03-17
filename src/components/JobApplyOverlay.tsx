@@ -107,7 +107,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center pt-20">
                   <h2 className="text-[28px] font-bold text-foreground">Takk for søknaden!</h2>
                   <p className="mt-4 text-muted-foreground text-[16px] leading-relaxed">
-                    Vi har mottatt din søknad og tar kontakt innen kort tid.
+                    Takk! Vi har mottatt søknaden din og tar kontakt snart.
                   </p>
                   <button
                 onClick={handleClose}

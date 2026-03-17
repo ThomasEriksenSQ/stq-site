@@ -470,6 +470,16 @@ const Index = () => {
                           <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
                           <span>{consultants[expandedConsultant].location}</span>
                         </div>
+                        {(consultants[expandedConsultant].education_1 || consultants[expandedConsultant].education_2) && (
+                          <div className="mt-2 flex flex-col gap-0.5 text-[14px] text-muted-foreground">
+                            {consultants[expandedConsultant].education_1 && (
+                              <span>{consultants[expandedConsultant].education_1}</span>
+                            )}
+                            {consultants[expandedConsultant].education_2 && (
+                              <span>{consultants[expandedConsultant].education_2}</span>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
 

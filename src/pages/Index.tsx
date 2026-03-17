@@ -191,6 +191,8 @@ const Index = () => {
     experience: c.experience_years ?? 0,
     location: c.location || "Oslo",
     description: c.description || "",
+    education_1: c.education_1 || "",
+    education_2: c.education_2 || "",
   }));
 
   const scrollTo = (id: string) => {

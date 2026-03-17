@@ -278,6 +278,12 @@ const FloatingChat = () => {
               >
                 <Send className="w-4 h-4" />
               </button>
+              <button
+                onClick={handleClose}
+                className="flex items-center justify-center w-9 h-9 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </motion.div>

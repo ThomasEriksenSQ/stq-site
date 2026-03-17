@@ -390,7 +390,7 @@ const Index = () => {
                           src={c.image}
                           alt={c.name}
                           className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
-                          style={{ filter: "grayscale(12%) brightness(0.92)" }}
+                          style={{ filter: "grayscale(12%) brightness(0.92)", objectPosition: c.imagePosition }}
                           onMouseEnter={(e) => (e.currentTarget.style.filter = "grayscale(0%) brightness(1.0)")}
                           onMouseLeave={(e) => (e.currentTarget.style.filter = "grayscale(12%) brightness(0.92)")}
                         />

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface HandbookOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onBack?: () => void;
 }
 
 const slideSecondary = {

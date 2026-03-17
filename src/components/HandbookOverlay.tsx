@@ -149,7 +149,7 @@ const SECTIONS: Section[] = [
   { title: "Sluttattest", level: "h3", content: "Ved avslutning av arbeidsforholdet vil du motta en sluttattest fra oss. Denne attesten vil dokumentere lengden på din ansettelse og detaljert beskrive de arbeidsoppgavene du har utført." },
 ];
 
-const HandbookOverlay = ({ isOpen, onClose }: HandbookOverlayProps) => {
+const HandbookOverlay = ({ isOpen, onClose, onBack }: HandbookOverlayProps) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();

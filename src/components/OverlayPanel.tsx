@@ -138,6 +138,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const [isJobOpen, setIsJobOpen] = useState(false);
   const [isHandbookOpen, setIsHandbookOpen] = useState(false);
+  const [handbookFromJob, setHandbookFromJob] = useState(false);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {

@@ -730,7 +730,11 @@ const Index = () => {
           setHandbookOpenedFromJob(true);
         }}
       />
-      <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />
+      <HandbookOverlay
+        isOpen={isHandbookOpen}
+        onClose={() => { setIsHandbookOpen(false); setHandbookOpenedFromJob(false); }}
+        onBack={handbookOpenedFromJob ? () => { setIsHandbookOpen(false); setHandbookOpenedFromJob(false); setIsJobOverlayOpen(true); } : undefined}
+      />
       
       <FloatingChat />
     </div>

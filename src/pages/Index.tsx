@@ -451,18 +451,17 @@ const Index = () => {
                     </button>
 
                     {/* Profile header */}
-                    <div className="flex items-start gap-6">
+                    <div className="flex items-center gap-3">
                       {consultants[expandedConsultant].image ? (
                         <img
                           src={consultants[expandedConsultant].image}
                           alt={consultants[expandedConsultant].name}
-                          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
-                          style={{ borderRadius: "2px" }}
+                          className="w-[80px] h-[80px] object-cover flex-shrink-0 rounded-full"
                         />
                       ) : (
-                        <RobotAvatar className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0" />
+                        <RobotAvatar className="w-[80px] h-[80px] flex-shrink-0 rounded-full" />
                       )}
-                      <div className="pt-1">
+                      <div>
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
                           {consultants[expandedConsultant].name}
                         </h3>

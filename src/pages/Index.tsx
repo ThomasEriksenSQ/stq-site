@@ -456,10 +456,10 @@ const Index = () => {
                         <img
                           src={consultants[expandedConsultant].image}
                           alt={consultants[expandedConsultant].name}
-                          className="w-[80px] h-[80px] object-cover flex-shrink-0 rounded-full"
+                          className="w-[80px] h-[80px] object-cover flex-shrink-0"
                         />
                       ) : (
-                        <RobotAvatar className="w-[80px] h-[80px] flex-shrink-0 rounded-full" />
+                        <RobotAvatar className="w-[80px] h-[80px] flex-shrink-0" />
                       )}
                       <div>
                         <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">

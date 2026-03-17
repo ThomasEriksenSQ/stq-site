@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Upload } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface JobApplyOverlayProps {
   isOpen: boolean;
@@ -11,11 +12,57 @@ interface JobApplyOverlayProps {
 const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [emailError, setEmailError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMsg("");
+    setEmailError("");
+
+    if (!isValidEmail(form.email)) {
+      setEmailError("Vennligst oppgi en gyldig e-postadresse.");
+      return;
+    }
+
+    setLoading(true);
+
+    let cvUrl: string | null = null;
+
+    // Upload CV if provided
+    if (file) {
+      const safeName = form.name.toLowerCase().replace(/\s+/g, "-");
+      const filePath = `${Date.now()}-${safeName}.pdf`;
+      const { error: uploadError } = await supabase.storage
+        .from("cvs")
+        .upload(filePath, file, { contentType: "application/pdf" });
+
+      if (!uploadError) {
+        const { data } = supabase.storage.from("cvs").getPublicUrl(filePath);
+        cvUrl = data.publicUrl;
+      }
+      // If upload fails, continue without cv_url
+    }
+
+    const { error } = await supabase.from("website_applications").insert({
+      full_name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim() || null,
+      cv_url: cvUrl,
+    });
+
+    setLoading(false);
+
+    if (error) {
+      setErrorMsg("Noe gikk galt. Prøv igjen eller send e-post direkte til post@stacq.no.");
+    } else {
+      setSubmitted(true);
+    }
   };
 
   const handleClose = () => {

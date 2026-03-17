@@ -267,7 +267,7 @@ const FloatingChat = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onFocus={handleExpand}
                 onClick={handleExpand}
-                placeholder="Spør vår AI eller chat direkte med oss"
+                placeholder="Send oss en Slack melding"
                 className="flex-1 bg-background text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-[15px] font-mono outline-none border border-border focus:border-primary/40 transition-colors"
                 style={{ borderRadius: '2px' }}
               />

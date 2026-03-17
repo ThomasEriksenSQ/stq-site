@@ -727,6 +727,7 @@ const Index = () => {
         onOpenHandbok={() => {
           setIsJobOverlayOpen(false);
           setIsHandbookOpen(true);
+          setHandbookOpenedFromJob(true);
         }}
       />
       <HandbookOverlay isOpen={isHandbookOpen} onClose={() => setIsHandbookOpen(false)} />

@@ -156,8 +156,9 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   placeholder="E-post"
                   required
                   value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  onChange={(e) => { setForm({ ...form, email: e.target.value }); setEmailError(""); }}
                   className="w-full bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-lg text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow border-0" />
+                    {emailError && <p className="text-[13px] text-destructive -mt-2">{emailError}</p>}
                 
                     <input
                   type="tel"

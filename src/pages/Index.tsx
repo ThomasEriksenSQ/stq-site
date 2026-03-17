@@ -193,6 +193,7 @@ const Index = () => {
     description: c.description || "",
     education_1: c.education_1 || "",
     education_2: c.education_2 || "",
+    imagePosition: c.image_position || 'center center',
   }));
 
   const scrollTo = (id: string) => {
@@ -389,7 +390,7 @@ const Index = () => {
                           src={c.image}
                           alt={c.name}
                           className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
-                          style={{ filter: "grayscale(12%) brightness(0.92)" }}
+                          style={{ filter: "grayscale(12%) brightness(0.92)", objectPosition: c.imagePosition }}
                           onMouseEnter={(e) => (e.currentTarget.style.filter = "grayscale(0%) brightness(1.0)")}
                           onMouseLeave={(e) => (e.currentTarget.style.filter = "grayscale(12%) brightness(0.92)")}
                         />
@@ -457,6 +458,7 @@ const Index = () => {
                           src={consultants[expandedConsultant].image}
                           alt={consultants[expandedConsultant].name}
                           className="w-[100px] h-[133px] object-cover flex-shrink-0"
+                          style={{ objectPosition: consultants[expandedConsultant].imagePosition }}
                         />
                       ) : (
                         <RobotAvatar className="w-[100px] h-[133px] flex-shrink-0" />

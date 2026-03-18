@@ -90,7 +90,7 @@ const FloatingChat = () => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const [isOpen, setIsOpen] = useState(!isMobile);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [mode, setMode] = useState<Mode>("bot");
+  const [mode, setMode] = useState<Mode>("slack");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);
   const [botMessages, setBotMessages] = useState<Message[]>([
     { role: "assistant", content: "Hei! Jeg er STACQs assistent. Spør meg om kompetanse, stillinger, eller håndboken vår." },

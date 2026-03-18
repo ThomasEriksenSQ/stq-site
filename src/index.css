@@ -103,3 +103,11 @@ html, body {
 .grid-drift {
   animation: grid-drift 80s linear infinite;
 }
+
+.avatar-square,
+.avatar-square img {
+  border-radius: 0 !important;
+}
+.avatar-square {
+  overflow: hidden;
+}

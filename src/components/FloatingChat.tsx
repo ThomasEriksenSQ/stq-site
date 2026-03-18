@@ -360,9 +360,9 @@ const FloatingChat = () => {
                 {messages.map((msg, i) => (
                   <div key={`${mode}-${slackRecipient?.name || ""}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                     {msg.role === "assistant" && msg.avatar && (
-                      <span className="rounded-none overflow-visible" style={{ borderRadius: 0, overflow: "visible" }}>
-                        <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0 rounded-none" style={{ borderRadius: 0 }} />
-                      </span>
+                      <div style={{ width: 28, height: 28, flexShrink: 0, borderRadius: 0, overflow: 'hidden', marginRight: 8, marginTop: 4 }}>
+                        <img src={msg.avatar} alt={msg.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 0, display: 'block' }} />
+                      </div>
                     )}
                     <div
                       className={`max-w-[80%] px-3.5 py-2.5 text-[15px] font-mono leading-[1.75] whitespace-pre-line ${

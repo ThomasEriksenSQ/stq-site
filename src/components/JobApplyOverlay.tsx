@@ -183,8 +183,9 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   placeholder="Fullt navn"
                   required
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  onChange={(e) => { setForm({ ...form, name: e.target.value }); setNameError(""); }}
                   className="w-full bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-lg text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow border-0" />
+                    {nameError && <p className="text-[13px] text-destructive -mt-2">{nameError}</p>}
                 
                     <input
                   type="email"
@@ -198,9 +199,11 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                     <input
                   type="tel"
                   placeholder="Telefon"
+                  required
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  onChange={(e) => { setForm({ ...form, phone: e.target.value }); setPhoneError(""); }}
                   className="w-full bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-lg text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow border-0" />
+                    {phoneError && <p className="text-[13px] text-destructive -mt-2">{phoneError}</p>}
                 
                     
 

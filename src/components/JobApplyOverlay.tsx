@@ -62,6 +62,20 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
       setErrorMsg("Noe gikk galt. Prøv igjen eller send e-post direkte til post@stacq.no.");
     } else {
       setSubmitted(true);
+
+      // Send email notification (fire-and-forget)
+      try {
+        await supabase.functions.invoke("send-application-email", {
+          body: {
+            full_name: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone.trim() || null,
+            cv_url: cvUrl,
+          },
+        });
+      } catch (emailErr) {
+        console.error("Failed to send application email notification:", emailErr);
+      }
     }
   };
 

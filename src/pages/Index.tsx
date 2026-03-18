@@ -115,16 +115,16 @@ const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
 };
 
 const DOMAINS = [
-  "Forsvar og forsvarsteknologi",
-  "Halvlederindustri",
-  "Medisinsk teknologi",
   "Industriell automasjon",
   "Maritim industri",
+  "Forsvar og forsvars\u00ADteknologi",
+  "Medisinsk teknologi",
+  "Halvlederindustri",
   "Telekommunikasjon",
-  "Test- og målesystemer",
   "Energi og elektriske kjøretøy",
+  "Test- og målesystemer",
   "Industriell robotikk",
-  "Forbrukerelektronikk",
+  "Forbruker\u00ADelektronikk",
   "Subsea og offshore teknologi",
   "IoT og smarte enheter",
 ];

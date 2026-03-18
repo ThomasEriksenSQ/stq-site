@@ -165,7 +165,7 @@ const HandbookOverlay = ({ isOpen, onClose, onBack }: HandbookOverlayProps) => {
           <motion.div {...fadeBackdrop} className="absolute inset-0" onClick={onClose} />
           <motion.div
             {...slideSecondary}
-            className="absolute right-0 top-0 h-full w-[92%] md:w-[45%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg"
+            className="absolute right-0 top-0 h-full w-full md:w-[45%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg"
           >
             <div className="sticky top-0 z-10 px-6 md:px-[88px] py-4 bg-background border-b border-border">
               <div className="w-full max-w-prose mx-auto">

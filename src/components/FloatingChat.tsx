@@ -334,7 +334,7 @@ const FloatingChat = () => {
                   className="flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors cursor-pointer text-left group"
                   style={{ borderRadius: '2px' }}
                 >
-                  <div style={{ width: 56, height: 56, flexShrink: 0, borderRadius: 0, overflow: 'hidden' }}>
+                  <div className="avatar-square" style={{ width: 56, height: 56, flexShrink: 0, borderRadius: 0, overflow: 'hidden' }}>
                     <img src={contact.image} alt={contact.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 0, display: 'block' }} />
                   </div>
                   <div>
@@ -360,7 +360,7 @@ const FloatingChat = () => {
                 {messages.map((msg, i) => (
                   <div key={`${mode}-${slackRecipient?.name || ""}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                     {msg.role === "assistant" && msg.avatar && (
-                      <div style={{ width: 28, height: 28, flexShrink: 0, borderRadius: 0, overflow: 'hidden', marginRight: 8, marginTop: 4 }}>
+                      <div className="avatar-square" style={{ width: 28, height: 28, flexShrink: 0, borderRadius: 0, overflow: 'hidden', marginRight: 8, marginTop: 4 }}>
                         <img src={msg.avatar} alt={msg.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 0, display: 'block' }} />
                       </div>
                     )}
@@ -387,7 +387,7 @@ const FloatingChat = () => {
                 {isTyping && (
                   <div className="flex justify-start">
                     {mode === "slack" && slackRecipient && (
-                      <div style={{ width: 28, height: 28, flexShrink: 0, borderRadius: 0, overflow: 'hidden', marginRight: 8, marginTop: 4 }}>
+                      <div className="avatar-square" style={{ width: 28, height: 28, flexShrink: 0, borderRadius: 0, overflow: 'hidden', marginRight: 8, marginTop: 4 }}>
                         <img src={slackRecipient.image} alt={slackRecipient.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 0, display: 'block' }} />
                       </div>
                     )}

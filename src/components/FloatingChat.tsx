@@ -334,7 +334,7 @@ const FloatingChat = () => {
                   className="flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors cursor-pointer text-left group"
                   style={{ borderRadius: '2px' }}
                 >
-                  <div style={{ width: 56, height: 56, flexShrink: 0, borderRadius: 0, overflow: 'hidden' }}>
+                  <div className="avatar-square" style={{ width: 56, height: 56, flexShrink: 0, borderRadius: 0, overflow: 'hidden' }}>
                     <img src={contact.image} alt={contact.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 0, display: 'block' }} />
                   </div>
                   <div>

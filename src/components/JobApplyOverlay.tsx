@@ -114,6 +114,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
       setEmailError("");
       setNameError("");
       setPhoneError("");
+      setCvError("");
     }, 300);
   };
 

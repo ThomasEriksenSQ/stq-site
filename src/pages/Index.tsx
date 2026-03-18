@@ -109,7 +109,7 @@ const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
   "Test- og målesystemer": Gauge,
   "Energi og elektriske kjøretøy": Zap,
   "Industriell robotikk": Bot,
-  "Forbrukerelektronikk": Smartphone,
+  "Forbruker\u00ADelektronikk": Smartphone,
   "Subsea og offshore teknologi": Waves,
   "IoT og smarte enheter": Wifi,
 };

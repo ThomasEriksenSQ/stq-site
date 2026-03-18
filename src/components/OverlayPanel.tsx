@@ -179,7 +179,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             </div>
 
             <motion.div className="px-8 md:px-20 pt-14 md:pt-24 pb-16 flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[520px]">
+              <div className="w-full max-w-prose mx-auto">
 
                 {/* ── Hero ── */}
                 <motion.section variants={fadeUpItem}>

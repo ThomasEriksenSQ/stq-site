@@ -168,7 +168,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <motion.div
             ref={panelRef}
             {...slidePanel}
-            className={`absolute right-0 top-0 h-full w-full md:w-[58%] md:min-w-[480px] overflow-y-auto flex flex-col transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+            className={`absolute right-0 top-0 h-full w-[92%] md:w-[45%] md:min-w-[370px] overflow-y-auto flex flex-col transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
             style={{ background: "#fff" }}
           >
             {/* Mobile close */}

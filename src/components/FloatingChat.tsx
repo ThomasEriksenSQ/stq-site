@@ -387,7 +387,7 @@ const FloatingChat = () => {
                 {isTyping && (
                   <div className="flex justify-start">
                     {mode === "slack" && slackRecipient && (
-                      <div style={{ width: 28, height: 28, flexShrink: 0, borderRadius: 0, overflow: 'hidden', marginRight: 8, marginTop: 4 }}>
+                      <div className="avatar-square" style={{ width: 28, height: 28, flexShrink: 0, borderRadius: 0, overflow: 'hidden', marginRight: 8, marginTop: 4 }}>
                         <img src={slackRecipient.image} alt={slackRecipient.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 0, display: 'block' }} />
                       </div>
                     )}

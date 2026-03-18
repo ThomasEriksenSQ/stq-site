@@ -490,10 +490,6 @@ const Index = () => {
                       {consultants[expandedConsultant].description}
                     </p>
 
-                    {/* Availability inquiry */}
-                    <ConsultantInquiry consultantName={consultants[expandedConsultant].name} />
-                    </div>
-
                     {/* Kompetanse */}
                     <div className="mt-8">
                       <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
@@ -514,6 +510,10 @@ const Index = () => {
                           <Tag key={ind}>{ind}</Tag>
                         ))}
                       </div>
+                    </div>
+
+                    {/* Availability inquiry */}
+                    <ConsultantInquiry consultantName={consultants[expandedConsultant].name} />
                     </div>
                   </div>
                 </motion.div>

@@ -100,7 +100,7 @@ const COMPETENCE_GROUPS = [
 ];
 
 const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
-  "Forsvar og forsvarsteknologi": Shield,
+  "Forsvar og forsvars\u00ADteknologi": Shield,
   "Halvlederindustri": Cpu,
   "Medisinsk teknologi": HeartPulse,
   "Industriell automasjon": Settings2,
@@ -109,22 +109,22 @@ const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
   "Test- og målesystemer": Gauge,
   "Energi og elektriske kjøretøy": Zap,
   "Industriell robotikk": Bot,
-  "Forbrukerelektronikk": Smartphone,
+  "Forbruker\u00ADelektronikk": Smartphone,
   "Subsea og offshore teknologi": Waves,
   "IoT og smarte enheter": Wifi,
 };
 
 const DOMAINS = [
-  "Forsvar og forsvarsteknologi",
-  "Halvlederindustri",
-  "Medisinsk teknologi",
   "Industriell automasjon",
   "Maritim industri",
+  "Forsvar og forsvars\u00ADteknologi",
+  "Medisinsk teknologi",
+  "Halvlederindustri",
   "Telekommunikasjon",
-  "Test- og målesystemer",
   "Energi og elektriske kjøretøy",
+  "Test- og målesystemer",
   "Industriell robotikk",
-  "Forbrukerelektronikk",
+  "Forbruker\u00ADelektronikk",
   "Subsea og offshore teknologi",
   "IoT og smarte enheter",
 ];
@@ -214,7 +214,7 @@ const Index = () => {
       {/* ── Hero ── */}
       <section
         id="hero"
-        className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+        className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16 md:pt-0"
         style={{ paddingLeft: "10vw", paddingRight: "6vw" }}
       >
         <PcbPattern />
@@ -538,7 +538,7 @@ const Index = () => {
           </h2>
         </motion.div>
 
-        <motion.div {...stagger} className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-[1px] w-full">
+        <motion.div {...stagger} className="mt-14 grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-4 gap-[1px] w-full">
           {DOMAINS.map((title) => {
             const IconComp = DOMAIN_ICONS[title];
             return (
@@ -549,10 +549,10 @@ const Index = () => {
                   whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                 }}
                 className="group flex flex-col items-start border border-border bg-background hover:border-primary/40 transition-colors duration-300"
-                style={{ borderRadius: "2px", padding: "32px 28px", minHeight: "180px" }}
+                style={{ borderRadius: "2px", padding: "32px 28px", minHeight: "180px", overflowWrap: "break-word", wordBreak: "break-word" }}
               >
                 {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
-                <h3 className="text-[17px] font-medium text-foreground leading-normal mt-auto">{title}</h3>
+                <h3 className="text-[17px] font-medium text-foreground leading-normal mt-auto" style={{ overflowWrap: "break-word", wordBreak: "break-word" }}>{title}</h3>
               </motion.div>
             );
           })}

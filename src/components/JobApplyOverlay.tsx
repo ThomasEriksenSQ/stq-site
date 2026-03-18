@@ -230,9 +230,10 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                     type="file"
                     accept=".pdf"
                     className="hidden"
-                    onChange={(e) => { const f = e.target.files?.[0]; setFileName(f?.name || ""); setFile(f || null); }} />
+                    onChange={(e) => { const f = e.target.files?.[0]; setFileName(f?.name || ""); setFile(f || null); setCvError(""); }} />
                   
                     </label>
+                    {cvError && <p className="text-[13px] text-destructive -mt-2">{cvError}</p>}
 
                     {errorMsg && <p className="text-[13px] text-destructive">{errorMsg}</p>}
 

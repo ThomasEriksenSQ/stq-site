@@ -103,6 +103,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                 <X className="w-4 h-4" />
               </button>
 
+              <div className="w-full max-w-prose mx-auto">
               {submitted ?
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center pt-20">
                   <h2 className="text-[28px] font-bold text-foreground">Takk for søknaden!</h2>

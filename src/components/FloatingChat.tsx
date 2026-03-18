@@ -75,7 +75,7 @@ interface Message {
 }
 
 const SLACK_CONTACTS = [
-  { name: "Thomas Eriksen", image: thomasEriksen, email: "Partner" },
+  { name: "Thomas Eriksen", image: thomasEriksen, email: "Daglig leder og Partner" },
   { name: "Jon Richard Nygaard", image: jonRichard, email: "Partner" },
 ];
 

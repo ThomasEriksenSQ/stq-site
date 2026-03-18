@@ -134,7 +134,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ type: "spring", damping: 30, stiffness: 300 }}
-          className="fixed top-0 right-0 bottom-0 z-50 w-[92%] md:w-[45%] md:min-w-[370px] bg-background overflow-y-auto flex flex-col">
+          className="fixed top-0 right-0 bottom-0 z-50 w-full md:w-[45%] md:min-w-[370px] bg-background overflow-y-auto flex flex-col">
           
             {/* Mobile close — sticky top bar */}
             <div className="sticky top-0 z-10 px-6 py-4 md:hidden backdrop-blur-xl" style={{ background: "hsla(var(--background) / 0.85)" }}>

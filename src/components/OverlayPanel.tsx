@@ -67,7 +67,7 @@ const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClo
             </div>
 
             <motion.div className="p-6 md:p-[96px] flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[640px] w-full space-y-10">
+              <div className="w-full max-w-prose mx-auto space-y-10">
                 <motion.h2 variants={fadeUpItem} className="text-[34px] font-bold text-foreground leading-[1.15]">Senior Embedded Konsulent</motion.h2>
 
                 <motion.div variants={fadeUpItem} className="space-y-3 text-foreground text-[16px] leading-[1.7]">

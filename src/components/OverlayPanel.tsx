@@ -325,7 +325,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
             {/* Footer */}
             <div className="px-8 md:px-20 py-6 mt-auto">
-              <div className="max-w-[520px]">
+              <div className="w-full max-w-prose mx-auto">
                 <p className="text-[12px]" style={{ color: "#86868b" }}>
                   STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 932 575 442 MVA
                 </p>

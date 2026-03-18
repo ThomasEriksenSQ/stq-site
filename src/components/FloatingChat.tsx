@@ -334,56 +334,30 @@ const FloatingChat = () => {
                   className="flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors cursor-pointer text-left group"
                   style={{ borderRadius: '2px' }}
                 >
-                  <img src={contact.image} alt={contact.name} className="w-14 h-14 object-cover object-top flex-shrink-0 rounded-none" style={{ borderRadius: '0px' }} />
+                  <span className="flex-shrink-0 rounded-none overflow-visible" style={{ borderRadius: 0, overflow: "visible" }}>
+                    <img src={contact.image} alt={contact.name} className="w-14 h-14 object-cover object-top flex-shrink-0 rounded-none" style={{ borderRadius: 0 }} />
+                  </span>
                   <div>
                     <span className="text-[13px] font-medium text-foreground block font-mono">{contact.name}</span>
                     <span className="text-[11px] text-muted-foreground font-mono">{contact.email}</span>
                   </div>
                 </button>
               ))}
-            </div>
-          ) : (
-            <>
-              {/* Messages */}
-              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-                {mode === "slack" && slackRecipient && (
-                  <button
-                    onClick={() => setSlackRecipient(null)}
-                    className="text-[11px] text-muted-foreground hover:text-foreground transition-colors mb-1 font-mono"
-                  >
-                    ← Velg annen person
-                  </button>
-                )}
-
+...
                 {messages.map((msg, i) => (
                   <div key={`${mode}-${slackRecipient?.name || ""}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                     {msg.role === "assistant" && msg.avatar && (
-                      <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0 rounded-none" style={{ borderRadius: '0px' }} />
+                      <span className="rounded-none overflow-visible" style={{ borderRadius: 0, overflow: "visible" }}>
+                        <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0 rounded-none" style={{ borderRadius: 0 }} />
+                      </span>
                     )}
-                    <div
-                      className={`max-w-[80%] px-3.5 py-2.5 text-[15px] font-mono leading-[1.75] whitespace-pre-line ${
-                        msg.role === "user"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-secondary text-foreground"
-                      }`}
-                      style={{ borderRadius: '2px' }}
-                    >
-                      {msg.role === "assistant" && msg.name && (
-                        <span className="block text-[11px] font-medium text-muted-foreground mb-1">{msg.name}</span>
-                      )}
-                      {msg.role === "assistant" && mode === "bot" ? (
-                        <div className="prose prose-sm prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_*]:font-mono">
-                          <ReactMarkdown>{msg.content}</ReactMarkdown>
-                        </div>
-                      ) : msg.content}
-                    </div>
-                  </div>
-                ))}
-
+...
                 {isTyping && (
                   <div className="flex justify-start">
                     {mode === "slack" && slackRecipient && (
-                      <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0 rounded-none" style={{ borderRadius: '0px' }} />
+                      <span className="rounded-none overflow-visible" style={{ borderRadius: 0, overflow: "visible" }}>
+                        <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0 rounded-none" style={{ borderRadius: 0 }} />
+                      </span>
                     )}
                     <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 text-[15px]" style={{ borderRadius: '2px' }}>
                       <span className="inline-flex gap-1">

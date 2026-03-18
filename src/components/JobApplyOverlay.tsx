@@ -106,6 +106,8 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
       setFile(null);
       setErrorMsg("");
       setEmailError("");
+      setNameError("");
+      setPhoneError("");
     }, 300);
   };
 

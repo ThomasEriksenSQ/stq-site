@@ -1,6 +1,6 @@
 const PcbPattern = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ maxWidth: "100%" }} aria-hidden="true">
       <div className="absolute inset-0" style={{
         maskImage: 'radial-gradient(ellipse 80% 80% at 35% 50%, black 25%, transparent 100%)',
         WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 35% 50%, black 25%, transparent 100%)',

@@ -87,7 +87,8 @@ const BOT_SUGGESTIONS = [
 
 
 const FloatingChat = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const [isOpen, setIsOpen] = useState(!isMobile);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState<Mode>("bot");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);

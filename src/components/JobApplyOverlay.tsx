@@ -272,6 +272,15 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
             }
               </div>
             </div>
+
+            {/* Footer */}
+            <div className="px-8 md:px-16 py-6 border-t border-border mt-auto">
+              <div className="w-full max-w-prose mx-auto">
+                <p className="text-[12px] text-muted-foreground">
+                  STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 932 575 442 MVA
+                </p>
+              </div>
+            </div>
           </motion.div>
         </>
       }

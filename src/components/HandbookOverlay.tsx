@@ -180,7 +180,7 @@ const HandbookOverlay = ({ isOpen, onClose, onBack }: HandbookOverlayProps) => {
             </div>
 
             <motion.div className="px-6 md:px-[88px] pt-20 pb-[88px] flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[640px] w-full space-y-10">
+              <div className="w-full max-w-prose mx-auto space-y-10">
                 <motion.h2 variants={fadeUpItem} className="text-[38px] font-serif font-bold text-foreground leading-[1.15]">
                   Håndbok for STACQ
                 </motion.h2>

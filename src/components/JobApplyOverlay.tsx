@@ -47,6 +47,11 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
       hasError = true;
     }
 
+    if (!file) {
+      setCvError("Vennligst last opp CV (PDF).");
+      hasError = true;
+    }
+
     if (hasError) return;
 
     setLoading(true);

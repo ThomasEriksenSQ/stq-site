@@ -217,6 +217,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   </div>
                 </>
             }
+              </div>
             </div>
           </motion.div>
         </>

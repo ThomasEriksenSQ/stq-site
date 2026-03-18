@@ -485,9 +485,14 @@ const Index = () => {
                     </div>
 
                     {/* Description */}
+                    <div className="w-full max-w-prose mx-auto">
                     <p className="mt-7 text-[17px] text-muted-foreground leading-[1.95]">
                       {consultants[expandedConsultant].description}
                     </p>
+
+                    {/* Availability inquiry */}
+                    <ConsultantInquiry consultantName={consultants[expandedConsultant].name} />
+                    </div>
 
                     {/* Kompetanse */}
                     <div className="mt-8">
@@ -510,10 +515,6 @@ const Index = () => {
                         ))}
                       </div>
                     </div>
-
-
-                    {/* Availability inquiry */}
-                    <ConsultantInquiry consultantName={consultants[expandedConsultant].name} />
                   </div>
                 </motion.div>
               </>

@@ -451,6 +451,7 @@ const Index = () => {
                       <X className="w-4 h-4" />
                     </button>
 
+                    <div className="w-full max-w-prose mx-auto">
                     {/* Profile header */}
                     <div className="flex items-start gap-4">
                       {consultants[expandedConsultant].image ? (
@@ -485,7 +486,6 @@ const Index = () => {
                     </div>
 
                     {/* Description */}
-                    <div className="w-full max-w-prose mx-auto">
                     <p className="mt-7 text-[17px] text-muted-foreground leading-[1.95]">
                       {consultants[expandedConsultant].description}
                     </p>

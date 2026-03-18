@@ -168,7 +168,7 @@ const HandbookOverlay = ({ isOpen, onClose, onBack }: HandbookOverlayProps) => {
             className="absolute right-0 top-0 h-full w-[92%] md:w-[45%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg"
           >
             <div className="sticky top-0 z-10 px-6 md:px-[88px] py-4 bg-background border-b border-border">
-              <div className="max-w-[640px] w-full">
+              <div className="w-full max-w-prose mx-auto">
                 <button
                   onClick={onBack ?? onClose}
                   className="flex items-center gap-1.5 text-accent hover:underline text-[13px]"
@@ -180,7 +180,7 @@ const HandbookOverlay = ({ isOpen, onClose, onBack }: HandbookOverlayProps) => {
             </div>
 
             <motion.div className="px-6 md:px-[88px] pt-20 pb-[88px] flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[640px] w-full space-y-10">
+              <div className="w-full max-w-prose mx-auto space-y-10">
                 <motion.h2 variants={fadeUpItem} className="text-[38px] font-serif font-bold text-foreground leading-[1.15]">
                   Håndbok for STACQ
                 </motion.h2>
@@ -219,7 +219,7 @@ const HandbookOverlay = ({ isOpen, onClose, onBack }: HandbookOverlayProps) => {
             </motion.div>
 
             <div className="px-6 md:px-[88px] py-6 border-t border-border mt-auto">
-              <div className="max-w-[640px] w-full">
+              <div className="w-full max-w-prose mx-auto">
                 <p className="text-[12px] text-muted-foreground whitespace-nowrap">
                   STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 932 575 442 MVA
                 </p>

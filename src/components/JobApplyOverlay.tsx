@@ -93,7 +93,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ type: "spring", damping: 30, stiffness: 300 }}
-          className="fixed top-0 right-0 bottom-0 z-50 w-[92vw] md:w-[45vw] bg-background overflow-y-auto">
+          className="fixed top-0 right-0 bottom-0 z-50 w-[92%] md:w-[45%] md:min-w-[370px] bg-background overflow-y-auto">
           
             <div className="pt-24 pb-16 px-8 md:px-16">
               <button
@@ -103,6 +103,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                 <X className="w-4 h-4" />
               </button>
 
+              <div className="w-full max-w-prose mx-auto">
               {submitted ?
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center pt-20">
                   <h2 className="text-[28px] font-bold text-foreground">Takk for søknaden!</h2>
@@ -216,6 +217,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   </div>
                 </>
             }
+              </div>
             </div>
           </motion.div>
         </>

@@ -58,7 +58,7 @@ const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClo
             className="absolute right-0 top-0 h-full w-[92%] md:w-[45%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg"
           >
             <div className="sticky top-0 z-10 px-6 md:px-[96px] py-4 bg-background border-b border-border">
-              <div className="max-w-[640px] w-full">
+              <div className="w-full max-w-prose mx-auto">
                 <button onClick={onClose} className="flex items-center gap-1.5 text-accent hover:underline text-[13px]">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                   Tilbake
@@ -67,7 +67,7 @@ const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClo
             </div>
 
             <motion.div className="p-6 md:p-[96px] flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[640px] w-full space-y-10">
+              <div className="w-full max-w-prose mx-auto space-y-10">
                 <motion.h2 variants={fadeUpItem} className="text-[34px] font-bold text-foreground leading-[1.15]">Senior Embedded Konsulent</motion.h2>
 
                 <motion.div variants={fadeUpItem} className="space-y-3 text-foreground text-[16px] leading-[1.7]">
@@ -121,7 +121,7 @@ const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClo
             </motion.div>
 
             <div className="px-6 md:px-[96px] py-6 border-t border-border mt-auto">
-              <div className="max-w-[640px] w-full">
+              <div className="w-full max-w-prose mx-auto">
                 <p className="text-[13px] text-muted-foreground">
                   STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 932 575 442 MVA
                 </p>
@@ -168,7 +168,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
           <motion.div
             ref={panelRef}
             {...slidePanel}
-            className={`absolute right-0 top-0 h-full w-full md:w-[58%] md:min-w-[480px] overflow-y-auto flex flex-col transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
+            className={`absolute right-0 top-0 h-full w-[92%] md:w-[45%] md:min-w-[370px] overflow-y-auto flex flex-col transition-opacity duration-200 ${isJobOpen || isHandbookOpen ? "opacity-40" : "opacity-100"}`}
             style={{ background: "#fff" }}
           >
             {/* Mobile close */}
@@ -179,7 +179,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
             </div>
 
             <motion.div className="px-8 md:px-20 pt-14 md:pt-24 pb-16 flex-1" variants={staggerContent} initial="initial" animate="animate">
-              <div className="max-w-[520px]">
+              <div className="w-full max-w-prose mx-auto">
 
                 {/* ── Hero ── */}
                 <motion.section variants={fadeUpItem}>
@@ -325,7 +325,7 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
 
             {/* Footer */}
             <div className="px-8 md:px-20 py-6 mt-auto">
-              <div className="max-w-[520px]">
+              <div className="w-full max-w-prose mx-auto">
                 <p className="text-[12px]" style={{ color: "#86868b" }}>
                   STACQ AS · Øvre Slottsgate 27, 0157 Oslo · post@stacq.no · Org.nr. 932 575 442 MVA
                 </p>

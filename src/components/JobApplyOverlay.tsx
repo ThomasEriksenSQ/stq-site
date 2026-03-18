@@ -17,18 +17,36 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
-    setEmailError("");
 
-    if (!isValidEmail(form.email)) {
-      setEmailError("Vennligst oppgi en gyldig e-postadresse.");
-      return;
+    let hasError = false;
+
+    if (!form.name.trim()) {
+      setNameError("Vennligst oppgi fullt navn.");
+      hasError = true;
     }
+
+    if (!form.email.trim()) {
+      setEmailError("Vennligst oppgi e-postadresse.");
+      hasError = true;
+    } else if (!isValidEmail(form.email)) {
+      setEmailError("Vennligst oppgi en gyldig e-postadresse.");
+      hasError = true;
+    }
+
+    if (!form.phone.trim()) {
+      setPhoneError("Vennligst oppgi telefonnummer.");
+      hasError = true;
+    }
+
+    if (hasError) return;
 
     setLoading(true);
 
@@ -88,6 +106,8 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
       setFile(null);
       setErrorMsg("");
       setEmailError("");
+      setNameError("");
+      setPhoneError("");
     }, 300);
   };
 
@@ -163,8 +183,9 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   placeholder="Fullt navn"
                   required
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  onChange={(e) => { setForm({ ...form, name: e.target.value }); setNameError(""); }}
                   className="w-full bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-lg text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow border-0" />
+                    {nameError && <p className="text-[13px] text-destructive -mt-2">{nameError}</p>}
                 
                     <input
                   type="email"
@@ -178,9 +199,11 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                     <input
                   type="tel"
                   placeholder="Telefon"
+                  required
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  onChange={(e) => { setForm({ ...form, phone: e.target.value }); setPhoneError(""); }}
                   className="w-full bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 rounded-lg text-[14px] outline-none focus:ring-2 focus:ring-ring transition-shadow border-0" />
+                    {phoneError && <p className="text-[13px] text-destructive -mt-2">{phoneError}</p>}
                 
                     
 

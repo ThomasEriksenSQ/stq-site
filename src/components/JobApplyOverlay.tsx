@@ -134,12 +134,20 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ type: "spring", damping: 30, stiffness: 300 }}
-          className="fixed top-0 right-0 bottom-0 z-50 w-[92%] md:w-[45%] md:min-w-[370px] bg-background overflow-y-auto">
+          className="fixed top-0 right-0 bottom-0 z-50 w-[92%] md:w-[45%] md:min-w-[370px] bg-background overflow-y-auto flex flex-col">
           
-            <div className="pt-24 pb-16 px-8 md:px-16">
+            {/* Mobile close — sticky top bar */}
+            <div className="sticky top-0 z-10 px-6 py-4 md:hidden backdrop-blur-xl" style={{ background: "hsla(var(--background) / 0.85)" }}>
+              <button onClick={handleClose} className="text-[13px] font-medium text-muted-foreground">
+                ← Lukk
+              </button>
+            </div>
+
+            <div className="pt-6 md:pt-24 pb-16 px-8 md:px-16 flex-1">
+              {/* Desktop close button */}
               <button
               onClick={handleClose}
-              className="absolute top-6 right-6 w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+              className="hidden md:flex absolute top-6 right-6 w-8 h-8 rounded-full bg-secondary items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
               
                 <X className="w-4 h-4" />
               </button>

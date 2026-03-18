@@ -186,7 +186,8 @@ const Index = () => {
   const consultants = (dbConsultants ?? []).map((c: any) => ({
     name: c.name,
     image: c.ikke_startet ? null : (c.image_url || null),
-    competence: (c.kompetanse_nettside?.length > 0) ? c.kompetanse_nettside : (c.competences || []),
+    competence: c.competences || [],
+    competenceProfile: (c.kompetanse_nettside?.length > 0) ? c.kompetanse_nettside : (c.competences || []),
     industries: c.industries || [],
     experience: c.experience_years ? new Date().getFullYear() - c.experience_years : 0,
     location: c.location || "Oslo",
@@ -494,7 +495,7 @@ const Index = () => {
                     <div className="mt-8">
                       <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
                       <div className="flex flex-wrap gap-3">
-                        {consultants[expandedConsultant].competence.map((comp) => (
+                        {consultants[expandedConsultant].competenceProfile.map((comp) => (
                           <Tag key={comp}>{comp}</Tag>
                         ))}
                       </div>

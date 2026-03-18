@@ -58,7 +58,7 @@ const JobOverlay = ({ isOpen, onClose, onOpenHandbok }: { isOpen: boolean; onClo
             className="absolute right-0 top-0 h-full w-[92%] md:w-[45%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto flex flex-col shadow-lg"
           >
             <div className="sticky top-0 z-10 px-6 md:px-[96px] py-4 bg-background border-b border-border">
-              <div className="max-w-[640px] w-full">
+              <div className="w-full max-w-prose mx-auto">
                 <button onClick={onClose} className="flex items-center gap-1.5 text-accent hover:underline text-[13px]">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                   Tilbake

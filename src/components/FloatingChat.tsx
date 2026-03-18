@@ -75,7 +75,7 @@ interface Message {
 }
 
 const SLACK_CONTACTS = [
-  { name: "Thomas Eriksen", image: thomasEriksen, email: "Partner" },
+  { name: "Thomas Eriksen", image: thomasEriksen, email: "Daglig leder og Partner" },
   { name: "Jon Richard Nygaard", image: jonRichard, email: "Partner" },
 ];
 
@@ -90,7 +90,7 @@ const FloatingChat = () => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const [isOpen, setIsOpen] = useState(!isMobile);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [mode, setMode] = useState<Mode>("bot");
+  const [mode, setMode] = useState<Mode>("slack");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);
   const [botMessages, setBotMessages] = useState<Message[]>([
     { role: "assistant", content: "Hei! Jeg er STACQs assistent. Spør meg om kompetanse, stillinger, eller håndboken vår." },
@@ -331,10 +331,10 @@ const FloatingChat = () => {
                 <button
                   key={contact.name}
                   onClick={() => selectRecipient(contact)}
-                  className="flex items-center gap-3 p-3 border border-border hover:border-primary/30 transition-colors text-left"
+                  className="flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors cursor-pointer text-left group"
                   style={{ borderRadius: '2px' }}
                 >
-                  <img src={contact.image} alt={contact.name} className="w-10 h-10 object-cover flex-shrink-0" style={{ borderRadius: '2px' }} />
+                  <img src={contact.image} alt={contact.name} className="w-14 h-14 object-cover flex-shrink-0 rounded-none" />
                   <div>
                     <span className="text-[13px] font-medium text-foreground block font-mono">{contact.name}</span>
                     <span className="text-[11px] text-muted-foreground font-mono">{contact.email}</span>

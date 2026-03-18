@@ -186,7 +186,8 @@ const Index = () => {
   const consultants = (dbConsultants ?? []).map((c: any) => ({
     name: c.name,
     image: c.ikke_startet ? null : (c.image_url || null),
-    competence: (c.kompetanse_nettside?.length > 0) ? c.kompetanse_nettside : (c.competences || []),
+    competence: c.competences || [],
+    competenceProfile: (c.kompetanse_nettside?.length > 0) ? c.kompetanse_nettside : (c.competences || []),
     industries: c.industries || [],
     experience: c.experience_years ? new Date().getFullYear() - c.experience_years : 0,
     location: c.location || "Oslo",

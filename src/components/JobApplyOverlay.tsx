@@ -19,6 +19,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
   const [emailError, setEmailError] = useState("");
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [cvError, setCvError] = useState("");
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
@@ -43,6 +44,11 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
 
     if (!form.phone.trim()) {
       setPhoneError("Vennligst oppgi telefonnummer.");
+      hasError = true;
+    }
+
+    if (!file) {
+      setCvError("Vennligst last opp CV (PDF).");
       hasError = true;
     }
 
@@ -108,6 +114,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
       setEmailError("");
       setNameError("");
       setPhoneError("");
+      setCvError("");
     }, 300);
   };
 
@@ -223,9 +230,10 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                     type="file"
                     accept=".pdf"
                     className="hidden"
-                    onChange={(e) => { const f = e.target.files?.[0]; setFileName(f?.name || ""); setFile(f || null); }} />
+                    onChange={(e) => { const f = e.target.files?.[0]; setFileName(f?.name || ""); setFile(f || null); setCvError(""); }} />
                   
                     </label>
+                    {cvError && <p className="text-[13px] text-destructive -mt-2">{cvError}</p>}
 
                     {errorMsg && <p className="text-[13px] text-destructive">{errorMsg}</p>}
 

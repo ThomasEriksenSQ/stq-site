@@ -441,7 +441,7 @@ const Index = () => {
                   animate={{ x: 0 }}
                   exit={{ x: "100%" }}
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                  className="fixed top-0 right-0 bottom-0 z-50 w-[92vw] md:w-[45vw] bg-background border-l border-border overflow-y-auto"
+                  className="fixed top-0 right-0 bottom-0 z-50 w-[92%] md:w-[45%] md:min-w-[370px] bg-background border-l border-border overflow-y-auto"
                 >
                   <div className="pt-24 pb-16 px-8 md:px-16">
                     <button

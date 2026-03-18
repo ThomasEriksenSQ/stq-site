@@ -188,7 +188,7 @@ const Index = () => {
     image: c.ikke_startet ? null : (c.image_url || null),
     competence: c.competences || [],
     industries: c.industries || [],
-    experience: c.experience_years ?? 0,
+    experience: c.experience_years ? new Date().getFullYear() - c.experience_years : 0,
     location: c.location || "Oslo",
     description: c.description || "",
     education_1: c.education_1 || "",

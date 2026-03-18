@@ -100,7 +100,7 @@ const COMPETENCE_GROUPS = [
 ];
 
 const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
-  "Forsvar og forsvarsteknologi": Shield,
+  "Forsvar og forsvars\u00ADteknologi": Shield,
   "Halvlederindustri": Cpu,
   "Medisinsk teknologi": HeartPulse,
   "Industriell automasjon": Settings2,

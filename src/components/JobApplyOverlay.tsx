@@ -17,18 +17,36 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
-    setEmailError("");
 
-    if (!isValidEmail(form.email)) {
-      setEmailError("Vennligst oppgi en gyldig e-postadresse.");
-      return;
+    let hasError = false;
+
+    if (!form.name.trim()) {
+      setNameError("Vennligst oppgi fullt navn.");
+      hasError = true;
     }
+
+    if (!form.email.trim()) {
+      setEmailError("Vennligst oppgi e-postadresse.");
+      hasError = true;
+    } else if (!isValidEmail(form.email)) {
+      setEmailError("Vennligst oppgi en gyldig e-postadresse.");
+      hasError = true;
+    }
+
+    if (!form.phone.trim()) {
+      setPhoneError("Vennligst oppgi telefonnummer.");
+      hasError = true;
+    }
+
+    if (hasError) return;
 
     setLoading(true);
 

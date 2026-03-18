@@ -305,8 +305,8 @@ const FloatingChat = () => {
         {/* Header */}
         <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-border">
           <div className="flex items-center gap-1">
+            {tabBtn("slack", <MessageSquare className="w-3.5 h-3.5" />, "Ekte mennesker")}
             {tabBtn("bot", <Bot className="w-3.5 h-3.5" />, "STACQ-AI")}
-            {tabBtn("slack", <MessageSquare className="w-3.5 h-3.5" />, "Chat direkte")}
           </div>
           <div className="flex items-center gap-1">
             <button

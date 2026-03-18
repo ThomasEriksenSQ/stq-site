@@ -214,7 +214,7 @@ const Index = () => {
       {/* ── Hero ── */}
       <section
         id="hero"
-        className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+        className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16 md:pt-0"
         style={{ paddingLeft: "10vw", paddingRight: "6vw" }}
       >
         <PcbPattern />

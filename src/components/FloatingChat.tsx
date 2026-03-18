@@ -334,7 +334,7 @@ const FloatingChat = () => {
                   className="flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors cursor-pointer text-left group"
                   style={{ borderRadius: '2px' }}
                 >
-                  <img src={contact.image} alt={contact.name} className="w-14 h-14 object-cover object-top flex-shrink-0" style={{ borderRadius: 0 }} />
+                  <img src={contact.image} alt={contact.name} className="w-14 h-14 object-cover object-top flex-shrink-0 rounded-none" style={{ borderRadius: '0px' }} />
                   <div>
                     <span className="text-[13px] font-medium text-foreground block font-mono">{contact.name}</span>
                     <span className="text-[11px] text-muted-foreground font-mono">{contact.email}</span>
@@ -358,7 +358,7 @@ const FloatingChat = () => {
                 {messages.map((msg, i) => (
                   <div key={`${mode}-${slackRecipient?.name || ""}-${i}`} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                     {msg.role === "assistant" && msg.avatar && (
-                      <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0" style={{ borderRadius: 0 }} />
+                      <img src={msg.avatar} alt={msg.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0 rounded-none" style={{ borderRadius: '0px' }} />
                     )}
                     <div
                       className={`max-w-[80%] px-3.5 py-2.5 text-[15px] font-mono leading-[1.75] whitespace-pre-line ${
@@ -383,7 +383,7 @@ const FloatingChat = () => {
                 {isTyping && (
                   <div className="flex justify-start">
                     {mode === "slack" && slackRecipient && (
-                      <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0" style={{ borderRadius: 0 }} />
+                      <img src={slackRecipient.image} alt={slackRecipient.name} className="w-7 h-7 object-cover object-top mr-2 mt-1 flex-shrink-0 rounded-none" style={{ borderRadius: '0px' }} />
                     )}
                     <div className="bg-secondary text-muted-foreground px-3.5 py-2.5 text-[15px]" style={{ borderRadius: '2px' }}>
                       <span className="inline-flex gap-1">

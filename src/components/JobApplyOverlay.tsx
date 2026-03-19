@@ -177,7 +177,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                 ) : (
                   <>
                     <h2 className="text-[28px] font-bold text-foreground tracking-tight">Bli med i Team STACQ!</h2>
-                    <div className="mt-6 space-y-4 text-[15px] text-muted-foreground leading-relaxed">
+                    <div className="mt-4 space-y-4 text-[15px] text-muted-foreground leading-relaxed">
                       <p>Vi ser alltid etter dyktige og erfarne kollegaer.</p>
                       <div>
                         <h3 className="text-foreground font-semibold mb-2">Kan ett eller flere av</h3>
@@ -203,13 +203,13 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                       </div>
                     </div>
 
-                    <div className="mt-10">
+                    <div className="mt-4">
                       <button onClick={() => onOpenHandbok?.()} className="text-[14px] text-primary hover:underline">
                         Les håndboken vår →
                       </button>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="mt-10 space-y-4">
+                    <form onSubmit={handleSubmit} className="mt-4 space-y-4">
                       <h3 className="text-foreground font-semibold text-[16px]">Send søknad</h3>
                       <input
                         type="text"

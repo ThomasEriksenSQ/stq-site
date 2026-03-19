@@ -72,7 +72,7 @@ const COMPETENCE_GROUPS = [
     title: "Embedded Linux",
     description:
       "Utvikling og tilpasning av Linux-baserte systemer, fra oppstart og drivere til applikasjoner og systemtjenester.",
-    tags: ["Embedded Linux", "Yocto", "Device tree", "Linux-kjerne og drivere", "Systemd", "NXP i.MX"],
+    tags: ["Embedded Linux", "Yocto", "Device tree", "Linux-kjerne og drivere", "Systemd", "ARM-baserte systemer"],
   },
   {
     hex: "0x03",

@@ -645,12 +645,11 @@ const Index = () => {
           <div>
             <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
             <p
-              className="text-[15px] tracking-[0.04em] font-mono leading-[1.85]"
-              style={{ color: "hsl(var(--text-faint))" }}
+              className="text-[15px] tracking-[0.04em] font-mono leading-[1.85] text-muted-foreground"
             >
               Spesialister på embedded systems og systemnær programvare.
             </p>
-            <p className="mt-4 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
+            <p className="mt-4 text-[15px] font-mono leading-[1.85] text-muted-foreground">
               STACQ AS
               <br />
               932 575 442 MVA

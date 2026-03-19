@@ -218,7 +218,7 @@ const FloatingChat = () => {
     if (!isExpanded) setIsExpanded(true);
   };
 
-  const selectRecipient = (contact: typeof SLACK_CONTACTS[0]) => {
+  const selectRecipient = (contact: typeof DEFAULT_SLACK_CONTACTS[0]) => {
     setSlackRecipient(contact);
     if (!slackMessages[contact.name]) {
       setSlackMessages((prev) => ({

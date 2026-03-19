@@ -176,7 +176,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   </motion.div>
                 ) : (
                   <>
-                    <h2 className="text-[28px] font-bold text-foreground tracking-tight">Senior Embedded Konsulent</h2>
+                    <h2 className="text-[28px] font-bold text-foreground tracking-tight">Bli med i Team STACQ!</h2>
                     <div className="mt-6 space-y-4 text-[15px] text-muted-foreground leading-relaxed">
                        <p>
                          Vi ser alltid etter dyktige og erfarne som ønsker å være med...

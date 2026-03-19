@@ -181,12 +181,14 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                       </ul>
                     </div>
                     <div>
-                      <h3 className="text-foreground font-semibold mb-2">Vi tilbyr</h3>
+                      <h3 className="text-foreground font-semibold mb-2">Hva vi tilbyr</h3>
                       <ul className="space-y-1.5 list-disc list-inside">
-                        <li>70% provisjonsbasert lønn</li>
-                        <li>Norges sterkeste embedded-fagmiljø</li>
-                        <li>Fritt valg av verktøy og utstyr</li>
-                        <li>6% innskuddspensjon + full forsikringspakke</li>
+                        <li>Markedsledende betingelser</li>
+                        <li>Høy lønn og gode pensjonsordninger</li>
+                        <li>Trygt og inkluderende arbeidsmiljø</li>
+                        <li>Sterkt fagmiljø innen embedded og lavnivå</li>
+                        <li>Frihet og fleksibilitet</li>
+                        <li>Moderne verktøy og utstyr</li>
                       </ul>
                     </div>
                   </div>

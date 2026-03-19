@@ -73,9 +73,9 @@ interface Message {
   name?: string;
 }
 
-const SLACK_CONTACTS = [
-  { name: "Thomas Eriksen", image: thomasEriksen, email: "Daglig leder og Partner" },
-  { name: "Jon Richard Nygaard", image: jonRichard, email: "Partner" },
+const DEFAULT_SLACK_CONTACTS = [
+  { name: "Thomas Eriksen", image: "", email: "Daglig leder og Partner" },
+  { name: "Jon Richard Nygaard", image: "", email: "Partner" },
 ];
 
 const BOT_SUGGESTIONS = [

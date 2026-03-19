@@ -344,7 +344,7 @@ const FloatingChat = () => {
           {showContactPicker ? (
             <div className="flex-1 px-4 py-4 flex flex-col gap-3">
               <p className="text-[12px] text-muted-foreground font-mono">Hvem vil du sende melding til?</p>
-              {SLACK_CONTACTS.map((contact) => (
+              {slackContacts.map((contact) => (
                 <button
                   key={contact.name}
                   onClick={() => selectRecipient(contact)}

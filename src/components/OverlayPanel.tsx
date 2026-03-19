@@ -5,7 +5,7 @@ import stacqLogo from "@/assets/stacq-logo-black.png";
 import jonRichardImg from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksenImg from "@/assets/thomas-eriksen.avif";
 import HandbookOverlay from "@/components/HandbookOverlay";
-import teamPhoto from "@/assets/team-photo.png";
+
 
 interface OverlayPanelProps {
   isOpen: boolean;
@@ -208,15 +208,6 @@ const OverlayPanel = ({ isOpen, onClose }: OverlayPanelProps) => {
                   </p>
                 </motion.section>
 
-                {/* ── Team photo ── */}
-                <motion.section variants={fadeUpItem} className="mt-16 md:mt-20 -mx-8 md:-mx-20">
-                  <img
-                    src={teamPhoto}
-                    alt="STACQ-teamet"
-                    className="w-full h-auto object-cover"
-                    style={{ maxHeight: "320px" }}
-                  />
-                </motion.section>
 
                 {/* ── Domains ── */}
                 <motion.section variants={fadeUpItem} className="mt-14 md:mt-16">

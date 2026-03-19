@@ -203,6 +203,12 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                       </div>
                     </div>
 
+                    <div className="mt-10">
+                      <button onClick={() => onOpenHandbok?.()} className="text-[14px] text-primary hover:underline">
+                        Les håndboken vår →
+                      </button>
+                    </div>
+
                     <form onSubmit={handleSubmit} className="mt-10 space-y-4">
                       <h3 className="text-foreground font-semibold text-[16px]">Send søknad</h3>
                       <input
@@ -272,12 +278,6 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                         {loading ? "Sender..." : "Send søknad →"}
                       </button>
                     </form>
-
-                    <div className="mt-10">
-                      <button onClick={() => onOpenHandbok?.()} className="text-[14px] text-primary hover:underline">
-                        Les håndboken vår →
-                      </button>
-                    </div>
                   </>
                 )}
               </div>

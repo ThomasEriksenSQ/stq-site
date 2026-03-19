@@ -62,40 +62,61 @@ const TICKER_ITEMS = [
 const COMPETENCE_GROUPS = [
   {
     hex: "0x01",
-    title: "Embedded systemer",
+    title: "Firmware",
     description:
-      "Utvikling av embedded systemer – fra firmware på mikrokontrollere til Linux-baserte produkter og integrerte plattformer.",
-    tags: ["Firmware", "Embedded Linux", "Yocto", "Linux-kjerne og drivere"],
+      "Utvikling av firmware for mikrokontrollere – fra bare-metal til RTOS-baserte systemer med høye krav til robusthet og kontroll.",
+    tags: ["C", "C++", "Rust", "ARM Cortex-M", "FreeRTOS", "Bootloadere"],
   },
   {
     hex: "0x02",
+    title: "Embedded Linux",
+    description:
+      "Utvikling og tilpasning av Linux-baserte systemer – fra BSP og drivere til applikasjonslag og systemtjenester.",
+    tags: ["Embedded Linux", "Yocto", "Device tree", "Linux-kjerne og drivere", "Systemd", "NXP i.MX"],
+  },
+  {
+    hex: "0x03",
     title: "Sanntidssystemer",
     description: "Systemer der stabilitet, timing og determinisme er kritisk.",
     tags: ["FreeRTOS", "Zephyr", "ThreadX", "Multithreading", "Interrupt-driven systems", "Ytelsesoptimalisering"],
   },
   {
-    hex: "0x03",
+    hex: "0x04",
     title: "Hardware-nær utvikling",
     description: "Integrasjon mellom programvare, elektronikk og fysiske systemer.",
-    tags: ["Mikrokontrollere", "ARM Cortex", "Board bring-up", "Hardware-debugging"],
-  },
-  {
-    hex: "0x04",
-    title: "Protokoller og kommunikasjon",
-    description: "Kommunikasjon mellom embedded systemer, sensorer og eksterne systemer.",
-    tags: ["SPI / I2C / UART", "CAN / CANopen", "TCP/IP", "Industrielle protokoller"],
+    tags: ["Mikrokontrollere", "ARM Cortex", "Board bring-up", "Hardware-debugging", "Drivere", "Register-nivå"],
   },
   {
     hex: "0x05",
-    title: "Programmering",
-    description: "Programvareutvikling for embedded- og systemnære miljøer.",
-    tags: ["C", "C++", "Rust", "Python", "Assembly", "Bash"],
+    title: "Protokoller og kommunikasjon",
+    description: "Kommunikasjon mellom embedded systemer, sensorer og eksterne systemer.",
+    tags: ["SPI / I2C / UART", "CAN / CANopen", "TCP/IP", "BLE", "Modbus", "Industrielle protokoller"],
   },
   {
     hex: "0x06",
+    title: "Sikkerhet",
+    description:
+      "Utvikling av sikre embedded systemer med fokus på oppstart, kommunikasjon og beskyttelse mot sårbarheter.",
+    tags: ["Secure Boot", "Kryptering", "TrustZone", "Secure storage", "Fuzzing", "Secure coding"],
+  },
+  {
+    hex: "0x07",
     title: "Testing og kvalitet",
-    description: "Robuste systemer krever systematisk testing.",
-    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Automatisert testing"],
+    description: "Robuste systemer krever systematisk testing og kontinuerlig verifikasjon.",
+    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Automatisert testing", "Coverage", "Test-rammeverk"],
+  },
+  {
+    hex: "0x08",
+    title: "Applikasjoner",
+    description: "Utvikling av brukergrensesnitt og applikasjoner for embedded systemer.",
+    tags: ["Qt", "QML", "C++", "HMI", "Desktop Linux", "OpenGL"],
+  },
+  {
+    hex: "0x09",
+    title: "Systemarkitektur",
+    description:
+      "Design av robuste og vedlikeholdbare systemer med fokus på struktur, skalerbarhet og langsiktig kvalitet.",
+    tags: ["Systemdesign", "Arkitektur", "Modulstruktur", "Kravhåndtering", "Code review", "Teknisk ledelse"],
   },
 ];
 

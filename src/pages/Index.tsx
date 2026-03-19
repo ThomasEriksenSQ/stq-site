@@ -643,7 +643,7 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-12">
           {/* Logo + tagline */}
           <div>
-            <img src={stacqLogoWhite} alt="STACQ" className="h-4 mb-3.5 brightness-0 invert" />
+            <img src={stacqLogoWhite} alt="STACQ" className="h-5 mb-3.5 brightness-0 invert" />
             <p
               className="text-[15px] tracking-[0.04em] font-mono leading-[1.85] text-muted-foreground"
             >

@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Bot, MessageSquare, X, MessageCircle } from "lucide-react";
-import jonRichard from "@/assets/jon-richard-nygaard.avif";
-import thomasEriksen from "@/assets/thomas-eriksen.avif";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;

@@ -22,7 +22,7 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
     const { error } = await supabase.from("website_leads").insert({
       email: email.trim(),
       consultant_name: consultantName,
-      message: "Forespørsel om tilgjengelighet"
+      message: `Tilgjengelighetsforespørsel for: ${consultantName}`
     });
 
     if (error) {

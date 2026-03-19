@@ -64,26 +64,26 @@ const COMPETENCE_GROUPS = [
     hex: "0x01",
     title: "Firmware",
     description:
-      "Utvikling av firmware for mikrokontrollere – fra bare-metal til RTOS-baserte systemer med høye krav til robusthet og kontroll.",
+      "Utvikling av firmware for mikrokontrollere, fra bare-metal til RTOS-baserte systemer med høye krav til robusthet og kontroll.",
     tags: ["C", "C++", "Rust", "ARM Cortex-M", "FreeRTOS", "Bootloadere"],
   },
   {
     hex: "0x02",
     title: "Embedded Linux",
     description:
-      "Utvikling og tilpasning av Linux-baserte systemer – fra BSP og drivere til applikasjonslag og systemtjenester.",
+      "Utvikling og tilpasning av Linux-baserte systemer, fra oppstart og drivere til applikasjoner og systemtjenester.",
     tags: ["Embedded Linux", "Yocto", "Device tree", "Linux-kjerne og drivere", "Systemd", "NXP i.MX"],
   },
   {
     hex: "0x03",
     title: "Sanntidssystemer",
-    description: "Systemer der stabilitet, timing og determinisme er kritisk.",
-    tags: ["FreeRTOS", "Zephyr", "ThreadX", "Multithreading", "Interrupt-driven systems", "Ytelsesoptimalisering"],
+    description: "Systemer der stabilitet, timing og determinisme er avgjørende.",
+    tags: ["FreeRTOS", "Zephyr", "ThreadX", "Multithreading", "Interrupt-drevet", "Ytelsesoptimalisering"],
   },
   {
     hex: "0x04",
     title: "Hardware-nær utvikling",
-    description: "Integrasjon mellom programvare, elektronikk og fysiske systemer.",
+    description: "Programvareutvikling tett på elektronikk og fysiske systemer.",
     tags: ["Mikrokontrollere", "ARM Cortex", "Board bring-up", "Hardware-debugging", "Drivere", "Register-nivå"],
   },
   {
@@ -97,19 +97,19 @@ const COMPETENCE_GROUPS = [
     title: "Sikkerhet",
     description:
       "Utvikling av sikre embedded systemer med fokus på oppstart, kommunikasjon og beskyttelse mot sårbarheter.",
-    tags: ["Secure Boot", "Kryptering", "TrustZone", "Secure storage", "Fuzzing", "Secure coding"],
+    tags: ["Secure Boot", "Kryptering", "TrustZone", "Sikker lagring", "Fuzzing", "Secure coding"],
   },
   {
     hex: "0x07",
     title: "Testing og kvalitet",
     description: "Robuste systemer krever systematisk testing og kontinuerlig verifikasjon.",
-    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Automatisert testing", "Coverage", "Test-rammeverk"],
+    tags: ["Debugging", "CI/CD", "Hardware-in-the-loop testing", "Automatisert testing", "Testdekning", "Test-rammeverk"],
   },
   {
     hex: "0x08",
     title: "Applikasjoner",
     description: "Utvikling av brukergrensesnitt og applikasjoner for embedded systemer.",
-    tags: ["Qt", "QML", "C++", "HMI", "Desktop Linux"],
+    tags: ["Qt", "QML", "C++", "HMI", "GUI", "Embedded Linux"],
   },
   {
     hex: "0x09",
@@ -119,7 +119,6 @@ const COMPETENCE_GROUPS = [
     tags: ["Systemdesign", "Arkitektur", "Modulstruktur", "Kravhåndtering", "Code review", "Teknisk ledelse"],
   },
 ];
-
 const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
   "Forsvar og forsvars\u00ADteknologi": Shield,
   Halvlederindustri: Cpu,

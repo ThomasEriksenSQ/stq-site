@@ -88,6 +88,24 @@ const BOT_SUGGESTIONS = [
 const FloatingChat = () => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const [isOpen, setIsOpen] = useState(!isMobile);
+  const [slackContacts, setSlackContacts] = useState(DEFAULT_SLACK_CONTACTS);
+
+  useEffect(() => {
+    supabase
+      .from("consultants")
+      .select("name, image_url")
+      .in("name", ["Thomas Eriksen", "Jon Richard Nygaard"])
+      .then(({ data }) => {
+        if (data) {
+          setSlackContacts((prev) =>
+            prev.map((c) => {
+              const match = data.find((d) => d.name === c.name);
+              return match?.image_url ? { ...c, image: match.image_url } : c;
+            })
+          );
+        }
+      });
+  }, []);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState<Mode>("slack");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);

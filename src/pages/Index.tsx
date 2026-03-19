@@ -628,7 +628,7 @@ const Index = () => {
               className="text-[15px] tracking-[0.04em] font-mono leading-[1.85]"
               style={{ color: "hsl(var(--text-faint))" }}
             >
-              Spesialister på embedded-systemer og lavnivå-programmering.
+              Spesialister på embedded systems og systemnær programvare.
             </p>
             <p className="mt-4 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
               STACQ AS

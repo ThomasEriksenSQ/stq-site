@@ -209,7 +209,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                       </button>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+                    <form onSubmit={handleSubmit} className="mt-8 space-y-4">
                       <h3 className="text-foreground font-semibold text-[16px]">Send søknad</h3>
                       <input
                         type="text"

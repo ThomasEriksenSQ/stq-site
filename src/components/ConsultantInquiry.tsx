@@ -17,6 +17,8 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
     if (!isValidEmail) return;
 
     setStatus("sending");
+
+    // Insert lead into database
     const { error } = await supabase.from("website_leads").insert({
       email: email.trim(),
       consultant_name: consultantName,
@@ -26,9 +28,30 @@ const ConsultantInquiry = ({ consultantName }: ConsultantInquiryProps) => {
     if (error) {
       console.error("Lead insert error:", error);
       setStatus("error");
-    } else {
-      setStatus("sent");
+      return;
     }
+
+    // Send email notification (fire-and-forget)
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/consultant-inquiry`,
+        {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ consultantName, email: email.trim() }),
+        }
+      );
+      if (!res.ok) {
+        console.error("Email notification failed:", await res.text());
+      }
+    } catch (emailErr) {
+      console.error("Failed to send inquiry email:", emailErr);
+    }
+
+    setStatus("sent");
   };
 
   if (status === "sent") {

@@ -109,7 +109,7 @@ const COMPETENCE_GROUPS = [
     hex: "0x08",
     title: "Applikasjoner",
     description: "Utvikling av brukergrensesnitt og applikasjoner for embedded systemer.",
-    tags: ["Qt", "QML", "C++", "HMI", "Desktop Linux", "OpenGL"],
+    tags: ["Qt", "QML", "C++", "HMI", "Desktop Linux"],
   },
   {
     hex: "0x09",

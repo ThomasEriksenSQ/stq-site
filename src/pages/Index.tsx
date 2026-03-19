@@ -486,7 +486,7 @@ const Index = () => {
                           <RobotAvatar className="w-[120px] h-[160px] flex-shrink-0" fontSize="8px" />
                         )}
                         <div>
-                          <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
+                          <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight mt-[-4px]">
                             {consultants[expandedConsultant].name}
                           </h3>
                           <div className="mt-2 flex flex-wrap items-center gap-4 text-[14px] text-muted-foreground">

@@ -185,10 +185,12 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                       <div>
                         <h3 className="text-foreground font-semibold mb-2">Krav</h3>
                         <ul className="space-y-1.5 list-disc list-inside">
-                          <li>5+ års erfaring med embedded-systemer</li>
-                          <li>C / C++ / Rust (ett eller flere)</li>
-                          <li>Erfaring med RTOS eller Embedded Linux</li>
-                          <li>Trives i team og tar ansvar for kvalitet</li>
+                          <li>Utvikling i C, C++ og Rust</li>
+                          <li>Embedded software, fra mikrokontrollere til Linux-baserte systemer</li>
+                          <li>Hardware-nær utvikling og lavnivå-programmering</li>
+                          <li>Bare-metal, RTOS og sanntidssystemer</li>
+                          <li>Forståelse for elektronikk, gjerne erfaring med FPGA</li>
+                          <li>Evne til å ta ansvar og bidra positivt til miljøet</li>
                         </ul>
                       </div>
                       <div>

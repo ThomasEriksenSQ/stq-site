@@ -649,7 +649,7 @@ const Index = () => {
             >
               Spesialister på embedded systems og systemnær programvare.
             </p>
-            <p className="mt-4 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
+            <p className="mt-4 text-[15px] font-mono leading-[1.85] text-muted-foreground">
               STACQ AS
               <br />
               932 575 442 MVA

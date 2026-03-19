@@ -178,27 +178,27 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   <>
                     <h2 className="text-[28px] font-bold text-foreground tracking-tight">Bli med i Team STACQ!</h2>
                     <div className="mt-6 space-y-4 text-[15px] text-muted-foreground leading-relaxed">
-                      <p>Vi ser alltid etter dyktige og erfarne kollegaer som ønsker å bli med.</p>
+                      <p>Vi ser alltid etter dyktige og erfarne kollegaer.</p>
                       <div>
                         <h3 className="text-foreground font-semibold mb-2">Kan ett eller flere av</h3>
                         <ul className="space-y-1.5 list-disc list-inside">
-                          <li>Utvikling i C, C++ og Rust.</li>
-                          <li>Embedded software, fra mikrokontrollere til Linux-baserte systemer.</li>
-                          <li>Hardware-nær utvikling og lavnivå-programmering.</li>
-                          <li>Bare-metal, RTOS og sanntidssystemer.</li>
-                          <li>Forståelse for elektronikk, gjerne erfaring med FPGA.</li>
-                          <li>Evne til å ta ansvar og bidra positivt til miljøet.</li>
+                          <li>Utvikling i C, C++ og Rust</li>
+                          <li>Embedded software, fra mikrokontrollere til Linux-baserte systemer</li>
+                          <li>Hardware-nær utvikling og lavnivå-programmering</li>
+                          <li>Bare-metal, RTOS og sanntidssystemer</li>
+                          <li>Forståelse for elektronikk, gjerne erfaring med FPGA</li>
+                          <li>Evne til å ta ansvar og bidra positivt til miljøet</li>
                         </ul>
                       </div>
                       <div>
                         <h3 className="text-foreground font-semibold mb-2">Hva vi tilbyr</h3>
                         <ul className="space-y-1.5 list-disc list-inside">
-                          <li>Markedsledende betingelser.</li>
-                          <li>Høy lønn og gode pensjonsordninger.</li>
-                          <li>Trygt og inkluderende arbeidsmiljø.</li>
-                          <li>Sterkt og tilgjengelig fagmiljø.</li>
-                          <li>Frihet og fleksibilitet.</li>
-                          <li>Moderne verktøy og utstyr.</li>
+                          <li>Markedsledende betingelser</li>
+                          <li>Høy lønn og gode pensjonsordninger</li>
+                          <li>Trygt og inkluderende arbeidsmiljø</li>
+                          <li>Sterkt og tilgjengelig fagmiljø</li>
+                          <li>Frihet og fleksibilitet</li>
+                          <li>Moderne verktøy og utstyr</li>
                         </ul>
                       </div>
                     </div>

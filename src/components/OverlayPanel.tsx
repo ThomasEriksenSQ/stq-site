@@ -5,7 +5,7 @@ import stacqLogo from "@/assets/stacq-logo-black.png";
 import jonRichardImg from "@/assets/jon-richard-nygaard.avif";
 import thomasEriksenImg from "@/assets/thomas-eriksen.avif";
 import HandbookOverlay from "@/components/HandbookOverlay";
-import teamPhoto from "@/assets/team-photo.png";
+
 
 interface OverlayPanelProps {
   isOpen: boolean;

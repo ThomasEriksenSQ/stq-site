@@ -179,7 +179,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                     <h2 className="text-[28px] font-bold text-foreground tracking-tight">Bli med i Team STACQ!</h2>
                     <div className="mt-4 space-y-4 text-[15px] text-muted-foreground leading-relaxed">
                       <p>Vi ser alltid etter dyktige og erfarne kollegaer.</p>
-                      <div>
+                      <div className="mt-4">
                         <h3 className="text-foreground font-semibold mb-2">Kan ett eller flere av</h3>
                         <ul className="space-y-1.5 list-disc list-inside">
                           <li>Utvikling i C, C++ og Rust</li>
@@ -190,7 +190,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                           <li>Evne til å ta ansvar og bidra positivt til miljøet</li>
                         </ul>
                       </div>
-                      <div>
+                      <div className="mt-4">
                         <h3 className="text-foreground font-semibold mb-2">Hva vi tilbyr</h3>
                         <ul className="space-y-1.5 list-disc list-inside">
                           <li>Markedsledende betingelser</li>

@@ -178,10 +178,9 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                   <>
                     <h2 className="text-[28px] font-bold text-foreground tracking-tight">Senior Embedded Konsulent</h2>
                     <div className="mt-6 space-y-4 text-[15px] text-muted-foreground leading-relaxed">
-                      <p>
-                        Vi ser etter erfarne embedded-utviklere som brenner for kvalitet og vil jobbe med prosjekter som
-                        gjør en forskjell.
-                      </p>
+                       <p>
+                         Vi ser alltid etter dyktige og erfarne som ønsker å være med...
+                       </p>
                       <div>
                         <h3 className="text-foreground font-semibold mb-2">Kan ett eller flere av</h3>
                         <ul className="space-y-1.5 list-disc list-inside">

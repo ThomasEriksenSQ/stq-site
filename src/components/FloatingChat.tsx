@@ -4,6 +4,8 @@ import { Send, Bot, MessageSquare, X, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
+import thomasEriksenProfil from "@/assets/thomas-eriksen-profil.jpg";
+import jonRichardProfil from "@/assets/jon-richard-nygaard-profil.jpg";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 const SLACK_CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/slack-chat`;
@@ -74,8 +76,8 @@ interface Message {
 }
 
 const DEFAULT_SLACK_CONTACTS = [
-  { name: "Thomas Eriksen", image: "", email: "Daglig leder og Partner" },
-  { name: "Jon Richard Nygaard", image: "", email: "Partner" },
+  { name: "Thomas Eriksen", image: thomasEriksenProfil, email: "Daglig leder og Partner" },
+  { name: "Jon Richard Nygaard", image: jonRichardProfil, email: "Partner" },
 ];
 
 const BOT_SUGGESTIONS = [

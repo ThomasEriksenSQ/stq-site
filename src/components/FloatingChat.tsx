@@ -76,8 +76,8 @@ interface Message {
 }
 
 const DEFAULT_SLACK_CONTACTS = [
-  { name: "Thomas Eriksen", image: "", email: "Daglig leder og Partner" },
-  { name: "Jon Richard Nygaard", image: "", email: "Partner" },
+  { name: "Thomas Eriksen", image: thomasEriksenProfil, email: "Daglig leder og Partner" },
+  { name: "Jon Richard Nygaard", image: jonRichardProfil, email: "Partner" },
 ];
 
 const BOT_SUGGESTIONS = [

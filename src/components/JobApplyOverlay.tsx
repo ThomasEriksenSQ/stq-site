@@ -183,7 +183,7 @@ const JobApplyOverlay = ({ isOpen, onClose, onOpenHandbok }: JobApplyOverlayProp
                         gjør en forskjell.
                       </p>
                       <div>
-                        <h3 className="text-foreground font-semibold mb-2">Krav</h3>
+                        <h3 className="text-foreground font-semibold mb-2">Kan ett eller flere av</h3>
                         <ul className="space-y-1.5 list-disc list-inside">
                           <li>Utvikling i C, C++ og Rust</li>
                           <li>Embedded software, fra mikrokontrollere til Linux-baserte systemer</li>

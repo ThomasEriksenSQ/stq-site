@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Bot, MessageSquare, X, MessageCircle } from "lucide-react";
-import jonRichard from "@/assets/jon-richard-nygaard.avif";
-import thomasEriksen from "@/assets/thomas-eriksen.avif";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import ReactMarkdown from "react-markdown";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
@@ -74,9 +73,9 @@ interface Message {
   name?: string;
 }
 
-const SLACK_CONTACTS = [
-  { name: "Thomas Eriksen", image: thomasEriksen, email: "Daglig leder og Partner" },
-  { name: "Jon Richard Nygaard", image: jonRichard, email: "Partner" },
+const DEFAULT_SLACK_CONTACTS = [
+  { name: "Thomas Eriksen", image: "", email: "Daglig leder og Partner" },
+  { name: "Jon Richard Nygaard", image: "", email: "Partner" },
 ];
 
 const BOT_SUGGESTIONS = [
@@ -89,6 +88,24 @@ const BOT_SUGGESTIONS = [
 const FloatingChat = () => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const [isOpen, setIsOpen] = useState(!isMobile);
+  const [slackContacts, setSlackContacts] = useState(DEFAULT_SLACK_CONTACTS);
+
+  useEffect(() => {
+    supabase
+      .from("consultants")
+      .select("name, image_url")
+      .in("name", ["Thomas Eriksen", "Jon Richard Nygaard"])
+      .then(({ data }) => {
+        if (data) {
+          setSlackContacts((prev) =>
+            prev.map((c) => {
+              const match = data.find((d) => d.name === c.name);
+              return match?.image_url ? { ...c, image: match.image_url } : c;
+            })
+          );
+        }
+      });
+  }, []);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState<Mode>("slack");
   const [slackRecipient, setSlackRecipient] = useState<SlackRecipient>(null);
@@ -201,7 +218,7 @@ const FloatingChat = () => {
     if (!isExpanded) setIsExpanded(true);
   };
 
-  const selectRecipient = (contact: typeof SLACK_CONTACTS[0]) => {
+  const selectRecipient = (contact: typeof DEFAULT_SLACK_CONTACTS[0]) => {
     setSlackRecipient(contact);
     if (!slackMessages[contact.name]) {
       setSlackMessages((prev) => ({
@@ -327,7 +344,7 @@ const FloatingChat = () => {
           {showContactPicker ? (
             <div className="flex-1 px-4 py-4 flex flex-col gap-3">
               <p className="text-[12px] text-muted-foreground font-mono">Hvem vil du sende melding til?</p>
-              {SLACK_CONTACTS.map((contact) => (
+              {slackContacts.map((contact) => (
                 <button
                   key={contact.name}
                   onClick={() => selectRecipient(contact)}

@@ -28,7 +28,7 @@ const RobotAvatar = ({ className, fontSize }: RobotAvatarProps) => (
       style={{
         color: "#c8a050",
         fontFamily: "'Courier New', monospace",
-        fontSize: fontSize ?? "clamp(8px, 2.8vw, 18px)",
+        fontSize: fontSize ?? "clamp(12px, 3.6vw, 24px)",
         lineHeight: 1.25,
         margin: 0,
         userSelect: "none",

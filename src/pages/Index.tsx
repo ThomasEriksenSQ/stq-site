@@ -101,11 +101,11 @@ const COMPETENCE_GROUPS = [
 
 const DOMAIN_ICONS: Record<string, React.ComponentType<any>> = {
   "Forsvar og forsvars\u00ADteknologi": Shield,
-  "Halvlederindustri": Cpu,
+  Halvlederindustri: Cpu,
   "Medisinsk teknologi": HeartPulse,
   "Industriell automasjon": Settings2,
   "Maritim industri": Anchor,
-  "Telekommunikasjon": Radio,
+  Telekommunikasjon: Radio,
   "Test- og målesystemer": Gauge,
   "Energi og elektriske kjøretøy": Zap,
   "Industriell robotikk": Bot,
@@ -172,12 +172,12 @@ const Index = () => {
     queryFn: async () => {
       const { data, error } = await supabase.from("consultants").select("*").eq("active", true);
       if (error) throw error;
-      const getLastName = (name: string) => name.trim().split(' ').slice(-1)[0].toLowerCase();
+      const getLastName = (name: string) => name.trim().split(" ").slice(-1)[0].toLowerCase();
       const sorted = [...(data || [])].sort((a, b) => {
         const aLast = a.ikke_startet ?? false;
         const bLast = b.ikke_startet ?? false;
         if (aLast !== bLast) return aLast ? 1 : -1;
-        return getLastName(a.name).localeCompare(getLastName(b.name), 'nb');
+        return getLastName(a.name).localeCompare(getLastName(b.name), "nb");
       });
       return sorted;
     },
@@ -185,8 +185,8 @@ const Index = () => {
 
   const consultants = (dbConsultants ?? []).map((c: any) => ({
     name: c.name,
-    image: c.ikke_startet ? null : (c.image_url || null),
-    competence: (c.kompetanse_nettside?.length > 0) ? c.kompetanse_nettside : (c.competences || []),
+    image: c.ikke_startet ? null : c.image_url || null,
+    competence: c.kompetanse_nettside?.length > 0 ? c.kompetanse_nettside : c.competences || [],
     competenceProfile: c.competences || [],
     industries: c.industries || [],
     experience: c.experience_years ? new Date().getFullYear() - c.experience_years : 0,
@@ -194,7 +194,7 @@ const Index = () => {
     description: c.description || "",
     education_1: c.education_1 || "",
     education_2: c.education_2 || "",
-    imagePosition: c.bilde_posisjon || '50% 50%',
+    imagePosition: c.bilde_posisjon || "50% 50%",
   }));
 
   const scrollTo = (id: string) => {
@@ -342,7 +342,7 @@ const Index = () => {
       <section id="consultants" style={{ padding: "80px 10vw" }}>
         <div>
           <motion.div {...fadeUp} className="max-w-2xl">
-            <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Våre konsulenter</p>
+            <p className="text-[13px] tracking-[0.16em] uppercase mb-4 text-muted-foreground">Konsulentene</p>
             <h2
               className="font-serif text-foreground mb-14"
               style={{ fontSize: "clamp(34px, 4vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
@@ -453,68 +453,76 @@ const Index = () => {
                     </button>
 
                     <div className="w-full max-w-prose mx-auto">
-                    {/* Profile header */}
-                    <div className="flex items-start gap-4">
-                      {consultants[expandedConsultant].image ? (
-                        <img
-                          src={consultants[expandedConsultant].image}
-                          alt={consultants[expandedConsultant].name}
-                           className="w-[120px] h-[160px] object-cover flex-shrink-0"
-                           style={{ objectPosition: consultants[expandedConsultant].imagePosition }}
-                         />
-                       ) : (
-                        <RobotAvatar className="w-[120px] h-[160px] flex-shrink-0" fontSize="8px" />
-                      )}
-                      <div>
-                        <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
-                          {consultants[expandedConsultant].name}
-                        </h3>
-                        <div className="mt-2 flex flex-wrap items-center gap-4 text-[14px] text-muted-foreground">
-                          <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
-                          <span>{consultants[expandedConsultant].location}</span>
-                        </div>
-                        {(consultants[expandedConsultant].education_1 || consultants[expandedConsultant].education_2) && (
-                          <div className="mt-2 flex flex-col gap-0.5" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', color: 'hsl(var(--muted-foreground))' }}>
-                            {consultants[expandedConsultant].education_1 && (
-                              <span>{consultants[expandedConsultant].education_1}</span>
-                            )}
-                            {consultants[expandedConsultant].education_2 && (
-                              <span>{consultants[expandedConsultant].education_2}</span>
-                            )}
-                          </div>
+                      {/* Profile header */}
+                      <div className="flex items-start gap-4">
+                        {consultants[expandedConsultant].image ? (
+                          <img
+                            src={consultants[expandedConsultant].image}
+                            alt={consultants[expandedConsultant].name}
+                            className="w-[120px] h-[160px] object-cover flex-shrink-0"
+                            style={{ objectPosition: consultants[expandedConsultant].imagePosition }}
+                          />
+                        ) : (
+                          <RobotAvatar className="w-[120px] h-[160px] flex-shrink-0" fontSize="8px" />
                         )}
+                        <div>
+                          <h3 className="text-[24px] md:text-[28px] font-serif text-foreground leading-tight">
+                            {consultants[expandedConsultant].name}
+                          </h3>
+                          <div className="mt-2 flex flex-wrap items-center gap-4 text-[14px] text-muted-foreground">
+                            <span>{consultants[expandedConsultant].experience}+ års erfaring</span>
+                            <span>{consultants[expandedConsultant].location}</span>
+                          </div>
+                          {(consultants[expandedConsultant].education_1 ||
+                            consultants[expandedConsultant].education_2) && (
+                            <div
+                              className="mt-2 flex flex-col gap-0.5"
+                              style={{
+                                fontFamily: "'IBM Plex Mono', monospace",
+                                fontSize: "13px",
+                                color: "hsl(var(--muted-foreground))",
+                              }}
+                            >
+                              {consultants[expandedConsultant].education_1 && (
+                                <span>{consultants[expandedConsultant].education_1}</span>
+                              )}
+                              {consultants[expandedConsultant].education_2 && (
+                                <span>{consultants[expandedConsultant].education_2}</span>
+                              )}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Description */}
-                    <p className="mt-7 text-[17px] text-muted-foreground leading-[1.95]">
-                      {consultants[expandedConsultant].description}
-                    </p>
-
-                    {/* Kompetanse */}
-                    <div className="mt-8">
-                      <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
-                      <div className="flex flex-wrap gap-3">
-                        {consultants[expandedConsultant].competenceProfile.map((comp) => (
-                          <Tag key={comp}>{comp}</Tag>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bransjeerfaring */}
-                    <div className="mt-6">
-                      <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">
-                        Bransjeerfaring
+                      {/* Description */}
+                      <p className="mt-7 text-[17px] text-muted-foreground leading-[1.95]">
+                        {consultants[expandedConsultant].description}
                       </p>
-                      <div className="flex flex-wrap gap-3">
-                        {consultants[expandedConsultant].industries.map((ind) => (
-                          <Tag key={ind}>{ind}</Tag>
-                        ))}
-                      </div>
-                    </div>
 
-                    {/* Availability inquiry */}
-                    <ConsultantInquiry consultantName={consultants[expandedConsultant].name} />
+                      {/* Kompetanse */}
+                      <div className="mt-8">
+                        <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">Kompetanse</p>
+                        <div className="flex flex-wrap gap-3">
+                          {consultants[expandedConsultant].competenceProfile.map((comp) => (
+                            <Tag key={comp}>{comp}</Tag>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Bransjeerfaring */}
+                      <div className="mt-6">
+                        <p className="text-[13px] tracking-[0.16em] uppercase mb-3 text-muted-foreground">
+                          Bransjeerfaring
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                          {consultants[expandedConsultant].industries.map((ind) => (
+                            <Tag key={ind}>{ind}</Tag>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Availability inquiry */}
+                      <ConsultantInquiry consultantName={consultants[expandedConsultant].name} />
                     </div>
                   </div>
                 </motion.div>
@@ -538,7 +546,10 @@ const Index = () => {
           </h2>
         </motion.div>
 
-        <motion.div {...stagger} className="mt-14 grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-4 gap-[1px] w-full">
+        <motion.div
+          {...stagger}
+          className="mt-14 grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-4 gap-[1px] w-full"
+        >
           {DOMAINS.map((title) => {
             const IconComp = DOMAIN_ICONS[title];
             return (
@@ -549,10 +560,21 @@ const Index = () => {
                   whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                 }}
                 className="group flex flex-col items-start border border-border bg-background hover:border-primary/40 transition-colors duration-300"
-                style={{ borderRadius: "2px", padding: "32px 28px", minHeight: "180px", overflowWrap: "break-word", wordBreak: "break-word" }}
+                style={{
+                  borderRadius: "2px",
+                  padding: "32px 28px",
+                  minHeight: "180px",
+                  overflowWrap: "break-word",
+                  wordBreak: "break-word",
+                }}
               >
                 {IconComp && <IconComp className="w-7 h-7 text-primary mb-6" strokeWidth={1.5} />}
-                <h3 className="text-[17px] font-medium text-foreground leading-normal mt-auto" style={{ overflowWrap: "break-word", wordBreak: "break-word" }}>{title}</h3>
+                <h3
+                  className="text-[17px] font-medium text-foreground leading-normal mt-auto"
+                  style={{ overflowWrap: "break-word", wordBreak: "break-word" }}
+                >
+                  {title}
+                </h3>
               </motion.div>
             );
           })}
@@ -609,7 +631,9 @@ const Index = () => {
               Spesialister på embedded-systemer og lavnivå-programmering.
             </p>
             <p className="mt-4 text-[15px] font-mono leading-[1.85]" style={{ color: "hsl(var(--text-faint))" }}>
-              STACQ AS<br />932 575 442 MVA
+              STACQ AS
+              <br />
+              932 575 442 MVA
             </p>
           </div>
 
@@ -748,10 +772,21 @@ const Index = () => {
       />
       <HandbookOverlay
         isOpen={isHandbookOpen}
-        onClose={() => { setIsHandbookOpen(false); setHandbookOpenedFromJob(false); }}
-        onBack={handbookOpenedFromJob ? () => { setIsHandbookOpen(false); setHandbookOpenedFromJob(false); setIsJobOverlayOpen(true); } : undefined}
+        onClose={() => {
+          setIsHandbookOpen(false);
+          setHandbookOpenedFromJob(false);
+        }}
+        onBack={
+          handbookOpenedFromJob
+            ? () => {
+                setIsHandbookOpen(false);
+                setHandbookOpenedFromJob(false);
+                setIsJobOverlayOpen(true);
+              }
+            : undefined
+        }
       />
-      
+
       <FloatingChat />
     </div>
   );
